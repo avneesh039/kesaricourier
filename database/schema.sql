@@ -5,7 +5,7 @@ CREATE TABLE IF NOT EXISTS tenants (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     uuid VARCHAR(64) UNIQUE NOT NULL,
     slug VARCHAR(64) UNIQUE NOT NULL,
-    agency_code VARCHAR(32) UNIQUE NOT NULL,
+    agency_code VARCHAR(32) UNIQUE NULL, -- Assigned upon KYC approval
     name VARCHAR(150) NOT NULL,
     trade_name VARCHAR(150),
     contact_person VARCHAR(100) NOT NULL,
@@ -20,7 +20,8 @@ CREATE TABLE IF NOT EXISTS tenants (
     gstin VARCHAR(20),
     pan_doc_url VARCHAR(255),
     aadhaar_doc_url VARCHAR(255),
-    status VARCHAR(20) DEFAULT 'active', -- pending_kyc, active, suspended, expired
+    rejection_reason TEXT NULL,
+    status VARCHAR(20) DEFAULT 'pending_otp', -- pending_otp, pending_kyc, active, suspended, expired, rejected
     validity_start DATE,
     validity_end DATE,
     logo_url VARCHAR(255),
@@ -48,6 +49,15 @@ CREATE TABLE IF NOT EXISTS users (
     last_login_at DATETIME NULL,
     created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (tenant_id) REFERENCES tenants(id) ON DELETE CASCADE
+);
+
+CREATE TABLE IF NOT EXISTS email_otps (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    email VARCHAR(120) NOT NULL,
+    otp_code VARCHAR(10) NOT NULL,
+    expires_at DATETIME NOT NULL,
+    is_used INTEGER DEFAULT 0,
+    created_at DATETIME DEFAULT CURRENT_TIMESTAMP
 );
 
 CREATE TABLE IF NOT EXISTS audit_logs (
