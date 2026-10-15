@@ -9,6 +9,8 @@ require_once dirname(__DIR__) . '/src/Router.php';
 require_once dirname(__DIR__) . '/src/Services/OtpService.php';
 require_once dirname(__DIR__) . '/src/Services/KycService.php';
 require_once dirname(__DIR__) . '/src/Controllers/AdminAgencyController.php';
+require_once dirname(__DIR__) . '/src/Controllers/DestinationController.php';
+require_once dirname(__DIR__) . '/src/Controllers/TicketController.php';
 
 // Resolve multi-tenant context from host or query parameter
 TenantContext::resolve();
@@ -26,6 +28,11 @@ $router->get('/api/health', function() {
         'authenticated' => Auth::check(),
         'user' => Auth::user(),
     ], JSON_PRETTY_PRINT);
+});
+
+// Destination Autocomplete API (used by agency booking forms)
+$router->get('/api/destinations/search', function() {
+    (new DestinationController())->searchApi();
 });
 
 // Authentication Routes
@@ -204,7 +211,58 @@ $router->post('/admin/agencies/{id}/edit', function($id) {
     (new AdminAgencyController())->update((int)$id);
 });
 
+// -------------------------------------------------------------
+// Master Destinations Routes (Super Admin Governance)
+// -------------------------------------------------------------
+
+$router->get('/admin/destinations', function() {
+    (new DestinationController())->index();
+});
+
+$router->get('/admin/destinations/new', function() {
+    (new DestinationController())->create();
+});
+
+$router->post('/admin/destinations/new', function() {
+    (new DestinationController())->store();
+});
+
+// -------------------------------------------------------------
+// Agency & Super Admin Support & Destination Ticketing Routes
+// -------------------------------------------------------------
+
+$router->get('/tickets', function() {
+    (new TicketController())->agencyIndex();
+});
+
+$router->get('/tickets/new', function() {
+    (new TicketController())->agencyCreate();
+});
+
+$router->post('/tickets/new', function() {
+    (new TicketController())->agencyStore();
+});
+
+$router->get('/admin/tickets', function() {
+    (new TicketController())->adminIndex();
+});
+
+$router->get('/admin/tickets/{id}', function($id) {
+    (new TicketController())->adminReview((int)$id);
+});
+
+$router->post('/admin/tickets/{id}/approve-destination', function($id) {
+    (new TicketController())->adminApproveDestination((int)$id);
+});
+
+$router->post('/admin/tickets/{id}/resolve', function($id) {
+    (new TicketController())->adminResolve((int)$id);
+});
+
+// -------------------------------------------------------------
 // Root / Dashboard Dispatcher
+// -------------------------------------------------------------
+
 $router->get('/', function() {
     Auth::requireLogin();
 
