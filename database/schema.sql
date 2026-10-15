@@ -111,6 +111,90 @@ CREATE TABLE IF NOT EXISTS tickets (
     FOREIGN KEY (tenant_id) REFERENCES tenants(id)
 );
 
+-- B2B Corporate Clients
+CREATE TABLE IF NOT EXISTS clients (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    tenant_id INTEGER NOT NULL,
+    client_code VARCHAR(30) NOT NULL,
+    name VARCHAR(150) NOT NULL,
+    contact_person VARCHAR(100),
+    phone VARCHAR(20),
+    email VARCHAR(120),
+    address TEXT,
+    city VARCHAR(100),
+    state VARCHAR(100),
+    pincode VARCHAR(10),
+    gstin VARCHAR(20),
+    pan_no VARCHAR(20),
+    status VARCHAR(20) DEFAULT 'active',
+    created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (tenant_id) REFERENCES tenants(id)
+);
+
+-- Multi-Slab Tariff Matrix
+CREATE TABLE IF NOT EXISTS tariffs (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    tenant_id INTEGER NOT NULL,
+    client_id INTEGER NULL, -- NULL = Agency Default Tariff
+    send_by VARCHAR(20) NOT NULL, -- Air, Surface
+    mode VARCHAR(20) NOT NULL, -- Dox, Non-Dox
+    zone_id INTEGER NOT NULL,
+    additional_weight_step REAL DEFAULT 0.5, -- in KG
+    additional_weight_rate REAL DEFAULT 30.0, -- in Rs
+    created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (tenant_id) REFERENCES tenants(id),
+    FOREIGN KEY (client_id) REFERENCES clients(id),
+    FOREIGN KEY (zone_id) REFERENCES operational_zones(id)
+);
+
+CREATE TABLE IF NOT EXISTS tariff_slabs (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    tariff_id INTEGER NOT NULL,
+    weight_from REAL NOT NULL,
+    weight_to REAL NOT NULL,
+    rate REAL NOT NULL,
+    FOREIGN KEY (tariff_id) REFERENCES tariffs(id) ON DELETE CASCADE
+);
+
+-- Consignments / AWB Bookings
+CREATE TABLE IF NOT EXISTS consignments (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    tenant_id INTEGER NOT NULL,
+    booking_date DATE NOT NULL,
+    consignment_no VARCHAR(50) UNIQUE NOT NULL,
+    client_id INTEGER NOT NULL,
+    sender_name VARCHAR(100),
+    sender_phone VARCHAR(20),
+    recipient_name VARCHAR(100) NOT NULL,
+    recipient_phone VARCHAR(20) NOT NULL,
+    recipient_address TEXT NOT NULL,
+    destination_id INTEGER NOT NULL,
+    mode VARCHAR(20) NOT NULL, -- Dox, Non-Dox
+    send_by VARCHAR(20) NOT NULL, -- Air, Surface
+    pieces INTEGER DEFAULT 1,
+    dead_weight REAL NOT NULL,
+    length_cm REAL NULL,
+    width_cm REAL NULL,
+    height_cm REAL NULL,
+    volumetric_weight REAL NULL,
+    billable_weight REAL NOT NULL,
+    subtotal REAL NOT NULL,
+    discount_type VARCHAR(10) DEFAULT 'fixed', -- fixed, percent
+    discount_amount REAL DEFAULT 0,
+    fuel_surcharge_amount REAL DEFAULT 0,
+    total_amount REAL NOT NULL,
+    insured_value REAL DEFAULT 0,
+    other_charges REAL DEFAULT 0,
+    status VARCHAR(30) DEFAULT 'booked', -- booked, in_transit, out_for_delivery, delivered, cancelled
+    is_billed INTEGER DEFAULT 0,
+    invoice_id INTEGER NULL,
+    created_by_user_id INTEGER NULL,
+    created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (tenant_id) REFERENCES tenants(id),
+    FOREIGN KEY (client_id) REFERENCES clients(id),
+    FOREIGN KEY (destination_id) REFERENCES destinations(id)
+);
+
 CREATE TABLE IF NOT EXISTS audit_logs (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     tenant_id INTEGER NULL,

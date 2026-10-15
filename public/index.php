@@ -11,13 +11,19 @@ require_once dirname(__DIR__) . '/src/Services/KycService.php';
 require_once dirname(__DIR__) . '/src/Controllers/AdminAgencyController.php';
 require_once dirname(__DIR__) . '/src/Controllers/DestinationController.php';
 require_once dirname(__DIR__) . '/src/Controllers/TicketController.php';
+require_once dirname(__DIR__) . '/src/Controllers/ClientController.php';
+require_once dirname(__DIR__) . '/src/Controllers/TariffController.php';
+require_once dirname(__DIR__) . '/src/Controllers/BookingController.php';
 
 // Resolve multi-tenant context from host or query parameter
 TenantContext::resolve();
 
 $router = new Router();
 
-// Health check API endpoint
+// -------------------------------------------------------------
+// APIs
+// -------------------------------------------------------------
+
 $router->get('/api/health', function() {
     header('Content-Type: application/json');
     echo json_encode([
@@ -30,12 +36,22 @@ $router->get('/api/health', function() {
     ], JSON_PRETTY_PRINT);
 });
 
-// Destination Autocomplete API (used by agency booking forms)
 $router->get('/api/destinations/search', function() {
     (new DestinationController())->searchApi();
 });
 
+$router->get('/api/clients/search', function() {
+    (new ClientController())->apiSearch();
+});
+
+$router->get('/api/tariffs/calculate', function() {
+    (new TariffController())->calculateApi();
+});
+
+// -------------------------------------------------------------
 // Authentication Routes
+// -------------------------------------------------------------
+
 $router->get('/login', function() {
     if (Auth::check()) {
         header('Location: /');
@@ -101,7 +117,6 @@ $router->post('/onboard/register', function() {
 
     $slug = strtolower(preg_replace('/[^a-z0-9]+/', '-', $city . '-' . substr(md5($name . time()), 0, 4)));
 
-    // Create or find draft tenant
     $existing = $db->fetchOne("SELECT * FROM tenants WHERE email = ?", [$email]);
     if ($existing) {
         $tenantId = (int)$existing['id'];
@@ -118,7 +133,6 @@ $router->post('/onboard/register', function() {
         $tenantId = (int)$db->lastInsertId();
     }
 
-    // Generate OTP
     OtpService::generateOtp($email);
     $_SESSION['onboard_pending_email'] = $email;
     $_SESSION['onboard_tenant_id'] = $tenantId;
@@ -260,6 +274,68 @@ $router->post('/admin/tickets/{id}/resolve', function($id) {
 });
 
 // -------------------------------------------------------------
+// B2B Corporate Clients Routes (Agency Portal)
+// -------------------------------------------------------------
+
+$router->get('/clients', function() {
+    (new ClientController())->index();
+});
+
+$router->get('/clients/new', function() {
+    (new ClientController())->create();
+});
+
+$router->post('/clients/new', function() {
+    (new ClientController())->store();
+});
+
+// -------------------------------------------------------------
+// Multi-Slab Tariff Matrix Routes (Agency Portal)
+// -------------------------------------------------------------
+
+$router->get('/tariffs', function() {
+    (new TariffController())->index();
+});
+
+$router->get('/tariffs/new', function() {
+    (new TariffController())->create();
+});
+
+$router->post('/tariffs/new', function() {
+    (new TariffController())->store();
+});
+
+// -------------------------------------------------------------
+// Consignment Booking & Operational Tracking Routes
+// -------------------------------------------------------------
+
+$router->get('/bookings', function() {
+    (new BookingController())->index();
+});
+
+$router->get('/bookings/new', function() {
+    (new BookingController())->create();
+});
+
+$router->post('/bookings/new', function() {
+    (new BookingController())->store();
+});
+
+$router->get('/bookings/{id}', function($id) {
+    (new BookingController())->show((int)$id);
+});
+
+$router->post('/bookings/{id}/status', function($id) {
+    (new BookingController())->updateStatus((int)$id);
+});
+
+// Placeholder for Phase 5 Thermal Print Hub
+$router->get('/print-labels', function() {
+    $awb = $_GET['awb'] ?? '';
+    echo "<script>window.location.href='/bookings';</script>";
+});
+
+// -------------------------------------------------------------
 // Root / Dashboard Dispatcher
 // -------------------------------------------------------------
 
@@ -269,10 +345,8 @@ $router->get('/', function() {
     $tenant = TenantContext::getTenant();
 
     if ($tenant !== null && !Auth::isSuperAdmin()) {
-        // Agency Portal Dashboard
         require ROOT_PATH . '/src/Views/dashboard/agency.php';
     } else {
-        // Super Admin Control Plane Dashboard
         require ROOT_PATH . '/src/Views/dashboard/admin.php';
     }
 });
