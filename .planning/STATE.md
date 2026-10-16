@@ -3,10 +3,10 @@ gsd_state_version: '1.0'
 status: active
 progress:
   total_phases: 6
-  completed_phases: 3
+  completed_phases: 4
   total_plans: 16
-  completed_plans: 8
-  percent: 50
+  completed_plans: 11
+  percent: 69
 ---
 
 # Project State
@@ -16,23 +16,23 @@ progress:
 See: [.planning/PROJECT.md](file:///c:/Users/acer/Documents/kesari/.planning/PROJECT.md) (updated 2026-10-15)
 
 **Core value:** Empower courier agencies to operate autonomously with custom branding, rapid consignment booking, and automated GST billing, while centralizing destination governance and tenant subscription controls under the Super Admin.  
-**Current focus:** Phase 4 — Consignment Booking Engine & Tariff Matrix
+**Current focus:** Phase 5 — Thermal Label Barcode & QR Code Engine
 
 ## Current Position
 
-Phase: 4 of 6 (Consignment Booking Engine & Tariff Matrix)  
-Plan: Ready to plan (0 of 3 in current phase)  
-Status: Phase 3 Complete, ready to execute Phase 4  
-Last activity: 2026-10-15 — Phase 3 completed: Centralized Master Destination hierarchy (operational zones, states, deliverable cities/pincodes), debounce autocomplete search API, internal agency ticketing module, WhatsApp/Email shortcuts, and Super Admin 1-click destination approval workflow.
+Phase: 5 of 6 (Thermal Label Barcode & QR Code Engine)  
+Plan: Ready to plan (0 of 2 in current phase)  
+Status: Phase 4 Complete, ready to execute Phase 5  
+Last activity: 2026-10-16 — Phase 4 completed: B2B Client Master, dynamic multi-tier rate slab configuration, rapid keyboard-navigable consignment booking UI with real-time rate calculator & volumetric weight logic, and consignment management dossier with live status tracking.
 
-Progress: [█████░░░░░] 50%
+Progress: [███████░░░] 69%
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 8
+- Total plans completed: 11
 - Average duration: 14 min
-- Total execution time: 1.9 hours
+- Total execution time: 2.6 hours
 
 **By Phase:**
 
@@ -41,7 +41,7 @@ Progress: [█████░░░░░] 50%
 | 1. Foundation | 3/3 | Complete | 15m |
 | 2. Onboarding & KYC | 3/3 | Complete | 15m |
 | 3. Destination Governance | 2/2 | Complete | 12m |
-| 4. Booking Engine | 0/3 | Pending | - |
+| 4. Booking Engine | 3/3 | Complete | 14m |
 | 5. Thermal Printing | 0/2 | Pending | - |
 | 6. Invoicing & Billing | 0/3 | Pending | - |
 
@@ -60,6 +60,9 @@ Progress: [█████░░░░░] 50%
 - [Phase 3]: Centralized destination governance locking additions to Super Admin to prevent duplicates.
 - [Phase 3]: Live debounce search API `/api/destinations/search` returning city, state code, zone code, and pincode.
 - [Phase 3]: Agency ticketing with prefilled WhatsApp API links (`https://wa.me/...`) and 1-click Super Admin destination activation.
+- [Phase 4]: Dynamic rate matrix calculation using base weight slab + incremental weight rates per mode and operational zone.
+- [Phase 4]: Volumetric weight calculated using industry-standard formula (L × W × H / 5000) comparing against dead weight for billable weight.
+- [Phase 4]: Keyboard-navigable rapid entry form supporting instant Tab/Enter traversal and autocomplete for high-speed counter booking.
 
 ### Pending Todos
 
@@ -71,6 +74,7 @@ None.
 
 ## Session Continuity
 
-Last session: 2026-10-15 23:23
-Stopped at: Phase 3 complete and verified. Ready to begin Phase 4.
+Last session: 2026-10-16 04:15
+Stopped at: Phase 4 complete and verified. Ready to begin Phase 5.
 Resume file: None
+
