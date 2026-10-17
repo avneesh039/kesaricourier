@@ -19,6 +19,7 @@ require_once dirname(__DIR__) . '/src/Controllers/PrintController.php';
 require_once dirname(__DIR__) . '/src/Controllers/BankController.php';
 require_once dirname(__DIR__) . '/src/Controllers/InvoiceController.php';
 require_once dirname(__DIR__) . '/src/Controllers/DashboardController.php';
+require_once dirname(__DIR__) . '/src/Controllers/PublicController.php';
 
 // Resolve multi-tenant context from host or query parameter
 TenantContext::resolve();
@@ -395,10 +396,36 @@ $router->post('/invoices/{id}/payment', function($id) {
 });
 
 // -------------------------------------------------------------
-// Root / Dashboard Dispatcher (UI-02)
+// Public Customer-Facing Routes & Tracker
+// -------------------------------------------------------------
+
+$router->get('/home', function() {
+    (new PublicController())->home();
+});
+
+$router->get('/track', function() {
+    (new PublicController())->track();
+});
+
+$router->get('/api/calculator', function() {
+    (new PublicController())->calculateRate();
+});
+
+$router->get('/api/track', function() {
+    (new PublicController())->track();
+});
+
+// -------------------------------------------------------------
+// Root Dispatcher: Public Website (Visitors) or Dashboards (Staff)
 // -------------------------------------------------------------
 
 $router->get('/', function() {
+    // If not authenticated, display the public customer-facing frontend
+    if (!Auth::check()) {
+        (new PublicController())->home();
+        return;
+    }
+
     $tenant = TenantContext::getTenant();
 
     if ($tenant !== null && !Auth::isSuperAdmin()) {
