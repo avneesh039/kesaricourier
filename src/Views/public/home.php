@@ -214,9 +214,11 @@
         .portal-hero {
             background: linear-gradient(180deg, #f8fafc 0%, #edf2f7 100%);
             border-bottom: 1px solid var(--portal-border);
-            padding: 40px 40px 52px 40px;
+            padding: 40px 32px 52px 32px;
             position: relative;
             overflow: hidden;
+            width: 100%;
+            box-sizing: border-box;
         }
 
         .hero-layout-grid {
@@ -226,6 +228,32 @@
             grid-template-columns: 1.22fr 0.98fr;
             gap: 36px;
             align-items: center;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        .hero-layout-grid > * {
+            min-width: 0;
+            max-width: 100%;
+        }
+
+        .hero-headline {
+            font-size: 34px;
+            font-weight: 800;
+            color: #0f172a;
+            line-height: 1.2;
+            letter-spacing: -0.5px;
+            margin: 6px 0 8px 0;
+            word-break: break-word;
+            overflow-wrap: break-word;
+        }
+
+        .hero-subtext {
+            font-size: 14.5px;
+            color: var(--portal-text-muted);
+            line-height: 1.5;
+            word-break: break-word;
+            overflow-wrap: break-word;
         }
 
         .command-dock {
@@ -234,6 +262,9 @@
             border-radius: 16px;
             box-shadow: 0 10px 30px rgba(15, 23, 42, 0.08);
             overflow: hidden;
+            width: 100%;
+            max-width: 100%;
+            box-sizing: border-box;
         }
 
         .dock-tabs {
@@ -241,11 +272,19 @@
             background: #f1f5f9;
             border-bottom: 1px solid var(--portal-border);
             overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+            width: 100%;
+            max-width: 100%;
+            scrollbar-width: none;
+        }
+
+        .dock-tabs::-webkit-scrollbar {
+            display: none;
         }
 
         .dock-tab-btn {
-            flex: 1;
-            padding: 14px 16px;
+            flex-shrink: 0;
+            padding: 13px 16px;
             font-size: 13px;
             font-weight: 600;
             border: none;
@@ -275,6 +314,8 @@
         .dock-tab-content {
             padding: 24px;
             display: none;
+            width: 100%;
+            box-sizing: border-box;
         }
 
         .dock-tab-content.active {
@@ -285,10 +326,13 @@
             display: flex;
             gap: 10px;
             margin-bottom: 14px;
+            width: 100%;
+            box-sizing: border-box;
         }
 
         .dock-text-input {
             flex: 1;
+            min-width: 0;
             padding: 12px 16px;
             border: 1px solid var(--portal-border-dark);
             border-radius: 8px;
@@ -296,6 +340,7 @@
             font-family: var(--font-mono);
             outline: none;
             transition: border-color 0.2s;
+            box-sizing: border-box;
         }
 
         .dock-text-input:focus {
@@ -310,6 +355,7 @@
             font-size: 12px;
             color: var(--portal-text-muted);
             flex-wrap: wrap;
+            width: 100%;
         }
 
         .chip-awb-link {
@@ -322,6 +368,7 @@
             color: var(--portal-blue);
             text-decoration: none;
             font-weight: 600;
+            white-space: nowrap;
         }
 
         .chip-awb-link:hover {
@@ -336,6 +383,10 @@
             align-items: center;
             justify-content: center;
             min-height: 480px;
+            width: 100%;
+            max-width: 100%;
+            overflow: hidden;
+            box-sizing: border-box;
         }
 
         .stage-halo-circle {
@@ -361,6 +412,7 @@
             z-index: 2;
             max-height: 470px;
             width: auto;
+            max-width: 100%;
             object-fit: contain;
             filter: drop-shadow(0 24px 32px rgba(15, 23, 42, 0.16));
             transition: transform 0.4s ease;
@@ -815,11 +867,16 @@
             margin-top: 20px;
         }
 
-        /* Utility Grids for Mobile Adaptation */
+        /* Utility Grids & Components for Mobile Adaptation */
         .regulatory-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
             gap: 20px;
+            width: 100%;
+        }
+
+        .regulatory-grid > * {
+            min-width: 0;
         }
 
         .calc-two-col {
@@ -827,6 +884,11 @@
             grid-template-columns: 1fr 1fr;
             gap: 14px;
             margin-bottom: 14px;
+            width: 100%;
+        }
+
+        .calc-two-col > * {
+            min-width: 0;
         }
 
         .vol-three-col {
@@ -834,6 +896,25 @@
             grid-template-columns: 1fr 1fr 1fr;
             gap: 10px;
             margin-bottom: 12px;
+            width: 100%;
+        }
+
+        .vol-three-col > * {
+            min-width: 0;
+        }
+
+        .tracking-route-card {
+            display: grid;
+            grid-template-columns: 1fr auto 1fr;
+            gap: 16px;
+            align-items: center;
+            background: #f8fafc;
+            border-radius: 10px;
+            padding: 16px 20px;
+            margin-top: 20px;
+            border: 1px solid #e2e8f0;
+            width: 100%;
+            box-sizing: border-box;
         }
 
         .tracking-stepper {
@@ -842,6 +923,7 @@
             gap: 10px;
             margin: 28px 0 20px 0;
             text-align: center;
+            width: 100%;
         }
 
         .tracking-meta-grid {
@@ -853,76 +935,157 @@
             padding: 12px 16px;
             font-size: 12px;
             border: 1px solid #e2e8f0;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        .table-scroll-hint {
+            display: none;
+            align-items: center;
+            gap: 6px;
+            font-size: 11.5px;
+            color: #64748b;
+            margin-bottom: 8px;
+            font-weight: 500;
         }
 
         .tariff-table {
-            min-width: 680px;
+            min-width: 640px;
         }
 
         /* Responsive Breakpoints & Complete Mobile Optimization */
         @media (max-width: 1024px) {
-            .hero-layout-grid { grid-template-columns: 1fr; gap: 28px; }
-            .hero-cutout-stage { min-height: 360px; }
-            .specs-grid { grid-template-columns: 1fr 1fr; }
-            .kpi-ribbon-grid { grid-template-columns: repeat(3, 1fr); gap: 16px; }
-            .footer-grid { grid-template-columns: 1fr 1fr; }
-            .cutout-split-row { grid-template-columns: 1fr; padding: 28px; }
-            .journey-grid { grid-template-columns: 1fr 1fr; }
-            .case-studies-grid { grid-template-columns: 1fr; }
+            .hero-layout-grid { 
+                grid-template-columns: 1fr; 
+                gap: 28px; 
+            }
+            .hero-cutout-stage { 
+                min-height: 360px; 
+            }
+            .specs-grid { 
+                grid-template-columns: 1fr 1fr; 
+            }
+            .kpi-ribbon-grid { 
+                grid-template-columns: repeat(3, 1fr); 
+                gap: 16px; 
+            }
+            .footer-grid { 
+                grid-template-columns: 1fr 1fr; 
+            }
+            .cutout-split-row { 
+                grid-template-columns: 1fr; 
+                padding: 28px; 
+            }
+            .journey-grid { 
+                grid-template-columns: 1fr 1fr; 
+            }
+            .case-studies-grid { 
+                grid-template-columns: 1fr 1fr; 
+            }
+            .corridor-grid {
+                grid-template-columns: 1fr 1fr;
+            }
         }
 
         @media (max-width: 900px) {
-            .portal-nav { display: none !important; }
-            .mobile-menu-toggle { display: inline-flex !important; }
-            .header-actions a.btn-outlined { display: none; }
-            .regulatory-grid { grid-template-columns: 1fr; gap: 14px; }
+            .portal-nav { 
+                display: none !important; 
+            }
+            .mobile-menu-toggle { 
+                display: inline-flex !important; 
+            }
+            .header-actions a.btn-outlined { 
+                display: none; 
+            }
+            .regulatory-grid { 
+                grid-template-columns: 1fr; 
+                gap: 14px; 
+            }
+            .topbar-hide-tablet {
+                display: none !important;
+            }
+            .cutout-split-row {
+                grid-template-columns: 1fr !important;
+                padding: 24px 18px !important;
+                gap: 20px !important;
+                margin: 28px 0 !important;
+                direction: ltr !important;
+            }
+            .cutout-split-row.reverse {
+                direction: ltr !important;
+            }
+            .cutout-split-row h2 {
+                font-size: 22px !important;
+            }
+            .cutout-split-media {
+                min-height: 200px !important;
+                max-height: 240px !important;
+                order: -1;
+            }
+            .cutout-split-media img {
+                max-height: 200px !important;
+            }
+            .split-halo {
+                width: 180px !important;
+                height: 180px !important;
+            }
         }
 
-        @media (max-width: 680px) {
+        @media (max-width: 768px) {
+            .topbar-hide-mobile {
+                display: none !important;
+            }
             .portal-topbar {
-                padding: 6px 14px;
+                padding: 5px 12px;
                 font-size: 11px;
             }
-            .topbar-left span:nth-child(2),
-            .topbar-left span:nth-child(3),
-            .topbar-right span:nth-child(2) {
-                display: none;
-            }
             .portal-header {
-                padding: 0 14px;
-                height: 60px;
+                padding: 0 12px;
+                height: 58px;
             }
             .brand-emblem {
-                width: 32px;
-                height: 32px;
+                width: 30px;
+                height: 30px;
                 font-size: 15px;
             }
             .brand-info-title {
-                font-size: 15px;
+                font-size: 14.5px;
             }
             .brand-info-sub {
                 display: none;
             }
-            .portal-hero {
-                padding: 20px 14px 32px 14px;
+            .header-actions .btn {
+                padding: 5px 10px;
+                font-size: 12px;
             }
-            .dock-tabs {
-                overflow-x: auto;
-                -webkit-overflow-scrolling: touch;
+            .portal-hero {
+                padding: 18px 12px 28px 12px;
+            }
+            .hero-headline {
+                font-size: 22px !important;
+                line-height: 1.25 !important;
+            }
+            .hero-subtext {
+                font-size: 13px !important;
+                line-height: 1.45 !important;
+            }
+            .command-dock {
+                border-radius: 12px;
             }
             .dock-tab-btn {
                 padding: 10px 12px;
                 font-size: 12px;
             }
             .dock-tab-content {
-                padding: 16px 14px;
+                padding: 16px 12px;
             }
             .dock-input-group {
                 flex-direction: column;
+                gap: 8px;
             }
             .dock-input-group button {
                 width: 100%;
-                height: 44px;
+                height: 42px;
             }
             .calc-two-col {
                 grid-template-columns: 1fr;
@@ -933,95 +1096,130 @@
                 gap: 10px;
             }
             .hero-cutout-stage {
-                min-height: 270px;
-                max-height: 290px;
+                min-height: 240px;
+                max-height: 260px;
+                margin-top: 8px;
             }
             .hero-courier-cutout-img {
-                max-height: 260px;
+                max-height: 230px;
             }
             .stage-halo-circle {
-                width: 210px;
-                height: 210px;
+                width: 190px;
+                height: 190px;
             }
             .stage-orbit-ring {
-                width: 250px;
-                height: 250px;
+                width: 220px;
+                height: 220px;
             }
             .cutout-tag {
-                font-size: 10.5px;
-                padding: 4px 10px;
+                display: none !important;
             }
             .kpi-ribbon {
-                padding: 14px;
+                padding: 14px 12px;
             }
             .kpi-ribbon-grid {
                 grid-template-columns: 1fr 1fr;
-                gap: 12px;
+                gap: 10px;
+            }
+            .kpi-item {
+                border-right: none !important;
+                border-bottom: 1px solid #f1f5f9;
+                padding-bottom: 10px;
+                padding-right: 0;
+            }
+            .kpi-val {
+                font-size: 19px !important;
             }
             .portal-section {
-                padding: 36px 14px;
+                padding: 32px 12px;
+            }
+            .section-headline-block {
+                margin-bottom: 20px;
             }
             .section-maintitle {
-                font-size: 22px;
+                font-size: 20px !important;
+                line-height: 1.25 !important;
             }
-            .corridor-grid {
-                grid-template-columns: 1fr;
+            .section-desc {
+                font-size: 12.5px !important;
+                line-height: 1.5 !important;
             }
-            .journey-grid {
-                grid-template-columns: 1fr;
-                gap: 14px;
+            .corridor-grid,
+            .journey-grid,
+            .specs-grid,
+            .case-studies-grid {
+                grid-template-columns: 1fr !important;
+                gap: 12px;
             }
-            .specs-grid {
-                grid-template-columns: 1fr;
+            .tracking-route-card {
+                grid-template-columns: 1fr !important;
+                text-align: center;
+                gap: 10px;
+                padding: 14px 12px;
             }
-            .cutout-split-row {
-                grid-template-columns: 1fr;
-                padding: 20px 14px;
-                gap: 20px;
+            .tracking-route-card > div:last-child {
+                text-align: center !important;
             }
-            .cutout-split-media {
-                min-height: 200px;
+            .tracking-route-card > div:nth-child(2) {
+                transform: rotate(90deg);
+                margin: 2px 0;
             }
-            .cutout-split-media img {
-                max-height: 200px;
+            .tracking-stepper {
+                display: flex;
+                overflow-x: auto;
+                -webkit-overflow-scrolling: touch;
+                gap: 12px;
+                padding-bottom: 8px;
+                text-align: left;
+            }
+            .tracking-stepper > div {
+                min-width: 105px;
+                flex-shrink: 0;
+            }
+            .tracking-meta-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 10px;
+                padding: 10px 12px;
+            }
+            .table-scroll-hint {
+                display: flex !important;
             }
             .footer-grid {
-                grid-template-columns: 1fr;
-                gap: 28px;
+                grid-template-columns: 1fr !important;
+                gap: 22px;
+            }
+            .portal-footer {
+                padding: 36px 14px 20px 14px;
             }
             .footer-bottom {
                 flex-direction: column;
                 align-items: flex-start;
                 gap: 10px;
             }
-            .tracking-stepper {
-                display: flex;
-                overflow-x: auto;
-                -webkit-overflow-scrolling: touch;
-                gap: 14px;
-                padding-bottom: 8px;
-                text-align: left;
+            .faq-question {
+                padding: 14px 16px;
+                font-size: 13.5px;
             }
-            .tracking-stepper > div {
-                min-width: 110px;
-                flex-shrink: 0;
-            }
-            .tracking-meta-grid {
-                grid-template-columns: 1fr 1fr;
-                gap: 12px;
+            .faq-answer {
+                padding: 0 16px 14px 16px;
+                font-size: 13px;
             }
         }
 
         @media (max-width: 420px) {
+            .hero-headline {
+                font-size: 19.5px !important;
+            }
             .kpi-ribbon-grid {
                 grid-template-columns: 1fr;
             }
-            .cutout-tag {
-                display: none; /* Keep clean on small mobile */
-            }
             .tracking-meta-grid {
                 grid-template-columns: 1fr;
-                gap: 10px;
+                gap: 8px;
+            }
+            .dock-tab-btn {
+                padding: 9px 10px;
+                font-size: 11.5px;
             }
         }
     </style>
@@ -1067,15 +1265,15 @@
 <!-- 1. Utility Top Notification & Helpline Bar with Custom Premium Icons -->
 <div class="portal-topbar">
     <div class="topbar-left">
-        <span class="topbar-chip">
+        <a href="tel:18002094560" class="topbar-chip" style="color:#ffffff; text-decoration:none;">
             <?= Icon::svg('phone', '', 12, '#93c5fd') ?>
             <span>Helpline: <strong>1800-209-4560</strong></span>
-        </span>
-        <span class="topbar-chip">
+        </a>
+        <span class="topbar-chip topbar-hide-mobile">
             <?= Icon::svg('mail', '', 12, '#93c5fd') ?>
             <span><a href="mailto:care@kesariexpress.com">care@kesariexpress.com</a></span>
         </span>
-        <span class="topbar-chip">
+        <span class="topbar-chip topbar-hide-tablet">
             <?= Icon::svg('hub', '', 12, '#93c5fd') ?>
             <span>Central Hub: <strong>Raipur (C.G.)</strong></span>
         </span>
@@ -1086,11 +1284,11 @@
             <?= Icon::svg('radar', '', 12, '#4ade80') ?>
             <span>Line-Haul: <strong>Active</strong></span>
         </span>
-        <span class="topbar-chip">
+        <span class="topbar-chip topbar-hide-tablet">
             <?= Icon::svg('fuel', '', 12, '#93c5fd') ?>
             <span>FSC: <strong>12.5%</strong></span>
         </span>
-        <span class="topbar-chip">
+        <span class="topbar-chip topbar-hide-mobile">
             <?= Icon::svg('receipt-tax', '', 12, '#93c5fd') ?>
             <span>SAC: <strong>996812</strong></span>
         </span>
@@ -1139,10 +1337,10 @@
                 <span class="g-chip chip-info" style="font-size:12px; margin-bottom:8px;">
                     Express Logistics & Supply Chain SaaS
                 </span>
-                <h1 style="font-size:34px; font-weight:800; color:#0f172a; line-height:1.2; letter-spacing:-0.5px; margin:6px 0 8px 0;">
+                <h1 class="hero-headline">
                     Central India's Premier Barcode Logistics Network
                 </h1>
-                <p style="font-size:14.5px; color:var(--portal-text-muted); line-height:1.5;">
+                <p class="hero-subtext">
                     Live docket tracking, multi-tier slab tariffs, instant 4x6" thermal labels, and GST SAC 996812 compliant B2B invoicing across 19,000+ pincodes.
                 </p>
             </div>
@@ -1358,7 +1556,7 @@
             </div>
 
             <!-- Route Origin to Destination Hub Card -->
-            <div style="display:grid; grid-template-columns: 1fr auto 1fr; gap:16px; align-items:center; background:#f8fafc; border-radius:10px; padding:16px 20px; margin-top:20px; border:1px solid #e2e8f0;">
+            <div class="tracking-route-card">
                 <div>
                     <div style="font-size:11px; color:#64748b; text-transform:uppercase; font-weight:700;">Origin Agency Hub</div>
                     <div style="font-size:16px; font-weight:700; color:#0f172a; margin-top:2px;"><?= htmlspecialchars($trackingResult['origin']) ?></div>
@@ -1747,7 +1945,9 @@
             Clear, transparent shipping slabs with no hidden surcharges. All rates subject to 18% Indian GST under SAC 996812.
         </p>
     </div>
-
+    <div class="table-scroll-hint">
+        <?= Icon::svg('chevron-right', '', 14) ?> Swipe horizontally to view full tariff slabs
+    </div>
     <div class="table-scroll-wrapper">
         <table class="tariff-table">
             <thead>
