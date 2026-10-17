@@ -18,51 +18,59 @@ $tenant = $tenantId ? $db->fetchOne("SELECT * FROM tenants WHERE id = ?", [$tena
             align-items: center;
             justify-content: center;
             min-height: 100vh;
-            padding: 20px;
+            padding: 24px;
         }
         .success-card {
             background: #ffffff;
             border-radius: 28px;
-            padding: 48px;
-            max-width: 520px;
+            padding: 48px 40px;
+            max-width: 540px;
             width: 100%;
             text-align: center;
             box-shadow: var(--shadow-2);
+            border: 1px solid var(--border-light);
         }
     </style>
 </head>
 <body>
 
 <div class="success-card">
-    <div style="width:64px; height:64px; border-radius:50%; background:var(--google-green-light); color:var(--google-green); display:inline-flex; align-items:center; justify-content:center; font-size:32px; margin-bottom:20px;">
-        ✓
+    <div style="width:68px; height:68px; border-radius:50%; background:var(--google-green-light); color:var(--google-green); display:inline-flex; align-items:center; justify-content:center; margin-bottom:20px;">
+        <?= Icon::svg('check', '', 36) ?>
     </div>
 
-    <h1 style="font-size: 24px; font-weight: 500; margin-bottom: 8px;">Application Submitted!</h1>
-    <p style="color: var(--text-secondary); font-size: 14px; margin-bottom: 24px;">
-        Your agency registration and KYC documents for <strong><?= htmlspecialchars($tenant['name'] ?? 'Your Agency') ?></strong> have been received by Kesari Logistics Super Administration.
+    <h1 style="font-size: 24px; font-weight: 600; margin-bottom: 8px;">Franchise Application Received!</h1>
+    <p style="color: var(--text-secondary); font-size: 14px; margin-bottom: 24px; line-height:1.5;">
+        Your agency registration and regulatory KYC documents for <strong><?= htmlspecialchars($tenant['name'] ?? 'Your Agency') ?></strong> are queued for Super Administration review.
     </p>
 
-    <div style="background:#f8f9fa; border:1px solid #e8eaed; border-radius:12px; padding:18px; text-align:left; margin-bottom:28px; font-size:13px;">
-        <div style="display:flex; justify-content:space-between; margin-bottom:8px;">
+    <div style="background:#f8f9fa; border:1px solid #e8eaed; border-radius:14px; padding:20px; text-align:left; margin-bottom:28px; font-size:13px;">
+        <div style="display:flex; justify-content:space-between; margin-bottom:10px;">
             <span style="color:var(--text-secondary);">Application Ref:</span>
-            <strong>#APP-<?= htmlspecialchars($tenant['id'] ?? '00') ?></strong>
+            <strong style="font-family:var(--font-mono);">#APP-<?= htmlspecialchars($tenant['id'] ?? '00') ?></strong>
         </div>
-        <div style="display:flex; justify-content:space-between; margin-bottom:8px;">
+        <div style="display:flex; justify-content:space-between; margin-bottom:10px;">
             <span style="color:var(--text-secondary);">Current Status:</span>
-            <span class="g-chip chip-warning">Under Admin Review</span>
+            <span class="g-chip chip-warning">Under Admin KYC Review</span>
         </div>
-        <div style="display:flex; justify-content:space-between;">
+        <div style="display:flex; justify-content:space-between; margin-bottom:10px;">
             <span style="color:var(--text-secondary);">Registered Email:</span>
             <span><?= htmlspecialchars($tenant['email'] ?? '') ?></span>
         </div>
+        <div style="display:flex; justify-content:space-between;">
+            <span style="color:var(--text-secondary);">Hub Location:</span>
+            <span><?= htmlspecialchars(($tenant['city'] ?? '') . ', ' . ($tenant['state'] ?? '')) ?></span>
+        </div>
     </div>
 
-    <p style="font-size:13px; color:var(--text-secondary); line-height:1.6; margin-bottom:28px;">
-        Our team reviews documents within <strong>24 business hours</strong>. Upon approval, your agency code and login credentials will be dispatched to your email.
+    <p style="font-size:13px; color:var(--text-secondary); line-height:1.6; margin-bottom:32px;">
+        Our compliance team verifies PAN & Aadhaar details within <strong>24 business hours</strong>. Once approved, your assigned <strong>Agency Branch Code</strong> and platform credentials will be dispatched to your registered email.
     </p>
 
-    <a href="/login" class="btn btn-primary" style="padding:10px 24px; border-radius:20px;">Return to Portal Sign in</a>
+    <div style="display:flex; gap:12px; justify-content:center;">
+        <a href="/" class="btn btn-outlined" style="padding:10px 22px; border-radius:20px;">Return to Home</a>
+        <a href="/login" class="btn btn-primary" style="padding:10px 24px; border-radius:20px;">Portal Sign In</a>
+    </div>
 </div>
 
 </body>

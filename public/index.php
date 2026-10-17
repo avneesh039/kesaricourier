@@ -101,6 +101,11 @@ $router->get('/logout', function() {
 // Agency Self-Service Onboarding & KYC Routes
 // -------------------------------------------------------------
 
+$router->get('/onboard', function() {
+    header('Location: /onboard/register');
+    exit;
+});
+
 $router->get('/onboard/register', function() {
     require ROOT_PATH . '/src/Views/onboard/register.php';
 });
