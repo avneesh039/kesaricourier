@@ -15,6 +15,9 @@ require_once dirname(__DIR__) . '/src/Controllers/ClientController.php';
 require_once dirname(__DIR__) . '/src/Controllers/TariffController.php';
 require_once dirname(__DIR__) . '/src/Controllers/BookingController.php';
 require_once dirname(__DIR__) . '/src/Controllers/PrintController.php';
+require_once dirname(__DIR__) . '/src/Controllers/BankController.php';
+require_once dirname(__DIR__) . '/src/Controllers/InvoiceController.php';
+require_once dirname(__DIR__) . '/src/Controllers/DashboardController.php';
 
 // Resolve multi-tenant context from host or query parameter
 TenantContext::resolve();
@@ -347,21 +350,63 @@ $router->post('/print/batch', function() {
     (new PrintController())->batch();
 });
 
+// Phase 6: Agency Bank Accounts (BILL-01)
+$router->get('/bank-accounts', function() {
+    (new BankController())->index();
+});
+
+$router->post('/bank-accounts', function() {
+    (new BankController())->store();
+});
+
+$router->post('/bank-accounts/{id}/make-primary', function($id) {
+    (new BankController())->makePrimary((int)$id);
+});
+
+// Phase 6: GST Billing & Invoicing (BILL-02, BILL-03, BILL-04)
+$router->get('/invoices', function() {
+    (new InvoiceController())->index();
+});
+
+$router->get('/billing', function() {
+    header('Location: /invoices');
+    exit;
+});
+
+$router->get('/invoices/new', function() {
+    (new InvoiceController())->create();
+});
+
+$router->post('/invoices', function() {
+    (new InvoiceController())->store();
+});
+
+$router->get('/invoices/{id}', function($id) {
+    (new InvoiceController())->show((int)$id);
+});
+
+$router->get('/invoices/{id}/print', function($id) {
+    (new InvoiceController())->print((int)$id);
+});
+
+$router->post('/invoices/{id}/payment', function($id) {
+    (new InvoiceController())->updatePayment((int)$id);
+});
+
 // -------------------------------------------------------------
-// Root / Dashboard Dispatcher
+// Root / Dashboard Dispatcher (UI-02)
 // -------------------------------------------------------------
 
 $router->get('/', function() {
-    Auth::requireLogin();
-
     $tenant = TenantContext::getTenant();
 
     if ($tenant !== null && !Auth::isSuperAdmin()) {
-        require ROOT_PATH . '/src/Views/dashboard/agency.php';
+        (new DashboardController())->agencyDashboard();
     } else {
-        require ROOT_PATH . '/src/Views/dashboard/admin.php';
+        (new DashboardController())->adminDashboard();
     }
 });
+
 
 // Dispatch current HTTP request
 $router->dispatch($_SERVER['REQUEST_URI'] ?? '/', $_SERVER['REQUEST_METHOD'] ?? 'GET');

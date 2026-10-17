@@ -1,16 +1,8 @@
 <?php
 // src/Views/dashboard/admin.php - Super Admin Control Center View
+// Multi-Tenant Platform Governance Dashboard (UI-02)
 
-$db = Database::getInstance();
-
-// Metrics
-$totalAgencies = (int)$db->fetchOne("SELECT COUNT(*) as c FROM tenants")['c'] ?? 0;
-$activeAgencies = (int)$db->fetchOne("SELECT COUNT(*) as c FROM tenants WHERE status = 'active'")['c'] ?? 0;
-$pendingKyc = (int)$db->fetchOne("SELECT COUNT(*) as c FROM tenants WHERE status = 'pending_kyc'")['c'] ?? 0;
-
-$tenants = $db->fetchAll("SELECT * FROM tenants ORDER BY created_at DESC LIMIT 10");
-
-$pageTitle = 'Super Admin Dashboard';
+$pageTitle = 'Super Admin Control Center';
 $activeNav = 'dashboard';
 
 ob_start();
@@ -18,11 +10,14 @@ ob_start();
 
 <div class="page-header">
     <div>
-        <h1 class="page-title">Super Admin Control Center</h1>
-        <p style="color:var(--text-secondary); font-size:13px; margin-top:4px;">Manage multi-tenant courier agencies, KYC verification, and central destination governance.</p>
+        <h1 class="page-title">🛡️ Super Admin Control Center</h1>
+        <p style="color:var(--text-secondary); font-size:13px; margin-top:4px;">
+            Platform-wide governance for courier agency tenants, KYC approvals, destination master tables, and subscription lifecycles.
+        </p>
     </div>
     <div style="display:flex; gap:12px;">
         <a href="/admin/destinations" class="btn btn-outlined">📍 Master Destinations</a>
+        <a href="/admin/tickets" class="btn btn-outlined">🎫 Tickets (<?= $openTickets ?? 0 ?>)</a>
         <a href="/admin/agencies/new" class="btn btn-primary">+ Register Agency</a>
     </div>
 </div>
@@ -31,15 +26,17 @@ ob_start();
 <div class="metrics-grid">
     <div class="metric-card">
         <div class="metric-label">Active Agency Portals</div>
-        <div class="metric-value"><?= $activeAgencies ?></div>
+        <div class="metric-value"><?= $activeTenants ?? 0 ?></div>
         <div class="metric-sub" style="color:var(--google-green);">
-            <span>●</span> <?= $totalAgencies ?> Total Registered
+            <span>●</span> <?= $totalTenants ?? 0 ?> Total Tenants Registered
         </div>
     </div>
 
     <div class="metric-card">
         <div class="metric-label">Pending KYC Verifications</div>
-        <div class="metric-value" style="color:var(--google-yellow);"><?= $pendingKyc ?></div>
+        <div class="metric-value" style="color:<?= ($pendingKyc ?? 0) > 0 ? 'var(--google-yellow)' : 'var(--google-green)' ?>;">
+            <?= $pendingKyc ?? 0 ?>
+        </div>
         <div class="metric-sub" style="color:var(--text-secondary);">
             Review PAN, Aadhaar & GSTIN
         </div>
@@ -47,90 +44,121 @@ ob_start();
 
     <div class="metric-card">
         <div class="metric-label">Expiring Subscriptions (30d)</div>
-        <div class="metric-value" style="color:var(--google-blue);">1</div>
+        <div class="metric-value" style="color:<?= ($expiringSoon ?? 0) > 0 ? 'var(--google-red)' : 'var(--google-green)' ?>;">
+            <?= $expiringSoon ?? 0 ?>
+        </div>
         <div class="metric-sub" style="color:var(--text-secondary);">
-            Automated alerts active
+            Automated renewal alerts active
         </div>
     </div>
 
     <div class="metric-card">
-        <div class="metric-label">Open Destination Tickets</div>
-        <div class="metric-value">0</div>
-        <div class="metric-sub" style="color:var(--google-green);">
-            ✓ All routes updated
+        <div class="metric-label">Platform Gross Volume</div>
+        <div class="metric-value" style="color:var(--google-blue);">
+            ₹<?= number_format($systemBookings['volume'] ?? 0, 0) ?>
+        </div>
+        <div class="metric-sub" style="color:var(--text-secondary);">
+            <?= $systemBookings['count'] ?? 0 ?> consignments booked platform-wide
         </div>
     </div>
 </div>
 
-<!-- Agency Tenants Table -->
-<div class="g-card">
-    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:18px;">
-        <h2 style="font-size:16px;">Agency Tenants & Subscriptions</h2>
-        <span class="g-chip chip-info"><?= count($tenants) ?> agencies</span>
+<div style="display:grid; grid-template-columns: 1.5fr 1fr; gap:24px; margin-top:20px; align-items:start;">
+
+    <!-- Left: Pending KYC Verification Pipeline -->
+    <div class="g-card" style="padding:0; overflow:hidden;">
+        <div style="padding:16px 20px; border-bottom:1px solid #dadce0; display:flex; justify-content:space-between; align-items:center;">
+            <div>
+                <h2 style="font-size:16px; margin:0;">Pending KYC Verification Queue</h2>
+                <p style="font-size:12px; color:var(--text-secondary); margin:2px 0 0 0;">New agencies awaiting document verification and branch code activation</p>
+            </div>
+            <a href="/admin/kyc" class="btn btn-outlined" style="padding:4px 12px; font-size:12px;">Full KYC Queue →</a>
+        </div>
+
+        <div class="table-responsive">
+            <table class="g-table">
+                <thead>
+                    <tr>
+                        <th>Agency Name</th>
+                        <th>City / State</th>
+                        <th>Contact</th>
+                        <th>Applied On</th>
+                        <th style="text-align:right;">Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php if (empty($pendingAgencies)): ?>
+                        <tr>
+                            <td colspan="5" style="text-align:center; padding:32px; color:var(--text-secondary);">
+                                ✓ All KYC applications have been reviewed. Queue is clear!
+                            </td>
+                        </tr>
+                    <?php else: ?>
+                        <?php foreach ($pendingAgencies as $pa): ?>
+                            <tr>
+                                <td>
+                                    <strong><?= htmlspecialchars($pa['name']) ?></strong>
+                                    <div style="font-size:11px; color:var(--text-secondary);"><?= htmlspecialchars($pa['trade_name'] ?? '') ?></div>
+                                </td>
+                                <td><?= htmlspecialchars($pa['city']) ?>, <?= htmlspecialchars($pa['state']) ?></td>
+                                <td>
+                                    <div><?= htmlspecialchars($pa['contact_person']) ?></div>
+                                    <div style="font-size:11px; color:var(--text-secondary);"><?= htmlspecialchars($pa['phone']) ?></div>
+                                </td>
+                                <td><?= date('d-M-Y', strtotime($pa['created_at'])) ?></td>
+                                <td style="text-align:right;">
+                                    <a href="/admin/agencies/<?= $pa['id'] ?>/kyc" class="btn btn-primary" style="padding:4px 12px; font-size:11px;">
+                                        Review Docs
+                                    </a>
+                                </td>
+                            </tr>
+                        <?php endforeach; ?>
+                    <?php endif; ?>
+                </tbody>
+            </table>
+        </div>
     </div>
 
-    <div class="table-responsive">
-        <table class="g-table">
-            <thead>
-                <tr>
-                    <th>Agency Code</th>
-                    <th>Agency / Franchise Name</th>
-                    <th>Subdomain / Host</th>
-                    <th>City / State</th>
-                    <th>Contact Person</th>
-                    <th>Validity Expiry</th>
-                    <th>Status</th>
-                    <th>Action</th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php foreach ($tenants as $t): ?>
-                    <?php
-                        $daysLeft = null;
-                        if (!empty($t['validity_end'])) {
-                            $end = new DateTime($t['validity_end']);
-                            $daysLeft = (new DateTime())->diff($end)->days;
-                        }
-                    ?>
-                    <tr>
-                        <td><strong>#<?= htmlspecialchars($t['agency_code']) ?></strong></td>
-                        <td>
-                            <div style="font-weight:500;"><?= htmlspecialchars($t['name']) ?></div>
-                            <div style="font-size:11px; color:var(--text-secondary);"><?= htmlspecialchars($t['trade_name'] ?? '') ?></div>
-                        </td>
-                        <td>
-                            <code><?= htmlspecialchars($t['slug']) ?>.localhost</code>
-                        </td>
-                        <td><?= htmlspecialchars($t['city'] ?? '') ?>, <?= htmlspecialchars($t['state'] ?? '') ?></td>
-                        <td>
-                            <div><?= htmlspecialchars($t['contact_person']) ?></div>
-                            <div style="font-size:11px; color:var(--text-secondary);"><?= htmlspecialchars($t['phone']) ?></div>
-                        </td>
-                        <td>
-                            <div><?= htmlspecialchars($t['validity_end'] ?? 'N/A') ?></div>
-                            <?php if ($daysLeft !== null): ?>
-                                <div style="font-size:11px; color:<?= $daysLeft <= 30 ? 'var(--google-red)' : 'var(--text-secondary)' ?>;">
-                                    (<?= $daysLeft ?> days left)
-                                </div>
-                            <?php endif; ?>
-                        </td>
-                        <td>
-                            <?php if ($t['status'] === 'active'): ?>
-                                <span class="g-chip chip-success">Active</span>
-                            <?php elseif ($t['status'] === 'pending_kyc'): ?>
-                                <span class="g-chip chip-warning">Pending KYC</span>
+    <!-- Right: Recent Tickets & Route Governance -->
+    <div class="g-card" style="padding:0; overflow:hidden;">
+        <div style="padding:16px 20px; border-bottom:1px solid #dadce0; display:flex; justify-content:space-between; align-items:center;">
+            <div>
+                <h2 style="font-size:16px; margin:0;">Destination & Support Tickets</h2>
+                <p style="font-size:12px; color:var(--text-secondary); margin:2px 0 0 0;">Requests from branch managers</p>
+            </div>
+            <a href="/admin/tickets" class="btn btn-outlined" style="padding:4px 12px; font-size:12px;">All Tickets →</a>
+        </div>
+
+        <?php if (empty($recentTickets)): ?>
+            <div style="padding:32px; text-align:center; color:var(--text-secondary); font-size:13px;">
+                No open support tickets.
+            </div>
+        <?php else: ?>
+            <div style="display:flex; flex-direction:column;">
+                <?php foreach ($recentTickets as $tk): ?>
+                    <div style="padding:12px 18px; border-bottom:1px solid #f1f3f4; display:flex; justify-content:space-between; align-items:center;">
+                        <div>
+                            <div style="font-weight:600; font-size:13px;"><?= htmlspecialchars($tk['subject']) ?></div>
+                            <div style="font-size:11px; color:var(--text-secondary); margin-top:2px;">
+                                Agency: <strong><?= htmlspecialchars($tk['tenant_name']) ?></strong> (#<?= htmlspecialchars($tk['agency_code']) ?>)
+                            </div>
+                        </div>
+                        <div style="text-align:right;">
+                            <?php if ($tk['status'] === 'open'): ?>
+                                <span class="g-chip chip-warning" style="font-size:10px;">Open</span>
                             <?php else: ?>
-                                <span class="g-chip chip-danger"><?= ucfirst($t['status']) ?></span>
+                                <span class="g-chip chip-success" style="font-size:10px;">Resolved</span>
                             <?php endif; ?>
-                        </td>
-                        <td>
-                            <a href="/?tenant=<?= htmlspecialchars($t['slug']) ?>" class="btn btn-outlined" style="padding:4px 10px; font-size:12px;">Open Portal ↗</a>
-                        </td>
-                    </tr>
+                            <div style="margin-top:4px;">
+                                <a href="/admin/tickets/<?= $tk['id'] ?>" style="font-size:11px; color:var(--google-blue); text-decoration:none;">Review →</a>
+                            </div>
+                        </div>
+                    </div>
                 <?php endforeach; ?>
-            </tbody>
-        </table>
+            </div>
+        <?php endif; ?>
     </div>
+
 </div>
 
 <?php

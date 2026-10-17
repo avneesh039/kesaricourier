@@ -71,15 +71,20 @@ $isExpiring = TenantContext::isExpiringSoon(30);
                     <span class="nav-icon">🏷️</span> Thermal Print Hub
                 </a>
 
+                <div class="nav-section-title">Billing & Compliance</div>
+                <a href="/invoices" class="nav-item <?= ($activeNav ?? '') === 'invoices' ? 'active' : '' ?>">
+                    <span class="nav-icon">🧾</span> GST Tax Invoices
+                </a>
+                <a href="/bank-accounts" class="nav-item <?= ($activeNav ?? '') === 'bank' ? 'active' : '' ?>">
+                    <span class="nav-icon">🏦</span> Bank Accounts
+                </a>
+
                 <div class="nav-section-title">Masters & Tariff</div>
                 <a href="/clients" class="nav-item <?= ($activeNav ?? '') === 'clients' ? 'active' : '' ?>">
                     <span class="nav-icon">👥</span> B2B Corporate Clients
                 </a>
                 <a href="/tariffs" class="nav-item <?= ($activeNav ?? '') === 'tariffs' ? 'active' : '' ?>">
                     <span class="nav-icon">⚡</span> Rate Matrix (Tariff)
-                </a>
-                <a href="/billing" class="nav-item <?= ($activeNav ?? '') === 'billing' ? 'active' : '' ?>">
-                    <span class="nav-icon">💳</span> GST Invoicing
                 </a>
                 <a href="/tickets" class="nav-item <?= ($activeNav ?? '') === 'tickets' ? 'active' : '' ?>">
                     <span class="nav-icon">💬</span> Destination Request / Help

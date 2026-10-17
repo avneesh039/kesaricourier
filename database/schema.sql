@@ -204,3 +204,72 @@ CREATE TABLE IF NOT EXISTS audit_logs (
     ip_address VARCHAR(45),
     created_at DATETIME DEFAULT CURRENT_TIMESTAMP
 );
+
+-- Agency Bank Accounts (BILL-01)
+CREATE TABLE IF NOT EXISTS agency_bank_accounts (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    tenant_id INTEGER NOT NULL,
+    bank_name VARCHAR(120) NOT NULL,
+    account_no VARCHAR(50) NOT NULL,
+    account_holder_name VARCHAR(150) NOT NULL,
+    ifsc_code VARCHAR(20) NOT NULL,
+    branch_name VARCHAR(120) NOT NULL,
+    is_primary INTEGER DEFAULT 1,
+    created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (tenant_id) REFERENCES tenants(id)
+);
+
+-- GST Invoices (BILL-02, BILL-03, BILL-04)
+CREATE TABLE IF NOT EXISTS invoices (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    tenant_id INTEGER NOT NULL,
+    invoice_no VARCHAR(50) UNIQUE NOT NULL,
+    invoice_date DATE NOT NULL,
+    due_date DATE NOT NULL,
+    client_id INTEGER NOT NULL,
+    bank_account_id INTEGER NULL,
+    period_from DATE NOT NULL,
+    period_to DATE NOT NULL,
+    consignments_count INTEGER DEFAULT 0,
+    subtotal_amount REAL NOT NULL,
+    fuel_surcharge_percent REAL DEFAULT 0,
+    fuel_surcharge_amount REAL DEFAULT 0,
+    docket_charge_amount REAL DEFAULT 0,
+    taxable_amount REAL NOT NULL,
+    cgst_rate REAL DEFAULT 0,
+    cgst_amount REAL DEFAULT 0,
+    sgst_rate REAL DEFAULT 0,
+    sgst_amount REAL DEFAULT 0,
+    igst_rate REAL DEFAULT 0,
+    igst_amount REAL DEFAULT 0,
+    total_gst_amount REAL DEFAULT 0,
+    round_off REAL DEFAULT 0,
+    grand_total REAL NOT NULL,
+    payment_status VARCHAR(20) DEFAULT 'pending', -- pending, paid, partially_paid, cancelled
+    paid_amount REAL DEFAULT 0,
+    payment_mode VARCHAR(30) NULL,
+    payment_notes TEXT NULL,
+    created_by_user_id INTEGER NULL,
+    created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (tenant_id) REFERENCES tenants(id),
+    FOREIGN KEY (client_id) REFERENCES clients(id),
+    FOREIGN KEY (bank_account_id) REFERENCES agency_bank_accounts(id)
+);
+
+-- Invoice Consignment Line Items
+CREATE TABLE IF NOT EXISTS invoice_items (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    invoice_id INTEGER NOT NULL,
+    consignment_id INTEGER NOT NULL,
+    consignment_no VARCHAR(50) NOT NULL,
+    booking_date DATE NOT NULL,
+    destination_name VARCHAR(120) NOT NULL,
+    dest_code VARCHAR(20) NOT NULL,
+    mode VARCHAR(20) NOT NULL,
+    pieces INTEGER DEFAULT 1,
+    billable_weight REAL NOT NULL,
+    amount REAL NOT NULL,
+    FOREIGN KEY (invoice_id) REFERENCES invoices(id) ON DELETE CASCADE,
+    FOREIGN KEY (consignment_id) REFERENCES consignments(id)
+);
+

@@ -11,7 +11,7 @@ This roadmap defines the end-to-end development journey for transforming the leg
 - [x] **Phase 3: Centralized Destination Governance & Agency Ticketing** - Super Admin master zones/states/cities/pincodes, read-only agency search, and internal ticketing with WhatsApp/Email hooks.
 - [x] **Phase 4: Consignment Booking Engine & Tariff Matrix** - High-speed keyboard-navigable booking form, B2B client management, dead vs volumetric weight calculation, and multi-slab pricing.
 - [x] **Phase 5: Thermal Label Barcode & QR Code Engine** - 4x6" thermal label PDF/print template with Code 128 barcode and dynamic tracking QR code.
-- [ ] **Phase 6: Invoicing, GST Billing, MIS Reporting & Dashboard Polish** - Batch unbilled consignment aggregation, fuel surcharge, GST tax invoice generation, bank account configuration, and Google-style analytics dashboards.
+- [x] **Phase 6: Invoicing, GST Billing, MIS Reporting & Dashboard Polish** - Batch unbilled consignment aggregation, fuel surcharge, GST tax invoice generation, bank account configuration, and Google-style analytics dashboards.
 
 ---
 
@@ -115,9 +115,9 @@ Plans:
 **Plans**: 3 plans
 
 Plans:
-- [ ] 06-01: Agency bank account setup and unbilled consignment aggregation logic.
-- [ ] 06-02: GST calculation engine, tax invoice generator, and professional PDF/print layout.
-- [ ] 06-03: Analytics dashboard (KPI cards, booking trends, revenue breakdown, expiry tracking) and final system polish.
+- [x] 06-01: Agency bank account setup and unbilled consignment aggregation logic.
+- [x] 06-02: GST calculation engine, tax invoice generator, and professional PDF/print layout.
+- [x] 06-03: Analytics dashboard (KPI cards, booking trends, revenue breakdown, expiry tracking) and final system polish.
 
 ---
 
@@ -133,4 +133,4 @@ Phases execute in numeric order: 1 → 2 → 3 → 4 → 5 → 6
 | 3. Centralized Destination Governance & Agency Ticketing | 2/2 | Complete | 2026-10-15 |
 | 4. Consignment Booking Engine & Tariff Matrix | 3/3 | Complete | 2026-10-16 |
 | 5. Thermal Label Barcode & QR Code Engine | 2/2 | Complete | 2026-10-17 |
-| 6. Invoicing, GST Billing, MIS Reporting & Dashboard Polish | 0/3 | Ready to plan | - |
+| 6. Invoicing, GST Billing, MIS Reporting & Dashboard Polish | 3/3 | Complete | 2026-10-17 |

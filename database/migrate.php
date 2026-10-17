@@ -236,4 +236,14 @@ foreach ($sampleBookings as [$awb, $cId, $sName, $sPhone, $rName, $rPhone, $rAdd
 }
 echo "✓ Seeded Sample Consignments.\n";
 
+// 10. Seed Agency Primary Bank Account
+$existsBank = $db->fetchOne("SELECT id FROM agency_bank_accounts WHERE tenant_id = ?", [$tenantId]);
+if (!$existsBank) {
+    $db->execute("
+        INSERT INTO agency_bank_accounts (tenant_id, bank_name, account_no, account_holder_name, ifsc_code, branch_name, is_primary)
+        VALUES (?, 'HDFC Bank Ltd', '50200012345678', 'KESHRI EXPRESS COURIER SERVICES', 'HDFC0001234', 'Pandri Branch, Raipur', 1)
+    ", [$tenantId]);
+    echo "✓ Seeded Agency Bank Account for Raipur Branch.\n";
+}
+
 echo "=== Migration Complete! ===\n";
