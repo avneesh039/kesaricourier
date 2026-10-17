@@ -15,9 +15,25 @@ class Database {
         try {
             if ($driver === 'sqlite') {
                 $dbPath = $config['sqlite']['database'];
+
+                // If running in Vercel serverless environment, copy database to writable /tmp
+                if (getenv('VERCEL') || !empty($_ENV['VERCEL']) || strpos(__DIR__, '/var/task') !== false) {
+                    $tmpDir = '/tmp/kesari_db';
+                    if (!is_dir($tmpDir)) {
+                        @mkdir($tmpDir, 0777, true);
+                    }
+                    $tmpDb = $tmpDir . '/kesari_saas.sqlite';
+                    if (!file_exists($tmpDb) && file_exists($dbPath)) {
+                        @copy($dbPath, $tmpDb);
+                    }
+                    if (file_exists($tmpDb)) {
+                        $dbPath = $tmpDb;
+                    }
+                }
+
                 $dir = dirname($dbPath);
                 if (!is_dir($dir)) {
-                    mkdir($dir, 0777, true);
+                    @mkdir($dir, 0777, true);
                 }
                 $this->pdo = new PDO("sqlite:" . $dbPath);
                 $this->pdo->exec("PRAGMA foreign_keys = ON;");
