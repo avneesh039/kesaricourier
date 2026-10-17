@@ -685,32 +685,384 @@
             gap: 12px;
         }
 
+        /* Table Scroll Wrapper for Mobile */
+        .table-scroll-wrapper {
+            width: 100%;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+            border-radius: 12px;
+            border: 1px solid var(--portal-border);
+            background: #ffffff;
+            margin-top: 16px;
+        }
+
+        /* Mobile Menu Toggle Button */
+        .mobile-menu-toggle {
+            display: none;
+            background: #f8fafc;
+            border: 1px solid var(--portal-border);
+            border-radius: 8px;
+            padding: 7px 10px;
+            cursor: pointer;
+            color: #334155;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.15s ease;
+        }
+
+        .mobile-menu-toggle:hover {
+            background: #f1f5f9;
+            color: var(--portal-blue);
+        }
+
+        /* Mobile Navigation Drawer & Backdrop */
+        .mobile-nav-backdrop {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(15, 23, 42, 0.6);
+            backdrop-filter: blur(4px);
+            -webkit-backdrop-filter: blur(4px);
+            z-index: 1000;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.25s ease;
+        }
+
+        .mobile-nav-backdrop.open {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .mobile-nav-drawer {
+            position: fixed;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            width: 300px;
+            max-width: 85vw;
+            background: #ffffff;
+            box-shadow: -8px 0 28px rgba(0, 0, 0, 0.2);
+            z-index: 1001;
+            transform: translateX(100%);
+            transition: transform 0.28s cubic-bezier(0.2, 0.8, 0.2, 1);
+            display: flex;
+            flex-direction: column;
+            padding: 22px 20px;
+            overflow-y: auto;
+        }
+
+        .mobile-nav-drawer.open {
+            transform: translateX(0);
+        }
+
+        .drawer-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding-bottom: 16px;
+            border-bottom: 1px solid var(--portal-border);
+            margin-bottom: 18px;
+        }
+
+        .drawer-close-btn {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            border: 1px solid var(--portal-border);
+            background: #f8fafc;
+            color: #64748b;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+        }
+
+        .drawer-links {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            flex: 1;
+        }
+
+        .drawer-links a {
+            color: #1e293b;
+            font-size: 14px;
+            font-weight: 600;
+            text-decoration: none;
+            padding: 10px 14px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            transition: all 0.15s ease;
+        }
+
+        .drawer-links a:hover {
+            background: #f1f5f9;
+            color: var(--portal-blue);
+        }
+
+        .drawer-actions {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            padding-top: 16px;
+            border-top: 1px solid var(--portal-border);
+            margin-top: 20px;
+        }
+
+        /* Utility Grids for Mobile Adaptation */
+        .regulatory-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .calc-two-col {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 14px;
+            margin-bottom: 14px;
+        }
+
+        .vol-three-col {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 10px;
+            margin-bottom: 12px;
+        }
+
+        .tracking-stepper {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 10px;
+            margin: 28px 0 20px 0;
+            text-align: center;
+        }
+
+        .tracking-meta-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 14px;
+            background: #f8fafc;
+            border-radius: 8px;
+            padding: 12px 16px;
+            font-size: 12px;
+            border: 1px solid #e2e8f0;
+        }
+
+        .tariff-table {
+            min-width: 680px;
+        }
+
+        /* Responsive Breakpoints & Complete Mobile Optimization */
         @media (max-width: 1024px) {
-            .hero-layout-grid { grid-template-columns: 1fr; }
-            .hero-cutout-stage { min-height: 380px; }
+            .hero-layout-grid { grid-template-columns: 1fr; gap: 28px; }
+            .hero-cutout-stage { min-height: 360px; }
             .specs-grid { grid-template-columns: 1fr 1fr; }
-            .kpi-ribbon-grid { grid-template-columns: repeat(3, 1fr); }
+            .kpi-ribbon-grid { grid-template-columns: repeat(3, 1fr); gap: 16px; }
             .footer-grid { grid-template-columns: 1fr 1fr; }
-            .cutout-split-row { grid-template-columns: 1fr; padding: 24px; }
+            .cutout-split-row { grid-template-columns: 1fr; padding: 28px; }
             .journey-grid { grid-template-columns: 1fr 1fr; }
             .case-studies-grid { grid-template-columns: 1fr; }
         }
 
-        @media (max-width: 768px) {
-            .portal-topbar { padding: 8px 16px; }
-            .portal-header { padding: 0 16px; }
-            .portal-nav { display: none; }
-            .portal-hero { padding: 24px 16px; }
-            .portal-section { padding: 40px 16px; }
-            .kpi-ribbon { padding: 16px; }
-            .kpi-ribbon-grid { grid-template-columns: 1fr; }
-            .specs-grid { grid-template-columns: 1fr; }
-            .journey-grid { grid-template-columns: 1fr; }
-            .footer-grid { grid-template-columns: 1fr; }
+        @media (max-width: 900px) {
+            .portal-nav { display: none !important; }
+            .mobile-menu-toggle { display: inline-flex !important; }
+            .header-actions a.btn-outlined { display: none; }
+            .regulatory-grid { grid-template-columns: 1fr; gap: 14px; }
+        }
+
+        @media (max-width: 680px) {
+            .portal-topbar {
+                padding: 6px 14px;
+                font-size: 11px;
+            }
+            .topbar-left span:nth-child(2),
+            .topbar-left span:nth-child(3),
+            .topbar-right span:nth-child(2) {
+                display: none;
+            }
+            .portal-header {
+                padding: 0 14px;
+                height: 60px;
+            }
+            .brand-emblem {
+                width: 32px;
+                height: 32px;
+                font-size: 15px;
+            }
+            .brand-info-title {
+                font-size: 15px;
+            }
+            .brand-info-sub {
+                display: none;
+            }
+            .portal-hero {
+                padding: 20px 14px 32px 14px;
+            }
+            .dock-tabs {
+                overflow-x: auto;
+                -webkit-overflow-scrolling: touch;
+            }
+            .dock-tab-btn {
+                padding: 10px 12px;
+                font-size: 12px;
+            }
+            .dock-tab-content {
+                padding: 16px 14px;
+            }
+            .dock-input-group {
+                flex-direction: column;
+            }
+            .dock-input-group button {
+                width: 100%;
+                height: 44px;
+            }
+            .calc-two-col {
+                grid-template-columns: 1fr;
+                gap: 10px;
+            }
+            .vol-three-col {
+                grid-template-columns: 1fr;
+                gap: 10px;
+            }
+            .hero-cutout-stage {
+                min-height: 270px;
+                max-height: 290px;
+            }
+            .hero-courier-cutout-img {
+                max-height: 260px;
+            }
+            .stage-halo-circle {
+                width: 210px;
+                height: 210px;
+            }
+            .stage-orbit-ring {
+                width: 250px;
+                height: 250px;
+            }
+            .cutout-tag {
+                font-size: 10.5px;
+                padding: 4px 10px;
+            }
+            .kpi-ribbon {
+                padding: 14px;
+            }
+            .kpi-ribbon-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 12px;
+            }
+            .portal-section {
+                padding: 36px 14px;
+            }
+            .section-maintitle {
+                font-size: 22px;
+            }
+            .corridor-grid {
+                grid-template-columns: 1fr;
+            }
+            .journey-grid {
+                grid-template-columns: 1fr;
+                gap: 14px;
+            }
+            .specs-grid {
+                grid-template-columns: 1fr;
+            }
+            .cutout-split-row {
+                grid-template-columns: 1fr;
+                padding: 20px 14px;
+                gap: 20px;
+            }
+            .cutout-split-media {
+                min-height: 200px;
+            }
+            .cutout-split-media img {
+                max-height: 200px;
+            }
+            .footer-grid {
+                grid-template-columns: 1fr;
+                gap: 28px;
+            }
+            .footer-bottom {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 10px;
+            }
+            .tracking-stepper {
+                display: flex;
+                overflow-x: auto;
+                -webkit-overflow-scrolling: touch;
+                gap: 14px;
+                padding-bottom: 8px;
+                text-align: left;
+            }
+            .tracking-stepper > div {
+                min-width: 110px;
+                flex-shrink: 0;
+            }
+            .tracking-meta-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 12px;
+            }
+        }
+
+        @media (max-width: 420px) {
+            .kpi-ribbon-grid {
+                grid-template-columns: 1fr;
+            }
+            .cutout-tag {
+                display: none; /* Keep clean on small mobile */
+            }
+            .tracking-meta-grid {
+                grid-template-columns: 1fr;
+                gap: 10px;
+            }
         }
     </style>
 </head>
 <body>
+
+<!-- Mobile Navigation Backdrop & Slide-in Drawer -->
+<div class="mobile-nav-backdrop" id="mobileBackdrop" onclick="toggleMobileMenu()"></div>
+<div class="mobile-nav-drawer" id="mobileDrawer">
+    <div class="drawer-header">
+        <div style="display:flex; align-items:center; gap:10px;">
+            <div class="brand-emblem" style="width:32px; height:32px; font-size:16px;">K</div>
+            <strong style="color:#0f172a; font-size:16px;">Kesari Express</strong>
+        </div>
+        <button type="button" class="drawer-close-btn" onclick="toggleMobileMenu()" aria-label="Close Mobile Menu">
+            ✕
+        </button>
+    </div>
+
+    <div class="drawer-links">
+        <a href="#dock-track" onclick="toggleMobileMenu()"><?= Icon::svg('search', '', 16) ?> Track AWB</a>
+        <a href="#dock-calc" onclick="toggleMobileMenu()"><?= Icon::svg('invoices', '', 16) ?> Rate Calculator</a>
+        <a href="#corridors" onclick="toggleMobileMenu()"><?= Icon::svg('destinations', '', 16) ?> Express Corridors</a>
+        <a href="#journey" onclick="toggleMobileMenu()"><?= Icon::svg('truck', '', 16) ?> How It Works</a>
+        <a href="#services" onclick="toggleMobileMenu()"><?= Icon::svg('sparkles', '', 16) ?> Services</a>
+        <a href="#tariffs" onclick="toggleMobileMenu()"><?= Icon::svg('tag', '', 16) ?> Tariff Slab Matrix</a>
+        <a href="#regulatory" onclick="toggleMobileMenu()"><?= Icon::svg('receipt-tax', '', 16) ?> E-Way Bill & SAC</a>
+        <a href="/onboard" onclick="toggleMobileMenu()" style="color:var(--portal-blue); font-weight:700; background:#eff6ff;">
+            <?= Icon::svg('sparkles', '', 16) ?> Franchise Program
+        </a>
+    </div>
+
+    <div class="drawer-actions">
+        <a href="/login?tenant=raipur" class="btn btn-outlined" style="width:100%; justify-content:center;">
+            <?= Icon::svg('agencies', '', 15) ?> Raipur Branch Desk (#26)
+        </a>
+        <a href="/login" class="btn btn-primary" style="width:100%; justify-content:center;">
+            <?= Icon::svg('user', '', 15) ?> Portal Sign In
+        </a>
+    </div>
+</div>
 
 <!-- 1. Utility Top Notification & Helpline Bar with Custom Premium Icons -->
 <div class="portal-topbar">
@@ -771,6 +1123,9 @@
         <a href="/login" class="btn btn-primary">
             <?= Icon::svg('user', '', 14) ?> Sign In
         </a>
+        <button type="button" class="mobile-menu-toggle" onclick="toggleMobileMenu()" aria-label="Toggle Mobile Menu">
+            <?= Icon::svg('menu', '', 18) ?>
+        </button>
     </div>
 </header>
 
@@ -840,7 +1195,7 @@
 
                 <!-- Tab 2: Rate Calculator -->
                 <div id="tab-calc" class="dock-tab-content">
-                    <div style="display:grid; grid-template-columns: 1fr 1fr; gap:14px; margin-bottom:14px;">
+                    <div class="calc-two-col">
                         <div>
                             <label class="form-label" style="font-size:12px;">Destination Hub *</label>
                             <select id="hero_calc_dest" class="form-control" style="font-size:13px;" onchange="calculateHeroRate()">
@@ -861,7 +1216,7 @@
                         </div>
                     </div>
 
-                    <div style="display:grid; grid-template-columns: 1fr 1fr; gap:14px; margin-bottom:14px;">
+                    <div class="calc-two-col">
                         <div>
                             <label class="form-label" style="font-size:12px;">Speed Mode *</label>
                             <select id="hero_calc_speed" class="form-control" style="font-size:13px;" onchange="calculateHeroRate()">
@@ -906,7 +1261,7 @@
 
                 <!-- Tab 4: Volumetric Calculator -->
                 <div id="tab-volumetric" class="dock-tab-content">
-                    <div style="display:grid; grid-template-columns: 1fr 1fr 1fr; gap:10px; margin-bottom:12px;">
+                    <div class="vol-three-col">
                         <div>
                             <label class="form-label" style="font-size:11.5px;">Length (cm)</label>
                             <input type="number" id="vol_l" class="form-control" value="30" oninput="runVolumetric()">
@@ -1022,7 +1377,7 @@
             </div>
 
             <!-- 5-Stage Stepper Progress -->
-            <div style="display:grid; grid-template-columns:repeat(5, 1fr); gap:10px; margin:28px 0 20px 0; text-align:center;">
+            <div class="tracking-stepper">
                 <?php foreach ($trackingResult['milestones'] as $m): ?>
                     <div style="border-top: 3px solid <?= $m['completed'] ? '#22c55e' : '#cbd5e1' ?>; padding-top:10px;">
                         <div style="font-size:12px; font-weight:700; color:<?= $m['completed'] ? '#15803d' : '#64748b' ?>;">
@@ -1036,7 +1391,7 @@
             </div>
 
             <!-- Metadata Row -->
-            <div style="display:grid; grid-template-columns: repeat(4, 1fr); gap:14px; background:#f8fafc; border-radius:8px; padding:12px 16px; font-size:12px; border:1px solid #e2e8f0;">
+            <div class="tracking-meta-grid">
                 <div>
                     <span style="color:#64748b;">Consignee:</span>
                     <strong style="display:block; margin-top:2px; color:#0f172a;"><?= htmlspecialchars($trackingResult['recipient_masked']) ?></strong>
@@ -1393,57 +1748,59 @@
         </p>
     </div>
 
-    <table class="tariff-table">
-        <thead>
-            <tr>
-                <th>Zone / Route Type</th>
-                <th>Coverage Hubs</th>
-                <th>Docs (Up to 250g)</th>
-                <th>Docs (Up to 500g)</th>
-                <th>Parcel Base (1st KG)</th>
-                <th>Addl. KG (Parcel)</th>
-                <th>Standard TAT</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td><strong>Intra-State Hubs</strong></td>
-                <td>Within Chhattisgarh (Raipur, BSP, Durg, Korba)</td>
-                <td>₹ 30.00</td>
-                <td>₹ 40.00</td>
-                <td>₹ 60.00</td>
-                <td>₹ 25.00</td>
-                <td>24 Hours</td>
-            </tr>
-            <tr>
-                <td><strong>Regional Central Zone</strong></td>
-                <td>C.G., M.P. & Vidarbha (Nagpur, BPL, IND, JLR)</td>
-                <td>₹ 40.00</td>
-                <td>₹ 60.00</td>
-                <td>₹ 80.00</td>
-                <td>₹ 35.00</td>
-                <td>24 - 36 Hours</td>
-            </tr>
-            <tr>
-                <td><strong>Metro Air Express</strong></td>
-                <td>Delhi NCR, Mumbai, Bengaluru, Hyderabad</td>
-                <td>₹ 70.00</td>
-                <td>₹ 100.00</td>
-                <td>₹ 150.00</td>
-                <td>₹ 65.00</td>
-                <td>Next-Day Air</td>
-            </tr>
-            <tr>
-                <td><strong>Rest of India (Surface)</strong></td>
-                <td>All other serviceable PIN codes nationwide</td>
-                <td>₹ 50.00</td>
-                <td>₹ 80.00</td>
-                <td>₹ 110.00</td>
-                <td>₹ 45.00</td>
-                <td>48 - 72 Hours</td>
-            </tr>
-        </tbody>
-    </table>
+    <div class="table-scroll-wrapper">
+        <table class="tariff-table">
+            <thead>
+                <tr>
+                    <th>Zone / Route Type</th>
+                    <th>Coverage Hubs</th>
+                    <th>Docs (Up to 250g)</th>
+                    <th>Docs (Up to 500g)</th>
+                    <th>Parcel Base (1st KG)</th>
+                    <th>Addl. KG (Parcel)</th>
+                    <th>Standard TAT</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>Intra-State Hubs</strong></td>
+                    <td>Within Chhattisgarh (Raipur, BSP, Durg, Korba)</td>
+                    <td>₹ 30.00</td>
+                    <td>₹ 40.00</td>
+                    <td>₹ 60.00</td>
+                    <td>₹ 25.00</td>
+                    <td>24 Hours</td>
+                </tr>
+                <tr>
+                    <td><strong>Regional Central Zone</strong></td>
+                    <td>C.G., M.P. & Vidarbha (Nagpur, BPL, IND, JLR)</td>
+                    <td>₹ 40.00</td>
+                    <td>₹ 60.00</td>
+                    <td>₹ 80.00</td>
+                    <td>₹ 35.00</td>
+                    <td>24 - 36 Hours</td>
+                </tr>
+                <tr>
+                    <td><strong>Metro Air Express</strong></td>
+                    <td>Delhi NCR, Mumbai, Bengaluru, Hyderabad</td>
+                    <td>₹ 70.00</td>
+                    <td>₹ 100.00</td>
+                    <td>₹ 150.00</td>
+                    <td>₹ 65.00</td>
+                    <td>Next-Day Air</td>
+                </tr>
+                <tr>
+                    <td><strong>Rest of India (Surface)</strong></td>
+                    <td>All other serviceable PIN codes nationwide</td>
+                    <td>₹ 50.00</td>
+                    <td>₹ 80.00</td>
+                    <td>₹ 110.00</td>
+                    <td>₹ 45.00</td>
+                    <td>48 - 72 Hours</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
 </section>
 
 <!-- 11. E-Way Bill & Indian Regulatory Guidelines -->
@@ -1456,7 +1813,7 @@
         </p>
     </div>
 
-    <div style="display:grid; grid-template-columns: repeat(3, 1fr); gap:20px;">
+    <div class="regulatory-grid">
         <div style="background:#f8fafc; border:1px solid #e2e8f0; border-radius:12px; padding:20px;">
             <div style="font-weight:700; color:#0f172a; font-size:15px; margin-bottom:8px; display:flex; align-items:center; gap:8px;">
                 <span style="color:#2563eb;"><?= Icon::svg('invoices', '', 18) ?></span>
@@ -1722,6 +2079,15 @@
 
 <!-- 16. Interactive Client Scripts -->
 <script>
+function toggleMobileMenu() {
+    var drawer = document.getElementById('mobileDrawer');
+    var backdrop = document.getElementById('mobileBackdrop');
+    if (!drawer || !backdrop) return;
+    drawer.classList.toggle('open');
+    backdrop.classList.toggle('open');
+    document.body.style.overflow = drawer.classList.contains('open') ? 'hidden' : '';
+}
+
 function switchDockTab(tabId) {
     var tabs = ['track', 'calc', 'pincode', 'volumetric'];
     var btns = document.querySelectorAll('.dock-tab-btn');

@@ -1453,4 +1453,141 @@ textarea.form-control {
     color: var(--text-tertiary);
 }
 
+/* ==========================================================================
+   Mobile Responsive System for Kesari Logistics Shell & Admin Pages
+   ========================================================================== */
+
+@media (max-width: 992px) {
+    .app-layout {
+        overflow-x: hidden;
+    }
+
+    .sidebar {
+        transform: translateX(-100%);
+        box-shadow: 4px 0 24px rgba(0, 0, 0, 0.18);
+        z-index: 1000;
+    }
+
+    .sidebar.open {
+        transform: translateX(0);
+    }
+
+    .sidebar-backdrop {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(15, 23, 42, 0.5);
+        backdrop-filter: blur(2px);
+        -webkit-backdrop-filter: blur(2px);
+        z-index: 999;
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.25s ease;
+    }
+
+    .sidebar-backdrop.visible {
+        opacity: 1;
+        pointer-events: auto;
+    }
+
+    body.sidebar-locked {
+        overflow: hidden;
+    }
+
+    .main-wrapper {
+        margin-left: 0 !important;
+        width: 100% !important;
+        max-width: 100vw;
+        overflow-x: hidden;
+    }
+
+    .mobile-menu-btn {
+        display: inline-flex !important;
+    }
+
+    .topbar {
+        padding: 0 16px;
+    }
+
+    .search-box {
+        width: auto;
+        flex: 1;
+        max-width: 260px;
+    }
+
+    .search-shortcut {
+        display: none;
+    }
+
+    .page-container {
+        padding: 16px 14px 48px 14px;
+    }
+
+    .page-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+    }
+
+    .page-header > div:last-child {
+        width: 100%;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+    }
+
+    .metrics-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
+    }
+
+    /* Collapse multi-column admin views */
+    div[style*="grid-template-columns: 2fr 1fr"],
+    div[style*="grid-template-columns: 1fr 1fr"],
+    div[style*="grid-template-columns: 3fr 1fr"] {
+        grid-template-columns: 1fr !important;
+        gap: 16px !important;
+    }
+}
+
+@media (max-width: 680px) {
+    .metrics-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .topbar-actions .btn {
+        display: none;
+    }
+
+    .topbar .search-box {
+        display: none;
+    }
+
+    .g-card form[style*="grid-template-columns"] {
+        grid-template-columns: 1fr !important;
+        gap: 10px !important;
+    }
+
+    .table-responsive {
+        -webkit-overflow-scrolling: touch;
+        margin: 0 -14px;
+        padding: 0 14px;
+        width: calc(100% + 28px);
+    }
+
+    .g-table {
+        min-width: 580px;
+    }
+
+    .user-badge {
+        padding: 3px;
+    }
+
+    .user-badge > div:last-child {
+        display: none;
+    }
+}
+
 
