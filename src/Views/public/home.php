@@ -27,7 +27,7 @@
             background-color: var(--portal-navy);
             color: #e2e8f0;
             font-size: 12px;
-            padding: 8px 40px;
+            padding: 8px 32px;
             border-bottom: 1px solid rgba(255,255,255,0.08);
             display: flex;
             align-items: center;
@@ -49,95 +49,114 @@
         .topbar-left {
             display: flex;
             align-items: center;
-            gap: 20px;
+            gap: 22px;
             flex-wrap: wrap;
         }
 
         .topbar-right {
             display: flex;
             align-items: center;
-            gap: 18px;
+            gap: 20px;
             flex-wrap: wrap;
         }
 
+        .topbar-chip {
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+            white-space: nowrap;
+        }
+
         .status-dot {
-            width: 8px;
-            height: 8px;
+            width: 7px;
+            height: 7px;
             border-radius: 50%;
             background-color: #22c55e;
             display: inline-block;
             box-shadow: 0 0 0 2px rgba(34, 197, 94, 0.25);
         }
 
-        /* 2. Main Enterprise Header & Navigation */
+        /* 2. Main Enterprise Header & Navigation - Guaranteed Single Line */
         .portal-header {
             position: sticky;
             top: 0;
             z-index: 999;
             background: #ffffff;
             border-bottom: 1px solid var(--portal-border);
-            padding: 0 40px;
-            height: 74px;
+            padding: 0 32px;
+            height: 70px;
             display: flex;
             align-items: center;
             justify-content: space-between;
+            gap: 16px;
             box-shadow: 0 2px 8px rgba(15, 23, 42, 0.04);
+            white-space: nowrap;
         }
 
         .brand-container {
             display: flex;
             align-items: center;
-            gap: 14px;
+            gap: 12px;
             text-decoration: none;
             color: var(--portal-text-main);
+            flex-shrink: 0;
+            white-space: nowrap;
         }
 
         .brand-emblem {
-            width: 44px;
-            height: 44px;
+            width: 40px;
+            height: 40px;
             background: linear-gradient(135deg, #1a73e8 0%, #0d47a1 100%);
             color: #ffffff;
             font-family: var(--font-heading);
             font-weight: 800;
-            font-size: 22px;
-            border-radius: 10px;
+            font-size: 20px;
+            border-radius: 9px;
             display: flex;
             align-items: center;
             justify-content: center;
-            box-shadow: 0 4px 12px rgba(26, 115, 232, 0.35);
+            box-shadow: 0 3px 10px rgba(26, 115, 232, 0.35);
         }
 
         .brand-info-title {
             font-family: var(--font-heading);
-            font-size: 19px;
+            font-size: 18px;
             font-weight: 700;
             color: #0f172a;
             line-height: 1.15;
             letter-spacing: -0.3px;
+            white-space: nowrap;
         }
 
         .brand-info-sub {
-            font-size: 11px;
+            font-size: 10.5px;
             font-weight: 600;
             color: var(--portal-text-muted);
-            letter-spacing: 0.6px;
+            letter-spacing: 0.5px;
             text-transform: uppercase;
+            white-space: nowrap;
         }
 
         .portal-nav {
             display: flex;
             align-items: center;
-            gap: 24px;
+            gap: 20px;
+            white-space: nowrap;
+            flex-shrink: 0;
         }
 
         .portal-nav a {
             color: #334155;
-            font-size: 13px;
+            font-size: 13.5px;
             font-weight: 600;
             text-decoration: none;
             transition: color 0.15s ease;
             position: relative;
-            padding: 6px 0;
+            padding: 6px 2px;
+            white-space: nowrap;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
         }
 
         .portal-nav a:hover {
@@ -152,10 +171,16 @@
             border: 1px solid #bfdbfe;
         }
 
+        .portal-nav a.highlight-partner:hover {
+            background: #dbeafe;
+        }
+
         .header-actions {
             display: flex;
             align-items: center;
             gap: 10px;
+            flex-shrink: 0;
+            white-space: nowrap;
         }
 
         /* 3. Hero Command Center & Tabbed Operational Dock */
@@ -660,21 +685,40 @@
 </head>
 <body>
 
-<!-- 1. Utility Top Notification & Helpline Bar -->
+<!-- 1. Utility Top Notification & Helpline Bar with Custom Premium Icons -->
 <div class="portal-topbar">
     <div class="topbar-left">
-        <span>📞 Toll-Free Helpline: <strong>1800-209-4560</strong> (08:00 - 21:00 IST)</span>
-        <span>✉️ Support: <a href="mailto:care@kesariexpress.com">care@kesariexpress.com</a></span>
-        <span>🏢 Central Master Hub: Raipur (C.G.)</span>
+        <span class="topbar-chip">
+            <?= Icon::svg('phone', '', 13, '#93c5fd') ?>
+            <span>Toll-Free Helpline: <strong>1800-209-4560</strong> (08:00 - 21:00 IST)</span>
+        </span>
+        <span class="topbar-chip">
+            <?= Icon::svg('mail', '', 13, '#93c5fd') ?>
+            <span>Support: <a href="mailto:care@kesariexpress.com">care@kesariexpress.com</a></span>
+        </span>
+        <span class="topbar-chip">
+            <?= Icon::svg('hub', '', 13, '#93c5fd') ?>
+            <span>Central Master Hub: <strong>Raipur (C.G.)</strong></span>
+        </span>
     </div>
     <div class="topbar-right">
-        <span><span class="status-dot"></span> Central Corridor Line-Haul: <strong>Normal Operations</strong></span>
-        <span>Fuel Surcharge: <strong>12.5%</strong></span>
-        <span>GST SAC: <strong>996812</strong></span>
+        <span class="topbar-chip">
+            <span class="status-dot"></span>
+            <?= Icon::svg('radar', '', 13, '#4ade80') ?>
+            <span>Central Corridor Line-Haul: <strong>Normal Operations</strong></span>
+        </span>
+        <span class="topbar-chip">
+            <?= Icon::svg('fuel', '', 13, '#93c5fd') ?>
+            <span>Fuel Surcharge: <strong>12.5%</strong></span>
+        </span>
+        <span class="topbar-chip">
+            <?= Icon::svg('receipt-tax', '', 13, '#93c5fd') ?>
+            <span>GST SAC: <strong>996812</strong></span>
+        </span>
     </div>
 </div>
 
-<!-- 2. Primary Navigation Header -->
+<!-- 2. Primary Navigation Header - Single Line Layout -->
 <header class="portal-header">
     <a href="/" class="brand-container">
         <div class="brand-emblem">K</div>
@@ -689,18 +733,18 @@
         <a href="#dock-calc">Rate Calculator</a>
         <a href="#corridors">Express Corridors</a>
         <a href="#journey">How It Works</a>
-        <a href="#services">Services & Specs</a>
+        <a href="#services">Services</a>
         <a href="#tariffs">Tariff Matrix</a>
         <a href="#regulatory">E-Way Bill & SAC</a>
-        <a href="/onboard" class="highlight-partner">Franchise Program</a>
+        <a href="/onboard" class="highlight-partner"><?= Icon::svg('sparkles', '', 13) ?> Franchise Program</a>
     </nav>
 
     <div class="header-actions">
-        <a href="/login?tenant=raipur" class="btn btn-outlined" style="padding:7px 16px; font-size:13px; font-weight:600;">
-            <?= Icon::svg('agencies', '', 16) ?> Branch Desk (#26)
+        <a href="/login?tenant=raipur" class="btn btn-outlined" style="padding:7px 15px; font-size:13px; font-weight:600;">
+            <?= Icon::svg('agencies', '', 15) ?> Branch Desk (#26)
         </a>
-        <a href="/login" class="btn btn-primary" style="padding:7px 18px; font-size:13px; font-weight:600;">
-            <?= Icon::svg('user', '', 16) ?> Portal Sign In
+        <a href="/login" class="btn btn-primary" style="padding:7px 16px; font-size:13px; font-weight:600;">
+            <?= Icon::svg('user', '', 15) ?> Portal Sign In
         </a>
     </div>
 </header>
