@@ -39,55 +39,55 @@ $isExpiring = TenantContext::isExpiringSoon(30);
             <?php if ($isSuperAdmin): ?>
                 <div class="nav-section-title">Control Plane</div>
                 <a href="/" class="nav-item <?= ($activeNav ?? '') === 'dashboard' ? 'active' : '' ?>">
-                    <span class="nav-icon">📊</span> Dashboard
+                    <span class="nav-icon"><?= Icon::svg('dashboard') ?></span> Dashboard
                 </a>
                 <a href="/admin/agencies" class="nav-item <?= ($activeNav ?? '') === 'agencies' ? 'active' : '' ?>">
-                    <span class="nav-icon">🏢</span> Agency Tenants
+                    <span class="nav-icon"><?= Icon::svg('agencies') ?></span> Agency Tenants
                 </a>
                 <a href="/admin/kyc" class="nav-item <?= ($activeNav ?? '') === 'kyc' ? 'active' : '' ?>">
-                    <span class="nav-icon">🛡️</span> KYC Verification
+                    <span class="nav-icon"><?= Icon::svg('kyc') ?></span> KYC Verification
                 </a>
                 <a href="/admin/destinations" class="nav-item <?= ($activeNav ?? '') === 'destinations' ? 'active' : '' ?>">
-                    <span class="nav-icon">📍</span> Master Destinations
+                    <span class="nav-icon"><?= Icon::svg('destinations') ?></span> Master Destinations
                 </a>
                 <a href="/admin/tickets" class="nav-item <?= ($activeNav ?? '') === 'tickets' ? 'active' : '' ?>">
-                    <span class="nav-icon">🎫</span> Support & City Requests
+                    <span class="nav-icon"><?= Icon::svg('tickets') ?></span> Support & City Requests
                 </a>
                 <a href="/admin/invoices" class="nav-item <?= ($activeNav ?? '') === 'invoices' ? 'active' : '' ?>">
-                    <span class="nav-icon">📑</span> Consolidated Reports
+                    <span class="nav-icon"><?= Icon::svg('reports') ?></span> Consolidated Reports
                 </a>
             <?php else: ?>
                 <div class="nav-section-title">Operations</div>
                 <a href="/" class="nav-item <?= ($activeNav ?? '') === 'dashboard' ? 'active' : '' ?>">
-                    <span class="nav-icon">📊</span> Overview
+                    <span class="nav-icon"><?= Icon::svg('dashboard') ?></span> Overview
                 </a>
                 <a href="/bookings/new" class="nav-item <?= ($activeNav ?? '') === 'book' ? 'active' : '' ?>">
-                    <span class="nav-icon">📦</span> Consignment Entry
+                    <span class="nav-icon"><?= Icon::svg('book') ?></span> Consignment Entry
                 </a>
                 <a href="/bookings" class="nav-item <?= ($activeNav ?? '') === 'bookings' ? 'active' : '' ?>">
-                    <span class="nav-icon">📋</span> Consignment List
+                    <span class="nav-icon"><?= Icon::svg('bookings') ?></span> Consignment List
                 </a>
                 <a href="/print-labels" class="nav-item <?= ($activeNav ?? '') === 'print' ? 'active' : '' ?>">
-                    <span class="nav-icon">🏷️</span> Thermal Print Hub
+                    <span class="nav-icon"><?= Icon::svg('print') ?></span> Thermal Print Hub
                 </a>
 
                 <div class="nav-section-title">Billing & Compliance</div>
                 <a href="/invoices" class="nav-item <?= ($activeNav ?? '') === 'invoices' ? 'active' : '' ?>">
-                    <span class="nav-icon">🧾</span> GST Tax Invoices
+                    <span class="nav-icon"><?= Icon::svg('invoices') ?></span> GST Tax Invoices
                 </a>
                 <a href="/bank-accounts" class="nav-item <?= ($activeNav ?? '') === 'bank' ? 'active' : '' ?>">
-                    <span class="nav-icon">🏦</span> Bank Accounts
+                    <span class="nav-icon"><?= Icon::svg('bank') ?></span> Bank Accounts
                 </a>
 
                 <div class="nav-section-title">Masters & Tariff</div>
                 <a href="/clients" class="nav-item <?= ($activeNav ?? '') === 'clients' ? 'active' : '' ?>">
-                    <span class="nav-icon">👥</span> B2B Corporate Clients
+                    <span class="nav-icon"><?= Icon::svg('clients') ?></span> B2B Corporate Clients
                 </a>
                 <a href="/tariffs" class="nav-item <?= ($activeNav ?? '') === 'tariffs' ? 'active' : '' ?>">
-                    <span class="nav-icon">⚡</span> Rate Matrix (Tariff)
+                    <span class="nav-icon"><?= Icon::svg('tariffs') ?></span> Rate Matrix (Tariff)
                 </a>
                 <a href="/tickets" class="nav-item <?= ($activeNav ?? '') === 'tickets' ? 'active' : '' ?>">
-                    <span class="nav-icon">💬</span> Destination Request / Help
+                    <span class="nav-icon"><?= Icon::svg('tickets') ?></span> Destination Request / Help
                 </a>
             <?php endif; ?>
         </nav>
@@ -96,7 +96,7 @@ $isExpiring = TenantContext::isExpiringSoon(30);
             <div style="font-size:12px; color:var(--text-tertiary);">
                 <?= $isSuperAdmin ? 'Super Admin Mode' : 'Agency: <strong>#' . htmlspecialchars($tenant['agency_code'] ?? 'N/A') . '</strong>' ?>
             </div>
-            <a href="/logout" title="Sign out" style="color:var(--text-secondary); font-size:16px; padding:4px 8px; border-radius:4px; display:inline-flex; align-items:center;">⏻</a>
+            <a href="/logout" title="Sign out" style="color:var(--text-secondary); display:inline-flex; align-items:center; padding:6px; border-radius:6px; transition:var(--transition);"><?= Icon::svg('logout', '', 18) ?></a>
         </div>
     </aside>
 
@@ -105,9 +105,9 @@ $isExpiring = TenantContext::isExpiringSoon(30);
         <!-- Sticky Glass Topbar -->
         <header class="topbar">
             <div class="topbar-left">
-                <button type="button" class="mobile-menu-btn" id="sidebar-toggle" aria-label="Toggle navigation">☰</button>
+                <button type="button" class="mobile-menu-btn" id="sidebar-toggle" aria-label="Toggle navigation"><?= Icon::svg('menu', '', 20) ?></button>
                 <div class="search-box">
-                    <span>🔍</span>
+                    <span><?= Icon::svg('search', '', 18) ?></span>
                     <input type="text" class="search-input" placeholder="Search consignment (AWB), client, destination...">
                     <span class="search-shortcut">Ctrl K</span>
                 </div>

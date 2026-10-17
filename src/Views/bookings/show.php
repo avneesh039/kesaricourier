@@ -10,14 +10,17 @@ ob_start();
 
 <div class="page-header">
     <div>
-        <a href="/bookings" style="font-size:13px; color:var(--text-secondary); text-decoration:none;">← Back to Consignments</a>
-        <h1 class="page-title copyable" data-copy="<?= htmlspecialchars($c['consignment_no']) ?>" title="Click to copy AWB" style="margin-top:6px; font-family:var(--font-mono); cursor:pointer;">
-            AWB #<?= htmlspecialchars($c['consignment_no']) ?> <span style="font-size:14px; opacity:0.6; font-family:sans-serif;">📋</span>
+        <a href="/bookings" style="font-size:13px; color:var(--text-secondary); text-decoration:none; display:inline-flex; align-items:center; gap:4px;">
+            <span style="transform:rotate(180deg); display:inline-flex;"><?= Icon::svg('chevron-right', '', 14) ?></span> Back to Consignments
+        </a>
+        <h1 class="page-title copyable" data-copy="<?= htmlspecialchars($c['consignment_no']) ?>" title="Click to copy AWB" style="margin-top:6px; font-family:var(--font-mono); cursor:pointer; display:inline-flex; align-items:center; gap:8px;">
+            AWB #<?= htmlspecialchars($c['consignment_no']) ?>
+            <span style="color:var(--text-tertiary); display:inline-flex;"><?= Icon::svg('copy', '', 16) ?></span>
         </h1>
     </div>
     <div style="display:flex; gap:10px;">
-        <a href="/print/single?awb=<?= urlencode($c['consignment_no']) ?>" target="_blank" class="btn btn-primary">
-            🏷️ Print 4x6" Thermal Label
+        <a href="/print/single?awb=<?= urlencode($c['consignment_no']) ?>" target="_blank" class="btn btn-primary" style="display:inline-flex; align-items:center; gap:8px;">
+            <?= Icon::svg('print') ?> Print 4x6" Thermal Label
         </a>
     </div>
 </div>
@@ -47,7 +50,9 @@ ob_start();
                     <div style="font-size:12px; color:var(--text-secondary);">Chhattisgarh</div>
                 </div>
 
-                <div style="font-size:24px; color:var(--google-blue);">➔</div>
+                <div style="font-size:20px; color:var(--google-blue); display:flex; align-items:center; justify-content:center;">
+                    <?= Icon::svg('arrow-right', '', 24) ?>
+                </div>
 
                 <div>
                     <div style="font-size:11px; color:var(--text-secondary); text-transform:uppercase;">Destination</div>

@@ -21,9 +21,9 @@ ob_start();
         </p>
     </div>
     <div style="display:flex; gap:10px;">
-        <a href="/print-labels" class="btn btn-outlined">🏷️ Print Thermal Labels</a>
-        <a href="/invoices/new" class="btn btn-outlined">🧾 Issue Invoice</a>
-        <a href="/bookings/new" class="btn btn-primary">+ New Booking (Enter)</a>
+        <a href="/print-labels" class="btn btn-outlined"><?= Icon::svg('print') ?> Print Thermal Labels</a>
+        <a href="/invoices/new" class="btn btn-outlined"><?= Icon::svg('invoices') ?> Issue Invoice</a>
+        <a href="/bookings/new" class="btn btn-primary"><?= Icon::svg('plus') ?> New Booking (Enter)</a>
     </div>
 </div>
 
@@ -107,7 +107,9 @@ ob_start();
                                         <a href="/bookings/<?= $b['id'] ?>" class="awb-badge" style="text-decoration:none;">
                                             <?= htmlspecialchars($b['consignment_no']) ?>
                                         </a>
-                                        <button type="button" class="copyable" data-copy="<?= htmlspecialchars($b['consignment_no']) ?>" title="Copy AWB" style="background:none; border:none; cursor:pointer; font-size:11px; opacity:0.6;">📋</button>
+                                        <button type="button" class="copyable" data-copy="<?= htmlspecialchars($b['consignment_no']) ?>" title="Copy AWB" style="background:none; border:none; cursor:pointer; color:var(--text-tertiary); display:inline-flex; align-items:center;">
+                                            <?= Icon::svg('copy', '', 14) ?>
+                                        </button>
                                     </div>
                                 </td>
                                 <td>
@@ -125,8 +127,8 @@ ob_start();
                                     </span>
                                 </td>
                                 <td style="text-align:right;">
-                                    <a href="/print/single?awb=<?= urlencode($b['consignment_no']) ?>" target="_blank" class="btn btn-outlined" style="padding:2px 8px; font-size:11px;" title="Print 4x6 Label">
-                                        🏷️ 4x6
+                                    <a href="/print/single?awb=<?= urlencode($b['consignment_no']) ?>" target="_blank" class="btn btn-outlined" style="padding:4px 8px; font-size:11px; display:inline-flex; align-items:center; gap:4px;" title="Print 4x6 Label">
+                                        <?= Icon::svg('print', '', 13) ?> 4x6
                                     </a>
                                 </td>
                             </tr>
@@ -143,20 +145,20 @@ ob_start();
         <div class="g-card" style="margin-bottom:20px;">
             <h3 style="font-size:15px; margin-bottom:12px;">Operational Quick Actions</h3>
             <div style="display:flex; flex-direction:column; gap:8px;">
-                <a href="/bookings/new" class="btn btn-primary" style="justify-content:flex-start; padding:10px 14px;">
-                    <span style="font-size:16px;">📦</span> Rapid Consignment Booking (Enter)
+                <a href="/bookings/new" class="btn btn-primary" style="justify-content:flex-start; padding:10px 14px; gap:10px;">
+                    <?= Icon::svg('book', '', 18) ?> Rapid Consignment Booking (Enter)
                 </a>
-                <a href="/print-labels" class="btn btn-secondary" style="justify-content:flex-start; padding:10px 14px;">
-                    <span style="font-size:16px;">🏷️</span> Thermal Print Center (Single / Batch)
+                <a href="/print-labels" class="btn btn-secondary" style="justify-content:flex-start; padding:10px 14px; gap:10px;">
+                    <?= Icon::svg('print', '', 18) ?> Thermal Print Center (Single / Batch)
                 </a>
-                <a href="/invoices/new" class="btn btn-secondary" style="justify-content:flex-start; padding:10px 14px;">
-                    <span style="font-size:16px;">🧾</span> Generate Monthly GST Tax Invoice
+                <a href="/invoices/new" class="btn btn-secondary" style="justify-content:flex-start; padding:10px 14px; gap:10px;">
+                    <?= Icon::svg('invoices', '', 18) ?> Generate Monthly GST Tax Invoice
                 </a>
-                <a href="/bank-accounts" class="btn btn-secondary" style="justify-content:flex-start; padding:10px 14px;">
-                    <span style="font-size:16px;">🏦</span> Settlement Bank Account Settings
+                <a href="/bank-accounts" class="btn btn-secondary" style="justify-content:flex-start; padding:10px 14px; gap:10px;">
+                    <?= Icon::svg('bank', '', 18) ?> Settlement Bank Account Settings
                 </a>
-                <a href="/tickets/new" class="btn btn-secondary" style="justify-content:flex-start; padding:10px 14px;">
-                    <span style="font-size:16px;">💬</span> Request Destination / Pincode Addition
+                <a href="/tickets/new" class="btn btn-secondary" style="justify-content:flex-start; padding:10px 14px; gap:10px;">
+                    <?= Icon::svg('tickets', '', 18) ?> Request Destination / Pincode Addition
                 </a>
             </div>
         </div>

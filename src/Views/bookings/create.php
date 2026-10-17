@@ -31,7 +31,7 @@ ob_start();
             <!-- Section 1: Docket & Routing Info -->
             <div class="g-card">
                 <div style="font-weight:500; font-size:15px; margin-bottom:16px; color:var(--brand-primary); display:flex; align-items:center; gap:8px;">
-                    <span>🏷️</span> Consignment Docket & Routing
+                    <?= Icon::svg('tag') ?> Consignment Docket & Routing
                 </div>
 
                 <div style="display:grid; grid-template-columns: 1fr 1fr 1fr; gap:16px;">
@@ -81,7 +81,7 @@ ob_start();
             <!-- Section 2: Consignee / Recipient Info -->
             <div class="g-card">
                 <div style="font-weight:500; font-size:15px; margin-bottom:16px; color:var(--brand-primary); display:flex; align-items:center; gap:8px;">
-                    <span>📍</span> Consignee (Recipient Details)
+                    <?= Icon::svg('destinations') ?> Consignee (Recipient Details)
                 </div>
 
                 <div style="display:grid; grid-template-columns: 1fr 1fr; gap:16px;">
@@ -105,7 +105,7 @@ ob_start();
             <!-- Section 3: Package Mode & Volumetric Dimensions -->
             <div class="g-card">
                 <div style="font-weight:500; font-size:15px; margin-bottom:16px; color:var(--brand-primary); display:flex; align-items:center; gap:8px;">
-                    <span>⚖️</span> Weight & Package Specifications
+                    <?= Icon::svg('truck') ?> Weight & Package Specifications
                 </div>
 
                 <div style="display:grid; grid-template-columns: 1fr 1fr 1fr; gap:16px;">
@@ -156,8 +156,8 @@ ob_start();
         <!-- Right: Live Billing Summary Sidebar -->
         <div>
             <div class="g-card" style="position:sticky; top:80px;">
-                <h3 style="font-size:16px; margin-bottom:16px; border-bottom:1px solid #f1f3f4; padding-bottom:10px;">
-                    💰 Fare & Charges Breakdown
+                <h3 style="font-size:16px; margin-bottom:16px; border-bottom:1px solid #f1f3f4; padding-bottom:10px; display:flex; align-items:center; gap:8px;">
+                    <?= Icon::svg('invoices') ?> Fare & Charges Breakdown
                 </h3>
 
                 <div style="font-size:13px; display:flex; flex-direction:column; gap:12px;">
@@ -208,8 +208,8 @@ ob_start();
                         </div>
                     </div>
 
-                    <button type="submit" class="btn btn-primary" style="width:100%; padding:14px; border-radius:24px; font-size:15px; margin-top:12px;">
-                        ✓ Confirm Booking & Print Label ➔
+                    <button type="submit" class="btn btn-primary" style="width:100%; padding:14px; border-radius:24px; font-size:15px; margin-top:12px; display:inline-flex; align-items:center; justify-content:center; gap:8px;">
+                        <?= Icon::svg('check', '', 18) ?> Confirm Booking & Print Label <?= Icon::svg('arrow-right', '', 16) ?>
                     </button>
                 </div>
             </div>

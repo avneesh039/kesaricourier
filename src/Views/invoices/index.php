@@ -12,14 +12,17 @@ ob_start();
 
 <div class="page-header">
     <div>
-        <h1 class="page-title">🧾 GST Invoices & Billing</h1>
+        <h1 class="page-title" style="display:flex; align-items:center; gap:10px;">
+            <span style="color:var(--brand-primary); display:inline-flex;"><?= Icon::svg('invoices', '', 26) ?></span>
+            GST Invoices & Billing
+        </h1>
         <p style="color:var(--text-secondary); font-size:13px; margin-top:4px;">
             Manage B2B monthly billing, GST tax compliance (SAC 996812), payment statuses, and invoice print reports.
         </p>
     </div>
     <div style="display:flex; gap:10px;">
-        <a href="/bank-accounts" class="btn btn-outlined">🏦 Bank Accounts</a>
-        <a href="/invoices/new" class="btn btn-primary">+ Generate Invoice</a>
+        <a href="/bank-accounts" class="btn btn-outlined"><?= Icon::svg('bank') ?> Bank Accounts</a>
+        <a href="/invoices/new" class="btn btn-primary"><?= Icon::svg('plus') ?> Generate Invoice</a>
     </div>
 </div>
 
@@ -158,7 +161,9 @@ ob_start();
                                 <a href="/invoices/<?= $inv['id'] ?>" class="awb-badge" style="text-decoration:none; font-weight:700; color:var(--brand-primary);">
                                     <?= htmlspecialchars($inv['invoice_no']) ?>
                                 </a>
-                                <button type="button" class="copyable" data-copy="<?= htmlspecialchars($inv['invoice_no']) ?>" title="Copy Invoice No" style="background:none; border:none; cursor:pointer; font-size:12px; opacity:0.6;">📋</button>
+                                <button type="button" class="copyable" data-copy="<?= htmlspecialchars($inv['invoice_no']) ?>" title="Copy Invoice No" style="background:none; border:none; cursor:pointer; color:var(--text-tertiary); display:inline-flex; align-items:center;">
+                                    <?= Icon::svg('copy', '', 14) ?>
+                                </button>
                             </div>
                         </td>
                         <td><?= date('d-M-Y', strtotime($inv['invoice_date'])) ?></td>

@@ -16,8 +16,8 @@ ob_start();
         </p>
     </div>
     <div style="display:flex; gap:10px;">
-        <a href="/print-labels" class="btn btn-outlined">🏷️ Print Thermal Labels</a>
-        <a href="/bookings/new" class="btn btn-primary">+ New Booking (AWB)</a>
+        <a href="/print-labels" class="btn btn-outlined"><?= Icon::svg('print') ?> Print Thermal Labels</a>
+        <a href="/bookings/new" class="btn btn-primary"><?= Icon::svg('plus') ?> New Booking (AWB)</a>
     </div>
 </div>
 
@@ -105,7 +105,9 @@ ob_start();
                                 <a href="/bookings/<?= $c['id'] ?>" class="awb-badge" style="text-decoration:none;">
                                     <?= htmlspecialchars($c['consignment_no']) ?>
                                 </a>
-                                <button type="button" class="copyable" data-copy="<?= htmlspecialchars($c['consignment_no']) ?>" title="Copy AWB" style="background:none; border:none; cursor:pointer; font-size:12px; opacity:0.6;">📋</button>
+                                <button type="button" class="copyable" data-copy="<?= htmlspecialchars($c['consignment_no']) ?>" title="Copy AWB" style="background:none; border:none; cursor:pointer; color:var(--text-tertiary); display:inline-flex; align-items:center;">
+                                    <?= Icon::svg('copy', '', 14) ?>
+                                </button>
                             </div>
                         </td>
                         <td>
@@ -141,10 +143,10 @@ ob_start();
                         </td>
                         <td>
                             <div style="display:flex; gap:6px;">
-                                <a href="/print/single?awb=<?= urlencode($c['consignment_no']) ?>" target="_blank" class="btn btn-outlined" style="padding:3px 8px; font-size:11px;" title="Print 4x6 Thermal Label">
-                                    🏷️ Label
+                                <a href="/print/single?awb=<?= urlencode($c['consignment_no']) ?>" target="_blank" class="btn btn-outlined" style="padding:4px 8px; font-size:11px; display:inline-flex; align-items:center; gap:4px;" title="Print 4x6 Thermal Label">
+                                    <?= Icon::svg('print', '', 13) ?> Label
                                 </a>
-                                <a href="/bookings/<?= $c['id'] ?>" class="btn btn-outlined" style="padding:3px 8px; font-size:11px;">
+                                <a href="/bookings/<?= $c['id'] ?>" class="btn btn-outlined" style="padding:4px 8px; font-size:11px;">
                                     View
                                 </a>
                             </div>

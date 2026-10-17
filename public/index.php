@@ -2,6 +2,7 @@
 // public/index.php - Primary Front Controller and Application Entry Point
 
 require_once dirname(__DIR__) . '/config/app.php';
+require_once dirname(__DIR__) . '/src/Icon.php';
 require_once dirname(__DIR__) . '/src/Database.php';
 require_once dirname(__DIR__) . '/src/TenantContext.php';
 require_once dirname(__DIR__) . '/src/Auth.php';

@@ -10,15 +10,18 @@ ob_start();
 
 <div class="page-header">
     <div>
-        <h1 class="page-title">🛡️ Super Admin Control Center</h1>
+        <h1 class="page-title" style="display:flex; align-items:center; gap:10px;">
+            <span style="color:var(--brand-primary); display:inline-flex;"><?= Icon::svg('kyc', '', 26) ?></span>
+            Super Admin Control Center
+        </h1>
         <p style="color:var(--text-secondary); font-size:13px; margin-top:4px;">
             Platform-wide governance for courier agency tenants, KYC approvals, destination master tables, and subscription lifecycles.
         </p>
     </div>
     <div style="display:flex; gap:12px;">
-        <a href="/admin/destinations" class="btn btn-outlined">📍 Master Destinations</a>
-        <a href="/admin/tickets" class="btn btn-outlined">🎫 Tickets (<?= $openTickets ?? 0 ?>)</a>
-        <a href="/admin/agencies/new" class="btn btn-primary">+ Register Agency</a>
+        <a href="/admin/destinations" class="btn btn-outlined"><?= Icon::svg('destinations') ?> Master Destinations</a>
+        <a href="/admin/tickets" class="btn btn-outlined"><?= Icon::svg('tickets') ?> Tickets (<?= $openTickets ?? 0 ?>)</a>
+        <a href="/admin/agencies/new" class="btn btn-primary"><?= Icon::svg('plus') ?> Register Agency</a>
     </div>
 </div>
 
@@ -72,7 +75,9 @@ ob_start();
                 <h2 style="font-size:16px; margin:0;">Pending KYC Verification Queue</h2>
                 <p style="font-size:12px; color:var(--text-secondary); margin:2px 0 0 0;">New agencies awaiting document verification and branch code activation</p>
             </div>
-            <a href="/admin/kyc" class="btn btn-outlined" style="padding:4px 12px; font-size:12px;">Full KYC Queue →</a>
+            <a href="/admin/kyc" class="btn btn-outlined" style="padding:4px 12px; font-size:12px; display:inline-flex; align-items:center; gap:6px;">
+                Full KYC Queue <?= Icon::svg('arrow-right', '', 14) ?>
+            </a>
         </div>
 
         <div class="table-responsive">
@@ -90,7 +95,10 @@ ob_start();
                     <?php if (empty($pendingAgencies)): ?>
                         <tr>
                             <td colspan="5" style="text-align:center; padding:32px; color:var(--text-secondary);">
-                                ✓ All KYC applications have been reviewed. Queue is clear!
+                                <div style="display:inline-flex; align-items:center; gap:8px;">
+                                    <?= Icon::svg('check', '', 18, 'var(--google-green)') ?>
+                                    All KYC applications have been reviewed. Queue is clear!
+                                </div>
                             </td>
                         </tr>
                     <?php else: ?>
@@ -126,7 +134,9 @@ ob_start();
                 <h2 style="font-size:16px; margin:0;">Destination & Support Tickets</h2>
                 <p style="font-size:12px; color:var(--text-secondary); margin:2px 0 0 0;">Requests from branch managers</p>
             </div>
-            <a href="/admin/tickets" class="btn btn-outlined" style="padding:4px 12px; font-size:12px;">All Tickets →</a>
+            <a href="/admin/tickets" class="btn btn-outlined" style="padding:4px 12px; font-size:12px; display:inline-flex; align-items:center; gap:6px;">
+                All Tickets <?= Icon::svg('arrow-right', '', 14) ?>
+            </a>
         </div>
 
         <?php if (empty($recentTickets)): ?>
@@ -150,7 +160,9 @@ ob_start();
                                 <span class="g-chip chip-success" style="font-size:10px;">Resolved</span>
                             <?php endif; ?>
                             <div style="margin-top:4px;">
-                                <a href="/admin/tickets/<?= $tk['id'] ?>" style="font-size:11px; color:var(--google-blue); text-decoration:none;">Review →</a>
+                                <a href="/admin/tickets/<?= $tk['id'] ?>" style="font-size:11px; color:var(--google-blue); text-decoration:none; display:inline-flex; align-items:center; gap:4px;">
+                                    Review <?= Icon::svg('chevron-right', '', 12) ?>
+                                </a>
                             </div>
                         </div>
                     </div>

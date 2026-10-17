@@ -12,13 +12,16 @@ ob_start();
 
 <div class="page-header">
     <div>
-        <h1 class="page-title">🏷️ Thermal Label Print Hub</h1>
+        <h1 class="page-title" style="display:flex; align-items:center; gap:10px;">
+            <span style="color:var(--brand-primary); display:inline-flex;"><?= Icon::svg('print', '', 26) ?></span>
+            Thermal Label Print Hub
+        </h1>
         <p style="color:var(--text-secondary); font-size:13px; margin-top:4px;">
             Commercial 4x6" barcode & QR label generator for thermal roll printers (TSC, Zebra, TVS, Rollo).
         </p>
     </div>
     <div style="display:flex; gap:10px;">
-        <a href="/bookings/new" class="btn btn-primary">+ New Booking</a>
+        <a href="/bookings/new" class="btn btn-primary"><?= Icon::svg('plus') ?> New Booking</a>
     </div>
 </div>
 
@@ -26,8 +29,8 @@ ob_start();
     <div style="background:#e6f4ea; border-left:4px solid var(--google-green); color:#137333; padding:12px 18px; border-radius:4px; margin-bottom:20px; font-size:13px; display:flex; justify-content:space-between; align-items:center;">
         <div><?= htmlspecialchars($flashSuccess) ?></div>
         <?php if (!empty($targetAwb)): ?>
-            <a href="/print/single?awb=<?= urlencode($targetAwb) ?>&autoprint=1" target="_blank" class="btn btn-primary" style="padding:6px 14px; font-size:12px;">
-                🖨️ Open Label Now
+            <a href="/print/single?awb=<?= urlencode($targetAwb) ?>&autoprint=1" target="_blank" class="btn btn-primary" style="padding:6px 14px; font-size:12px; display:inline-flex; align-items:center; gap:6px;">
+                <?= Icon::svg('print', '', 14) ?> Open Label Now
             </a>
         <?php endif; ?>
     </div>
@@ -42,7 +45,10 @@ ob_start();
 <!-- Quick Single AWB Print Card -->
 <div class="g-card" style="margin-bottom:20px; background:#f8f9fa;">
     <form method="GET" action="/print/single" target="_blank" style="display:flex; gap:12px; align-items:center; flex-wrap:wrap;">
-        <div style="font-weight:600; font-size:13px;">⚡ Instant Single Docket Print:</div>
+        <div style="font-weight:600; font-size:13px; display:flex; align-items:center; gap:6px;">
+            <span style="color:var(--google-blue);"><?= Icon::svg('sparkles', '', 16) ?></span>
+            Instant Single Docket Print:
+        </div>
         <input 
             type="text" 
             name="awb" 
@@ -52,8 +58,8 @@ ob_start();
             style="width:280px; font-family:monospace; text-transform:uppercase; font-weight:600;" 
             required
         >
-        <button type="submit" class="btn btn-primary" style="padding:8px 16px;">
-            🏷️ Print 4x6" Label
+        <button type="submit" class="btn btn-primary" style="padding:8px 16px; display:inline-flex; align-items:center; gap:8px;">
+            <?= Icon::svg('print') ?> Print 4x6" Label
         </button>
         <span style="font-size:12px; color:var(--text-secondary);">Tip: Pressing Enter opens standard 4x6" thermal format.</span>
     </form>
