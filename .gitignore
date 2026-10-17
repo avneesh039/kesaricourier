@@ -1,0 +1,14 @@
+# Screenshots & Temporary files
+Screenshot*.png
+scratch/
+.agents/
+
+# Storage & Logs
+storage/logs/*.log
+*.log
+
+# OS & IDE
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
