@@ -36,7 +36,7 @@ ob_start();
 <?php endif; ?>
 
 <!-- Financial KPI Cards -->
-<div style="display:grid; grid-template-columns: repeat(4, 1fr); gap:16px; margin-bottom:24px;">
+<div class="metrics-grid">
     <div class="g-card" style="padding:16px;">
         <span style="font-size:12px; color:var(--text-secondary); text-transform:uppercase; font-weight:600;">Total Billed</span>
         <div style="font-size:24px; font-weight:700; color:#202124; margin-top:4px;">
@@ -154,9 +154,12 @@ ob_start();
                 <?php foreach ($invoices as $inv): ?>
                     <tr>
                         <td>
-                            <a href="/invoices/<?= $inv['id'] ?>" style="font-family:monospace; font-weight:700; color:var(--google-blue); text-decoration:none;">
-                                <?= htmlspecialchars($inv['invoice_no']) ?>
-                            </a>
+                            <div style="display:flex; align-items:center; gap:6px;">
+                                <a href="/invoices/<?= $inv['id'] ?>" class="awb-badge" style="text-decoration:none; font-weight:700; color:var(--brand-primary);">
+                                    <?= htmlspecialchars($inv['invoice_no']) ?>
+                                </a>
+                                <button type="button" class="copyable" data-copy="<?= htmlspecialchars($inv['invoice_no']) ?>" title="Copy Invoice No" style="background:none; border:none; cursor:pointer; font-size:12px; opacity:0.6;">📋</button>
+                            </div>
                         </td>
                         <td><?= date('d-M-Y', strtotime($inv['invoice_date'])) ?></td>
                         <td>

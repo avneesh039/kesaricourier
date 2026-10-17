@@ -24,11 +24,11 @@ $isExpiring = TenantContext::isExpiringSoon(30);
 </head>
 <body>
 <div class="app-layout">
-    <!-- Collapsible Modern Sidebar -->
+    <!-- Collapsible Modern Sidebar Drawer -->
     <aside class="sidebar">
         <div class="sidebar-header">
-            <div style="width:32px; height:32px; border-radius:8px; background:var(--brand-primary); display:flex; align-items:center; justify-content:center; color:white; font-weight:700; font-size:16px;">
-                K
+            <div class="sidebar-logo-icon">
+                <?= strtoupper(substr($brandName, 0, 1)) ?>
             </div>
             <div class="sidebar-title" title="<?= htmlspecialchars($brandName) ?>">
                 <?= htmlspecialchars($brandName) ?>
@@ -94,27 +94,31 @@ $isExpiring = TenantContext::isExpiringSoon(30);
 
         <div class="sidebar-footer">
             <div style="font-size:12px; color:var(--text-tertiary);">
-                <?= $isSuperAdmin ? 'Super Admin Mode' : 'Agency Code: <strong>' . htmlspecialchars($tenant['agency_code'] ?? 'N/A') . '</strong>' ?>
+                <?= $isSuperAdmin ? 'Super Admin Mode' : 'Agency: <strong>#' . htmlspecialchars($tenant['agency_code'] ?? 'N/A') . '</strong>' ?>
             </div>
-            <a href="/logout" title="Sign out" style="color:var(--text-secondary); font-size:16px;">⏻</a>
+            <a href="/logout" title="Sign out" style="color:var(--text-secondary); font-size:16px; padding:4px 8px; border-radius:4px; display:inline-flex; align-items:center;">⏻</a>
         </div>
     </aside>
 
     <!-- Main Content Shell -->
     <div class="main-wrapper">
-        <!-- Top App Bar -->
+        <!-- Sticky Glass Topbar -->
         <header class="topbar">
-            <div class="search-box">
-                <span>🔍</span>
-                <input type="text" class="search-input" placeholder="Search consignment (AWB), client, destination...">
+            <div class="topbar-left">
+                <button type="button" class="mobile-menu-btn" id="sidebar-toggle" aria-label="Toggle navigation">☰</button>
+                <div class="search-box">
+                    <span>🔍</span>
+                    <input type="text" class="search-input" placeholder="Search consignment (AWB), client, destination...">
+                    <span class="search-shortcut">Ctrl K</span>
+                </div>
             </div>
 
             <div class="topbar-actions">
                 <!-- Environment / Tenant switcher helper for development -->
                 <?php if ($isSuperAdmin): ?>
-                    <a href="/?tenant=raipur" class="btn btn-outlined" style="padding:4px 10px; font-size:12px;">Switch to Raipur Agency View</a>
+                    <a href="/?tenant=raipur" class="btn btn-outlined" style="padding:6px 14px; font-size:12px;">Switch to Raipur Agency View</a>
                 <?php else: ?>
-                    <a href="/" class="btn btn-outlined" style="padding:4px 10px; font-size:12px;">Switch to Admin View</a>
+                    <a href="/" class="btn btn-outlined" style="padding:6px 14px; font-size:12px;">Switch to Admin View</a>
                 <?php endif; ?>
 
                 <div class="user-badge">
@@ -122,7 +126,7 @@ $isExpiring = TenantContext::isExpiringSoon(30);
                         <?= strtoupper(substr($currentUser['name'] ?? 'U', 0, 1)) ?>
                     </div>
                     <div style="font-size:13px; line-height:1.2;">
-                        <div style="font-weight:500;"><?= htmlspecialchars($currentUser['name'] ?? 'User') ?></div>
+                        <div style="font-weight:600;"><?= htmlspecialchars($currentUser['name'] ?? 'User') ?></div>
                         <div style="font-size:11px; color:var(--text-secondary);"><?= htmlspecialchars($currentUser['role'] ?? 'staff') ?></div>
                     </div>
                 </div>
@@ -133,12 +137,12 @@ $isExpiring = TenantContext::isExpiringSoon(30);
         <main class="page-container">
             <!-- 30-Day Expiry Notification Banner -->
             <?php if (!$isSuperAdmin && $isExpiring): ?>
-                <div class="expiry-banner <?= $daysUntilExpiry <= 7 ? 'critical' : '' ?>">
+                <div class="expiry-banner <?= $daysUntilExpiry <= 7 ? 'critical' : '' ?>" style="background:#fef7e0; border-left:4px solid var(--google-yellow); padding:14px 20px; border-radius:8px; margin-bottom:24px; display:flex; justify-content:space-between; align-items:center;">
                     <div>
                         ⚠️ <strong>Subscription Notice:</strong> Your agency platform account validity expires in 
                         <strong><?= $daysUntilExpiry ?> days</strong> (<?= htmlspecialchars($tenant['validity_end'] ?? '') ?>).
                     </div>
-                    <a href="/tickets" class="btn btn-primary" style="padding:4px 12px; font-size:12px;">Request Extension / Renewal</a>
+                    <a href="/tickets" class="btn btn-primary" style="padding:6px 14px; font-size:12px;">Request Extension / Renewal</a>
                 </div>
             <?php endif; ?>
 
@@ -147,5 +151,8 @@ $isExpiring = TenantContext::isExpiringSoon(30);
         </main>
     </div>
 </div>
+
+<!-- Global Application Scripts -->
+<script src="/assets/js/app.js"></script>
 </body>
 </html>

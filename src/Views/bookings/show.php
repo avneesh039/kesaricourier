@@ -11,7 +11,9 @@ ob_start();
 <div class="page-header">
     <div>
         <a href="/bookings" style="font-size:13px; color:var(--text-secondary); text-decoration:none;">← Back to Consignments</a>
-        <h1 class="page-title" style="margin-top:6px; font-family:monospace;">AWB #<?= htmlspecialchars($c['consignment_no']) ?></h1>
+        <h1 class="page-title copyable" data-copy="<?= htmlspecialchars($c['consignment_no']) ?>" title="Click to copy AWB" style="margin-top:6px; font-family:var(--font-mono); cursor:pointer;">
+            AWB #<?= htmlspecialchars($c['consignment_no']) ?> <span style="font-size:14px; opacity:0.6; font-family:sans-serif;">📋</span>
+        </h1>
     </div>
     <div style="display:flex; gap:10px;">
         <a href="/print/single?awb=<?= urlencode($c['consignment_no']) ?>" target="_blank" class="btn btn-primary">

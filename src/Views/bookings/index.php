@@ -101,9 +101,12 @@ ob_start();
                     <tr>
                         <td><?= date('d-m-Y', strtotime($c['booking_date'])) ?></td>
                         <td>
-                            <a href="/bookings/<?= $c['id'] ?>" style="font-weight:bold; font-family:monospace; font-size:14px;">
-                                <?= htmlspecialchars($c['consignment_no']) ?>
-                            </a>
+                            <div style="display:flex; align-items:center; gap:6px;">
+                                <a href="/bookings/<?= $c['id'] ?>" class="awb-badge" style="text-decoration:none;">
+                                    <?= htmlspecialchars($c['consignment_no']) ?>
+                                </a>
+                                <button type="button" class="copyable" data-copy="<?= htmlspecialchars($c['consignment_no']) ?>" title="Copy AWB" style="background:none; border:none; cursor:pointer; font-size:12px; opacity:0.6;">📋</button>
+                            </div>
                         </td>
                         <td>
                             <strong><?= htmlspecialchars($c['destination_name']) ?></strong> (<?= htmlspecialchars($c['dest_code']) ?>)
