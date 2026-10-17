@@ -17,13 +17,128 @@ ob_start();
         <p style="color:var(--text-secondary); font-size:13px; margin-top:4px;">
             Platform-wide governance for courier agency tenants, KYC approvals, destination master tables, and subscription lifecycles.
         </p>
-    </div>
-    <div style="display:flex; gap:12px;">
+    <div style="display:flex; gap:10px; align-items:center;">
+        <button type="button" class="btn btn-outlined" onclick="toggleAdminGuidance()" id="guidanceToggleBtn" style="font-size:13px;">
+            <?= Icon::svg('sparkles', '', 16) ?> <span id="guidanceBtnLabel">Hide Guidance</span>
+        </button>
         <a href="/admin/destinations" class="btn btn-outlined"><?= Icon::svg('destinations') ?> Master Destinations</a>
         <a href="/admin/tickets" class="btn btn-outlined"><?= Icon::svg('tickets') ?> Tickets (<?= $openTickets ?? 0 ?>)</a>
         <a href="/admin/agencies/new" class="btn btn-primary"><?= Icon::svg('plus') ?> Register Agency</a>
     </div>
 </div>
+
+<!-- Super Admin Operational Guidance & Basic Functionality Intro -->
+<div class="guidance-box" id="adminGuidanceBox">
+    <div class="guidance-header">
+        <div class="guidance-header-title">
+            <span style="color:var(--brand-primary); display:inline-flex;"><?= Icon::svg('sparkles', '', 20) ?></span>
+            <span>Super Admin Operations & Platform Governance Guide</span>
+        </div>
+        <span class="g-chip chip-info" style="font-size:11px;">
+            4-Step Core Workflow
+        </span>
+    </div>
+
+    <div class="guidance-steps-grid">
+        <!-- Step 1 -->
+        <div class="guidance-step-card">
+            <div>
+                <div class="step-heading">
+                    <span class="step-num-badge">1</span>
+                    <span>KYC & Branch Onboarding</span>
+                </div>
+                <div class="step-desc">
+                    Review incoming franchise applications. Inspect Aadhaar, PAN card, and GSTIN documents. One-click approve to issue branch agency codes (e.g., #26 Raipur) and set login passwords.
+                </div>
+            </div>
+            <div class="step-meta">
+                <span>Governance Module</span>
+                <a href="/admin/kyc" style="color:var(--brand-primary); text-decoration:none; font-weight:600;">Open KYC Queue →</a>
+            </div>
+        </div>
+
+        <!-- Step 2 -->
+        <div class="guidance-step-card">
+            <div>
+                <div class="step-heading">
+                    <span class="step-num-badge">2</span>
+                    <span>Destination & Hub Master</span>
+                </div>
+                <div class="step-desc">
+                    Manage Central & Western India hub matrix. Add destination cities, route codes (NGP, BPL, JLR), destination pincodes, and active transit corridors for automatic counter rate calculations.
+                </div>
+            </div>
+            <div class="step-meta">
+                <span>Routing Engine</span>
+                <a href="/admin/destinations" style="color:var(--brand-primary); text-decoration:none; font-weight:600;">Manage Hubs →</a>
+            </div>
+        </div>
+
+        <!-- Step 3 -->
+        <div class="guidance-step-card">
+            <div>
+                <div class="step-heading">
+                    <span class="step-num-badge">3</span>
+                    <span>Branch Support & Tickets</span>
+                </div>
+                <div class="step-desc">
+                    Resolve operational escalation requests submitted by counter operators regarding missing pincodes, line-haul delays, and special corporate rate agreements.
+                </div>
+            </div>
+            <div class="step-meta">
+                <span>Support Desk</span>
+                <a href="/admin/tickets" style="color:var(--brand-primary); text-decoration:none; font-weight:600;">View Tickets (<?= $openTickets ?? 0 ?>) →</a>
+            </div>
+        </div>
+
+        <!-- Step 4 -->
+        <div class="guidance-step-card">
+            <div>
+                <div class="step-heading">
+                    <span class="step-num-badge">4</span>
+                    <span>Platform Billing & GST Audit</span>
+                </div>
+                <div class="step-desc">
+                    Monitor consolidated gross booking volumes across all agency franchises. Ensure SAC 996812 18% GST tax adherence and maintain tenant subscription lifecycles.
+                </div>
+            </div>
+            <div class="step-meta">
+                <span>Fiscal Audit</span>
+                <a href="/bookings" style="color:var(--brand-primary); text-decoration:none; font-weight:600;">Live Feed →</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+function toggleAdminGuidance() {
+    var box = document.getElementById('adminGuidanceBox');
+    var label = document.getElementById('guidanceBtnLabel');
+    if (!box) return;
+    if (box.style.display === 'none') {
+        box.style.display = 'block';
+        label.innerText = 'Hide Guidance';
+        localStorage.setItem('kesari_admin_guidance', 'visible');
+    } else {
+        box.style.display = 'none';
+        label.innerText = 'How to Use Guide';
+        localStorage.setItem('kesari_admin_guidance', 'hidden');
+    }
+}
+
+// Restore saved state
+(function() {
+    var state = localStorage.getItem('kesari_admin_guidance');
+    if (state === 'hidden') {
+        var box = document.getElementById('adminGuidanceBox');
+        var label = document.getElementById('guidanceBtnLabel');
+        if (box && label) {
+            box.style.display = 'none';
+            label.innerText = 'How to Use Guide';
+        }
+    }
+})();
+</script>
 
 <!-- Metrics Overview Cards -->
 <div class="metrics-grid">

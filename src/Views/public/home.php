@@ -383,6 +383,91 @@
             box-shadow: 0 12px 30px rgba(26, 115, 232, 0.3);
         }
 
+        /* Indian Logistics Media & Visual Sections */
+        .hero-visual-card {
+            max-width: 1040px;
+            margin: 36px auto 0 auto;
+            display: grid;
+            grid-template-columns: 1.15fr 0.85fr;
+            gap: 32px;
+            align-items: center;
+            text-align: left;
+            background: #ffffff;
+            border-radius: 24px;
+            padding: 24px;
+            box-shadow: 0 16px 40px rgba(15, 23, 42, 0.08);
+            border: 1px solid var(--border-light);
+        }
+
+        .hero-img-box {
+            position: relative;
+            border-radius: 18px;
+            overflow: hidden;
+            height: 380px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.12);
+        }
+
+        .hero-img-box img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .img-float-chip {
+            position: absolute;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            padding: 10px 16px;
+            border-radius: var(--radius-pill);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+            font-size: 13px;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            border: 1px solid rgba(255, 255, 255, 0.9);
+            z-index: 5;
+        }
+
+        .two-col-showcase {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 48px;
+            align-items: center;
+            margin: 60px 0;
+        }
+
+        .two-col-showcase.reverse {
+            direction: rtl;
+        }
+
+        .two-col-showcase.reverse > * {
+            direction: ltr;
+        }
+
+        .showcase-media {
+            position: relative;
+            border-radius: 20px;
+            overflow: hidden;
+            height: 360px;
+            box-shadow: 0 14px 36px rgba(15, 23, 42, 0.1);
+            border: 1px solid var(--border-light);
+        }
+
+        .showcase-media img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.5s ease;
+        }
+
+        .showcase-media:hover img {
+            transform: scale(1.03);
+        }
+
         /* Public Footer */
         .public-footer {
             background: #ffffff;
@@ -394,6 +479,9 @@
             .public-navbar { padding: 0 20px; }
             .public-nav-links { display: none; }
             .hero-title { font-size: 32px; }
+            .hero-visual-card { grid-template-columns: 1fr; }
+            .hero-img-box { height: 260px; }
+            .two-col-showcase { grid-template-columns: 1fr; gap: 24px; }
             .timeline-steps { grid-template-columns: 1fr; gap: 20px; }
             .timeline-steps::before { display: none; }
             .calculator-card { grid-template-columns: 1fr; }
@@ -558,6 +646,52 @@
             </div>
         </div>
     <?php endif; ?>
+
+    <!-- Indian Logistics Specialist Hero Visual Showcase -->
+    <div class="hero-visual-card animate-fade-in">
+        <div class="hero-img-box animate-float">
+            <img src="/assets/images/hero_courier.jpg" alt="Kesari Express Logistics Specialist delivering parcels in India" loading="lazy">
+            <div class="img-float-chip" style="top:16px; left:16px;">
+                <span style="color:var(--google-green); font-size:16px;">●</span>
+                <span>Active Line-Haul Tracking</span>
+            </div>
+            <div class="img-float-chip" style="bottom:16px; right:16px; background:rgba(26, 115, 232, 0.95); color:#ffffff; border-color:transparent;">
+                <?= Icon::svg('sparkles', '', 14, '#ffffff') ?>
+                <span>99.4% On-Time SLA Across India</span>
+            </div>
+        </div>
+
+        <div>
+            <div style="font-size:12px; font-weight:700; color:var(--brand-primary); text-transform:uppercase; letter-spacing:0.8px; margin-bottom:8px;">
+                Verified Logistics Infrastructure
+            </div>
+            <h2 style="font-size:24px; font-weight:700; line-height:1.25; margin-bottom:12px; color:var(--text-primary);">
+                Empowered Couriers. High-Speed Deliveries Across Central India.
+            </h2>
+            <p style="font-size:13.5px; color:var(--text-secondary); line-height:1.6; margin-bottom:18px;">
+                From local express dockets to bulk commercial cargo, our verified field delivery specialists and multimodal fleet ensure your consignments reach destination safely on guaranteed schedules.
+            </p>
+
+            <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px; font-size:13px; font-weight:500;">
+                <div style="display:flex; align-items:center; gap:8px;">
+                    <span style="color:var(--google-green); display:inline-flex;"><?= Icon::svg('check', '', 16) ?></span>
+                    <span>19,000+ Pin Codes</span>
+                </div>
+                <div style="display:flex; align-items:center; gap:8px;">
+                    <span style="color:var(--google-green); display:inline-flex;"><?= Icon::svg('check', '', 16) ?></span>
+                    <span>Barcode Labeling</span>
+                </div>
+                <div style="display:flex; align-items:center; gap:8px;">
+                    <span style="color:var(--google-green); display:inline-flex;"><?= Icon::svg('check', '', 16) ?></span>
+                    <span>Overnight Line-Haul</span>
+                </div>
+                <div style="display:flex; align-items:center; gap:8px;">
+                    <span style="color:var(--google-green); display:inline-flex;"><?= Icon::svg('check', '', 16) ?></span>
+                    <span>GST SAC 996812</span>
+                </div>
+            </div>
+        </div>
+    </div>
 </section>
 
 <!-- Interactive Live Rate Calculator Section -->
@@ -683,6 +817,86 @@
             </p>
         </div>
     </div>
+
+    <!-- Corporate Enterprise B2B Logistics Showcase -->
+    <div class="two-col-showcase">
+        <div class="showcase-media">
+            <img src="/assets/images/corporate_client.jpg" alt="Indian Corporate Client receiving priority express documents" loading="lazy">
+            <div class="img-float-chip" style="bottom:20px; left:20px; background:rgba(255, 255, 255, 0.95);">
+                <?= Icon::svg('invoices', '', 14, 'var(--google-blue)') ?>
+                <span>GST SAC 996812 Verified Invoicing</span>
+            </div>
+        </div>
+
+        <div>
+            <div style="font-size:12px; font-weight:700; color:var(--brand-primary); text-transform:uppercase; letter-spacing:0.8px; margin-bottom:8px;">
+                B2B Enterprise Contracts
+            </div>
+            <h2 style="font-size:28px; font-weight:700; line-height:1.2; margin-bottom:14px; color:var(--text-primary);">
+                Tailored for Corporate Consignments & High-Volume Senders
+            </h2>
+            <p style="font-size:14px; color:var(--text-secondary); line-height:1.6; margin-bottom:20px;">
+                Simplify procurement logistics with monthly consolidated invoicing, flexible 30-day corporate credit terms, pickup manifests, and end-to-end docket POD tracking.
+            </p>
+
+            <ul style="list-style:none; padding:0; margin:0 0 24px 0; display:flex; flex-direction:column; gap:10px; font-size:13.5px; color:var(--text-primary);">
+                <li style="display:flex; align-items:center; gap:10px;">
+                    <span style="color:var(--google-green);"><?= Icon::svg('check', '', 16) ?></span>
+                    <strong>Monthly Automated Billing:</strong> Consolidated SAC 996812 compliant tax invoices.
+                </li>
+                <li style="display:flex; align-items:center; gap:10px;">
+                    <span style="color:var(--google-green);"><?= Icon::svg('check', '', 16) ?></span>
+                    <strong>Priority Air Express:</strong> Critical contracts, legal dockets & medical reports delivered next-day.
+                </li>
+                <li style="display:flex; align-items:center; gap:10px;">
+                    <span style="color:var(--google-green);"><?= Icon::svg('check', '', 16) ?></span>
+                    <strong>Dedicated Account Desk:</strong> 24/7 proactive consignment monitoring and exception handling.
+                </li>
+            </ul>
+
+            <a href="/login?tenant=raipur" class="btn btn-primary" style="padding:10px 22px;">
+                Explore Corporate Despatch <?= Icon::svg('arrow-right', '', 14) ?>
+            </a>
+        </div>
+    </div>
+
+    <!-- Multimodal Fleet & Line-Haul Highway Logistics -->
+    <div class="two-col-showcase reverse">
+        <div class="showcase-media">
+            <img src="/assets/images/freight_fleet.jpg" alt="Kesari Express Logistics Interstate Cargo Delivery Fleet" loading="lazy">
+            <div class="img-float-chip" style="bottom:20px; left:20px; background:rgba(255, 255, 255, 0.95);">
+                <?= Icon::svg('truck', '', 14, 'var(--google-blue)') ?>
+                <span>GPS Monitored Interstate Line-Haul</span>
+            </div>
+        </div>
+
+        <div>
+            <div style="font-size:12px; font-weight:700; color:var(--brand-primary); text-transform:uppercase; letter-spacing:0.8px; margin-bottom:8px;">
+                National Line-Haul Backbone
+            </div>
+            <h2 style="font-size:28px; font-weight:700; line-height:1.2; margin-bottom:14px; color:var(--text-primary);">
+                Reliable Surface & Air Cargo Connecting Central India
+            </h2>
+            <p style="font-size:14px; color:var(--text-secondary); line-height:1.6; margin-bottom:20px;">
+                Operating scheduled line-haul movements between Raipur, Nagpur, Bilaspur, Durg, Jabalpur, Indore, and major national economic transit gateways.
+            </p>
+
+            <div style="display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-bottom:24px;">
+                <div style="background:#f8fafd; border:1px solid var(--border-light); border-radius:12px; padding:14px;">
+                    <div style="font-size:22px; font-weight:700; color:var(--brand-primary);">120+</div>
+                    <div style="font-size:12px; color:var(--text-secondary); margin-top:2px;">Daily Scheduled Runs</div>
+                </div>
+                <div style="background:#f8fafd; border:1px solid var(--border-light); border-radius:12px; padding:14px;">
+                    <div style="font-size:22px; font-weight:700; color:var(--brand-primary);">< 24 hrs</div>
+                    <div style="font-size:12px; color:var(--text-secondary); margin-top:2px;">Regional Transit SLA</div>
+                </div>
+            </div>
+
+            <a href="#network" class="btn btn-outlined" style="padding:10px 22px;">
+                View Network Hubs <?= Icon::svg('destinations', '', 14) ?>
+            </a>
+        </div>
+    </div>
 </section>
 
 <!-- Network Hubs Showcase -->
@@ -702,20 +916,39 @@
     </div>
 </section>
 
-<!-- Franchise Agency Partner CTA Banner -->
+<!-- Franchise Agency Partner CTA Banner with Indian Branch Manager Visual -->
 <section class="content-section" style="padding-top:0;">
-    <div class="cta-banner">
-        <div>
-            <h2 style="font-size:28px; font-weight:700; color:#ffffff; margin-bottom:8px;">
-                Become a Kesari Courier Franchise Partner
-            </h2>
-            <p style="font-size:15px; opacity:0.9; max-width:600px;">
-                Instant self-service onboarding with Aadhaar & PAN KYC verification. Launch your agency branch portal in minutes.
-            </p>
+    <div class="cta-banner" style="background: linear-gradient(135deg, #0b57d0 0%, #174ea6 100%); padding:40px; border-radius:28px;">
+        <div style="display:grid; grid-template-columns: 1.2fr 0.8fr; gap:36px; align-items:center; width:100%;">
+            <div>
+                <span class="hero-pill" style="background:rgba(255,255,255,0.18); color:#ffffff; border-color:rgba(255,255,255,0.3); margin-bottom:14px;">
+                    <?= Icon::svg('agencies', '', 14, '#ffffff') ?> Self-Service Digital Onboarding
+                </span>
+                <h2 style="font-size:32px; font-weight:700; color:#ffffff; line-height:1.2; margin-bottom:12px;">
+                    Start Your Profitable Courier Franchise With Kesari Express
+                </h2>
+                <p style="font-size:15px; color:#e8eaed; line-height:1.6; margin-bottom:24px;">
+                    Empowering 450+ franchise branch proprietors across India. Instant Aadhaar & PAN KYC verification, thermal barcode printing software, and full SaaS portal access.
+                </p>
+
+                <div style="display:flex; gap:14px; flex-wrap:wrap; align-items:center;">
+                    <a href="/onboard" class="btn" style="background:#ffffff; color:var(--google-blue); padding:12px 28px; font-weight:600; font-size:15px; box-shadow:0 4px 16px rgba(0,0,0,0.2);">
+                        Apply for Franchise Branch <?= Icon::svg('arrow-right', '', 16) ?>
+                    </a>
+                    <a href="/login?tenant=raipur" class="btn" style="background:transparent; color:#ffffff; border:1px solid rgba(255,255,255,0.4); padding:12px 22px;">
+                        Branch Demo Portal
+                    </a>
+                </div>
+            </div>
+
+            <div style="position:relative; border-radius:18px; overflow:hidden; box-shadow:0 12px 30px rgba(0,0,0,0.25); height:280px; border:2px solid rgba(255,255,255,0.2);">
+                <img src="/assets/images/agency_manager.jpg" alt="Indian Agency Franchise Partner at counter" style="width:100%; height:100%; object-fit:cover; display:block;">
+                <div style="position:absolute; bottom:12px; left:12px; right:12px; background:rgba(0,0,0,0.75); backdrop-filter:blur(6px); color:#ffffff; padding:8px 14px; border-radius:10px; font-size:12px; display:flex; align-items:center; justify-content:space-between;">
+                    <span>⚡ Branch Activation in 15 Mins</span>
+                    <strong style="color:#8ab4f8;">450+ Active Hubs</strong>
+                </div>
+            </div>
         </div>
-        <a href="/onboard" class="btn" style="background:#ffffff; color:var(--google-blue); padding:12px 28px; font-weight:600; font-size:15px; box-shadow:0 4px 12px rgba(0,0,0,0.15);">
-            Apply for Agency Franchise <?= Icon::svg('arrow-right', '', 16) ?>
-        </a>
     </div>
 </section>
 

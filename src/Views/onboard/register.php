@@ -165,13 +165,24 @@ $csrfToken = Auth::generateCsrfToken();
     <div class="onboard-grid">
         <!-- Left Column: Franchise Perks & Trust -->
         <div class="benefits-card">
+            <!-- Indian Branch Partner Visual -->
+            <div style="position:relative; border-radius:14px; overflow:hidden; margin-bottom:22px; box-shadow:0 6px 20px rgba(15,23,42,0.1); height:190px; border:1px solid var(--border-light);">
+                <img src="/assets/images/agency_manager.jpg" alt="Indian Agency Franchise Partner at booking counter" style="width:100%; height:100%; object-fit:cover; display:block;">
+                <div style="position:absolute; bottom:10px; left:10px; right:10px; background:rgba(255,255,255,0.94); backdrop-filter:blur(8px); padding:8px 12px; border-radius:8px; font-size:12px; font-weight:600; color:var(--text-primary); display:flex; justify-content:space-between; align-items:center; border:1px solid rgba(255,255,255,0.9);">
+                    <span style="display:flex; align-items:center; gap:6px;">
+                        <span style="color:var(--google-green); font-size:14px;">●</span> Verified Branch Network
+                    </span>
+                    <strong style="color:var(--brand-primary);">450+ Active Hubs</strong>
+                </div>
+            </div>
+
             <div style="display:inline-flex; align-items:center; gap:6px; color:var(--brand-primary); font-size:12px; font-weight:600; text-transform:uppercase; margin-bottom:8px;">
                 <?= Icon::svg('sparkles', '', 14) ?> Franchise Opportunities
             </div>
             <h2 style="font-size:22px; font-weight:600; line-height:1.25; margin-bottom:12px;">
                 Launch Your Logistics Hub with Kesari Express
             </h2>
-            <p style="font-size:13px; color:var(--text-secondary); line-height:1.5; margin-bottom:28px;">
+            <p style="font-size:13px; color:var(--text-secondary); line-height:1.5; margin-bottom:24px;">
                 Join an expanding regional logistics SaaS network. Get your dedicated counter portal, automated barcode printing, and direct B2B corporate billing.
             </p>
 
