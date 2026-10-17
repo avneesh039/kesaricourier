@@ -1,5 +1,6 @@
 <?php
 // src/Views/public/home.php - Comprehensive Enterprise Logistics Portal & Tracking Center
+// Features isolated transparent cutout models, multi-modal routing, corridor schedules, and regulatory guidelines
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -10,9 +11,6 @@
     <meta name="description" content="Kesari Express is Central India's premier commercial express courier and logistics SaaS network. Real-time AWB tracking, GST SAC 996812 billing, thermal label generation, and nationwide line-haul coverage.">
     <link rel="stylesheet" href="/assets/css/google-theme.css">
     <style>
-        /* ==========================================================================
-           Enterprise Logistics Portal Custom Styling (Non-AI Generated Aesthetic)
-           ========================================================================== */
         :root {
             --portal-navy: #0f1e36;
             --portal-blue: #1a73e8;
@@ -24,7 +22,7 @@
             --portal-text-muted: #64748b;
         }
 
-        /* 1. Utility Top Notification & Helpline Bar */
+        /* 1. Utility Top Notification Bar */
         .portal-topbar {
             background-color: var(--portal-navy);
             color: #e2e8f0;
@@ -129,12 +127,12 @@
         .portal-nav {
             display: flex;
             align-items: center;
-            gap: 26px;
+            gap: 24px;
         }
 
         .portal-nav a {
             color: #334155;
-            font-size: 13.5px;
+            font-size: 13px;
             font-weight: 600;
             text-decoration: none;
             transition: color 0.15s ease;
@@ -162,21 +160,22 @@
 
         /* 3. Hero Command Center & Tabbed Operational Dock */
         .portal-hero {
-            background: linear-gradient(180deg, #f1f5f9 0%, #f8fafc 100%);
+            background: linear-gradient(180deg, #f8fafc 0%, #edf2f7 100%);
             border-bottom: 1px solid var(--portal-border);
-            padding: 36px 40px 48px 40px;
+            padding: 40px 40px 52px 40px;
+            position: relative;
+            overflow: hidden;
         }
 
         .hero-layout-grid {
             max-width: 1240px;
             margin: 0 auto;
             display: grid;
-            grid-template-columns: 1.25fr 0.95fr;
+            grid-template-columns: 1.22fr 0.98fr;
             gap: 36px;
-            align-items: start;
+            align-items: center;
         }
 
-        /* Tabbed Operational Dock (Like Blue Dart / FedEx / Delhivery) */
         .command-dock {
             background: #ffffff;
             border: 1px solid var(--portal-border);
@@ -230,7 +229,6 @@
             display: block;
         }
 
-        /* Search input bar inside dock */
         .dock-input-group {
             display: flex;
             gap: 10px;
@@ -279,39 +277,52 @@
             border-color: #93c5fd;
         }
 
-        /* Hero Right Media Card */
-        .hero-media-panel {
+        /* Transparent Cutout Hero Stage */
+        .hero-cutout-stage {
             position: relative;
-            border-radius: 16px;
-            overflow: hidden;
-            box-shadow: 0 12px 32px rgba(15, 23, 42, 0.12);
-            border: 1px solid var(--portal-border);
-            height: 410px;
-            background: #0f172a;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 480px;
         }
 
-        .hero-media-panel img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            display: block;
-        }
-
-        .media-dock-overlay {
+        .stage-halo-circle {
             position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            padding: 20px;
-            background: linear-gradient(180deg, rgba(15, 23, 42, 0) 0%, rgba(15, 23, 42, 0.95) 75%);
-            color: #ffffff;
+            width: 380px;
+            height: 380px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(26, 115, 232, 0.18) 0%, rgba(26, 115, 232, 0.04) 70%, transparent 100%);
+            z-index: 1;
+        }
+
+        .stage-orbit-ring {
+            position: absolute;
+            width: 440px;
+            height: 440px;
+            border-radius: 50%;
+            border: 2px dashed rgba(26, 115, 232, 0.25);
+            z-index: 1;
+        }
+
+        .hero-courier-cutout-img {
+            position: relative;
+            z-index: 2;
+            max-height: 470px;
+            width: auto;
+            object-fit: contain;
+            filter: drop-shadow(0 24px 32px rgba(15, 23, 42, 0.16));
+            transition: transform 0.4s ease;
+        }
+
+        .hero-courier-cutout-img:hover {
+            transform: translateY(-6px) scale(1.02);
         }
 
         /* 4. Concrete Operational Stats Bar */
         .kpi-ribbon {
             background: #ffffff;
             border-bottom: 1px solid var(--portal-border);
-            padding: 20px 40px;
+            padding: 22px 40px;
         }
 
         .kpi-ribbon-grid {
@@ -445,44 +456,62 @@
             color: #475569;
         }
 
-        /* 6. Corporate & Fleet Double Features */
-        .feature-split {
+        /* Transparent Cutout Split Showcase */
+        .cutout-split-row {
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 40px;
             align-items: center;
-            margin: 40px 0;
+            margin: 48px 0;
             background: #ffffff;
             border: 1px solid var(--portal-border);
-            border-radius: 16px;
-            padding: 32px;
+            border-radius: 18px;
+            padding: 36px 40px;
             box-shadow: 0 4px 16px rgba(15, 23, 42, 0.04);
+            position: relative;
+            overflow: hidden;
         }
 
-        .feature-split.reverse {
+        .cutout-split-row.reverse {
             direction: rtl;
         }
 
-        .feature-split.reverse > * {
+        .cutout-split-row.reverse > * {
             direction: ltr;
         }
 
-        .feature-media-box {
+        .cutout-split-media {
+            display: flex;
+            align-items: center;
+            justify-content: center;
             position: relative;
-            border-radius: 12px;
-            overflow: hidden;
-            height: 320px;
-            box-shadow: 0 8px 24px rgba(15, 23, 42, 0.1);
+            min-height: 340px;
         }
 
-        .feature-media-box img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            display: block;
+        .cutout-split-media img {
+            max-height: 340px;
+            width: auto;
+            object-fit: contain;
+            position: relative;
+            z-index: 2;
+            filter: drop-shadow(0 18px 28px rgba(15, 23, 42, 0.14));
+            transition: transform 0.3s ease;
         }
 
-        /* 7. Hubs & Schedules Table */
+        .cutout-split-media:hover img {
+            transform: scale(1.03);
+        }
+
+        .split-halo {
+            position: absolute;
+            width: 260px;
+            height: 260px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(26, 115, 232, 0.12) 0%, transparent 70%);
+            z-index: 1;
+        }
+
+        /* Hubs & Timetable Matrix */
         .hubs-table-wrapper {
             background: #ffffff;
             border: 1px solid var(--portal-border);
@@ -522,22 +551,32 @@
             background-color: #f8fafc;
         }
 
-        /* 8. Compliance & Restricted Goods Strip */
-        .compliance-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 20px;
-            margin-top: 32px;
-        }
-
-        .compliance-card {
-            background: #f8fafc;
+        /* Tariff Table */
+        .tariff-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 13px;
+            background: #ffffff;
             border: 1px solid var(--portal-border);
-            border-radius: 10px;
-            padding: 20px;
+            border-radius: 12px;
+            overflow: hidden;
         }
 
-        /* 9. Comprehensive Corporate Footer */
+        .tariff-table th {
+            background: #f1f5f9;
+            color: #334155;
+            padding: 12px 16px;
+            font-weight: 700;
+            border-bottom: 1px solid var(--portal-border);
+        }
+
+        .tariff-table td {
+            padding: 12px 16px;
+            border-bottom: 1px solid #f1f5f9;
+            color: #1e293b;
+        }
+
+        /* Corporate Footer */
         .portal-footer {
             background-color: #0b1320;
             color: #94a3b8;
@@ -594,15 +633,15 @@
             gap: 12px;
         }
 
-        /* Responsive Breakpoints */
         @media (max-width: 1024px) {
             .hero-layout-grid { grid-template-columns: 1fr; }
-            .hero-media-panel { height: 260px; }
+            .hero-cutout-stage { min-height: 380px; }
             .specs-grid { grid-template-columns: 1fr 1fr; }
             .kpi-ribbon-grid { grid-template-columns: repeat(3, 1fr); }
             .footer-grid { grid-template-columns: 1fr 1fr; }
-            .feature-split { grid-template-columns: 1fr; }
-            .compliance-grid { grid-template-columns: 1fr; }
+            .cutout-split-row { grid-template-columns: 1fr; padding: 24px; }
+            .journey-grid { grid-template-columns: 1fr 1fr; }
+            .case-studies-grid { grid-template-columns: 1fr; }
         }
 
         @media (max-width: 768px) {
@@ -614,18 +653,19 @@
             .kpi-ribbon { padding: 16px; }
             .kpi-ribbon-grid { grid-template-columns: 1fr; }
             .specs-grid { grid-template-columns: 1fr; }
+            .journey-grid { grid-template-columns: 1fr; }
             .footer-grid { grid-template-columns: 1fr; }
         }
     </style>
 </head>
 <body>
 
-<!-- 1. Enterprise Top Operational Helpline & Live Status Bar -->
+<!-- 1. Utility Top Notification & Helpline Bar -->
 <div class="portal-topbar">
     <div class="topbar-left">
         <span>📞 Toll-Free Helpline: <strong>1800-209-4560</strong> (08:00 - 21:00 IST)</span>
         <span>✉️ Support: <a href="mailto:care@kesariexpress.com">care@kesariexpress.com</a></span>
-        <span>🏢 Central Hub: Raipur (C.G.)</span>
+        <span>🏢 Central Master Hub: Raipur (C.G.)</span>
     </div>
     <div class="topbar-right">
         <span><span class="status-dot"></span> Central Corridor Line-Haul: <strong>Normal Operations</strong></span>
@@ -645,12 +685,14 @@
     </a>
 
     <nav class="portal-nav">
-        <a href="#dock-track">Track Shipment</a>
+        <a href="#dock-track">Track AWB</a>
         <a href="#dock-calc">Rate Calculator</a>
-        <a href="#services">Services & SLAs</a>
-        <a href="#hubs">Network Hubs</a>
-        <a href="#compliance">Regulatory & SAC</a>
-        <a href="/onboard" class="highlight-partner">Franchise Partner Program</a>
+        <a href="#corridors">Express Corridors</a>
+        <a href="#journey">How It Works</a>
+        <a href="#services">Services & Specs</a>
+        <a href="#tariffs">Tariff Matrix</a>
+        <a href="#regulatory">E-Way Bill & SAC</a>
+        <a href="/onboard" class="highlight-partner">Franchise Program</a>
     </nav>
 
     <div class="header-actions">
@@ -663,20 +705,20 @@
     </div>
 </header>
 
-<!-- 3. Enterprise Hero Command Center (Tabbed Dock + Logistics Specialist Showcase) -->
+<!-- 3. Hero Command Center (Tabbed Dock + Transparent Cutout Courier Model) -->
 <section class="portal-hero">
     <div class="hero-layout-grid">
         
-        <!-- Left: Interactive Tabbed Command Dock -->
+        <!-- Left: Interactive Command Dock -->
         <div>
             <div style="margin-bottom:18px;">
                 <span class="g-chip chip-info" style="font-size:12px; margin-bottom:8px;">
-                    Express Domestic Logistics Infrastructure
+                    Express Logistics & Supply Chain SaaS
                 </span>
-                <h1 style="font-size:32px; font-weight:800; color:#0f172a; line-height:1.2; letter-spacing:-0.5px; margin:6px 0 8px 0;">
+                <h1 style="font-size:34px; font-weight:800; color:#0f172a; line-height:1.2; letter-spacing:-0.5px; margin:6px 0 8px 0;">
                     Central India's Premier Barcode Logistics Network
                 </h1>
-                <p style="font-size:14px; color:var(--portal-text-muted); line-height:1.5;">
+                <p style="font-size:14.5px; color:var(--portal-text-muted); line-height:1.5;">
                     Live docket tracking, multi-tier slab tariffs, instant 4x6" thermal labels, and GST SAC 996812 compliant B2B invoicing across 19,000+ pincodes.
                 </p>
             </div>
@@ -720,7 +762,7 @@
                     </form>
 
                     <div class="sample-chips-row">
-                        <span>⚡ Sample Active Dockets:</span>
+                        <span>⚡ Sample Dockets:</span>
                         <a href="/?awb=25011100060705#dock-track" class="chip-awb-link">25011100060705 (In-Transit)</a>
                         <a href="/?awb=25011200064307#dock-track" class="chip-awb-link">25011200064307 (Booked)</a>
                         <a href="/?awb=25011200064296#dock-track" class="chip-awb-link">25011200064296 (Delivered)</a>
@@ -822,27 +864,32 @@
             </div>
         </div>
 
-        <!-- Right: Real Logistics Infrastructure Showcase -->
-        <div class="hero-media-panel animate-fade-in">
-            <img src="/assets/images/hero_courier.jpg" alt="Kesari Express Logistics Specialist delivering parcels in India" loading="lazy">
-            <div class="media-dock-overlay">
-                <div style="display:flex; justify-content:space-between; align-items:flex-end;">
-                    <div>
-                        <span style="background:rgba(34, 197, 94, 0.2); border:1px solid #22c55e; color:#4ade80; font-size:11px; font-weight:700; padding:2px 8px; border-radius:4px; text-transform:uppercase;">
-                            Verified Ground Fleet
-                        </span>
-                        <div style="font-size:18px; font-weight:700; color:#ffffff; margin-top:6px;">
-                            SLA-Guaranteed Express Deliveries
-                        </div>
-                        <div style="font-size:12.5px; color:#cbd5e1; margin-top:2px;">
-                            Trained personnel, digital barcode scans, and secure transit packaging.
-                        </div>
-                    </div>
-                    <div style="text-align:right;">
-                        <div style="font-size:20px; font-weight:800; color:#ffffff;">99.4%</div>
-                        <div style="font-size:11px; color:#94a3b8;">On-Time SLA</div>
-                    </div>
-                </div>
+        <!-- Right: Transparent Cutout Indian Courier Model (No Background Box!) -->
+        <div class="hero-cutout-stage">
+            <div class="stage-halo-circle"></div>
+            <div class="stage-orbit-ring"></div>
+            
+            <!-- Seamless Cutout Image without Background -->
+            <img 
+                src="/assets/images/courier_cutout.png" 
+                alt="Indian Courier Delivery Specialist holding express package with barcode label" 
+                class="hero-courier-cutout-img"
+            >
+
+            <!-- Floating Operational Callouts directly over page -->
+            <div class="cutout-tag" style="top:24px; left:10px;">
+                <span style="color:#16a34a; font-size:14px;">●</span>
+                <span>120+ Daily Scheduled Runs</span>
+            </div>
+
+            <div class="cutout-tag" style="bottom:36px; right:10px;">
+                <span style="color:var(--portal-blue); font-size:14px;">★</span>
+                <span>99.4% On-Time Delivery SLA</span>
+            </div>
+
+            <div class="cutout-tag" style="top:45%; right:-10px;">
+                <span style="color:#f59e0b; font-size:14px;">⚡</span>
+                <span>GS1 Code-128 Barcode Scans</span>
             </div>
         </div>
 
@@ -861,7 +908,6 @@
         </div>
     <?php elseif (!empty($trackingResult)): ?>
         <div style="max-width:1040px; margin:32px auto 0 auto; background:#ffffff; border-radius:14px; border:1px solid var(--portal-border); padding:28px; box-shadow:0 8px 24px rgba(15,23,42,0.06);">
-            <!-- Header Dossier Row -->
             <div style="display:flex; justify-content:space-between; align-items:flex-start; flex-wrap:wrap; gap:16px; border-bottom:1px solid var(--portal-border); padding-bottom:18px;">
                 <div>
                     <div style="font-size:11.5px; font-weight:700; color:var(--portal-text-muted); text-transform:uppercase;">
@@ -943,7 +989,7 @@
     <?php endif; ?>
 </section>
 
-<!-- 4. Key Performance Indicators Ribbon (Authentic Operational Metrics) -->
+<!-- 4. Key Performance Indicators Ribbon -->
 <section class="kpi-ribbon">
     <div class="kpi-ribbon-grid">
         <div class="kpi-item">
@@ -969,13 +1015,231 @@
     </div>
 </section>
 
-<!-- 5. Commercial Logistics Services & Concrete Operational Specs -->
-<section class="portal-section" id="services">
+<!-- 5. Interactive Express Corridors & Transit Schedules Matrix -->
+<section class="portal-section" id="corridors">
     <div class="section-headline-block">
-        <div class="section-pretitle">Enterprise Shipping Portfolio</div>
-        <h2 class="section-maintitle">Standardized Courier & Freight Products</h2>
+        <div class="section-pretitle">High-Speed Line-Haul Corridors</div>
+        <h2 class="section-maintitle">Central Indian Overnight Transit Arteries</h2>
         <p class="section-desc">
-            Designed for commercial senders, e-commerce vendors, law firms, pharmaceutical distributors, and regional retail agency branches.
+            Direct high-frequency scheduled line-haul runs connecting key economic hubs with guaranteed next-day delivery windows.
+        </p>
+    </div>
+
+    <div class="corridor-grid">
+        <!-- Corridor 1 -->
+        <div class="corridor-card">
+            <div class="corridor-route-bar">
+                <span>Raipur ⇄ Bilaspur ⇄ Korba</span>
+                <span class="corridor-tag-pill">4 Hours</span>
+            </div>
+            <div style="font-size:12.5px; color:#64748b; line-height:1.5; margin-bottom:12px;">
+                Express industrial corridor serving mining, power plants, steel fabricators, and commercial distributors.
+            </div>
+            <div style="font-size:11.5px; color:#0f172a; display:flex; justify-content:space-between; border-top:1px dashed #e2e8f0; padding-top:8px;">
+                <span>Daily Runs: <strong>4 Scheduled</strong></span>
+                <span>Cutoff: <strong>19:30 IST</strong></span>
+            </div>
+        </div>
+
+        <!-- Corridor 2 -->
+        <div class="corridor-card">
+            <div class="corridor-route-bar">
+                <span>Raipur ⇄ Durg ⇄ Nagpur</span>
+                <span class="corridor-tag-pill">6 Hours</span>
+            </div>
+            <div style="font-size:12.5px; color:#64748b; line-height:1.5; margin-bottom:12px;">
+                Gateway to Maharashtra & Western India. High-volume overnight line-haul container trucks with GPS locks.
+            </div>
+            <div style="font-size:11.5px; color:#0f172a; display:flex; justify-content:space-between; border-top:1px dashed #e2e8f0; padding-top:8px;">
+                <span>Daily Runs: <strong>6 Scheduled</strong></span>
+                <span>Cutoff: <strong>19:00 IST</strong></span>
+            </div>
+        </div>
+
+        <!-- Corridor 3 -->
+        <div class="corridor-card">
+            <div class="corridor-route-bar">
+                <span>Nagpur ⇄ Jabalpur ⇄ Bhopal</span>
+                <span class="corridor-tag-pill">9 Hours</span>
+            </div>
+            <div style="font-size:12.5px; color:#64748b; line-height:1.5; margin-bottom:12px;">
+                Connecting Madhya Pradesh commercial capitals with Central transshipment sorting hubs.
+            </div>
+            <div style="font-size:11.5px; color:#0f172a; display:flex; justify-content:space-between; border-top:1px dashed #e2e8f0; padding-top:8px;">
+                <span>Daily Runs: <strong>3 Scheduled</strong></span>
+                <span>Cutoff: <strong>18:30 IST</strong></span>
+            </div>
+        </div>
+
+        <!-- Corridor 4 -->
+        <div class="corridor-card">
+            <div class="corridor-route-bar">
+                <span>Central Hubs ⇄ Delhi / Mumbai</span>
+                <span class="corridor-tag-pill">Next-Day Air</span>
+            </div>
+            <div style="font-size:12.5px; color:#64748b; line-height:1.5; margin-bottom:12px;">
+                Daily priority air express charters for critical legal dockets, banking tenders, and medical consignments.
+            </div>
+            <div style="font-size:11.5px; color:#0f172a; display:flex; justify-content:space-between; border-top:1px dashed #e2e8f0; padding-top:8px;">
+                <span>Air Dispatch: <strong>Twice Daily</strong></span>
+                <span>Cutoff: <strong>18:00 IST</strong></span>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- 6. The 4-Step Operational Journey of Every Consignment -->
+<section class="portal-section" id="journey" style="padding-top:0;">
+    <div class="section-headline-block">
+        <div class="section-pretitle">The Kesari Assurance</div>
+        <h2 class="section-maintitle">How Your Shipment Moves From Counter to Doorstep</h2>
+        <p class="section-desc">
+            A fully digitized 4-stage chain of custody ensuring zero loss, end-to-end visibility, and barcode verification at every touchpoint.
+        </p>
+    </div>
+
+    <div class="journey-grid">
+        <!-- Step 1 -->
+        <div class="journey-step-card">
+            <div class="journey-step-num">1</div>
+            <h3 style="font-size:16px; font-weight:700; color:#0f172a; margin-bottom:8px;">
+                Counter Check-in & Weighing
+            </h3>
+            <p style="font-size:13px; color:#64748b; line-height:1.5;">
+                Parcel dead weight is verified on certified digital scales. Volumetric dimensions are logged and a 4x6" thermal barcode label is generated instantly.
+            </p>
+        </div>
+
+        <!-- Step 2 -->
+        <div class="journey-step-card">
+            <div class="journey-step-num">2</div>
+            <h3 style="font-size:16px; font-weight:700; color:#0f172a; margin-bottom:8px;">
+                Manifesting & Security Bagging
+            </h3>
+            <p style="font-size:13px; color:#64748b; line-height:1.5;">
+                Dockets are grouped by destination route code (e.g. NGP, BPL). Consignments are packed into sealed tamper-evident polybags with numbered security locks.
+            </p>
+        </div>
+
+        <!-- Step 3 -->
+        <div class="journey-step-card">
+            <div class="journey-step-num">3</div>
+            <h3 style="font-size:16px; font-weight:700; color:#0f172a; margin-bottom:8px;">
+                Overnight Line-Haul Transfer
+            </h3>
+            <p style="font-size:13px; color:#64748b; line-height:1.5;">
+                Scheduled line-haul vehicles depart strictly at cutoff. GPS trackers transmit real-time location telemetry to our central monitoring control room.
+            </p>
+        </div>
+
+        <!-- Step 4 -->
+        <div class="journey-step-card">
+            <div class="journey-step-num">4</div>
+            <h3 style="font-size:16px; font-weight:700; color:#0f172a; margin-bottom:8px;">
+                Last-Mile OTP & Digital POD
+            </h3>
+            <p style="font-size:13px; color:#64748b; line-height:1.5;">
+                Assigned delivery executive delivers parcel at receiver's doorstep. Delivery confirmation is secured via secure OTP or recipient signature with instant SMS update.
+            </p>
+        </div>
+    </div>
+</section>
+
+<!-- 7. Corporate Client Solutions (Featuring Cutout Businesswoman) -->
+<section class="portal-section" style="padding-top:0;">
+    <div class="cutout-split-row">
+        <!-- Text Column -->
+        <div>
+            <span style="font-size:12px; font-weight:700; color:var(--portal-blue); text-transform:uppercase; letter-spacing:0.8px;">
+                Corporate Key Accounts
+            </span>
+            <h2 style="font-size:26px; font-weight:800; color:#0f172a; margin:8px 0 12px 0; line-height:1.25;">
+                Complete Dispatch Automation for Corporate Enterprises
+            </h2>
+            <p style="font-size:14px; color:var(--portal-text-muted); line-height:1.6; margin-bottom:20px;">
+                Stop paying counter cash for daily mail. Benefit from pre-printed dockets, dedicated field pickup executives, 30-day corporate credit terms, and consolidated GSTR-1 compliant tax invoices.
+            </p>
+
+            <div style="display:flex; flex-direction:column; gap:10px; font-size:13.5px; color:#334155; margin-bottom:24px;">
+                <div style="display:flex; align-items:center; gap:10px;">
+                    <span style="color:#16a34a;"><?= Icon::svg('check', '', 16) ?></span>
+                    <span><strong>SAC 996812 Input Tax Credit:</strong> Full 18% GST credit pass-through for corporate taxes.</span>
+                </div>
+                <div style="display:flex; align-items:center; gap:10px;">
+                    <span style="color:#16a34a;"><?= Icon::svg('check', '', 16) ?></span>
+                    <span><strong>ERP / CRM Webhook APIs:</strong> Auto-push dockets from Tally, Marg ERP, and SAP.</span>
+                </div>
+                <div style="display:flex; align-items:center; gap:10px;">
+                    <span style="color:#16a34a;"><?= Icon::svg('check', '', 16) ?></span>
+                    <span><strong>Reverse Logistics & POD Archival:</strong> Digital signed POD access on the portal for 365 days.</span>
+                </div>
+            </div>
+
+            <a href="/login?tenant=raipur" class="btn btn-primary" style="padding:10px 24px; font-weight:600;">
+                Access Corporate Client Desk <?= Icon::svg('arrow-right', '', 14) ?>
+            </a>
+        </div>
+
+        <!-- Transparent Cutout Column (Customer Cutout with no background box!) -->
+        <div class="cutout-split-media">
+            <div class="split-halo"></div>
+            <img 
+                src="/assets/images/customer_cutout.png" 
+                alt="Indian Businesswoman client receiving priority courier package"
+            >
+        </div>
+    </div>
+</section>
+
+<!-- 8. Commercial Fleet & Highway Line-Haul (Featuring Cutout Delivery Van) -->
+<section class="portal-section" style="padding-top:0;">
+    <div class="cutout-split-row reverse">
+        <!-- Text Column -->
+        <div>
+            <span style="font-size:12px; font-weight:700; color:var(--portal-blue); text-transform:uppercase; letter-spacing:0.8px;">
+                Containerized Interstate Fleet
+            </span>
+            <h2 style="font-size:26px; font-weight:800; color:#0f172a; margin:8px 0 12px 0; line-height:1.25;">
+                GPS-Monitored Cargo Vans & Container Line-Haul
+            </h2>
+            <p style="font-size:14px; color:var(--portal-text-muted); line-height:1.6; margin-bottom:20px;">
+                Our fleet of branded express delivery vans and line-haul container trucks operate with sealed biometric cargo bay locks, real-time speed monitoring, and weatherproof transit compartments.
+            </p>
+
+            <div style="display:grid; grid-template-columns:1fr 1fr; gap:14px; margin-bottom:22px;">
+                <div style="background:#f8fafc; border:1px solid #e2e8f0; border-radius:10px; padding:14px;">
+                    <div style="font-size:22px; font-weight:800; color:var(--portal-blue);">18:30 IST</div>
+                    <div style="font-size:12px; color:#64748b; margin-top:2px;">Night Departure Cutoff</div>
+                </div>
+                <div style="background:#f8fafc; border:1px solid #e2e8f0; border-radius:10px; padding:14px;">
+                    <div style="font-size:22px; font-weight:800; color:var(--portal-blue);">< 24 Hours</div>
+                    <div style="font-size:12px; color:#64748b; margin-top:2px;">Regional Delivery SLA</div>
+                </div>
+            </div>
+
+            <a href="#corridors" class="btn btn-outlined" style="padding:10px 24px; font-weight:600;">
+                Inspect Route Schedules <?= Icon::svg('truck', '', 14) ?>
+            </a>
+        </div>
+
+        <!-- Transparent Cutout Delivery Van (No background box!) -->
+        <div class="cutout-split-media">
+            <div class="split-halo" style="width:300px; height:300px;"></div>
+            <img 
+                src="/assets/images/van_cutout.png" 
+                alt="Kesari Express branded delivery van cutout"
+            >
+        </div>
+    </div>
+</section>
+
+<!-- 9. Standard Courier Specifications Grid -->
+<section class="portal-section" id="services" style="padding-top:0;">
+    <div class="section-headline-block">
+        <div class="section-pretitle">Logistics Specifications</div>
+        <h2 class="section-maintitle">Standardized Packaging & Service Specs</h2>
+        <p class="section-desc">
+            Complete operational specifications for commercial senders, e-commerce retailers, and regional retail agency branches.
         </p>
     </div>
 
@@ -1050,207 +1314,260 @@
     </div>
 </section>
 
-<!-- 6. Enterprise Corporate Dispatch & Multimodal Fleet Showcases (Indian Models & Highway Fleet) -->
-<section class="portal-section" style="padding-top:0;">
-    
-    <!-- Feature 1: Indian Corporate Client Receiving Dockets -->
-    <div class="feature-split">
-        <div class="feature-media-box">
-            <img src="/assets/images/corporate_client.jpg" alt="Indian Corporate Client receiving priority express documents" loading="lazy">
-        </div>
-        <div>
-            <span style="font-size:12px; font-weight:700; color:var(--portal-blue); text-transform:uppercase;">
-                Contract Logistics & Key Accounts
-            </span>
-            <h2 style="font-size:24px; font-weight:800; color:#0f172a; margin:8px 0 12px 0; line-height:1.25;">
-                Engineered for Corporate Enterprises & High-Volume Shippers
-            </h2>
-            <p style="font-size:13.5px; color:var(--portal-text-muted); line-height:1.6; margin-bottom:18px;">
-                Streamline company-wide dispatches across branches. Eliminate daily cash payments with consolidated monthly invoicing, dedicated key account managers, and automatic electronic proof of delivery (e-POD).
-            </p>
-            <div style="display:flex; flex-direction:column; gap:8px; font-size:13px; color:#334155; margin-bottom:20px;">
-                <div style="display:flex; align-items:center; gap:8px;">
-                    <span style="color:#16a34a;"><?= Icon::svg('check', '', 16) ?></span>
-                    <span><strong>SAC 996812 Tax Invoicing:</strong> Clean input tax credit (ITC) for your accounts team.</span>
-                </div>
-                <div style="display:flex; align-items:center; gap:8px;">
-                    <span style="color:#16a34a;"><?= Icon::svg('check', '', 16) ?></span>
-                    <span><strong>ERP / CRM Webhooks:</strong> API integration for SAP, Tally Prime, and Marg ERP.</span>
-                </div>
-                <div style="display:flex; align-items:center; gap:8px;">
-                    <span style="color:#16a34a;"><?= Icon::svg('check', '', 16) ?></span>
-                    <span><strong>Scheduled Daily Pickup:</strong> Dedicated field executive assigned to your office.</span>
-                </div>
-            </div>
-            <a href="/login?tenant=raipur" class="btn btn-primary" style="padding:10px 22px;">
-                Open Corporate Desk <?= Icon::svg('arrow-right', '', 14) ?>
-            </a>
-        </div>
-    </div>
-
-    <!-- Feature 2: Highway Express Fleet at Sunset -->
-    <div class="feature-split reverse">
-        <div class="feature-media-box">
-            <img src="/assets/images/freight_fleet.jpg" alt="Kesari Express Interstate Logistics Cargo Delivery Fleet" loading="lazy">
-        </div>
-        <div>
-            <span style="font-size:12px; font-weight:700; color:var(--portal-blue); text-transform:uppercase;">
-                High-Speed Line-Haul Backbone
-            </span>
-            <h2 style="font-size:24px; font-weight:800; color:#0f172a; margin:8px 0 12px 0; line-height:1.25;">
-                Scheduled Night Line-Haul Connecting Central Indian Corridors
-            </h2>
-            <p style="font-size:13.5px; color:var(--portal-text-muted); line-height:1.6; margin-bottom:18px;">
-                Our fleet of containerized line-haul vehicles operates on strict timetable departures between Raipur, Nagpur, Bilaspur, Durg, Jabalpur, Bhopal, and Indore. Sealed security cages protect all commercial dockets.
-            </p>
-            <div style="display:grid; grid-template-columns:1fr 1fr; gap:14px; margin-bottom:20px;">
-                <div style="background:#f8fafc; border:1px solid #e2e8f0; border-radius:8px; padding:12px;">
-                    <div style="font-size:20px; font-weight:800; color:var(--portal-blue);">18:30 IST</div>
-                    <div style="font-size:11.5px; color:#64748b;">Daily Hub Departure Cutoff</div>
-                </div>
-                <div style="background:#f8fafc; border:1px solid #e2e8f0; border-radius:8px; padding:12px;">
-                    <div style="font-size:20px; font-weight:800; color:var(--portal-blue);">< 24 Hours</div>
-                    <div style="font-size:11.5px; color:#64748b;">Regional Hub Interconnect SLA</div>
-                </div>
-            </div>
-            <a href="#hubs" class="btn btn-outlined" style="padding:10px 22px;">
-                View Hub Schedules <?= Icon::svg('destinations', '', 14) ?>
-            </a>
-        </div>
-    </div>
-
-</section>
-
-<!-- 7. Active Destination Hubs & Timetable Matrix -->
-<section class="portal-section" id="hubs" style="padding-top:0;">
+<!-- 10. Transparent Slab Rate Card & Zone Matrix (SAC 996812) -->
+<section class="portal-section" id="tariffs" style="padding-top:0;">
     <div class="section-headline-block">
-        <div class="section-pretitle">Network Directory</div>
-        <h2 class="section-maintitle">Operational Hubs & Same-Day Cutoff Matrix</h2>
+        <div class="section-pretitle">Transparent Tariff Matrix</div>
+        <h2 class="section-maintitle">Standard Commercial Rate Slab Matrix</h2>
         <p class="section-desc">
-            Directly connected primary hubs with integrated barcode processing and daily overnight surface/air departures.
+            Clear, transparent shipping slabs with no hidden surcharges. All rates subject to 18% Indian GST under SAC 996812.
         </p>
     </div>
 
-    <div class="hubs-table-wrapper">
-        <table class="hubs-table">
-            <thead>
-                <tr>
-                    <th>Hub City</th>
-                    <th>Route Code</th>
-                    <th>State</th>
-                    <th>Operational Zone</th>
-                    <th>Pincode Anchor</th>
-                    <th>Cutoff Time</th>
-                    <th>Transit Modes</th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php foreach ($destinations as $d): ?>
-                    <tr>
-                        <td>
-                            <strong style="color:#0f172a;"><?= htmlspecialchars($d['name']) ?></strong>
-                        </td>
-                        <td>
-                            <span class="g-chip chip-info" style="font-family:var(--font-mono); font-size:11px;">
-                                <?= htmlspecialchars($d['code']) ?>
-                            </span>
-                        </td>
-                        <td><?= htmlspecialchars($d['state_name']) ?></td>
-                        <td><?= htmlspecialchars($d['zone_name']) ?></td>
-                        <td><span style="font-family:var(--font-mono); color:#64748b;"><?= htmlspecialchars($d['pincode'] ?: 'Service Zone') ?></span></td>
-                        <td><strong style="color:#0f172a;">18:30 IST</strong></td>
-                        <td>
-                            <span style="font-size:11.5px; background:#f1f5f9; padding:2px 8px; border-radius:4px; font-weight:600; color:#334155;">
-                                Air & Surface
-                            </span>
-                        </td>
-                    </tr>
-                <?php endforeach; ?>
-            </tbody>
-        </table>
-    </div>
+    <table class="tariff-table">
+        <thead>
+            <tr>
+                <th>Zone / Route Type</th>
+                <th>Coverage Hubs</th>
+                <th>Docs (Up to 250g)</th>
+                <th>Docs (Up to 500g)</th>
+                <th>Parcel Base (1st KG)</th>
+                <th>Addl. KG (Parcel)</th>
+                <th>Standard TAT</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><strong>Intra-State Hubs</strong></td>
+                <td>Within Chhattisgarh (Raipur, BSP, Durg, Korba)</td>
+                <td>₹ 30.00</td>
+                <td>₹ 40.00</td>
+                <td>₹ 60.00</td>
+                <td>₹ 25.00</td>
+                <td>24 Hours</td>
+            </tr>
+            <tr>
+                <td><strong>Regional Central Zone</strong></td>
+                <td>C.G., M.P. & Vidarbha (Nagpur, BPL, IND, JLR)</td>
+                <td>₹ 40.00</td>
+                <td>₹ 60.00</td>
+                <td>₹ 80.00</td>
+                <td>₹ 35.00</td>
+                <td>24 - 36 Hours</td>
+            </tr>
+            <tr>
+                <td><strong>Metro Air Express</strong></td>
+                <td>Delhi NCR, Mumbai, Bengaluru, Hyderabad</td>
+                <td>₹ 70.00</td>
+                <td>₹ 100.00</td>
+                <td>₹ 150.00</td>
+                <td>₹ 65.00</td>
+                <td>Next-Day Air</td>
+            </tr>
+            <tr>
+                <td><strong>Rest of India (Surface)</strong></td>
+                <td>All other serviceable PIN codes nationwide</td>
+                <td>₹ 50.00</td>
+                <td>₹ 80.00</td>
+                <td>₹ 110.00</td>
+                <td>₹ 45.00</td>
+                <td>48 - 72 Hours</td>
+            </tr>
+        </tbody>
+    </table>
 </section>
 
-<!-- 8. Regulatory Compliance, Prohibited Items & Packaging Standards -->
-<section class="portal-section" id="compliance" style="padding-top:0;">
+<!-- 11. E-Way Bill & Indian Regulatory Guidelines -->
+<section class="portal-section" id="regulatory" style="padding-top:0;">
     <div class="section-headline-block">
-        <div class="section-pretitle">Regulatory Compliance & Standards</div>
-        <h2 class="section-maintitle">Carriage Standards & Safety Guidelines</h2>
+        <div class="section-pretitle">Compliance & Statutory Norms</div>
+        <h2 class="section-maintitle">E-Way Bill & Transport Regulatory Rules</h2>
         <p class="section-desc">
-            Operating under Indian Carriage of Goods laws, IATA Dangerous Goods regulations, and Central GST Act SAC code 996812.
+            Important statutory guidelines mandated by the Central Board of Indirect Taxes and Customs (CBIC) for domestic freight.
         </p>
     </div>
 
-    <div class="compliance-grid">
-        <div class="compliance-card">
+    <div style="display:grid; grid-template-columns: repeat(3, 1fr); gap:20px;">
+        <div style="background:#f8fafc; border:1px solid #e2e8f0; border-radius:12px; padding:20px;">
             <div style="font-weight:700; color:#0f172a; font-size:15px; margin-bottom:8px; display:flex; align-items:center; gap:8px;">
                 <span style="color:#2563eb;"><?= Icon::svg('invoices', '', 18) ?></span>
-                GST SAC 996812 Compliance
+                E-Way Bill (Consignments > ₹50,000)
             </div>
             <p style="font-size:12.5px; color:#64748b; line-height:1.5;">
-                All invoices comply with GST SAC 996812 for domestic courier services with 18% tax distribution (9% CGST + 9% SGST for intrastate, 18% IGST for interstate). Complete B2B tax credits passed to consignor.
+                Under Rule 138 of CGST Rules, every consignment of commercial goods exceeding ₹50,000 invoice value requires a valid E-Way Bill (Part A & Part B). The counter operator logs the E-Way Bill number directly onto the docket.
             </p>
         </div>
 
-        <div class="compliance-card">
+        <div style="background:#f8fafc; border:1px solid #e2e8f0; border-radius:12px; padding:20px;">
             <div style="font-weight:700; color:#0f172a; font-size:15px; margin-bottom:8px; display:flex; align-items:center; gap:8px;">
                 <span style="color:#dc2626;"><?= Icon::svg('alert-triangle', '', 18) ?></span>
-                Dangerous & Prohibited Goods
+                Dangerous Goods (BCAS & IATA)
             </div>
             <p style="font-size:12.5px; color:#64748b; line-height:1.5;">
-                Strict prohibition on carriage of currency notes, precious bullion, lithium-ion battery packs exceeding 100Wh, combustible fuels, corrosive chemicals, and firearms under Bureau of Civil Aviation Security (BCAS) norms.
+                Strict prohibition on carriage of uncertified lithium-ion batteries, liquid chemicals, flammable gases, firearms, and cash currency. Shippers face immediate docket forfeiture and legal reporting for undeclared hazardous materials.
             </p>
         </div>
 
-        <div class="compliance-card">
+        <div style="background:#f8fafc; border:1px solid #e2e8f0; border-radius:12px; padding:20px;">
             <div style="font-weight:700; color:#0f172a; font-size:15px; margin-bottom:8px; display:flex; align-items:center; gap:8px;">
                 <span style="color:#16a34a;"><?= Icon::svg('check', '', 18) ?></span>
-                Standard Packaging Norms
+                SAC 996812 Input Tax Credit
             </div>
             <p style="font-size:12.5px; color:#64748b; line-height:1.5;">
-                Documents must be enclosed in tamper-evident tear-resistant polybags. Commercial parcels require minimum 3-ply corrugated cartons with internal bubble cushioning and standard 4x6" thermal adhesive barcode labels.
+                All invoices generated by Kesari Express include your enterprise GSTIN. Monthly summaries are uploaded automatically into GSTR-1, ensuring zero friction in claiming 100% input tax credit (ITC) on all freight expenses.
             </p>
         </div>
     </div>
 </section>
 
-<!-- 9. Franchise Partner Showcase CTA Banner (Featuring Indian Branch Manager) -->
+<!-- 12. Regional Case Studies / Customer Stories -->
 <section class="portal-section" style="padding-top:0;">
-    <div style="background: linear-gradient(135deg, #0f1e36 0%, #1e293b 100%); border-radius:18px; padding:36px 40px; color:#ffffff; border:1px solid #334155; box-shadow:0 12px 32px rgba(15, 23, 42, 0.15);">
-        <div style="display:grid; grid-template-columns: 1.25fr 0.85fr; gap:36px; align-items:center;">
+    <div class="section-headline-block">
+        <div class="section-pretitle">Enterprise Client Stories</div>
+        <h2 class="section-maintitle">Trusted by Businesses Across Central India</h2>
+        <p class="section-desc">
+            See how regional distributors, industrial suppliers, and e-commerce companies streamline their daily dispatches with Kesari Express.
+        </p>
+    </div>
+
+    <div class="case-studies-grid">
+        <div class="case-study-card">
             <div>
-                <span style="background:rgba(255,255,255,0.12); padding:4px 12px; border-radius:4px; font-size:11.5px; font-weight:700; text-transform:uppercase; letter-spacing:0.5px; color:#93c5fd;">
-                    Franchise Expansion Program
-                </span>
-                <h2 style="font-size:26px; font-weight:800; color:#ffffff; margin:12px 0 10px 0; line-height:1.25;">
-                    Launch Your Profitable Courier Agency Branch in 15 Minutes
-                </h2>
-                <p style="font-size:14px; color:#cbd5e1; line-height:1.6; margin-bottom:22px;">
-                    Join 450+ successful branch proprietors across Tier 1, 2, and 3 cities. Instant self-service digital onboarding with Aadhaar & PAN KYC verification, thermal barcode printing software, and direct B2B corporate billing access.
+                <span class="g-chip chip-info" style="font-size:11px; margin-bottom:12px;">Pharmaceutical Distributor</span>
+                <h4 style="font-size:16px; font-weight:700; color:#0f172a; margin-bottom:8px;">
+                    Overnight Supply to 64 Medical Retailers
+                </h4>
+                <p style="font-size:13px; color:#64748b; line-height:1.5;">
+                    "We dispatch temperature-sensitive critical medicines from Raipur to chemists in Bilaspur, Korba, and Jagdalpur. Kesari's 18:30 line-haul cutoffs ensure next-morning delivery with zero transit breakage."
                 </p>
-
-                <div style="display:flex; gap:12px; flex-wrap:wrap;">
-                    <a href="/onboard" class="btn" style="background:#2563eb; color:#ffffff; padding:11px 24px; font-weight:600; font-size:14px; border-radius:8px;">
-                        Apply for Franchise Branch <?= Icon::svg('arrow-right', '', 14) ?>
-                    </a>
-                    <a href="/login?tenant=raipur" class="btn" style="background:transparent; color:#ffffff; border:1px solid rgba(255,255,255,0.3); padding:11px 20px; font-size:14px; border-radius:8px;">
-                        Explore Branch Demo (#26)
-                    </a>
-                </div>
             </div>
+            <div style="margin-top:16px; border-top:1px solid #f1f5f9; padding-top:10px; font-size:12px; color:#334155;">
+                <strong>— S. K. Agrawal</strong>, Vardhman Pharma Logistics, Raipur
+            </div>
+        </div>
 
-            <div style="position:relative; border-radius:12px; overflow:hidden; height:240px; border:1px solid rgba(255,255,255,0.15); box-shadow:0 8px 24px rgba(0,0,0,0.3);">
-                <img src="/assets/images/agency_manager.jpg" alt="Indian Agency Franchise Partner at counter" style="width:100%; height:100%; object-fit:cover; display:block;">
-                <div style="position:absolute; bottom:10px; left:10px; right:10px; background:rgba(15,23,42,0.85); backdrop-filter:blur(6px); color:#ffffff; padding:8px 12px; border-radius:6px; font-size:12px; display:flex; justify-content:space-between; align-items:center;">
-                    <span>⚡ 100% Digital KYC Onboarding</span>
-                    <strong style="color:#60a5fa;">450+ Active Hubs</strong>
-                </div>
+        <div class="case-study-card">
+            <div>
+                <span class="g-chip chip-info" style="font-size:11px; margin-bottom:12px;">Steel & Spares Fabricator</span>
+                <h4 style="font-size:16px; font-weight:700; color:#0f172a; margin-bottom:8px;">
+                    Instant 4x6" Labels Saved 2 Hours Daily
+                </h4>
+                <p style="font-size:13px; color:#64748b; line-height:1.5;">
+                    "Our dispatch team used to manually fill paper bilty copies. With Kesari's bulk docket booking and barcode thermal labels, our heavy machinery spares dispatch turnaround dropped from 3 hours to 20 minutes."
+                </p>
+            </div>
+            <div style="margin-top:16px; border-top:1px solid #f1f5f9; padding-top:10px; font-size:12px; color:#334155;">
+                <strong>— Rakesh Verma</strong>, Bhilai Precision Engineering, Durg
+            </div>
+        </div>
+
+        <div class="case-study-card">
+            <div>
+                <span class="g-chip chip-info" style="font-size:11px; margin-bottom:12px;">Textile Distributor</span>
+                <h4 style="font-size:16px; font-weight:700; color:#0f172a; margin-bottom:8px;">
+                    Monthly SAC 996812 Invoicing Streamlined ITC
+                </h4>
+                <p style="font-size:13px; color:#64748b; line-height:1.5;">
+                    "Having a dedicated key account manager and clean GSTR-1 compliant monthly invoices under SAC 996812 eliminated all GST reconciliation mismatches for our chartered accountant."
+                </p>
+            </div>
+            <div style="margin-top:16px; border-top:1px solid #f1f5f9; padding-top:10px; font-size:12px; color:#334155;">
+                <strong>— Manish Dewangan</strong>, Chhattisgarh Silk Handloom Traders
             </div>
         </div>
     </div>
 </section>
 
-<!-- 10. Comprehensive Corporate Footer -->
+<!-- 13. Franchise Partner Program (Featuring Cutout Branch Manager) -->
+<section class="portal-section" style="padding-top:0;">
+    <div class="cutout-split-row" style="background: linear-gradient(135deg, #0f1e36 0%, #1e293b 100%); color:#ffffff; border-color:#334155;">
+        <!-- Text Column -->
+        <div>
+            <span style="background:rgba(255,255,255,0.12); padding:4px 12px; border-radius:4px; font-size:11.5px; font-weight:700; text-transform:uppercase; letter-spacing:0.5px; color:#93c5fd;">
+                Franchise Expansion Program
+            </span>
+            <h2 style="font-size:28px; font-weight:800; color:#ffffff; margin:12px 0 10px 0; line-height:1.25;">
+                Start Your Profitable Courier Franchise in 15 Minutes
+            </h2>
+            <p style="font-size:14px; color:#cbd5e1; line-height:1.6; margin-bottom:22px;">
+                Join 450+ successful branch proprietors across India. Instant self-service digital onboarding with Aadhaar & PAN KYC verification, thermal barcode printing software, and direct B2B corporate billing access.
+            </p>
+
+            <div style="display:flex; gap:12px; flex-wrap:wrap;">
+                <a href="/onboard" class="btn" style="background:#2563eb; color:#ffffff; padding:12px 26px; font-weight:600; font-size:14px; border-radius:8px;">
+                    Apply for Franchise Branch <?= Icon::svg('arrow-right', '', 14) ?>
+                </a>
+                <a href="/login?tenant=raipur" class="btn" style="background:transparent; color:#ffffff; border:1px solid rgba(255,255,255,0.3); padding:12px 22px; font-size:14px; border-radius:8px;">
+                    Explore Branch Demo (#26)
+                </a>
+            </div>
+        </div>
+
+        <!-- Transparent Cutout Branch Manager (No background box!) -->
+        <div class="cutout-split-media">
+            <div class="split-halo" style="background:radial-gradient(circle, rgba(37, 99, 235, 0.25) 0%, transparent 70%);"></div>
+            <img 
+                src="/assets/images/manager_cutout.png" 
+                alt="Indian Agency Franchise Partner at counter holding barcode scanner"
+            >
+        </div>
+    </div>
+</section>
+
+<!-- 14. Interactive Frequently Asked Questions (FAQ) Accordion -->
+<section class="portal-section" style="padding-top:0;">
+    <div class="section-headline-block" style="text-align:center;">
+        <div class="section-pretitle">Common Questions</div>
+        <h2 class="section-maintitle">Frequently Asked Questions</h2>
+        <p class="section-desc" style="margin:8px auto 0 auto;">
+            Everything you need to know about booking dockets, tracking shipments, volumetric calculations, and corporate billing.
+        </p>
+    </div>
+
+    <div class="faq-list">
+        <div class="faq-item active">
+            <div class="faq-question" onclick="toggleFaq(this)">
+                <span>How is billable weight determined for large lightweight cartons?</span>
+                <span class="faq-icon"><?= Icon::svg('chevron-right', '', 16) ?></span>
+            </div>
+            <div class="faq-answer">
+                Under IATA carrier rules, billable weight is the higher of actual dead weight vs. volumetric weight. Volumetric weight is calculated using the formula: $(L \times W \times H \text{ in cm}) / 5000$ for Air Express and $/ 4000$ for Surface Cargo. Use our built-in Volumetric (CFT) calculator tab at the top of the page.
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question" onclick="toggleFaq(this)">
+                <span>What are the daily cutoff timings for same-day dispatch from Raipur?</span>
+                <span class="faq-icon"><?= Icon::svg('chevron-right', '', 16) ?></span>
+            </div>
+            <div class="faq-answer">
+                Consignments booked before 18:30 IST at our Raipur Master Hub are sorted and loaded into the overnight line-haul container trucks for next-morning delivery across Bilaspur, Durg-Bhilai, Rajnandgaon, and Nagpur. Dockets booked after 18:30 IST are dispatched on the next scheduled run.
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question" onclick="toggleFaq(this)">
+                <span>How can our business open a monthly credit account?</span>
+                <span class="faq-icon"><?= Icon::svg('chevron-right', '', 16) ?></span>
+            </div>
+            <div class="faq-answer">
+                Companies dispatching 25 or more dockets monthly are eligible for our B2B Corporate Credit program. We offer 15-day and 30-day billing terms with consolidated monthly tax invoices under SAC 996812 and assigned field pickup staff. Apply via our Corporate Desk link or call 1800-209-4560.
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question" onclick="toggleFaq(this)">
+                <span>Can thermal labels be printed on regular office desktop printers?</span>
+                <span class="faq-icon"><?= Icon::svg('chevron-right', '', 16) ?></span>
+            </div>
+            <div class="faq-answer">
+                Yes! While our system generates standard 4x6" thermal labels optimized for industrial thermal printers (TSC, Zebra, TVS, Rollo), you can also print labels on standard A4 paper (2 dockets per sheet or 4 dockets per sheet) from any regular laser or inkjet printer.
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- 15. Comprehensive Corporate Footer -->
 <footer class="portal-footer">
     <div class="footer-grid">
         <!-- Col 1: Corporate Profile -->
@@ -1279,7 +1596,7 @@
                 <a href="#services">Interstate Surface Cargo</a>
                 <a href="#services">B2B Corporate Credit</a>
                 <a href="#services">4x6" Thermal Barcodes</a>
-                <a href="#hubs">Direct Route Hubs</a>
+                <a href="#corridors">Express Corridors</a>
             </div>
         </div>
 
@@ -1334,14 +1651,13 @@
     </div>
 </footer>
 
-<!-- 11. Interactive Client Scripts for Tabbed Dock & Tools -->
+<!-- 16. Interactive Client Scripts -->
 <script>
-// Dock Tab Switching
 function switchDockTab(tabId) {
     var tabs = ['track', 'calc', 'pincode', 'volumetric'];
     var btns = document.querySelectorAll('.dock-tab-btn');
     
-    tabs.forEach(function(t, idx) {
+    tabs.forEach(function(t) {
         var el = document.getElementById('tab-' + t);
         if (el) {
             el.classList.toggle('active', t === tabId);
@@ -1357,7 +1673,6 @@ function switchDockTab(tabId) {
     }
 }
 
-// Hero Live Rate Calculator
 function calculateHeroRate() {
     var destId = document.getElementById('hero_calc_dest').value;
     var mode = document.getElementById('hero_calc_mode').value;
@@ -1382,7 +1697,6 @@ function calculateHeroRate() {
         });
 }
 
-// Pincode Servicability Lookup
 function lookupPincode() {
     var pin = document.getElementById('pincode_input').value.trim();
     var resEl = document.getElementById('pincode_result');
@@ -1391,11 +1705,9 @@ function lookupPincode() {
         return;
     }
 
-    // Common Central Hubs Mock/Heuristic
     var prefix = pin.substring(0, 2);
     var hub = 'Central Gateway';
     var tat = '24-48 Hours';
-    var isOda = false;
 
     if (prefix === '49') {
         hub = 'Raipur / Bilaspur Primary Hub (C.G.)';
@@ -1423,7 +1735,6 @@ function lookupPincode() {
                       '</div>';
 }
 
-// Volumetric Weight Calculator (CFT)
 function runVolumetric() {
     var l = parseFloat(document.getElementById('vol_l').value) || 0;
     var w = parseFloat(document.getElementById('vol_w').value) || 0;
@@ -1436,7 +1747,12 @@ function runVolumetric() {
     document.getElementById('vol_surface_res').innerText = volSurface.toFixed(2) + ' KG';
 }
 
-// Run initial hero rate calculation on page load
+function toggleFaq(btn) {
+    var item = btn.parentElement;
+    item.classList.toggle('active');
+}
+
+// Initial calculation run
 calculateHeroRate();
 runVolumetric();
 </script>
