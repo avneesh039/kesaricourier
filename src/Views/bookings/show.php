@@ -14,7 +14,7 @@ ob_start();
         <h1 class="page-title" style="margin-top:6px; font-family:monospace;">AWB #<?= htmlspecialchars($c['consignment_no']) ?></h1>
     </div>
     <div style="display:flex; gap:10px;">
-        <a href="/print-labels?awb=<?= urlencode($c['consignment_no']) ?>" class="btn btn-primary">
+        <a href="/print/single?awb=<?= urlencode($c['consignment_no']) ?>" target="_blank" class="btn btn-primary">
             🏷️ Print 4x6" Thermal Label
         </a>
     </div>

@@ -10,7 +10,7 @@ This roadmap defines the end-to-end development journey for transforming the leg
 - [x] **Phase 2: Agency Onboarding, KYC & Super Admin Tenant Governance** - Self-service registration with email OTP, KYC document upload, admin approval pipeline, validity periods, and 30-day expiry notifications.
 - [x] **Phase 3: Centralized Destination Governance & Agency Ticketing** - Super Admin master zones/states/cities/pincodes, read-only agency search, and internal ticketing with WhatsApp/Email hooks.
 - [x] **Phase 4: Consignment Booking Engine & Tariff Matrix** - High-speed keyboard-navigable booking form, B2B client management, dead vs volumetric weight calculation, and multi-slab pricing.
-- [ ] **Phase 5: Thermal Label Barcode & QR Code Engine** - 4x6" thermal label PDF/print template with Code 128 barcode and dynamic tracking QR code.
+- [x] **Phase 5: Thermal Label Barcode & QR Code Engine** - 4x6" thermal label PDF/print template with Code 128 barcode and dynamic tracking QR code.
 - [ ] **Phase 6: Invoicing, GST Billing, MIS Reporting & Dashboard Polish** - Batch unbilled consignment aggregation, fuel surcharge, GST tax invoice generation, bank account configuration, and Google-style analytics dashboards.
 
 ---
@@ -98,8 +98,8 @@ Plans:
 **Plans**: 2 plans
 
 Plans:
-- [ ] 05-01: Pure PHP Barcode (Code 128) and QR Code rendering engine (zero heavy external dependencies).
-- [ ] 05-02: Standard 4x6" thermal label layout, CSS print stylesheet, and single/batch print workflows.
+- [x] 05-01: Pure PHP Barcode (Code 128) and QR Code rendering engine (zero heavy external dependencies).
+- [x] 05-02: Standard 4x6" thermal label layout, CSS print stylesheet, and single/batch print workflows.
 
 ---
 
@@ -132,5 +132,5 @@ Phases execute in numeric order: 1 → 2 → 3 → 4 → 5 → 6
 | 2. Agency Onboarding, KYC & Super Admin Tenant Governance | 3/3 | Complete | 2026-10-15 |
 | 3. Centralized Destination Governance & Agency Ticketing | 2/2 | Complete | 2026-10-15 |
 | 4. Consignment Booking Engine & Tariff Matrix | 3/3 | Complete | 2026-10-16 |
-| 5. Thermal Label Barcode & QR Code Engine | 0/2 | Ready to plan | - |
-| 6. Invoicing, GST Billing, MIS Reporting & Dashboard Polish | 0/3 | Not started | - |
+| 5. Thermal Label Barcode & QR Code Engine | 2/2 | Complete | 2026-10-17 |
+| 6. Invoicing, GST Billing, MIS Reporting & Dashboard Polish | 0/3 | Ready to plan | - |

@@ -138,7 +138,7 @@ ob_start();
                         </td>
                         <td>
                             <div style="display:flex; gap:6px;">
-                                <a href="/print-labels?awb=<?= urlencode($c['consignment_no']) ?>" class="btn btn-outlined" style="padding:3px 8px; font-size:11px;" title="Print 4x6 Thermal Label">
+                                <a href="/print/single?awb=<?= urlencode($c['consignment_no']) ?>" target="_blank" class="btn btn-outlined" style="padding:3px 8px; font-size:11px;" title="Print 4x6 Thermal Label">
                                     🏷️ Label
                                 </a>
                                 <a href="/bookings/<?= $c['id'] ?>" class="btn btn-outlined" style="padding:3px 8px; font-size:11px;">

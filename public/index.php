@@ -14,6 +14,7 @@ require_once dirname(__DIR__) . '/src/Controllers/TicketController.php';
 require_once dirname(__DIR__) . '/src/Controllers/ClientController.php';
 require_once dirname(__DIR__) . '/src/Controllers/TariffController.php';
 require_once dirname(__DIR__) . '/src/Controllers/BookingController.php';
+require_once dirname(__DIR__) . '/src/Controllers/PrintController.php';
 
 // Resolve multi-tenant context from host or query parameter
 TenantContext::resolve();
@@ -329,10 +330,21 @@ $router->post('/bookings/{id}/status', function($id) {
     (new BookingController())->updateStatus((int)$id);
 });
 
-// Placeholder for Phase 5 Thermal Print Hub
+// Phase 5: Thermal Label Barcode & QR Code Engine
 $router->get('/print-labels', function() {
-    $awb = $_GET['awb'] ?? '';
-    echo "<script>window.location.href='/bookings';</script>";
+    (new PrintController())->index();
+});
+
+$router->get('/print/single', function() {
+    (new PrintController())->single();
+});
+
+$router->get('/print/batch', function() {
+    (new PrintController())->batch();
+});
+
+$router->post('/print/batch', function() {
+    (new PrintController())->batch();
 });
 
 // -------------------------------------------------------------
