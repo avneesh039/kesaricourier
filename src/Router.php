@@ -17,6 +17,9 @@ class Router {
     public function dispatch(string $uri, string $method): void {
         $path = parse_url($uri, PHP_URL_PATH) ?: '/';
         $method = strtoupper($method);
+        if ($method === 'HEAD') {
+            $method = 'GET';
+        }
 
         // Normalize trailing slashes (except root)
         if ($path !== '/' && str_ends_with($path, '/')) {
