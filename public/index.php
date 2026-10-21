@@ -142,6 +142,17 @@ $router->post('/onboard/register', function() {
 
     $slug = strtolower(preg_replace('/[^a-z0-9]+/', '-', $city . '-' . substr(md5($name . time()), 0, 4)));
 
+    $planType = trim($_POST['selected_plan'] ?? 'Yearly');
+    $planPrices = [
+        'Monthly' => 1499.00,
+        'Quarterly' => 3999.00,
+        'Half-Yearly' => 6999.00,
+        'Yearly' => 11999.00,
+        'Custom' => 24999.00,
+    ];
+    $planPrice = $planPrices[$planType] ?? 11999.00;
+
+
     $existing = $db->fetchOne("SELECT * FROM tenants WHERE email = ?", [$email]);
     if ($existing) {
         $tenantId = (int)$existing['id'];
@@ -154,7 +165,7 @@ $router->post('/onboard/register', function() {
         $db->execute("
             INSERT INTO tenants (uuid, slug, name, trade_name, contact_person, email, phone, city, state, status) 
             VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, 'pending_otp')
-        ", [$uuid, $slug, $name, $tradeName, $contactPerson, $email, $phone, $city, $state]);
+        ", [$uuid, $slug, $name, $tradeName, $contactPerson, $email, $phone, $city, $state, $planType, $planPrice]);
         $tenantId = (int)$db->lastInsertId();
     }
 

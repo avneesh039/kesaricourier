@@ -338,10 +338,10 @@
                             <a href="https://kesaricourier.vercel.app/blog">Blog</a>
                         </li>
                         <li>
-                            <a href="https://kesaricourier.vercel.app/reviews">Reviews</a>
+                            <a href="#franchise-plans" style="color:#ff5722; font-weight:700;">Franchise Plans</a>
                         </li>
                         <li>
-                            <a href="https://kesaricourier.vercel.app/courier-tracking">Track Shipment</a>
+                            <a href="/track">Track Shipment</a>
                         </li>
                     </ul>
 
@@ -513,7 +513,7 @@ document.getElementById("trackingForm").addEventListener("submit", function(e) {
         return;
     }
 
-    let url = "https://app.kesaricourier.vercel.app/awb/track/" + trackingNo;
+    let url = "/track?awb=" + encodeURIComponent(trackingNo);
 
     window.location.href = url;
 });
@@ -660,6 +660,438 @@ document.getElementById("trackingForm").addEventListener("submit", function(e) {
     </div>
 </section>
 <!-- end our-journey -->
+
+<!-- =======================================================
+     FRANCHISE & AGENCY SUBSCRIPTION PLANS SECTION
+     ======================================================= -->
+<section class="franchise-plans-section" id="franchise-plans">
+    <style>
+        .franchise-plans-section {
+            padding: 85px 0 95px;
+            background: linear-gradient(180deg, #f8fafc 0%, #eef6f6 50%, #f8fafc 100%);
+            position: relative;
+            font-family: 'Quicksand', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        }
+        .fps-header {
+            text-align: center;
+            max-width: 780px;
+            margin: 0 auto 55px;
+            padding: 0 15px;
+        }
+        .fps-eyebrow {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(13, 115, 120, 0.12);
+            color: #0D7378;
+            font-size: 13px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            padding: 6px 18px;
+            border-radius: 50px;
+            margin-bottom: 16px;
+        }
+        .fps-title {
+            font-size: 38px;
+            font-weight: 800;
+            color: #0f172a;
+            margin-bottom: 14px;
+            line-height: 1.25;
+            font-family: 'Archivo Black', 'Quicksand', sans-serif;
+        }
+        .fps-title span {
+            color: #0D7378;
+            background: linear-gradient(135deg, #0D7378 0%, #07494C 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .fps-subtitle {
+            font-size: 16px;
+            color: #64748b;
+            line-height: 1.6;
+            margin: 0;
+        }
+        .fps-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 24px;
+            margin-bottom: 45px;
+        }
+        .fps-card {
+            background: #ffffff;
+            border-radius: 20px;
+            padding: 34px 26px;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            border: 1.5px solid #e2e8f0;
+            box-shadow: 0 4px 16px rgba(15, 23, 42, 0.05);
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .fps-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 35px rgba(13, 115, 120, 0.15);
+            border-color: #0D7378;
+        }
+        .fps-card.featured {
+            border: 2px solid #0D7378;
+            background: linear-gradient(180deg, #ffffff 0%, #f0fbfb 100%);
+            box-shadow: 0 12px 30px rgba(13, 115, 120, 0.2);
+            transform: scale(1.03);
+            z-index: 2;
+        }
+        .fps-card.featured:hover {
+            transform: scale(1.05) translateY(-6px);
+            box-shadow: 0 24px 40px rgba(13, 115, 120, 0.25);
+        }
+        .fps-badge {
+            position: absolute;
+            top: -14px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: linear-gradient(135deg, #ff5722 0%, #e64a19 100%);
+            color: #ffffff;
+            font-size: 11px;
+            font-weight: 800;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            padding: 5px 16px;
+            border-radius: 50px;
+            box-shadow: 0 4px 12px rgba(255, 87, 34, 0.35);
+            white-space: nowrap;
+        }
+        .fps-tier-name {
+            font-size: 20px;
+            font-weight: 800;
+            color: #0f172a;
+            margin-bottom: 6px;
+        }
+        .fps-tier-desc {
+            font-size: 13px;
+            color: #64748b;
+            min-height: 38px;
+            margin-bottom: 18px;
+            line-height: 1.45;
+        }
+        .fps-price-box {
+            padding: 16px 0;
+            border-top: 1px dashed #e2e8f0;
+            border-bottom: 1px dashed #e2e8f0;
+            margin-bottom: 22px;
+        }
+        .fps-price {
+            font-size: 34px;
+            font-weight: 900;
+            color: #0f172a;
+            line-height: 1;
+            font-family: 'Archivo Black', 'Quicksand', sans-serif;
+        }
+        .fps-price small {
+            font-size: 13px;
+            font-weight: 600;
+            color: #64748b;
+            font-family: 'Quicksand', sans-serif;
+        }
+        .fps-price-sub {
+            font-size: 12px;
+            color: #0D7378;
+            font-weight: 700;
+            margin-top: 6px;
+        }
+        .fps-features {
+            list-style: none !important;
+            padding: 0 !important;
+            margin: 0 0 28px !important;
+            flex-grow: 1;
+        }
+        .fps-features li {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            font-size: 13.5px;
+            color: #334155;
+            margin-bottom: 12px;
+            line-height: 1.45;
+        }
+        .fps-features li i {
+            color: #0D7378;
+            font-size: 14px;
+            margin-top: 2px;
+            flex-shrink: 0;
+        }
+        .fps-features li.dimmed {
+            color: #94a3b8;
+            text-decoration: line-through;
+        }
+        .fps-features li.dimmed i {
+            color: #cbd5e1;
+        }
+        .fps-cta {
+            display: block;
+            width: 100%;
+            text-align: center;
+            padding: 13px 20px;
+            border-radius: 12px;
+            font-size: 14px;
+            font-weight: 700;
+            text-decoration: none !important;
+            transition: all 0.25s ease;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+        }
+        .fps-cta-default {
+            background: #f1f5f9;
+            color: #0f172a;
+            border: 1px solid #cbd5e1;
+        }
+        .fps-cta-default:hover {
+            background: #0D7378;
+            color: #ffffff;
+            border-color: #0D7378;
+        }
+        .fps-cta-featured {
+            background: linear-gradient(135deg, #0D7378 0%, #07494C 100%);
+            color: #ffffff !important;
+            border: none;
+            box-shadow: 0 6px 18px rgba(13, 115, 120, 0.4);
+        }
+        .fps-cta-featured:hover {
+            background: linear-gradient(135deg, #07494C 0%, #045458 100%);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 22px rgba(13, 115, 120, 0.5);
+        }
+        .fps-guarantees {
+            background: #ffffff;
+            border: 1.5px solid #cceded;
+            border-radius: 18px;
+            padding: 24px 30px;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            box-shadow: 0 6px 20px rgba(13, 115, 120, 0.08);
+        }
+        .fps-guarantee-item {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+        }
+        .fps-gi-icon {
+            width: 44px;
+            height: 44px;
+            border-radius: 12px;
+            background: rgba(13, 115, 120, 0.1);
+            color: #0D7378;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            flex-shrink: 0;
+        }
+        .fps-gi-text h6 {
+            font-size: 13.5px;
+            font-weight: 700;
+            color: #0f172a;
+            margin: 0 0 2px;
+        }
+        .fps-gi-text p {
+            font-size: 12px;
+            color: #64748b;
+            margin: 0;
+            line-height: 1.35;
+        }
+
+        @media (max-width: 1199.98px) {
+            .fps-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 28px;
+            }
+            .fps-card.featured {
+                transform: none;
+            }
+            .fps-card.featured:hover {
+                transform: translateY(-8px);
+            }
+            .fps-guarantees {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        @media (max-width: 767.98px) {
+            .franchise-plans-section {
+                padding: 55px 0 65px;
+            }
+            .fps-title {
+                font-size: 28px;
+            }
+            .fps-grid {
+                grid-template-columns: 1fr;
+                gap: 24px;
+            }
+            .fps-guarantees {
+                grid-template-columns: 1fr;
+                padding: 20px;
+            }
+        }
+    </style>
+
+    <div class="container">
+        <!-- Section Header -->
+        <div class="fps-header">
+            <div class="fps-eyebrow">
+                <i class="fas fa-gem"></i> Transparent Franchise Pricing
+            </div>
+            <h2 class="fps-title">
+                Launch & Scale Your <span>Courier Franchise</span>
+            </h2>
+            <p class="fps-subtitle">
+                Complete all-in-one logistics counter software with direct multi-carrier dispatch, automated docket booking, client billing, and live tracking. Zero hidden commission.
+            </p>
+        </div>
+
+        <!-- Plans 4-Column Grid -->
+        <div class="fps-grid">
+            <!-- 1. Starter Monthly -->
+            <div class="fps-card">
+                <div class="fps-tier-name">Starter Branch</div>
+                <div class="fps-tier-desc">Ideal for individual booking counters & new agency setups.</div>
+                
+                <div class="fps-price-box">
+                    <div class="fps-price">&#8377;1,499 <small>/ month</small></div>
+                    <div class="fps-price-sub">Billed monthly • &#8377;49/day</div>
+                </div>
+
+                <ul class="fps-features">
+                    <li><i class="fas fa-check-circle"></i> 1 Branch Counter Operator Login</li>
+                    <li><i class="fas fa-check-circle"></i> Fast Docket / AWB Booking with Barcodes</li>
+                    <li><i class="fas fa-check-circle"></i> Multi-Carrier Dispatch (Delhivery & Maruti)</li>
+                    <li><i class="fas fa-check-circle"></i> Client Rate Master & Auto Invoices</li>
+                    <li><i class="fas fa-check-circle"></i> Real-time Live Docket Tracking</li>
+                    <li><i class="fas fa-check-circle"></i> <strong>7-Day Grace Period</strong> on Renewal</li>
+                    <li><i class="fas fa-check-circle"></i> Email & WhatsApp Support</li>
+                </ul>
+
+                <a href="/onboard/register?plan=Monthly" class="fps-cta fps-cta-default">
+                    Start Monthly Plan
+                </a>
+            </div>
+
+            <!-- 2. Growth Quarterly -->
+            <div class="fps-card">
+                <span class="fps-badge" style="background:#0D7378;">Save 12%</span>
+                <div class="fps-tier-name">Growth Hub</div>
+                <div class="fps-tier-desc">Designed for high-traffic district branches & growing logistics centers.</div>
+                
+                <div class="fps-price-box">
+                    <div class="fps-price">&#8377;3,999 <small>/ quarter</small></div>
+                    <div class="fps-price-sub">Billed every 90 days (&#8377;1,333/mo)</div>
+                </div>
+
+                <ul class="fps-features">
+                    <li><i class="fas fa-check-circle"></i> <strong>Up to 3 Counter Operator</strong> Terminals</li>
+                    <li><i class="fas fa-check-circle"></i> Bulk Docket Import & CSV Manifests</li>
+                    <li><i class="fas fa-check-circle"></i> Multi-Carrier API Gateway (Status Sync)</li>
+                    <li><i class="fas fa-check-circle"></i> Central Destination Master (Duplicate Guard)</li>
+                    <li><i class="fas fa-check-circle"></i> Client Payment Ledger & Cash Vouchers</li>
+                    <li><i class="fas fa-check-circle"></i> <strong>7-Day Grace Period</strong> Included</li>
+                    <li><i class="fas fa-check-circle"></i> Priority Branch Helpdesk Desk</li>
+                </ul>
+
+                <a href="/onboard/register?plan=Quarterly" class="fps-cta fps-cta-default">
+                    Choose Quarterly Hub
+                </a>
+            </div>
+
+            <!-- 3. Enterprise Franchise (FEATURED / POPULAR) -->
+            <div class="fps-card featured">
+                <span class="fps-badge">⭐ Best Value • Save 35%</span>
+                <div class="fps-tier-name">Enterprise Franchise</div>
+                <div class="fps-tier-desc">The complete package for established hub operators & volume agencies.</div>
+                
+                <div class="fps-price-box">
+                    <div class="fps-price" style="color:#0D7378;">&#8377;11,999 <small>/ year</small></div>
+                    <div class="fps-price-sub" style="color:#e64a19; font-weight:800;">Effective &#8377;999/month • 365 Days Access</div>
+                </div>
+
+                <ul class="fps-features">
+                    <li><i class="fas fa-check-circle"></i> <strong>Unlimited Counter Operators</strong> & Staff</li>
+                    <li><i class="fas fa-check-circle"></i> <strong>Thermal Barcode Label Printing</strong> (4×6")</li>
+                    <li><i class="fas fa-check-circle"></i> Full Courier API Gateway (Delhivery, BlueDart, Shiprocket, DTDC)</li>
+                    <li><i class="fas fa-check-circle"></i> Automated Multi-Carrier Tracking Sync</li>
+                    <li><i class="fas fa-check-circle"></i> Fee & Remittance Ledger with Instant Receipts</li>
+                    <li><i class="fas fa-check-circle"></i> <strong>7-Day Grace Period</strong> Before Suspension</li>
+                    <li><i class="fas fa-check-circle"></i> Dedicated Relationship Manager & Priority 24/7</li>
+                    <li><i class="fas fa-check-circle"></i> Free Branch Onboarding & Training Session</li>
+                </ul>
+
+                <a href="/onboard/register?plan=Yearly" class="fps-cta fps-cta-featured">
+                    Claim Annual Franchise <i class="fas fa-arrow-right ms-1"></i>
+                </a>
+            </div>
+
+            <!-- 4. Regional Master -->
+            <div class="fps-card">
+                <span class="fps-badge" style="background:#045458;">Max Value / 2-Year</span>
+                <div class="fps-tier-name">Regional Master</div>
+                <div class="fps-tier-desc">For master franchisees, zonal coordinators & multi-city networks.</div>
+                
+                <div class="fps-price-box">
+                    <div class="fps-price">&#8377;24,999 <small>/ 2 years</small></div>
+                    <div class="fps-price-sub">Effective &#8377;1,041/mo • 24 Months License</div>
+                </div>
+
+                <ul class="fps-features">
+                    <li><i class="fas fa-check-circle"></i> <strong>Multi-Branch Sub-Agency Management</strong></li>
+                    <li><i class="fas fa-check-circle"></i> Custom Subdomain & Branded Invoices</li>
+                    <li><i class="fas fa-check-circle"></i> Direct Carrier API Keys Whitelisting</li>
+                    <li><i class="fas fa-check-circle"></i> Priority Central Route & Pincode Matrix</li>
+                    <li><i class="fas fa-check-circle"></i> <strong>0% Royalty</strong> on Branch Bookings</li>
+                    <li><i class="fas fa-check-circle"></i> Dedicated VIP Relationship Executive</li>
+                    <li><i class="fas fa-check-circle"></i> Guaranteed Uptime & Automatic DB Backups</li>
+                </ul>
+
+                <a href="/onboard/register?plan=Custom" class="fps-cta fps-cta-default">
+                    Apply Master Franchise
+                </a>
+            </div>
+        </div>
+
+        <!-- Trust Badges & Guarantee Bar -->
+        <div class="fps-guarantees">
+            <div class="fps-guarantee-item">
+                <div class="fps-gi-icon"><i class="fas fa-shield-alt"></i></div>
+                <div class="fps-gi-text">
+                    <h6>7-Day Grace Period</h6>
+                    <p>No sudden lockouts on renewal. Continuous branch operation guaranteed.</p>
+                </div>
+            </div>
+
+            <div class="fps-guarantee-item">
+                <div class="fps-gi-icon"><i class="fas fa-bolt"></i></div>
+                <div class="fps-gi-text">
+                    <h6>15-Min Activation</h6>
+                    <p>Instant branch portal provisioning and counter booking readiness.</p>
+                </div>
+            </div>
+
+            <div class="fps-guarantee-item">
+                <div class="fps-gi-icon"><i class="fas fa-file-invoice-dollar"></i></div>
+                <div class="fps-gi-text">
+                    <h6>100% GST ITC Invoicing</h6>
+                    <p>Download official GST tax invoices to claim full input tax credit.</p>
+                </div>
+            </div>
+
+            <div class="fps-guarantee-item">
+                <div class="fps-gi-icon"><i class="fas fa-print"></i></div>
+                <div class="fps-gi-text">
+                    <h6>Thermal Hardware Ready</h6>
+                    <p>Compatible with standard 4×6 barcode sticker printers & 3-part dockets.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- end franchise-plans -->
+
 
 <!-- why-choose -->
 <section class="why-choose">

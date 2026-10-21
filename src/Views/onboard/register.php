@@ -1,6 +1,16 @@
 <?php
 // src/Views/onboard/register.php - Franchise Partner Self-Service Registration (Step 1)
 $csrfToken = Auth::generateCsrfToken();
+
+$selectedPlan = htmlspecialchars($_GET['plan'] ?? $_POST['selected_plan'] ?? 'Yearly');
+$planDetails = [
+    'Monthly' => ['name' => 'Starter Branch Plan', 'price' => '&#8377;1,499/mo', 'badge' => 'Monthly Billing'],
+    'Quarterly' => ['name' => 'Growth Hub Plan', 'price' => '&#8377;3,999/quarter', 'badge' => 'Quarterly Billing'],
+    'Yearly' => ['name' => 'Enterprise Franchise Plan', 'price' => '&#8377;11,999/yr', 'badge' => 'Best Value • Save 35%'],
+    'Custom' => ['name' => 'Regional Master License', 'price' => '&#8377;24,999/2-yr', 'badge' => '2-Year License'],
+];
+$currPlan = $planDetails[$selectedPlan] ?? $planDetails['Yearly'];
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -235,7 +245,23 @@ $csrfToken = Auth::generateCsrfToken();
                 </div>
             <?php endif; ?>
 
+            
+            <!-- Plan Selection Banner -->
+            <div style="background:#e6f4ea; border:1px solid #b7e1cd; padding:12px 16px; border-radius:12px; margin-bottom:20px; display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:10px;">
+                <div style="display:flex; align-items:center; gap:10px;">
+                    <span style="color:#137333; display:inline-flex;"><?= Icon::svg('check-circle', '', 20) ?></span>
+                    <div>
+                        <strong style="color:#137333; font-size:14px;"><?= $currPlan['name'] ?> (<?= $currPlan['price'] ?>)</strong>
+                        <div style="font-size:11.5px; color:#5f6368;">Includes 7-day grace period on renewal & immediate branch counter access</div>
+                    </div>
+                </div>
+                <div style="display:flex; align-items:center; gap:8px;">
+                    <span style="background:#137333; color:#fff; font-size:11px; font-weight:700; padding:4px 10px; border-radius:12px;"><?= $currPlan['badge'] ?></span>
+                    <a href="/#franchise-plans" style="font-size:12px; color:#0D7378; text-decoration:underline;">Change</a>
+                </div>
+            </div>
             <form method="POST" action="/onboard/register">
+                <input type="hidden" name="selected_plan" value="<?= $selectedPlan ?>">
                 <input type="hidden" name="csrf_token" value="<?= htmlspecialchars($csrfToken) ?>">
 
                 <div style="display:grid; grid-template-columns: 1fr 1fr; gap:16px;">
