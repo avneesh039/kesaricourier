@@ -91,6 +91,9 @@ class BookingController {
             exit;
         }
 
+        $currentUser = Auth::user();
+        $operatorName = $currentUser['name'] ?? 'Counter Desk';
+
         $db->execute("
             INSERT INTO consignments (
                 tenant_id, booking_date, consignment_no, client_id, 
@@ -98,14 +101,14 @@ class BookingController {
                 destination_id, mode, send_by, pieces, dead_weight, 
                 length_cm, width_cm, height_cm, volumetric_weight, billable_weight, 
                 subtotal, discount_type, discount_amount, total_amount, 
-                insured_value, other_charges, status, is_billed, created_by_user_id
+                insured_value, other_charges, status, is_billed, created_by_user_id, operator_name
             ) VALUES (
                 ?, ?, ?, ?, 
                 ?, ?, ?, ?, ?, 
                 ?, ?, ?, ?, ?, 
                 ?, ?, ?, ?, ?, 
                 ?, ?, ?, ?, 
-                ?, ?, 'booked', 0, ?
+                ?, ?, 'booked', 0, ?, ?
             )
         ", [
             $tenantId, $bookingDate, $awb, $clientId,
@@ -113,10 +116,25 @@ class BookingController {
             $destId, $mode, $sendBy, $pieces, $deadWeight,
             $length, $width, $height, $volumetricWeight, $billableWeight,
             $subtotal, $discountType, $discountAmount, $totalAmount,
-            $insuredVal, $otherCharges, Auth::id()
+            $insuredVal, $otherCharges, Auth::id(), $operatorName
         ]);
 
         $consignmentId = (int)$db->lastInsertId();
+
+        $batchMode = !empty($_POST['batch_mode']);
+        if ($batchMode) {
+            $_SESSION['batch_booking_locks'] = [
+                'booking_date' => !empty($_POST['lock_date']) ? $bookingDate : null,
+                'client_id' => !empty($_POST['lock_client']) ? $clientId : null,
+                'destination_id' => !empty($_POST['lock_dest']) ? $destId : null,
+                'mode' => !empty($_POST['lock_mode']) ? $mode : null,
+                'send_by' => !empty($_POST['lock_send_by']) ? $sendBy : null,
+            ];
+            $_SESSION['flash_success'] = "✓ AWB #{$awb} booked! (<a href='/print-labels?awb={$awb}' target='_blank' style='color:#1a73e8; text-decoration:underline;'>Print Label</a>) Next consignment ready:";
+            header("Location: /bookings/new");
+            exit;
+        }
+
         $_SESSION['flash_success'] = "✓ Consignment #{$awb} booked successfully! Ready for thermal label printing.";
         header("Location: /print-labels?awb={$awb}");
         exit;

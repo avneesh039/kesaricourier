@@ -45,6 +45,7 @@ CREATE TABLE IF NOT EXISTS users (
     email VARCHAR(120) UNIQUE NOT NULL,
     password_hash VARCHAR(255) NOT NULL,
     role VARCHAR(30) NOT NULL, -- superadmin, agency_admin, agency_operator
+    contact_no VARCHAR(20) NULL,
     status VARCHAR(20) DEFAULT 'active',
     last_login_at DATETIME NULL,
     created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
@@ -121,11 +122,14 @@ CREATE TABLE IF NOT EXISTS clients (
     phone VARCHAR(20),
     email VARCHAR(120),
     address TEXT,
+    billing_address TEXT NULL,
     city VARCHAR(100),
     state VARCHAR(100),
     pincode VARCHAR(10),
     gstin VARCHAR(20),
     pan_no VARCHAR(20),
+    fuel_surcharge_percent REAL DEFAULT 10.0,
+    insurance_percent REAL DEFAULT 0.0,
     status VARCHAR(20) DEFAULT 'active',
     created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (tenant_id) REFERENCES tenants(id)
@@ -189,6 +193,7 @@ CREATE TABLE IF NOT EXISTS consignments (
     is_billed INTEGER DEFAULT 0,
     invoice_id INTEGER NULL,
     created_by_user_id INTEGER NULL,
+    operator_name VARCHAR(100) NULL,
     created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (tenant_id) REFERENCES tenants(id),
     FOREIGN KEY (client_id) REFERENCES clients(id),
@@ -272,4 +277,22 @@ CREATE TABLE IF NOT EXISTS invoice_items (
     FOREIGN KEY (invoice_id) REFERENCES invoices(id) ON DELETE CASCADE,
     FOREIGN KEY (consignment_id) REFERENCES consignments(id)
 );
+
+-- Invoice Payments & Receipts (BILL-05)
+CREATE TABLE IF NOT EXISTS payments (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    tenant_id INTEGER NOT NULL,
+    invoice_id INTEGER NOT NULL,
+    amount REAL NOT NULL,
+    payment_date DATE NOT NULL,
+    payment_mode VARCHAR(30) NOT NULL, -- Cash, Cheque, NEFT/RTGS, UPI
+    reference_no VARCHAR(100),
+    receipt_no VARCHAR(50) UNIQUE,
+    notes TEXT,
+    created_by_user_id INTEGER,
+    created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (tenant_id) REFERENCES tenants(id),
+    FOREIGN KEY (invoice_id) REFERENCES invoices(id)
+);
+
 

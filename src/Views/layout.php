@@ -75,19 +75,28 @@ $isExpiring = TenantContext::isExpiringSoon(30);
                 <a href="/invoices" class="nav-item <?= ($activeNav ?? '') === 'invoices' ? 'active' : '' ?>">
                     <span class="nav-icon"><?= Icon::svg('invoices') ?></span> GST Tax Invoices
                 </a>
+                <a href="/payments" class="nav-item <?= ($activeNav ?? '') === 'payments' ? 'active' : '' ?>">
+                    <span class="nav-icon"><?= Icon::svg('payments') ?></span> Payment Receipts & Ledger
+                </a>
                 <a href="/bank-accounts" class="nav-item <?= ($activeNav ?? '') === 'bank' ? 'active' : '' ?>">
                     <span class="nav-icon"><?= Icon::svg('bank') ?></span> Bank Accounts
                 </a>
 
-                <div class="nav-section-title">Masters & Tariff</div>
+                <div class="nav-section-title">Masters & Staff</div>
                 <a href="/clients" class="nav-item <?= ($activeNav ?? '') === 'clients' ? 'active' : '' ?>">
                     <span class="nav-icon"><?= Icon::svg('clients') ?></span> B2B Corporate Clients
+                </a>
+                <a href="/operators" class="nav-item <?= ($activeNav ?? '') === 'operators' ? 'active' : '' ?>">
+                    <span class="nav-icon"><?= Icon::svg('operators') ?></span> Branch Operators
                 </a>
                 <a href="/tariffs" class="nav-item <?= ($activeNav ?? '') === 'tariffs' ? 'active' : '' ?>">
                     <span class="nav-icon"><?= Icon::svg('tariffs') ?></span> Rate Matrix (Tariff)
                 </a>
                 <a href="/tickets" class="nav-item <?= ($activeNav ?? '') === 'tickets' ? 'active' : '' ?>">
                     <span class="nav-icon"><?= Icon::svg('tickets') ?></span> Destination Request / Help
+                </a>
+                <a href="/change-password" class="nav-item <?= ($activeNav ?? '') === 'changepwd' ? 'active' : '' ?>">
+                    <span class="nav-icon"><?= Icon::svg('lock') ?></span> Change Password
                 </a>
             <?php endif; ?>
         </nav>
@@ -96,7 +105,10 @@ $isExpiring = TenantContext::isExpiringSoon(30);
             <div style="font-size:12px; color:var(--text-tertiary);">
                 <?= $isSuperAdmin ? 'Super Admin Mode' : 'Agency: <strong>#' . htmlspecialchars($tenant['agency_code'] ?? 'N/A') . '</strong>' ?>
             </div>
-            <a href="/logout" title="Sign out" style="color:var(--text-secondary); display:inline-flex; align-items:center; padding:6px; border-radius:6px; transition:var(--transition);"><?= Icon::svg('logout', '', 18) ?></a>
+            <div style="display:flex; align-items:center; gap:6px;">
+                <a href="/change-password" title="Change Password" style="color:var(--text-secondary); display:inline-flex; align-items:center; padding:6px; border-radius:6px; transition:var(--transition);"><?= Icon::svg('lock', '', 18) ?></a>
+                <a href="/logout" title="Sign out" style="color:var(--text-secondary); display:inline-flex; align-items:center; padding:6px; border-radius:6px; transition:var(--transition);"><?= Icon::svg('logout', '', 18) ?></a>
+            </div>
         </div>
     </aside>
 

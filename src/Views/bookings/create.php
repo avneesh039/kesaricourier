@@ -8,15 +8,29 @@ unset($_SESSION['flash_error']);
 ob_start();
 ?>
 
+<?php
+$locks = $_SESSION['batch_booking_locks'] ?? [];
+$flashSuccess = $_SESSION['flash_success'] ?? null;
+unset($_SESSION['flash_success']);
+?>
+
 <div class="page-header">
     <div>
-        <h1 class="page-title">Consignment Booking Entry</h1>
+        <h1 class="page-title">📦 Consignment Booking Entry</h1>
         <p style="color:var(--text-secondary); font-size:13px; margin-top:4px;">
-            Rapid keyboard-first parcel & document booking with automatic rate calculation.
+            Rapid keyboard-first parcel & document booking with automatic rate calculation & batch mode.
         </p>
     </div>
-    <a href="/bookings" class="btn btn-outlined">📋 View All Bookings</a>
+    <div style="display:flex; gap:10px;">
+        <a href="/bookings" class="btn btn-outlined">📋 View All Bookings</a>
+    </div>
 </div>
+
+<?php if ($flashSuccess): ?>
+    <div style="background:#e6f4ea; border-left:4px solid var(--google-green); color:#137333; padding:12px 18px; border-radius:4px; margin-bottom:20px; font-size:13px;">
+        <?= $flashSuccess ?>
+    </div>
+<?php endif; ?>
 
 <?php if ($error): ?>
     <div style="background:#fce8e6; color:#c5221f; padding:12px; border-radius:8px; font-size:13px; margin-bottom:20px;">
@@ -25,37 +39,57 @@ ob_start();
 <?php endif; ?>
 
 <form method="POST" action="/bookings/new" id="bookingForm">
+    <input type="hidden" name="batch_mode" id="batch_mode" value="0">
+
     <div style="display:grid; grid-template-columns: 2fr 1fr; gap:24px;">
         <!-- Left: Booking Form Inputs -->
         <div>
             <!-- Section 1: Docket & Routing Info -->
             <div class="g-card">
-                <div style="font-weight:500; font-size:15px; margin-bottom:16px; color:var(--brand-primary); display:flex; align-items:center; gap:8px;">
-                    <?= Icon::svg('tag') ?> Consignment Docket & Routing
+                <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:16px;">
+                    <div style="font-weight:700; font-size:15px; color:var(--brand-primary); display:flex; align-items:center; gap:8px;">
+                        <?= Icon::svg('tag') ?> Consignment Docket & Routing
+                    </div>
+                    <div style="font-size:12px; color:var(--text-secondary); display:flex; align-items:center; gap:6px;">
+                        <span class="g-chip" style="font-size:11px; background:#e8f0fe; color:#1967d2;">⚡ Pin icons keep fields locked for batch booking</span>
+                    </div>
                 </div>
 
                 <div style="display:grid; grid-template-columns: 1fr 1fr 1fr; gap:16px;">
                     <div class="form-group">
-                        <label class="form-label">Booking Date</label>
-                        <input type="date" name="booking_date" class="form-control" value="<?= date('Y-m-d') ?>" required>
+                        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:4px;">
+                            <label class="form-label" style="margin:0;">Booking Date *</label>
+                            <label style="font-size:11px; cursor:pointer;" title="Lock Date for next booking">
+                                <input type="checkbox" name="lock_date" <?= !empty($locks['booking_date']) ? 'checked' : '' ?>> 📌 Lock
+                            </label>
+                        </div>
+                        <input type="date" name="booking_date" class="form-control" value="<?= htmlspecialchars($locks['booking_date'] ?? date('Y-m-d')) ?>" required>
                     </div>
 
                     <div class="form-group" style="grid-column: span 2;">
                         <label class="form-label">AWB / Consignment No. *</label>
-                        <input type="text" name="consignment_no" id="consignment_no" class="form-control" value="<?= htmlspecialchars($nextAwb) ?>" required style="font-family:monospace; font-weight:bold; font-size:16px; letter-spacing:1px;">
+                        <input type="text" name="consignment_no" id="consignment_no" class="form-control" value="<?= htmlspecialchars($nextAwb) ?>" required autofocus style="font-family:monospace; font-weight:bold; font-size:16px; letter-spacing:1px;">
                     </div>
 
-                    <!-- Client Selection -->
+                    <!-- Client Selection with Code Lookup -->
                     <div class="form-group" style="grid-column: span 2;">
-                        <label class="form-label">B2B Corporate Client / Sender *</label>
-                        <select name="client_id" id="client_id" class="form-control" required onchange="onClientSelected(this)">
-                            <option value="">-- Select Client or Walk-in Customer --</option>
-                            <?php foreach ($clients as $cl): ?>
-                                <option value="<?= $cl['id'] ?>" data-name="<?= htmlspecialchars($cl['name']) ?>" data-phone="<?= htmlspecialchars($cl['phone']) ?>">
-                                    [#<?= $cl['client_code'] ?>] <?= htmlspecialchars($cl['name']) ?>
-                                </option>
-                            <?php endforeach; ?>
-                        </select>
+                        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:4px;">
+                            <label class="form-label" style="margin:0;">B2B Corporate Client / Sender *</label>
+                            <label style="font-size:11px; cursor:pointer;" title="Lock Client for next booking">
+                                <input type="checkbox" name="lock_client" <?= !empty($locks['client_id']) ? 'checked' : '' ?>> 📌 Lock
+                            </label>
+                        </div>
+                        <div style="display:grid; grid-template-columns: 100px 1fr; gap:8px;">
+                            <input type="text" id="client_code_quick" class="form-control" placeholder="Code (101)" title="Type numeric code and hit Tab to quick-select client" onkeyup="quickSelectClientByCode(this.value)">
+                            <select name="client_id" id="client_id" class="form-control" required onchange="onClientSelected(this)">
+                                <option value="">-- Select Client or Walk-in Customer --</option>
+                                <?php foreach ($clients as $cl): ?>
+                                    <option value="<?= $cl['id'] ?>" data-code="<?= htmlspecialchars($cl['client_code']) ?>" data-name="<?= htmlspecialchars($cl['name']) ?>" data-phone="<?= htmlspecialchars($cl['phone']) ?>" <?= (!empty($locks['client_id']) && (int)$locks['client_id'] === (int)$cl['id']) ? 'selected' : '' ?>>
+                                        [#<?= $cl['client_code'] ?>] <?= htmlspecialchars($cl['name']) ?>
+                                    </option>
+                                <?php endforeach; ?>
+                            </select>
+                        </div>
                     </div>
 
                     <div class="form-group">
@@ -63,13 +97,18 @@ ob_start();
                         <input type="tel" name="sender_phone" id="sender_phone" class="form-control" placeholder="10-digit mobile">
                     </div>
 
-                    <!-- Destination Selection -->
+                    <!-- Destination Selection with Lock -->
                     <div class="form-group" style="grid-column: span 3;">
-                        <label class="form-label">Destination City / Hub *</label>
+                        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:4px;">
+                            <label class="form-label" style="margin:0;">Destination City / Hub *</label>
+                            <label style="font-size:11px; cursor:pointer;" title="Lock Destination for next booking">
+                                <input type="checkbox" name="lock_dest" <?= !empty($locks['destination_id']) ? 'checked' : '' ?>> 📌 Lock
+                            </label>
+                        </div>
                         <select name="destination_id" id="destination_id" class="form-control" required onchange="calculateRate()">
                             <option value="">-- Select Central Master Destination --</option>
                             <?php foreach ($destinations as $d): ?>
-                                <option value="<?= $d['id'] ?>">
+                                <option value="<?= $d['id'] ?>" <?= (!empty($locks['destination_id']) && (int)$locks['destination_id'] === (int)$d['id']) ? 'selected' : '' ?>>
                                     <?= htmlspecialchars($d['name']) ?> (<?= htmlspecialchars($d['code']) ?>) - <?= htmlspecialchars($d['state_name']) ?>
                                 </option>
                             <?php endforeach; ?>
@@ -208,9 +247,14 @@ ob_start();
                         </div>
                     </div>
 
-                    <button type="submit" class="btn btn-primary" style="width:100%; padding:14px; border-radius:24px; font-size:15px; margin-top:12px; display:inline-flex; align-items:center; justify-content:center; gap:8px;">
-                        <?= Icon::svg('check', '', 18) ?> Confirm Booking & Print Label <?= Icon::svg('arrow-right', '', 16) ?>
-                    </button>
+                    <div style="display:flex; flex-direction:column; gap:8px; margin-top:12px;">
+                        <button type="submit" class="btn btn-primary" style="width:100%; padding:13px; border-radius:24px; font-size:14px; font-weight:600; display:inline-flex; align-items:center; justify-content:center; gap:8px;">
+                            <?= Icon::svg('check', '', 18) ?> Confirm Booking & Print Label <?= Icon::svg('arrow-right', '', 16) ?>
+                        </button>
+                        <button type="button" onclick="submitBatch()" class="btn" style="width:100%; padding:11px; border-radius:24px; font-size:13px; font-weight:600; background:#1e8e3e; color:#fff; border:none; display:inline-flex; align-items:center; justify-content:center; gap:8px; cursor:pointer;" title="Saves current booking and keeps locked fields for rapid booking">
+                            ⚡ Save & Book Next Docket (Batch Mode)
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -218,10 +262,35 @@ ob_start();
 </form>
 
 <script>
+function quickSelectClientByCode(code) {
+    if (!code) return;
+    var sel = document.getElementById('client_id');
+    var codeClean = code.trim().toLowerCase();
+    for (var i = 0; i < sel.options.length; i++) {
+        var optCode = (sel.options[i].dataset.code || '').toLowerCase();
+        if (optCode === codeClean) {
+            sel.selectedIndex = i;
+            onClientSelected(sel);
+            break;
+        }
+    }
+}
+
+function submitBatch() {
+    document.getElementById('batch_mode').value = '1';
+    var form = document.getElementById('bookingForm');
+    if (form.reportValidity()) {
+        form.submit();
+    }
+}
+
 function onClientSelected(sel) {
     var opt = sel.options[sel.selectedIndex];
     if (opt && opt.dataset.phone) {
         document.getElementById('sender_phone').value = opt.dataset.phone;
+    }
+    if (opt && opt.dataset.code) {
+        document.getElementById('client_code_quick').value = opt.dataset.code;
     }
     calculateRate();
 }

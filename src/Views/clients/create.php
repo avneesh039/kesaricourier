@@ -24,9 +24,14 @@ ob_start();
 
     <form method="POST" action="/clients/new">
         <div style="display:grid; grid-template-columns: 1fr 1fr; gap:18px;">
-            <div class="form-group" style="grid-column: span 2;">
+            <div class="form-group">
                 <label class="form-label">Client / Company Name *</label>
                 <input type="text" name="name" class="form-control" placeholder="e.g. RELIANCE RETAIL LIMITED" required style="text-transform:uppercase;">
+            </div>
+
+            <div class="form-group">
+                <label class="form-label">Client Code (Numeric ID)</label>
+                <input type="text" name="client_code" class="form-control" placeholder="e.g. 101, 102 (Auto if blank)">
             </div>
 
             <div class="form-group">
@@ -49,9 +54,29 @@ ob_start();
                 <input type="text" name="gstin" class="form-control" placeholder="e.g. 22AABCR2668G1ZL" maxlength="15" style="text-transform:uppercase;">
             </div>
 
+            <div class="form-group">
+                <label class="form-label">Fuel Surcharge %</label>
+                <input type="number" step="0.1" name="fuel_surcharge_percent" class="form-control" value="10.0" placeholder="10.0">
+            </div>
+
+            <div class="form-group">
+                <label class="form-label">Cargo Insurance %</label>
+                <input type="number" step="0.1" name="insurance_percent" class="form-control" value="0.0" placeholder="0.0">
+            </div>
+
             <div class="form-group" style="grid-column: span 2;">
-                <label class="form-label">Billing Address</label>
-                <textarea name="address" class="form-control" rows="2" placeholder="Full office address for GST invoices"></textarea>
+                <label class="form-label">Office / Pickup Address</label>
+                <textarea name="address" id="client_address" class="form-control" rows="2" placeholder="Full street pickup address"></textarea>
+            </div>
+
+            <div class="form-group" style="grid-column: span 2;">
+                <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:6px;">
+                    <label class="form-label" style="margin:0;">Billing Address (Printed on Invoices)</label>
+                    <label style="font-size:12px; cursor:pointer; color:var(--brand-primary);">
+                        <input type="checkbox" onchange="if(this.checked){document.getElementById('billing_address').value=document.getElementById('client_address').value;}"> Same as Office Address
+                    </label>
+                </div>
+                <textarea name="billing_address" id="billing_address" class="form-control" rows="2" placeholder="Official GST billing address"></textarea>
             </div>
 
             <div class="form-group">

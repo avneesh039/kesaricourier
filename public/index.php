@@ -18,6 +18,8 @@ require_once dirname(__DIR__) . '/src/Controllers/BookingController.php';
 require_once dirname(__DIR__) . '/src/Controllers/PrintController.php';
 require_once dirname(__DIR__) . '/src/Controllers/BankController.php';
 require_once dirname(__DIR__) . '/src/Controllers/InvoiceController.php';
+require_once dirname(__DIR__) . '/src/Controllers/OperatorController.php';
+require_once dirname(__DIR__) . '/src/Controllers/PaymentController.php';
 require_once dirname(__DIR__) . '/src/Controllers/DashboardController.php';
 require_once dirname(__DIR__) . '/src/Controllers/PublicController.php';
 
@@ -408,6 +410,82 @@ $router->get('/invoices/{id}/print', function($id) {
 
 $router->post('/invoices/{id}/payment', function($id) {
     (new InvoiceController())->updatePayment((int)$id);
+});
+
+// Phase 7: Branch Operators Management
+$router->get('/operators', function() {
+    (new OperatorController())->index();
+});
+
+$router->get('/operators/new', function() {
+    (new OperatorController())->create();
+});
+
+$router->post('/operators/new', function() {
+    (new OperatorController())->store();
+});
+
+$router->post('/operators/{id}/toggle', function($id) {
+    (new OperatorController())->toggleStatus((int)$id);
+});
+
+$router->post('/operators/{id}/delete', function($id) {
+    (new OperatorController())->delete((int)$id);
+});
+
+// Phase 7: Payment Receipts & Client Ledger
+$router->get('/payments', function() {
+    (new PaymentController())->index();
+});
+
+$router->post('/payments', function() {
+    (new PaymentController())->store();
+});
+
+$router->get('/payments/{id}/receipt', function($id) {
+    (new PaymentController())->receipt((int)$id);
+});
+
+// Phase 7: Change Password
+$router->get('/change-password', function() {
+    Auth::requireLogin();
+    require ROOT_PATH . '/src/Views/auth/change-password.php';
+});
+
+$router->post('/change-password', function() {
+    Auth::requireLogin();
+    $userId = Auth::id();
+    $current = $_POST['current_password'] ?? '';
+    $new = $_POST['new_password'] ?? '';
+    $confirm = $_POST['confirm_password'] ?? '';
+
+    $db = Database::getInstance();
+    $user = $db->fetchOne("SELECT * FROM users WHERE id = ?", [$userId]);
+
+    if (!$user || !password_verify($current, $user['password_hash'])) {
+        $_SESSION['flash_error'] = 'Current password does not match.';
+        header('Location: /change-password');
+        exit;
+    }
+
+    if (strlen($new) < 6) {
+        $_SESSION['flash_error'] = 'New password must be at least 6 characters long.';
+        header('Location: /change-password');
+        exit;
+    }
+
+    if ($new !== $confirm) {
+        $_SESSION['flash_error'] = 'New password and confirmation do not match.';
+        header('Location: /change-password');
+        exit;
+    }
+
+    $hash = password_hash($new, PASSWORD_DEFAULT);
+    $db->execute("UPDATE users SET password_hash = ? WHERE id = ?", [$hash, $userId]);
+
+    $_SESSION['flash_success'] = 'Password changed successfully.';
+    header('Location: /change-password');
+    exit;
 });
 
 // -------------------------------------------------------------

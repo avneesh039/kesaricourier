@@ -51,23 +51,32 @@ class ClientController {
         $gstin = strtoupper(trim($_POST['gstin'] ?? ''));
         $pan = strtoupper(trim($_POST['pan_no'] ?? ''));
 
+        $customCode = trim($_POST['client_code'] ?? '');
+        $billingAddress = trim($_POST['billing_address'] ?? '');
+        $fuelSurcharge = (float)($_POST['fuel_surcharge_percent'] ?? 10.0);
+        $insurancePercent = (float)($_POST['insurance_percent'] ?? 0.0);
+
         if (empty($name) || empty($phone)) {
             $_SESSION['flash_error'] = 'Client Name and Contact Phone are mandatory.';
             header('Location: /clients/new');
             exit;
         }
 
-        // Auto-assign next Client Code
-        $maxCode = (int)$db->fetchOne("
-            SELECT MAX(CAST(client_code AS INTEGER)) as max_code 
-            FROM clients WHERE tenant_id = ?
-        ", [$tenantId])['max_code'] ?? 92;
-        $clientCode = (string)($maxCode + 1);
+        if (!empty($customCode)) {
+            $clientCode = $customCode;
+        } else {
+            // Auto-assign next Client Code
+            $maxCode = (int)$db->fetchOne("
+                SELECT MAX(CAST(client_code AS INTEGER)) as max_code 
+                FROM clients WHERE tenant_id = ?
+            ", [$tenantId])['max_code'] ?? 100;
+            $clientCode = (string)($maxCode + 1);
+        }
 
         $db->execute("
-            INSERT INTO clients (tenant_id, client_code, name, contact_person, phone, email, address, city, state, pincode, gstin, pan_no, status) 
-            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 'active')
-        ", [$tenantId, $clientCode, $name, $person, $phone, $email, $address, $city, $state, $pincode, $gstin, $pan]);
+            INSERT INTO clients (tenant_id, client_code, name, contact_person, phone, email, address, billing_address, city, state, pincode, gstin, pan_no, fuel_surcharge_percent, insurance_percent, status) 
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 'active')
+        ", [$tenantId, $clientCode, $name, $person, $phone, $email, $address, $billingAddress ?: $address, $city, $state, $pincode, $gstin, $pan, $fuelSurcharge, $insurancePercent]);
 
         $_SESSION['flash_success'] = "✓ B2B Client '{$name}' created with Client Code #{$clientCode}.";
         header('Location: /clients');

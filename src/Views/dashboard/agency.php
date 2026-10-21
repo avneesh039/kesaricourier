@@ -294,6 +294,12 @@ function toggleAgencyGuidance() {
                 <a href="/invoices/new" class="btn btn-secondary" style="justify-content:flex-start; padding:10px 14px; gap:10px;">
                     <?= Icon::svg('invoices', '', 18) ?> Generate Monthly GST Tax Invoice
                 </a>
+                <a href="/payments" class="btn btn-secondary" style="justify-content:flex-start; padding:10px 14px; gap:10px;">
+                    <?= Icon::svg('payments', '', 18) ?> Client Payment Receipts & Ledger
+                </a>
+                <a href="/operators" class="btn btn-secondary" style="justify-content:flex-start; padding:10px 14px; gap:10px;">
+                    <?= Icon::svg('operators', '', 18) ?> Branch Desk Operators (Staff Desks)
+                </a>
                 <a href="/bank-accounts" class="btn btn-secondary" style="justify-content:flex-start; padding:10px 14px; gap:10px;">
                     <?= Icon::svg('bank', '', 18) ?> Settlement Bank Account Settings
                 </a>
