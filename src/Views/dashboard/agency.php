@@ -19,6 +19,7 @@ ob_start();
         <p style="color:var(--text-secondary); font-size:13px; margin-top:4px;">
             <?= htmlspecialchars($tenant['address'] ?? 'Agency Hub') ?> • Phone: <?= htmlspecialchars($tenant['phone'] ?? '') ?>
         </p>
+    </div>
     <div style="display:flex; gap:10px; align-items:center;">
         <button type="button" class="btn btn-outlined" onclick="toggleAgencyGuidance()" id="agencyGuidanceToggleBtn" style="font-size:13px;">
             <?= Icon::svg('sparkles', '', 16) ?> <span id="agencyGuidanceBtnLabel">Hide Guide</span>
@@ -168,7 +169,7 @@ function toggleAgencyGuidance() {
 </script>
 
 <!-- Agency Real-Time KPI Cards (UI-02) -->
-<div class="metrics-grid">
+<div class="metrics-grid" style="display:grid; grid-template-columns:repeat(4, minmax(0, 1fr)); gap:18px; width:100%; margin-bottom:26px;">
     <div class="metric-card">
         <div class="metric-label">Today's Bookings</div>
         <div class="metric-value" style="color:var(--brand-primary);"><?= $todayStats['count'] ?? 0 ?></div>

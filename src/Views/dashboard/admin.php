@@ -17,6 +17,7 @@ ob_start();
         <p style="color:var(--text-secondary); font-size:13px; margin-top:4px;">
             Platform-wide governance for courier agency tenants, KYC approvals, destination master tables, and subscription lifecycles.
         </p>
+    </div>
     <div style="display:flex; gap:10px; align-items:center;">
         <button type="button" class="btn btn-outlined" onclick="toggleAdminGuidance()" id="guidanceToggleBtn" style="font-size:13px;">
             <?= Icon::svg('sparkles', '', 16) ?> <span id="guidanceBtnLabel">Hide Guidance</span>
@@ -142,7 +143,7 @@ function toggleAdminGuidance() {
 </script>
 
 <!-- Metrics Overview Cards -->
-<div class="metrics-grid">
+<div class="metrics-grid" style="display:grid; grid-template-columns:repeat(4, minmax(0, 1fr)); gap:18px; width:100%; margin-bottom:26px;">
     <div class="metric-card">
         <div class="metric-label">Active Agency Portals</div>
         <div class="metric-value"><?= $activeTenants ?? 0 ?></div>
