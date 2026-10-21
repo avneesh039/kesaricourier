@@ -1104,43 +1104,43 @@ document.getElementById("trackingForm").addEventListener("submit", function(e) {
                         <p>Kesari Courier is redefining logistics aggregators in India with smarter, faster, and more
                             affordable shipping solutions built for growing businesses.</p>
                         <div class="why-choose-left1-1">
-                            <img src="https://shipdaak.com/public/frontend/asset/img/icon/1.png" alt="why-choose">
+                            <img src="/assets/images/icons/why-1.jpg" alt="Speed You Can Trust" class="custom-why-icon">
                             <h6><span>Speed You Can Trust –</span> From same-day to nationwide standard deliveries.</h6>
                         </div>
                         <div class="why-choose-left1-1">
-                            <img src="https://shipdaak.com/public/frontend/asset/img/icon/2.png" alt="why-choose">
+                            <img src="/assets/images/icons/why-2.jpg" alt="Lowest Shipping Rates" class="custom-why-icon">
                             <h6><span>Lowest Shipping Rates –</span> Save more with top courier partners.</h6>
                         </div>
                         <div class="why-choose-left1-1">
-                            <img src="https://shipdaak.com/public/frontend/asset/img/icon/3.png" alt="why-choose">
+                            <img src="/assets/images/icons/why-3.jpg" alt="Real-Time Tracking" class="custom-why-icon">
                             <h6><span>Real-Time Tracking –</span> Real-time shipment updates at every step.</h6>
                         </div>
                         <div class="why-choose-left1-1">
-                            <img src="https://shipdaak.com/public/frontend/asset/img/icon/4.png" alt="why-choose">
+                            <img src="/assets/images/icons/why-4.jpg" alt="Multiple Delivery" class="custom-why-icon">
                             <h6><span>Multiple Delivery –</span> Same-day, next-day & COD options.</h6>
                         </div>
 
                         <div id="conent_hide">
                             <div class="why-choose-left1-1">
-                                <img src="https://shipdaak.com/public/frontend/asset/img/icon/5.png" alt="why-choose">
+                                <img src="/assets/images/icons/why-5.jpg" alt="Easy Integration" class="custom-why-icon">
                                 <h6><span>Easy Integration –</span> Connect with Shopify, WooCommerce, Magento & more.
                                 </h6>
                             </div>
 
                             <div class="why-choose-left1-1">
-                                <img src="https://shipdaak.com/public/frontend/asset/img/icon/6.png" alt="why-choose">
+                                <img src="/assets/images/icons/why-6.jpg" alt="24/7 Support" class="custom-why-icon">
                                 <h6><span>24/7 Support –</span> Always-on assistance for smooth shipping.</h6>
                             </div>
                             <div class="why-choose-left1-1">
-                                <img src="https://shipdaak.com/public/frontend/asset/img/icon/7.png" alt="why-choose">
+                                <img src="/assets/images/icons/why-7.jpg" alt="Scalable Solutions" class="custom-why-icon">
                                 <h6><span>Scalable Solutions –</span> From startups to large enterprises.</h6>
                             </div>
                             <div class="why-choose-left1-1">
-                                <img src="https://shipdaak.com/public/frontend/asset/img/icon/8.png" alt="why-choose">
+                                <img src="/assets/images/icons/why-8.jpg" alt="Secure Packaging" class="custom-why-icon">
                                 <h6><span>Secure Packaging –</span> Safe, hygienic & damage-proof transit.</h6>
                             </div>
                             <div class="why-choose-left1-1">
-                                <img src="https://shipdaak.com/public/frontend/asset/img/icon/9.png" alt="why-choose">
+                                <img src="/assets/images/icons/why-9.jpg" alt="Hassle-Free Deliveries" class="custom-why-icon">
                                 <h6><span>Hassle-Free Deliveries –</span> Customer-first shipping experience.</h6>
                             </div>
                         </div>
