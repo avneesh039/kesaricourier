@@ -60,6 +60,16 @@ $router->get('/api/tariffs/calculate', function() {
 
 $router->get('/login', function() {
     if (Auth::check()) {
+        $tenant = TenantContext::getTenant();
+        $requestedTenantSlug = $_GET['tenant'] ?? null;
+        if ($requestedTenantSlug && $tenant && !Auth::isSuperAdmin()) {
+            if ($requestedTenantSlug !== ($tenant['slug'] ?? '') && $requestedTenantSlug !== ($tenant['agency_code'] ?? '')) {
+                // User is asking to log into a different tenant; log them out first so they can sign into the requested tenant
+                Auth::logout();
+                header("Location: /login?tenant=" . urlencode($requestedTenantSlug));
+                exit;
+            }
+        }
         header('Location: /');
         exit;
     }
@@ -431,13 +441,19 @@ $router->get('/', function() {
         return;
     }
 
-    $tenant = TenantContext::getTenant();
-
-    if ($tenant !== null && !Auth::isSuperAdmin()) {
-        (new DashboardController())->agencyDashboard();
-    } else {
+    if (Auth::isSuperAdmin()) {
         (new DashboardController())->adminDashboard();
+        return;
     }
+
+    $tenant = TenantContext::getTenant();
+    if ($tenant !== null) {
+        (new DashboardController())->agencyDashboard();
+        return;
+    }
+
+    // Authenticated user with no active tenant assigned
+    (new PublicController())->home();
 });
 
 

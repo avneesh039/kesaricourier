@@ -1,0 +1,4551 @@
+/* (max-width: 1024px) */
+@media screen and (max-width: 1024px) {
+    .wrapper .logo {
+        width: 150px;
+    }
+    .sub-nav{
+        padding: 8px 25px 8px 25px;
+    }
+    .nav .wrapper{
+        padding: 0px 10px;
+    }
+    .nav-login ul li .nav-login-btn{
+        padding: 6px 15px;
+        font-size: 13px;
+        margin-left: 5px;
+    }
+    .nav-links li a{
+        padding: 9px 10px;
+        font-size: 14px;
+    }
+    .nav .wrapper{
+        height: 55px;
+        line-height: 55px;
+    }
+    .domestic-courier-banner-txt h3,
+    .domestic-courier-banner-txt h1{
+        font-size: 28px;
+    }
+    .domestic-courier-banner-txt p{
+        font-size: 16px;
+        transform: translateY(115px);
+    }
+    .reliable-section-left h3{
+        font-size: 32px;
+        margin-bottom: 10px;
+    }
+    .reliable-section-left p{
+        font-size: 16px;
+        line-height: 26px;
+    }
+    .domestic-shipping-sec-txt h3{
+        font-size: 22px;
+        margin-bottom: 25px;
+    }
+    .domestic-shipping-sec-txt ul li{
+        font-size: 15px;
+    }
+    .domestic-shipping-sec-txt{
+        padding: 35px 35px;
+    }
+    .why-choose-domestic-right h3{
+        font-size: 24px;
+        margin-bottom: 12px;
+    }
+    .why-choose-domestic-right h6 {
+        font-size: 17px;
+        margin-bottom: 10px;
+        line-height: 24px;
+    }
+    .why-choose-domestic-left::after{
+        width: 345px;
+        height: 345px;
+        right: 0;
+        top: 25px;
+    }
+    .why-choose-domestic-left img {
+        width: 350px;
+    }
+    .benefits-domestic-shipping h3{
+        font-size: 28px;
+        margin-bottom: 25px;
+    }
+    .benefits-domestic-shipping-card h6 {
+        line-height: 24px;
+        font-size: 15px;
+    }
+    .affordable-domestic-right h3{
+        margin-bottom: 10px;
+        font-size: 24px;
+    }
+    .affordable-domestic-right h6 {
+        font-size: 16px;
+        margin-bottom: 10px;
+        line-height: 26px;
+    }
+    .affordable-domestic-left img {
+        width: 350px;
+    }
+    .affordable-domestic-left::after{
+        width: 345px;
+        height: 345px;
+        right: 0;
+        top: 25px;
+    }
+    .domestic-shipping-sec2-txt h3{
+        font-size: 20px;
+        margin-bottom: 8px;
+    }
+    .domestic-shipping-sec2-txt p{
+        font-size: 15px;
+    }
+    .domestic-shipping-sec2-txt1 h6{
+        font-size: 15px;
+        line-height: 22px;
+    }
+    .domestic-shipping-sec2-txt1 img {
+        width: 40px;
+        border-radius: 8px;
+        padding: 9px;
+        margin-right: 12px;
+    }
+    .faq-section-left h3{
+        font-size: 28px;
+    }
+    .banner-section-right h3,
+    .banner-section-right h1{
+        font-size: 40px;
+    }
+    .track-shipment-left h3,.track-shipment-left h1{
+        font-size: 30px;
+    }
+    .track-shipment-left .input-group{
+        padding: 10px;
+        border-radius: 14px;
+    }
+    .track-shipment-left .input-group .btn{
+        border-radius: 10px !important;
+    }
+    .track-shipment-bg{
+        padding: 35px 35px 10px;
+    }
+    .building-smarter-left h3{
+        font-size: 40px;
+    }
+    .building-smarter .main{
+        width: 370px;
+        height: 370px;
+    }
+    .building-smarter .ripple{
+        width: 150px;
+        height: 150px;
+    }
+    .experience-sec-left h3{
+        font-size: 30px;
+    }
+    .experience-sec-left p{
+        font-size: 16px;
+    }
+    .experience-sec-left1 img{
+        width: 60px;
+        height: 60px;
+        padding: 12px;
+    }
+    .our-journey .our-journey-left h3{
+        font-size: 30px;
+    }
+    .our-journey-left1-1 h4{
+        font-size: 24px;
+    }
+    .our-journey .our-journey-left p{
+        margin-bottom: 20px;
+    }
+    .our-journey {
+        padding: 20px 0;
+    }
+    .our-journey-left1{
+        padding-right: 20px;
+        gap: 15px;
+    }
+    .why-choose-left1 h3{
+        font-size: 20px;
+        line-height: 28px;
+    }
+    .why-choose-left1 p{
+        font-size: 15px;
+    }
+    .why-choose-left1-1 h6{
+        line-height: 22px;
+        font-size: 15px;
+    }
+    .why-choose-left1-1 img{
+        width: 40px;
+        padding: 8px;
+    }
+    .trusted-section-left h3, 
+    .trusted-section-left h4{
+        font-size: 34px;
+    }
+    .trusted-section-left p{
+        font-size: 17px;
+        margin-bottom: 40px;
+        margin-top: 15px;
+    }
+    .customer-stories .customer-stories-left h3{
+        font-size: 30px;
+    }
+    .customer-stories-right-card .head h4{
+        font-size: 17px;
+    }
+    .customer-stories-right-card .head h6{
+        font-size: 15px;
+    }
+    .customer-stories-right-card .head{
+        margin-bottom: 15px;
+    }
+    .customer-stories-right-card p{
+        font-size: 15px;
+    }
+    .customer-stories-right-card .head img{
+        width: 55px !important;
+    }
+    .your-logistics-left h4{
+        font-size: 30px;
+    }
+    .text2{
+        top: 25px;
+    }
+    .your-logistics-right{
+        width: 625px;
+        right: 2%;
+    }
+    .your-logistics{
+        padding-bottom: 40px;
+        margin-top: 20px;
+    }
+    .our-services::before{
+        height: 300px;
+        width: 900px;
+        left: 5%;
+        top: 15px;
+    }
+    .our-services{
+        padding-top: 110px;
+        padding-bottom: 20px;
+    }
+    .our-services-card h5{
+        padding:10px;
+        font-size: 15px;
+    }
+    .our-services .wrapper{
+        padding: 35px 0 0;
+    }
+    .our-growth-form-txt h3{
+        font-size: 22px;
+    }
+    .our-growth-form-txt{
+        left: 0;
+    }
+    .our-growth-form-txt p{
+        font-size: 16px;
+        line-height: 22px;
+    }
+    .our-growth-form1{
+        padding: 30px 20px 30px 25px;
+    }
+    .banner-section{
+        margin-bottom: 20px;
+    }
+    .track-shipment{
+        padding: 20px 0;
+    }
+    .experience-sec{
+        padding-bottom: 20px;
+    }
+    .why-choose{
+        margin-top: 20px;
+        padding-top: 40px;
+        margin-bottom: 20px;
+    }
+    .trusted-section{
+        margin-top: 20px;
+        padding-top: 50px;
+        padding-bottom: 50px;
+    }
+    .customer-stories{
+        margin-bottom: 20px;
+    }
+    .our-growth-form {
+        padding: 20px 0;
+    }
+    .common-banner-left h1,
+    .common-banner-left h3{
+        font-size: 48px;
+        margin-bottom: 3px;
+    }
+    /* .common-banner-left h3 span{
+        font-size: 56px;
+    } */
+    .who-we-are-right h3,.who-we-are-right h1{
+        font-size: 24px;
+    }
+    .who-we-are-right p{
+        font-size: 16px;
+    }
+    .who-we-are-right1{
+        transform: translateX(-50px);
+    }
+    .vision-mission-card img {
+        width: 50px;
+        margin-bottom: 8px;
+    }
+    .vision-mission-card h4{
+        font-size: 26px;
+    }
+    .vision-mission-card p{
+        font-size: 15px;
+    }
+    .vision-mission-card{
+        padding: 15px 0 15px 25px;
+    }
+    .our-story .our-story-left1 h4,
+    .our-founder-right h4{
+        font-size: 28px;
+    }
+    .our-story .our-story-left1 p,
+    .our-founder-right p{
+        line-height: 26px;
+        font-size: 15px;
+    }
+    .our-story .our-story-left1{
+        padding-right: 0px;
+    }
+    .about-why-choose h3{
+        font-size: 32px;
+        margin-bottom: 35px;
+    }
+    .about-why-choose-card-left p{
+        font-size: 15px;
+    }
+    .about-why-choose-card-right .triangle{
+        width: 115px;
+        height: 140px;
+    }
+    .about-why-choose-card-right img{
+        width: 85px;
+        height: 85px;
+        top: 18%;
+    }
+    .about-why-choose1{
+        gap: 40px 25px;
+    }
+    .our-team-right h4{
+        font-size: 22px;
+        margin-bottom: 5px;
+    }
+    .our-team-right p{
+        line-height: 24px;
+        font-size: 15px;
+    }
+    .our-team-right{
+        padding: 22px;
+        border-radius: 20px;
+    }
+    .our-team-left {
+        margin: 0 20px;
+    }
+    .service-banner-left {
+        padding-top: 20px;
+        padding-right: 60px;
+    }
+    .service-banner-left h3,
+    .service-banner-left h1{
+        font-size: 32px;
+        margin-bottom: 15px;
+    }
+    .service-banner-left-btn {
+        padding-top: 10px;
+    }
+    .services-section1{
+        margin-bottom: 15px;
+    }
+    .services-section2-left h3{
+        font-size: 24px;
+        line-height: 32px;
+        margin-bottom: 5px;
+    }
+    .services-section2-right img, .services-section3-right img {
+        width: 100%;
+    }
+    .services-section1-left h3{
+        font-size: 22px;
+    }
+    .services-section1-card{
+        padding: 0px 15px 0 18px;
+    }
+    .services-section2-right::after, .services-section3-right::after{
+        width: 385px;
+        height: 365px;
+    }
+    .services-section2-left {
+        padding-right: 30px;
+    }
+    .services-section2-left p{
+        margin-bottom: 6px;
+        line-height: 26px;
+    }
+    .services-section2 {
+        padding: 20px 0;
+    }
+    .services-section3 {
+        padding: 20px 0;
+    }
+    .services-section3-left h3{
+        font-size: 24px;
+        margin-bottom: 10px;
+    }
+    .services-section3-left ul li:not(:last-child) {
+        margin-bottom: 6px;
+    }
+    .services-black-sec{
+        padding: 20px 0;
+    }
+    .services-black-sec-bg h3{
+        font-size: 26px;
+    }
+    .services-black-sec-left h4{
+        margin-bottom: 10px;
+        font-size: 22px;
+    }
+    .services-black-sec-bg p{
+        margin-bottom: 15px;
+    }
+    .services-black-sec-bg{
+        padding: 30px 30px 15px 30px;
+    }
+    .services-section4{
+        margin-top: 20px;
+        margin-bottom: 20px;
+    }
+    .services-section4-right .heading h3{
+        font-size: 24px;
+    }
+    .services-section4-right .heading{
+        padding-left: 10px;
+        margin-bottom: 10px;
+    }
+    .services-section4-right p{
+        font-size: 15px;
+        margin-bottom: 12px;
+    }
+    .services-section4-right{
+        padding: 25px;
+    }
+    .services-section4-right .heading1 img {
+        width: 28px;
+        margin-right: 12px;
+    }
+    .services-section4-right .heading1 h6{
+        font-size: 15px;
+        line-height: 20px;
+        margin-bottom: 5px;
+    }
+    .services-section4{
+        padding-top: 35px;
+        padding-bottom: 30px;
+    }
+    .services-section2-left h3{
+        font-size: 22px;
+        line-height: 30px;
+    }
+    .domestic-shipping-sec2{
+        padding-top: 40px;
+        margin-bottom: 20px;
+        margin-top: 20px;
+    }
+    .have-benefit{
+        padding: 20px 0;
+    }
+    .have-benefit h3{
+        font-size: 26px;
+    }
+    .have-benefit p {
+        margin-bottom: 25px;
+    }
+    .have-benefit-card h4{
+        font-size: 18px;
+    }
+    .have-benefit-card p{
+        font-size: 15px;
+    }
+    .location-section {
+        padding: 20px 0;
+    }
+    .location-section .location-section h3{
+        font-size: 24px;
+    }
+    .location-section .location-section p{
+        font-size: 17px;
+        margin-bottom: 10px;
+    }
+    .location-section .location-section ul{
+        margin-top: 20px;
+        grid-template-columns: auto auto auto auto;
+    }
+    .location-section .location-section ul li{
+        font-size: 15px;
+    }
+    .location-section .location-section{
+        padding: 30px;
+    }
+    .faq-section-left p{
+        margin-bottom: 5px;
+    }
+    .faq-section {
+        padding: 20px 0;
+    }
+    .domestic-shipping-sec2::after{
+        height: 550px;
+        width: 550px;
+    }
+    .contact-form{
+        padding: 45px 0 30px;
+    }
+    .contact-form-map {
+        padding: 20px 0;
+    }
+    .contact-form-left h3,.contact-form-left h1{
+        font-size: 24px;
+    }
+    .why-shipdaak-pg h3,.why-shipdaak-pg h1{
+        font-size: 28px;
+    }
+    .why-shipdaak-pg p{
+        font-size: 17px;
+    }
+    .why-shipdaak-pg-card h5{
+        margin: 0 15px;
+        font-size: 14px;
+        bottom: 20px;
+    }
+    .our-founder,
+    .our-story {
+        padding: 20px 0;
+    }
+    .why-shipdaak-pg {
+        padding: 20px 0;
+    }
+    .reliable-section {
+        padding-top: 20px;
+        padding-bottom: 20px;
+    }
+    .domestic-shipping-sec {
+        padding: 20px 0;
+    }
+    .why-choose-domestic {
+        padding: 20px 0;
+    }
+    .benefits-domestic-shipping {
+        padding: 20px 0;
+    }
+    .benefits-domestic-shipping .row {
+        gap: 20px 0;
+    }
+    .affordable-domestic {
+        padding: 20px 0;
+    }
+    .business-enquiry-right h4,
+    .business-enquiry-right h1{
+        font-size: 28px;
+        margin-bottom: 5px;
+    }
+    .business-enquiry-right p{
+        font-size: 16px;
+    }
+    .business-enquiry-left h4{
+        font-size: 25px;
+        margin-bottom: 2px;
+    }
+    .business-enquiry-left p{
+        font-size: 15px;
+        line-height: 22px;
+    }
+    .trusted-section-left h3{
+        margin-bottom: 0px;
+    }
+    .banner-section-right1 #demo{
+        height: 270px;
+    }
+    .pricing-section-card-head h3{
+        font-size: 24px;
+        margin-bottom: 1px;
+    }
+    .pricing-section-card-head h6{
+        font-size: 17px;
+    }
+    .pricing-section-card-head h5{
+        font-size: 18px;
+    }
+    .pricing-section-card-txt p{
+        font-size: 15px;
+    }
+    .pricing-section-card-txt ul li {
+        font-size: 14px;
+    }
+    .pricing-section-card-txt ul img {
+        width: 14px;
+        margin-right: 5px;
+    }
+    .pricing-section-card-txt{
+        height: 345px;
+    }
+    
+}
+/* end (max-width: 1024px) */
+
+/* (max-width: 991px) */
+@media screen and (max-width: 991px) {
+    .sub-nav .sub-nav-left1 ul li img {
+        width: 20px;
+        height: 20px;
+        margin-right: 6px;
+    }
+    .sub-nav .sub-nav-left .sub-nav-left1 li{
+        font-size: 12px;
+    }
+    .sub-nav .sub-nav-right ul li a{
+        font-size: 12px;
+    }
+    .wrapper .logo {
+        width: 135px;
+        position: relative;
+        z-index: 1;
+    }
+    .nav-links li a {
+        padding: 9px 9px;
+        font-size: 14px;
+    }
+    .nav-login ul li .nav-login-btn{
+        font-size: 12px;
+    }
+    .domestic-courier-banner-txt h3,
+    .domestic-courier-banner-txt h1 {
+        font-size: 26px;
+    }
+    .domestic-courier-banner-txt p {
+        font-size: 16px;
+        transform: translateY(100px);
+    }
+    .reliable-section-right {
+        padding: 0 0px;
+    }
+    .reliable-section-left h3 {
+        font-size: 28px;
+        margin-bottom: 8px;
+    }
+    .reliable-section-left p {
+        font-size: 15px;
+        line-height: 24px;
+        margin-bottom: 0;
+    }
+    .reliable-section{
+        padding-bottom: 20px;
+    }
+    .domestic-shipping-sec-txt h3 {
+        font-size: 20px;
+        margin-bottom: 20px;
+    }
+    .domestic-shipping-sec-txt ul li {
+        font-size: 15px;
+    }
+    .domestic-shipping-sec-txt ul{
+        grid-template-columns: auto;
+    }
+    .domestic-shipping-sec-txt ul li img {
+        width: 25px;
+        height: 25px;
+        margin-right: 5px;
+    }
+    .why-choose-domestic-left img {
+        width: 260px;
+    }
+    .why-choose-domestic-left::after {
+        width: 260px;
+        height: 250px;
+    }
+    .why-choose-domestic-right h3{
+        font-size: 20px;
+        margin-bottom: 10px;
+    }
+    .why-choose-domestic-right h6 {
+        font-size: 15px;
+        margin-bottom: 10px;
+        line-height: 22px;
+    }
+    .why-choose-domestic-right p{
+        font-size: 15px;
+    }
+    .why-choose-domestic-right ul li{
+        margin-bottom: 8px;
+        font-size: 15px;
+    }
+    .why-choose-domestic{
+        padding-bottom: 20px;
+    }
+    .benefits-domestic-shipping h3 {
+        font-size: 26px;
+        margin-bottom: 22px;
+    }
+    .benefits-domestic-shipping-card{
+        padding: 30px 30px 25px;
+    }
+    .benefits-domestic-shipping{
+        padding-bottom: 15px;
+    }
+    .affordable-domestic-left img {
+        width: 260px;
+    }
+    .affordable-domestic-left::after {
+        width: 260px;
+        height: 250px;
+    }
+    .affordable-domestic-right h3{
+        font-size: 20px;
+    }
+    .affordable-domestic-right h6 {
+        font-size: 15px;
+        margin-bottom: 8px;
+        line-height: 24px;
+    }
+    .affordable-domestic-right ul li{
+        font-size: 15px;
+    }
+    .affordable-domestic{
+        padding-bottom: 30px;
+    }
+    .affordable-domestic-right1{
+        padding-right: 0px;
+    }
+    .domestic-shipping-sec2-img1{
+        display: none;
+    }
+    .domestic-shipping-sec2-txt{
+        z-index: 1;
+        position: relative;
+        padding: 35px;
+    }
+    .domestic-shipping-sec2-txt h3 {
+        font-size: 24px;
+    }
+    .domestic-shipping-sec2-txt p {
+        font-size: 16px;
+    }
+    .domestic-shipping-sec2-txt1 h6 {
+        font-size: 16px;
+        line-height: 24px;
+    }
+    .faq-section {
+        padding-top: 40px;
+        padding-bottom: 30px;
+    }
+    .faq-section-left h3 {
+        font-size: 26px;
+    }
+    .faq-section-left p{
+        font-size: 15px;
+    }
+    .faq-section-left .question{
+        font-size: 15px;
+        padding: 10px 50px 10px 12px;
+    }
+    .faq-section-left .answer{
+        padding: 0 15px 15px;
+        font-size: 15px;
+    }
+    .faq-section-left .question::after{
+        font-size: 20px;
+    }
+    .faq-section-right{
+        width: 250px;
+    }
+    .footer-section-1{
+        margin-bottom: 30px;
+    }
+    .footer-section{
+        padding-top: 50px;
+    }
+    .footer-section-2 ul li a{
+        font-size: 15px;
+    }
+    .footer-section-logo img {
+        width: 200px;
+        margin-bottom: 25px;
+    }
+    .banner-section-right h3,
+    .banner-section-right h1 {
+        font-size: 30px;
+        margin-bottom: 5px;
+    }
+    .banner-section-right p{
+        font-size: 17px;
+    }
+    .banner-section-right-btn {
+        padding-top: 5px;
+    }
+    .track-shipment-left h3,.track-shipment-left h1 {
+        font-size: 26px;
+        text-align: center;
+        margin-bottom: 25px;
+    }
+    .track-shipment-right{
+        width: 500px;
+        margin: 30px auto 0;
+    }
+    .track-shipment{
+        padding-bottom: 30px;
+    }
+    .building-smarter-left h3 {
+        font-size: 34px;
+        margin-bottom: 10px;
+    }
+    .building-smarter-left p{
+        margin-bottom: 20px;
+    }
+    .building-smarter-left1{
+        text-align: center;
+    }
+    .experience-sec-right{
+        display: none;
+    }
+    .our-journey{
+        padding-top: 10px;
+    }
+    .our-journey .our-journey-left h3 {
+        font-size: 28px;
+    }
+    .our-journey-right{
+        margin: 25px auto 0;
+        width: 450px;
+    }
+    .why-choose-left1 h3 {
+        font-size: 26px;
+        line-height: 32px;
+    }
+    .why-choose-left1 p {
+        font-size: 17px;
+    }
+    .why-choose-left1-1 h6{
+        font-size: 17px;
+    }
+    .why-choose-left1-1{
+        align-items: center;
+    }
+    .why-choose-img{
+        display: none;
+    }
+    .why-choose{
+        padding-bottom: 40px;
+    }
+    .trusted-section-left p {
+        font-size: 17px;
+        margin-bottom: 25px;
+        margin-top: 15px;
+    }
+    .customer-stories .customer-stories-left1{
+        justify-content: left;
+        padding-left: 15px;
+    }
+    .customer-stories .customer-stories-left h3 {
+        font-size: 32px;
+    }
+    .customer-stories-right-card{
+        margin: 20px 23px 20px 0;
+    }
+    .customer-stories{
+        padding: 30px 0 60px;
+    }
+    .your-logistics-left h3{
+        font-size: 22px;
+        margin-top: 0px;
+    }
+    .your-logistics-left h4 {
+        font-size: 26px;
+    }
+    .your-logistics-right{
+        width: 525px;
+    }
+    .your-logistics-left1{
+        padding-top: 40px;
+    }
+    .your-logistics-left1 img {
+        width: 140px;
+    }
+    .building-smarter .main {
+        width: 425px;
+        height: 425px;
+    }
+    .our-services::before{
+        height: 200px;
+        width: 675px;
+        left: 15%;
+    }
+    .our-services{
+        padding-top: 90px;
+    }
+    .our-services h2{
+        font-size: 28px;
+    }
+    .our-services h3{
+        font-size: 24px;
+    }
+    .our-services-card h5{
+        font-size: 14px;
+    }
+    .trusted-section{
+        padding-top: 40px;
+    }
+    .our-growth-form-img img{
+        display: none;
+    }
+    .our-growth-form-txt{
+        position: unset;
+        margin-bottom: 20px;
+    }
+    .our-growth-form-txt h3 {
+        font-size: 24px;
+    }
+    .our-growth-form-txt p {
+        font-size: 18px;
+    }
+    .common-banner-left h1,
+    .common-banner-left h3{
+        font-size: 44px;
+    }
+    /* .common-banner-left h3 span {
+        font-size: 54px;
+    } */
+    .who-we-are-right1 {
+        transform: translateX(35px);
+    }
+    .who-we-are {
+        padding: 30px 0 20px;
+    }
+    .vision-mission {
+        padding: 20px 0;
+    }
+    .vision-mission-card1-1 .vision-mission-card {
+        margin-left: 50px;
+    }
+    .vision-mission-card1{
+        margin-bottom: 30px;
+    }
+    .vision-mission-card1::before{
+        top: 20px;
+        font-size: 160px;
+        line-height: 140px;
+    }
+    .vision-mission-card1-1::before{
+        top: 20px;
+        left: -10px;
+        font-size: 160px;
+        line-height: 150px;
+    }
+    .our-story-right{
+        margin:0;
+    }
+    .our-story .our-story-left1 h4, .our-founder-right h4 {
+        font-size: 24px;
+        margin-bottom: 5px;
+    }
+    .our-founder-left{
+        margin:0;
+    }
+    .our-story,.our-founder{
+        padding: 20px 0;
+    }
+    .about-why-choose h3{
+        font-size: 28px;
+        margin-bottom: 30px;
+    }
+    .about-why-choose1{
+        grid-template-columns: auto auto;
+    }
+    .about-why-choose {
+        padding: 20px 0;
+    }
+    .about-why-choose-card-right .triangle{
+        width: 105px;
+    }
+    .our-team-left{
+        display: none;
+    }
+    .our-team-right h4{
+        font-size: 24px;
+        margin-bottom: 8px;
+    }
+    .our-team-right p {
+        line-height: 26px;
+        font-size: 16px;
+    }
+    .our-team {
+        padding: 20px 0;
+    }
+    .vision-mission-card1-1{
+        margin-bottom: 0px;
+    }
+    .vision-mission-card{
+        box-shadow: rgba(0, 0, 0, 0.24) -10px 10px 8px -5px;
+    }
+    .service-banner{
+        padding-top: 40px;
+    }
+    .service-banner-left h3,
+    .service-banner-left h1{
+        font-size: 28px;
+    }
+    .service-banner-left{
+        padding-top: 20px;
+        padding-right: 20px;
+    }
+    .service-banner-left::before{
+        width: 150px;
+        height: 50px;
+        top: 60px;
+    }
+    .service-banner-left p{
+        font-size: 16px;
+    }
+    .services-section1{
+        margin-top: 30px;
+    }
+    .services-section1-left1{
+        padding: 20px 0 0;
+        box-shadow:none;
+    }
+    .services-section1-left{
+        display: flex;
+    }
+    .services-section1-left h3 {
+        font-size: 28px;
+        margin-right: 8px;
+    }
+    .services-section1-left1{
+        justify-content: center;
+    }
+    .services-section2-right1 {
+        display: none;
+    }
+    .services-section3-right{
+        margin: 0 100px 45px;
+    }
+    .services-section3-right::after{
+        width: 480px;
+        height: 480px;
+        right: -20px;
+    }
+    .services-section2 {
+        padding: 15px 0;
+    }
+    .services-section3-left h3{
+        font-size: 26px;
+    }
+    .services-section3-left p{
+        margin-bottom: 0;
+    }
+    .services-black-sec-bg h3 {
+        font-size: 24px;
+        margin-bottom: 12px;
+    }
+    .services-black-sec-left h4{
+        font-size: 20px;
+    }
+    .services-black-sec-left ul{
+        gap: 10px;
+    }
+    .services-black-sec-right1{
+        display: none;
+    }
+    .services-section4-right .heading h3 {
+        font-size: 28px;
+    }
+    .services-section4-right p{
+        font-size: 16px;
+    }
+    .services-section4-right .heading1 h6{
+        font-size: 18px;
+        line-height: 24px;
+        margin-bottom: 8px;
+    }
+    .services-section2-left h3 {
+        font-size: 26px;
+        line-height: 34px;
+    }
+    .services-section2-left p{
+        margin-bottom: 10px;
+    }
+    .domestic-shipping-sec2{
+        margin-top: 15px;
+        margin-bottom: 15px;
+    }
+    .domestic-shipping-sec2-txt1 h6 {
+        font-size: 18px;
+    }
+    .have-benefit {
+        padding: 15px 0;
+    }
+    .have-benefit-card p{
+        margin-bottom: 0px;
+    }
+    .location-section .location-section h3 {
+        font-size: 22px;
+    }
+    .location-section .location-section p {
+        font-size: 15px;
+    }
+    .location-section .location-section ul{
+        grid-template-columns: auto auto auto;
+    }
+    .location-section .location-section{
+        border-radius: 45px;
+    }
+    .contact-form-right-img{
+        display: none;
+    }
+    .contact-form-right1 {
+        padding-left: 0;
+        padding-top: 30px;
+    }
+    .contact-form {
+        padding: 45px 0 25px;
+    }
+    .contact-form-left h3,.contact-form-left h1 {
+        font-size: 22px;
+    }
+    .contact-form-left p{
+        font-size: 17px;
+    }
+    .contact-form-map {
+        padding: 20px 0 35px;
+    }
+    .contact-form-card{
+        padding: 25px 15px;
+    }
+    .why-shipdaak-pg h3,.why-shipdaak-pg h1 {
+        font-size: 26px;
+    }
+    .why-shipdaak-pg p {
+        font-size: 16px;
+        margin-bottom: 20px;
+    }
+    .why-shipdaak-pg-card h5{
+        margin: 0 10px;
+        font-size: 13px;
+        bottom: 15px;
+        padding: 8px;
+    }
+    .domestic-shipping-sec {
+        padding: 15px 0;
+    }
+    .why-choose-domestic {
+        padding: 15px 0;
+    }
+    .benefits-domestic-shipping {
+        padding: 15px 0;
+    }
+    .affordable-domestic {
+        padding: 15px 0;
+    }
+    .business-enquiry-left{
+        padding: 40px 20px 25px;
+    }
+    .cta-section-card h4{
+        font-size: 18px;
+    }
+    .cta-section-card .btn{
+        font-size: 14px;
+    }
+    .cta-section-card{
+        padding: 20px;
+    }
+    .trusted-section-left h3, .trusted-section-left h4 {
+        font-size: 32px;
+    }
+    .banner-section-right1{
+        padding-left: 0px;
+    }
+    .banner-section-right1 #demo {
+        height: 230px;
+    }
+    .pricing-section-card-txt{
+        margin-bottom: 30px;
+    }
+    .pricing-section1 h3{
+        font-size: 26px;
+    }
+    .pricing-section1-card{
+        height: 180px;
+    }
+    .pricing-section1-card h4{
+        font-size: 15px;
+        margin-bottom: 6px;
+    }
+    .pricing-section1-card p{
+        font-size: 15px;
+    }
+    .pricing-section .col-md-6:last-child .pricing-section-card-txt{
+        margin-bottom: 0;
+    }
+    .pricing-section1 .col-md-6:last-child .pricing-section1-card{
+        margin-bottom: 0;
+    }
+    .rate-calculator-img{
+        display: none;
+    }
+    .rate-calculator {
+        padding: 40px 0 10px;
+    }
+    .rate-calculator h3{
+        font-size: 22px;
+    }
+    .rate-calculator header{
+        margin-bottom: 22px;
+    }
+    #calculatorModal .modal-body-img, 
+    #internationalModal .modal-body-img{
+        display: none;
+    }
+}
+/* end (max-width: 991px) */
+
+/* (max-width: 970px) */
+@media screen and (max-width: 970px) {
+    .wrapper .btn{
+        padding-right: 0;
+    }
+    .wrapper .btn.close-btn{
+        right: 15px;
+    }
+    .nav-links li a{
+        text-align: left;
+    }
+    .nav-login ul{
+        display: block;
+    }
+    .nav-login ul li .nav-login-btn {
+        font-size: 16px;
+        line-height: 30px;
+        text-align: center;
+        margin-top: 15px;
+    }
+    .nav-links li a{
+        font-size: 16px;
+        padding: 5px 9px;
+    }
+}
+/* end (max-width: 970px) */
+
+/* (max-width: 768px) */
+@media screen and (max-width: 768px) {
+    .sub-nav {
+        display: none;
+    }
+    .nav .wrapper {
+        height: 60px;
+        line-height: 60px;
+    }
+    .wrapper .logo {
+        width: 200px;
+    }
+    .wrapper .btn{
+        font-size: 28px;
+    }
+    .domestic-courier-banner-txt h3,
+    .domestic-courier-banner-txt h1 {
+        font-size: 32px;
+    }
+    .domestic-courier-banner-txt{
+        display: none;
+    }
+    .reliable-section-left h3 {
+        font-size: 26px;
+        margin-bottom: 10px;
+    }
+    .domestic-shipping-sec-txt{
+        margin-bottom: 30px;
+    }
+    .benefits-domestic-shipping h3 {
+        font-size: 24px;
+        margin-bottom: 20px;
+    }
+    .domestic-shipping-sec2::after{
+        top: -190px;
+        right: -20%;
+    }
+    .banner-section{
+        padding-top: 35px;
+        padding-bottom: 25px;
+    }
+    .banner-section-right h3,
+    .banner-section-right h1 {
+        font-size: 28px;
+    }
+    .banner-section-right p {
+        font-size: 16px;
+    }
+    .track-shipment-left h3,.track-shipment-left h1 {
+        font-size: 24px;
+        margin-bottom: 22px;
+    }
+    .building-smarter-left h3 {
+        font-size: 30px;
+        margin-bottom: 6px;
+    }
+    .building-smarter-left p {
+        font-size: 17px;
+    }
+    .building-smarter-left1{
+        padding-bottom: 20px;
+    }
+    .experience-sec-left h3 {
+        font-size: 28px;
+        line-height: 36px;
+    }
+    .our-journey .our-journey-left h3 {
+        font-size: 26px;
+    }
+    .our-journey-left1{
+        gap: 20px;
+    }
+    .our-journey-left1-1 h4 {
+        font-size: 28px;
+    }
+    .your-logistics-left h3{
+        font-size: 20px;
+    }
+    .your-logistics-left h4 {
+        font-size: 24px;
+    }
+    .your-logistics-right {
+        width: 450px;
+    }
+    .your-logistics-left1 {
+        padding-top: 30px;
+        gap: 10px;
+    }
+    .your-logistics{
+        margin-bottom: 80px;
+    }
+    .our-services::before {
+        height: 160px;
+        width: 586px;
+        left: 10%;
+    }
+    .our-services {
+        padding-top: 70px;
+    }
+    .our-services h2 {
+        font-size: 26px;
+    }
+    .our-services h3 {
+        font-size: 22px;
+    }
+    .trusted-section-left h3, .trusted-section-left h4 {
+        font-size: 28px;
+        line-height: 26px;
+    }
+    .trusted-section-left p{
+        margin-top: 25px;
+        font-size: 16px;
+    }
+    .trusted-section-left{
+        margin-bottom: 15px;
+    }
+    .customer-stories .customer-stories-left h3{
+        font-size: 28px;
+    }
+    .nav-links li .drop-menu li a{
+        font-size: 14px;
+        line-height: 26px;
+    }
+    .nav-links .drop-menu{
+        padding-left: 10px;
+    }
+    .common-banner-left h1,
+    .common-banner-left h3 {
+        font-size: 42px;
+        margin-bottom: 0px;
+    }
+    /* .common-banner-left h3 span {
+        font-size: 52px;
+    } */
+    .who-we-are-right1 {
+        transform: translateX(-5px);
+    }
+    .who-we-are-right{
+        padding: 20px;
+    }
+    .who-we-are-right h3,.who-we-are-right h1 {
+        font-size: 22px;
+        margin-bottom: 5px;
+    }
+    .who-we-are-right p {
+        font-size: 15px;
+    }
+    .vision-mission-card h4 {
+        font-size: 24px;
+    }
+    .vision-mission-card img {
+        width: 45px;
+        margin-bottom: 6px;
+    }
+    .our-story-right{
+        padding: 25px;
+    }
+    .our-story .our-story-left1 p, .our-founder-right p{
+        margin-bottom: 0;
+    }
+    .our-story .our-story-left1 h4, .our-founder-right h4{
+        font-size: 22px;
+    }
+    .about-why-choose h3 {
+        font-size: 26px;
+        margin-bottom: 28px;
+    }
+    .our-team-right h4 {
+        font-size: 22px;
+        margin-bottom: 6px;
+    }
+    .service-banner-left h3,
+    .service-banner-left h1 {
+        font-size: 26px;
+        margin-bottom: 10px;
+    }
+    .service-banner-left::before {
+        width: 130px;
+        height: 45px;
+    }
+    .service-banner-left-btn {
+        padding-top: 5px;
+    }
+    .services-section1-left1{
+        padding: 25px 0 0;
+    }
+    .services-section1-card {
+        padding: 0px 20px 0 25px;
+    }
+    .services-section1-right .wrapper{
+        padding: 25px 0 30px;
+    }
+    .services-section1-left h3{
+        font-size: 26px;
+    }
+    .services-section2-left h3 {
+        font-size: 24px;
+        line-height: 32px;
+    }
+    .services-section2-left {
+        padding-right: 0;
+    }
+    .services-section3-right::after {
+        width: 380px;
+        height: 380px;
+    }
+    .services-section3-left h3 {
+        font-size: 24px;
+    }
+    .services-section3 {
+        padding: 15px 0;
+    }
+    .services-black-sec {
+        padding: 15px 0;
+    }
+    .services-black-sec-bg h3 {
+        font-size: 22px;
+        margin-bottom: 10px;
+    }
+    .services-black-sec-bg p{
+        font-size: 15px;
+        margin-bottom: 10px;
+    }
+    .services-black-sec-left ul li{
+        font-size: 15px;
+    }
+    .services-section4-right .heading h3 {
+        font-size: 26px;
+    }
+    .services-section4-right .heading1 h6{
+        font-size: 17px;
+    }
+    .services-section4 {
+        margin-top: 15px;
+        margin-bottom: 15px;
+    }
+    .domestic-shipping-sec2-txt1 h6 {
+        font-size: 17px;
+        line-height: 22px;
+    }
+    .domestic-shipping-sec2-txt1:not(:last-child) {
+        margin-bottom: 18px;
+    }
+    .have-benefit h3 {
+        font-size: 24px;
+    }
+    .have-benefit-card h4 {
+        font-size: 17px;
+    }
+    .location-section .location-section h3 {
+        font-size: 20px;
+    }
+    .location-section .location-section ul li {
+        font-size: 14px;
+    }
+    .location-section .location-section ul li::before{
+        width: 18px;
+        height: 18px;
+        margin-right: 5px;
+    }
+    .location-section {
+        padding: 15px 0;
+    }
+    .our-growth-form {
+        padding: 15px 0;
+    }
+    .why-shipdaak-pg h3,.why-shipdaak-pg h1 {
+        font-size: 24px;
+    }
+    .why-shipdaak-pg p{
+        font-size: 15px;
+    }
+    .mobile-menu{
+        padding-left: 0;
+        display: block;
+    }
+    .mobile-menu li{
+        line-height: 1.5;
+    }
+    .business-enquiry-right h4,
+    .business-enquiry-right h1{
+        font-size: 26px;
+    }
+    .business-enquiry-right p {
+        font-size: 15px;
+    }
+    .business-enquiry-right {
+        padding: 0 5px;
+    }
+    .business-enquiry-left1 a{
+        font-size: 15px;
+    }
+    .trusted-section-right {
+        margin-top: 20px;
+    }
+    .trusted-section-right .swiper-slide img {
+        width: 130px;
+    }
+    .vision-mission-card1::before{
+        left: -30px;
+    }
+    .banner-section-right1 #demo {
+        height: 185px;
+    }
+    .pricing-section-card-head h3 {
+        font-size: 22px;
+        margin-bottom: 2px;
+    }
+    .pricing-section-card-head h6 {
+        font-size: 16px;
+    }
+    .pricing-section-card-head h5 {
+        font-size: 17px;
+    }
+    .pricing-section-card-txt {
+        height: 330px;
+    }
+    .pricing-section1 h3 {
+        font-size: 24px;
+        margin-bottom: 20px;
+    }
+    .rate-calculator label{
+        font-size: 15px;
+    }
+    .rate-calculator {
+        padding: 30px 0 0px;
+    }
+    .modal-body-table .btn{
+        font-size: 13px;
+    }
+}
+/* end (max-width: 768px) */
+
+/* (max-width: 767px) */
+@media screen and (max-width: 767px) {
+    .reliable-section-right{
+        display: none;
+    }
+    .reliable-section-left h3{
+        font-size: 30px;
+    }
+    .reliable-section-left p {
+        font-size: 16px;
+        line-height: 26px;
+    }
+    .domestic-shipping-sec-txt {
+        padding: 25px 25px;
+    }
+    .domestic-shipping-sec-txt h3 {
+        font-size: 22px;
+        margin-bottom: 15px;
+    }
+    .domestic-shipping-sec-txt ul li {
+        font-size: 16px;
+    }
+    .domestic-shipping-sec-txt ul{
+        gap: 15px 0;
+    }
+    .why-choose-domestic-left::after {
+        width: 255px;
+        height: 250px;
+        right: -20px;
+    }
+    .why-choose-domestic-left1{
+        justify-content: center;
+        padding-bottom: 40px;
+    }
+    .why-choose-domestic-right h3 {
+        font-size: 24px;
+        margin-bottom: 12px;
+    }
+    .why-choose-domestic-right h6 {
+        font-size: 16px;
+        line-height: 26px;
+    }
+    .why-choose-domestic-right p {
+        font-size: 16px;
+    }
+    .why-choose-domestic-right ul li {
+        margin-bottom: 10px;
+        font-size: 16px;
+    }
+    .why-choose-domestic {
+        padding-bottom: 5px;
+    }
+    .benefits-domestic-shipping-card h6{
+        font-size: 16px;
+    }
+    .benefits-domestic-shipping-card{
+        height: auto;
+    }
+    .benefits-domestic-shipping {
+        padding-bottom: 0;
+    }
+    .affordable-domestic-right h3 {
+        font-size: 24px;
+    }
+    .affordable-domestic-right h6 {
+        font-size: 16px;
+        margin-bottom: 10px;
+        line-height: 26px;
+    }
+    .affordable-domestic-right ul li {
+        font-size: 16px;
+    }
+    .affordable-domestic-left1{
+        justify-content: center;
+        padding-bottom: 20px;
+        padding-top: 15px;
+    }
+    .affordable-domestic-left::after{
+        width: 255px;
+        height: 250px;
+        right: -20px;
+    }
+    .faq-section-right{
+        display: none;
+    }
+    .faq-section{
+        padding-bottom: 20px;
+    }
+    .footer-section-address1 h6{
+        font-size: 16px;
+    }
+    .footer-copyright{
+        position: relative;
+    }
+    .banner-section-left{
+        display: none;
+    }
+    .banner-section-right-btn {
+        padding-top: 5px;
+    }
+    .track-shipment {
+        padding-top: 15px;
+    }
+    .track-shipment-right{
+        width: 375px;
+    }
+    .building-smarter-left h3{
+        font-size: 28px;
+    }
+    .experience-sec-left h3{
+        font-size: 26px;
+    }
+    .experience-sec-left1{
+        padding:15px;
+    }
+    .experience-sec-left {
+        padding-right: 0;
+    }
+    .experience-sec-bg{
+        padding: 25px;
+    }
+    .our-journey-left1{
+        padding-right: 0;
+    }
+    .our-journey .our-journey-left {
+        padding-right: 0;
+    }
+    .trusted-section-left h3, .trusted-section-left h4 {
+        font-size: 28px;
+    }
+    .trusted-section-right{
+        padding-top: 10px;
+        margin-top: 10px;
+    }
+    .trusted-section-right1 img:nth-child(1) {
+        width: 90px;
+        height: 90px;
+    }
+    .trusted-section-right1 img:nth-child(2) {
+        width: 100px;
+        height: 100px;
+    }
+    .trusted-section-right1 img:nth-child(3) {
+        width: 120px;
+        height: 120px;
+    }
+    .trusted-section-right2 img:nth-child(1) {
+        width: 100px;
+        height: 100px;
+    }
+    .trusted-section-right2 img:nth-child(2) {
+        width: 160px;
+        height: 160px;
+    }
+    .trusted-section-right2 img:nth-child(3) {
+        width: 100px;
+        height: 100px;
+    }
+    .trusted-section-right3 img:nth-child(1) {
+        width: 90px;
+        height: 90px;
+    }
+    .trusted-section-right3 img:nth-child(2) {
+        width: 80px;
+    }
+    .trusted-section{
+        margin-bottom: 20px;
+        margin-top: 15px;
+    }
+    .customer-stories .customer-stories-left h3 {
+        font-size: 28px;
+    }
+    .customer-stories-right .owl-prev span, 
+    .customer-stories-right .owl-next span{
+        font-size: 28px;
+        width: 38px;
+        height: 38px;
+        line-height: 35px;
+    }
+    .your-logistics-right{
+        display: none;
+    }
+    .your-logistics-left{
+        text-align: center;
+    }
+    .your-logistics-left h3 {
+        font-size: 22px;
+        margin-bottom: 0;
+    }
+    .your-logistics-left h4 {
+        font-size: 26px;
+    }
+    .your-logistics-left1{
+        justify-content: center;
+    }
+    .your-logistics {
+        margin-bottom: 30px;
+        margin-top: 15px;
+    }
+    .banner-section{
+        padding-bottom:15px;
+    }
+    .track-shipment-left h3,.track-shipment-left h1{
+        font-size: 22px;
+        margin-bottom: 20px;
+    }
+    .our-services::before {
+        height: 130px;
+        width: 450px;
+        left: 18%;
+    }
+    .our-services h2 {
+        font-size: 24px;
+    }
+    .our-services h3 {
+        font-size: 20px;
+    }
+    .our-services::before{
+        top: 0px;
+    }
+    .our-services {
+        padding-top: 50px;
+        padding-bottom: 15px;
+    }
+    .our-services .wrapper {
+        padding: 25px 0 0;
+    }
+    .our-growth-form-txt h3 {
+        font-size: 22px;
+        margin-bottom: 5px;
+    }
+    .our-growth-form-txt p {
+        font-size: 16px;
+    }
+    .customer-stories {
+        margin-bottom: 15px;
+    }
+    .our-growth-form {
+        padding: 15px 0;
+    }
+    .why-choose-left1 h3 {
+        font-size: 24px;
+        line-height: 30px;
+    }
+    .why-choose-left1-1 h6 {
+        font-size: 16px;
+    }
+    .common-banner-left h1,
+    .common-banner-left h3{
+        font-size: 38px;
+    }
+    /* .common-banner-left h3 span {
+        font-size: 48px;
+    } */
+    .who-we-are-left {
+        width: 80%;
+        margin: 0 auto 30px;
+    }
+    .who-we-are-right h3,.who-we-are-right h1 {
+        font-size: 24px;
+        margin-bottom: 8px;
+    }
+    .who-we-are-right p {
+        font-size: 16px;
+    }
+    .who-we-are-right {
+        padding: 25px;
+    }
+    .our-story .our-story-left1 h4, .our-founder-right h4{
+        text-align: center;
+        font-size: 22px
+    }
+    .our-story .our-story-left1 p{
+        text-align: center;
+        margin-bottom: 10px;
+    }
+    .our-story-right{
+        margin: 0px 70px 20px;
+    }
+    .our-founder-left {
+        margin: 0 70px 20px;
+    }
+    .our-story{
+        border-bottom: 1px dashed #bababa;
+    }
+    .our-story, .our-founder {
+        padding: 25px 0;
+        border-bottom: 1px dashed #bababa;
+    }
+    .about-why-choose {
+        padding: 15px 0;
+    }
+    .about-why-choose1{
+        grid-template-columns: auto;
+    }
+    .about-why-choose-card-right img {
+        width: 100px;
+        height: 100px;
+        top: 14%;
+    }
+    .about-why-choose-card-right .triangle {
+        width: 140px;
+    }
+    .about-why-choose1 {
+        gap: 30px 25px;
+    }
+    .service-banner-left {
+        padding-top: 0;
+        padding-right: 0;
+    }
+    .service-banner-left h3,
+    .service-banner-left h1{
+        font-size: 28px;
+    }
+    .service-banner-right{
+        display: none;
+    }
+    .service-banner {
+        padding-top: 35px;
+        padding-bottom: 35px;
+    }
+    .service-banner-left p {
+        font-size: 18px;
+    }
+    .services-section3-right::after {
+        width: 300px;
+        height: 300px;
+    }
+    .services-section3-right {
+        margin: 0 100px 35px;
+    }
+    .services-black-sec-left h4 {
+        font-size: 18px;
+    }
+    .services-section4-right .heading h3 {
+        font-size: 24px;
+    }
+    .domestic-shipping-sec2-txt h3 {
+        font-size: 22px;
+    }
+    .domestic-shipping-sec2-txt1 h6 {
+        font-size: 16px;
+    }
+    .have-benefit-card h4 {
+        font-size: 18px;
+    }
+    .have-benefit-card p {
+        font-size: 18px;
+    }
+    .have-benefit .row {
+        gap: 20px 0px;
+    }
+    .location-section .location-section h3 {
+        font-size: 18px;
+    }
+    .location-section .location-section p {
+        font-size: 14px;
+        margin-bottom: 5px;
+    }
+    .location-section .location-section ul {
+        grid-template-columns: auto auto;
+    }
+    .location-section .location-section ul li {
+        font-size: 16px;
+    }
+    .location-section .location-section ul li::before {
+        width: 20px;
+        height: 20px;
+        margin-right: 6px;
+    }
+    .service-banner-left::before{
+        display: none;
+    }
+    .why-shipdaak-pg-card{
+        margin-bottom: 25px;
+    }
+    .why-shipdaak-pg-card h5{
+        font-size: 16px;
+        padding: 12px;
+        margin: 0 15px;
+    }
+    .why-shipdaak-pg {
+        padding: 20px 0 0;
+    }
+    .blog-sec h3{
+        font-size: 32px;
+        margin-bottom: 5px;
+    }
+    .blog-sec{
+        padding: 15px 0;
+    }
+    .blog-sec-card .blog-sec-card-txt h4{
+        font-size: 14px;
+    }
+    .blog-sec-card .blog-sec-card-txt p{
+        font-size: 10px;
+    }
+    .business-enquiry-left {
+        padding: 40px 30px 25px;
+    }
+    .business-enquiry-right {
+        padding: 0px 5px 30px;
+    }
+    .business-enquiry-social ul{
+        margin: 0;
+    }
+    .business-enquiry {
+        padding-top: 30px;
+        padding-bottom: 35px;
+    }
+    .cta-section-card {
+        padding: 25px;
+        display: block;
+        text-align: center;
+    }
+    .cta-section-card h4{
+        font-size: 20px;
+        position: relative;
+        z-index: 1;
+    }
+    .cta-section-card .btn{
+        margin-top: 14px;
+    }
+    .trusted-section-left p{
+        margin-bottom: 20px;
+    }
+    .our-story .our-story-left1{
+        text-align: center;
+    }
+    .our-founder-right{
+        text-align: center;
+    }
+    .our-story .our-story-left1 p, .our-founder-right p {
+        margin-bottom: 10px;
+        line-height: 24px;
+    }
+    .odr2{
+        order: 2;
+    }
+    .odr1{
+        order: 1;
+    }
+    .banner-section-right1 #demo {
+        height: 160px;
+    }
+    .pricing-section-card-txt {
+        height: auto;
+    }
+    .pricing-section{
+        padding: 30px 0;
+    }
+    .pricing-section1-card {
+        height: auto;
+    }
+    .pricing-section1 h3 {
+        font-size: 22px;
+    }
+    .rate-calculator h3 {
+        font-size: 20px;
+    }
+    .pricing-section1-card-img {
+        width: 40px;
+        height: 40px;
+        margin-bottom: 10px;
+    }
+    .pricing-section1-card{
+        margin-bottom: 20px;
+    }
+    .rate-calculator .grid h4{
+        font-size: 20px;
+    }
+}
+/* end (max-width: 767px) */
+
+/* (max-width: 575px) */
+@media screen and (max-width: 575px) {
+    .wrapper .logo {
+        width: 170px;
+    }
+    .reliable-section-left h3 {
+        font-size: 26px;
+    }
+    .reliable-section-left p{
+        margin-bottom: 0;
+    }
+    .domestic-shipping-sec-txt h3 {
+        font-size: 20px;
+        margin-bottom: 15px;
+        text-align: left;
+        line-height: 28px;
+    }
+    .domestic-shipping-sec-txt ul {
+        gap: 20px 0;
+    }
+    .domestic-shipping-sec-txt{
+        border-radius: 12px;
+    }
+    .domestic-shipping-sec-txt {
+        margin-bottom: 0px;
+    }
+    .footer-section {
+        padding-top: 40px;
+    }
+    .footer-section-address1 img{
+        width: 35px;
+    }
+    .footer-section-2 h4{
+        font-size: 20px;
+        margin-bottom: 15px;
+    }
+    .footer-section-2{
+        margin-bottom: 20px;
+    }
+    .banner-section-right h3,
+    .banner-section-right h1 {
+        font-size: 26px;
+    }
+    .banner-section-right-btn .btn{
+        font-size: 15px;
+    }
+    .track-shipment-left h3,.track-shipment-left h1 {
+        font-size: 22px;
+        margin-bottom: 20px;
+    }
+    .building-smarter-left h3 {
+        font-size: 26px;
+    }
+    .experience-sec-left h3 {
+        font-size: 24px;
+        line-height: 34px;
+    }
+    .our-journey .our-journey-left h3 {
+        font-size: 24px;
+    }
+    .our-journey-left1-1 h4 {
+        font-size: 24px;
+    }
+    .why-choose-left1 h3 {
+        font-size: 24px;
+        line-height: 32px;
+    }
+    .trusted-section{
+        padding-top: 45px;
+        margin-top: 12px;
+        margin-bottom: 12px;
+        padding-bottom: 35px;
+    }
+    .your-logistics{
+        padding-top: 50px;
+    }
+    .building-smarter .main {
+        width: 375px;
+        height: 375px;
+    }
+    .building-smarter-left1 {
+        padding-bottom: 0px;
+    }
+    .experience-sec-left p {
+        font-size: 15px;
+    }
+    .experience-sec-left1 img {
+        width: 55px;
+        height: 55px;
+        padding: 10px;
+    }
+    .experience-sec{
+        padding-bottom: 15px;
+        padding-top: 30px;
+        margin: 0 15px;
+    }
+    .our-journey .our-journey-left h3 {
+        font-size: 22px;
+        margin-bottom: 8px;
+    }
+    .our-journey .our-journey-left p{
+        font-size: 15px;
+    }
+    .trusted-section-left h3, .trusted-section-left h4 {
+        font-size: 26px;
+        line-height: 18px;
+    }
+    .trusted-section-left p{
+        font-size: 15px;
+        margin-top: 30px;
+    }
+    .trusted-section-right1 img:nth-child(1) {
+        width: 80px;
+        height: 80px;
+    }
+    .trusted-section-right1 img:nth-child(2) {
+        width: 90px;
+        height: 90px;
+    }
+    .trusted-section-right1 img:nth-child(3) {
+        width: 110px;
+        height: 110px;
+    }
+    .trusted-section-right2 img:nth-child(1) {
+        width: 90px;
+        height: 90px;
+    }
+    .trusted-section-right2 img:nth-child(2) {
+        width: 145px;
+        height: 145px;
+    }
+    .trusted-section-right2 img:nth-child(3) {
+        width: 90px;
+        height: 90px;
+    }
+    .trusted-section-right3 img:nth-child(1) {
+        width: 80px;
+        height: 80px;
+    }
+    .trusted-section-right3 img:nth-child(2) {
+        width: 70px;
+    }
+    .customer-stories .customer-stories-left h3 {
+        font-size: 26px;
+    }
+    .your-logistics-left h3{
+        font-size: 20px;
+    }
+    .your-logistics-left h4{
+        font-size: 24px;
+    }
+    .your-logistics-left1 img {
+        width: 130px;
+    }
+    .banner-section-right1{
+        padding-left: 15px;
+    }
+    .our-services::before {
+        height: 150px;
+        width: 480px;
+        left: 6%;
+    }
+    .our-services{
+        padding-bottom: 12px;
+    }
+    .customer-stories {
+        padding: 25px 0 50px;
+    }
+    .customer-stories {
+        margin-bottom: 12px;
+    }
+    .our-growth-form {
+        padding: 12px 0;
+    }
+    .common-banner-right{
+        display: none;
+    }
+    .common-banner-left1{
+        padding: 30px 0 30px 30px;
+    }
+    .who-we-are-left {
+        width: 60%;
+        margin: 0 auto 25px;
+    }
+    .who-we-are-right h3,.who-we-are-right h1 {
+        font-size: 22px;
+        margin-bottom: 5px;
+    }
+    .vision-mission-card h4 {
+        font-size: 22px;
+    }
+    .vision-mission-card1::before {
+        left: -5px;
+        top: 20px;
+        font-size: 145px;
+        line-height: 135px;
+    }
+    .vision-mission-card1-1::before {
+        top: 20px;
+        left: 0px;
+        font-size: 145px;
+        line-height: 135px;
+    }
+    .our-story .our-story-left1 h4, .our-founder-right h4{
+        font-size: 20px;
+    }
+    .about-why-choose-card-left p {
+        font-size: 16px;
+    }
+    .common-banner::before{
+        height: 55px;
+        width: 160px;
+    }
+    .common-banner::after{
+        height: 300px;
+        width: 300px;
+    }
+    .common-banner-left h1,
+    .common-banner-left h3{
+        line-height: 46px;
+    }
+    .service-banner::after{
+        width: 100%;
+    }
+    .service-banner-left h3,
+    .service-banner-left h1 {
+        font-size: 26px;
+    }
+    .service-banner-left p {
+        font-size: 17px;
+    }
+    .services-section1-left h3 {
+        font-size: 24px;
+    }
+    .services-section2-left h3 {
+        font-size: 22px;
+        line-height: 30px;
+    }
+    .services-section3-right {
+        margin: 0 120px 35px;
+    }
+    .services-section1-right .wrapper {
+        padding: 20px 0 30px;
+    }
+    .services-section2 {
+        padding: 10px 0;
+    }
+    .services-section1 {
+        margin-bottom: 10px;
+    }
+    .services-section3 {
+        padding: 10px 0;
+    }
+    .services-black-sec {
+        padding: 10px 0;
+        margin: 0 15px;
+    }
+    .service-banner {
+        padding-top: 25px;
+        padding-bottom: 30px;
+    }
+    .services-section1 {
+        margin-top: 25px;
+    }
+    .services-black-sec-bg p{
+        text-align: justify;
+    }
+    .services-black-sec-bg h3{
+        text-align: left;
+    }
+    .contact-form-card{
+        margin: 0 20px;
+    }
+    .contact-form {
+        padding: 35px 0 15px;
+    }
+    .why-shipdaak-pg h3,.why-shipdaak-pg h1 {
+        font-size: 22px;
+    }
+    .why-shipdaak-pg-card h5{
+        font-size: 15px;
+        padding: 10px;
+    }
+    .privacy-policy {
+        padding: 30px 0 20px;
+    }
+    .privacy-policy .privacy-policy-txt p{
+        margin-bottom: 10px;
+    }
+    .blog-sec h3 {
+        font-size: 28px;
+        margin-bottom: 5px;
+    }
+    .blog-sec .slick-next, .blog-sec .slick-prev{
+        display: none!important;
+    }
+    .business-enquiry {
+        padding-top: 30px;
+        padding-bottom: 30px;
+    }
+    .cta-section-card h4{
+        font-size: 18px;
+    }
+    .cta-section-card .btn {
+        margin-top: 12px;
+        font-size: 13px;
+    }
+    .trusted-section-right .swiper-slide img {
+        width: 120px;
+    }
+    .trusted-section-right{
+        margin-top: 0;
+    }
+    .location-section .location-section{
+        border-radius: 30px;
+    }
+    .btns{
+        font-size: 13px;
+    }
+    .banner-section-right1 #demo {
+        height: 125px;
+    }
+    .rate-calculator {
+        padding: 20px 0 0px;
+    }
+    .rate-calculator .grid h4 {
+        font-size: 18px;
+    }
+}
+/* end (max-width: 575px) */
+
+/* (max-width: 479px) */
+@media screen and (max-width: 479px) {
+    .reliable-section{
+        padding-top: 25px;
+    }
+    .reliable-section-left h3 {
+        font-size: 24px;
+        margin-bottom: 6px;
+    }
+    .domestic-shipping-sec-txt h3 {
+        font-size: 18px;
+        margin-bottom: 12px;
+        line-height: 26px;
+    }
+    .domestic-shipping-sec-txt ul li {
+        font-size: 15px;
+    }
+    .domestic-shipping-sec-txt ul li img {
+        width: 22px;
+        height: 22px;
+        margin-right: 2px;
+    }
+    .domestic-shipping-sec-txt {
+        padding: 20px 20px;
+    }
+    .why-choose-domestic-right h3 {
+        font-size: 22px;
+        margin-bottom: 8px;
+    }
+    .why-choose-domestic-right h6 {
+        font-size: 15px;
+        line-height: 24px;
+    }
+    .why-choose-domestic-right p {
+        font-size: 15px;
+    }
+    .why-choose-domestic-right ul li {
+        margin-bottom: 8px;
+        font-size: 15px;
+    }
+    .benefits-domestic-shipping h3 {
+        font-size: 22px;
+        margin-bottom: 12px;
+    }
+    .benefits-domestic-shipping-card{
+        margin-bottom: 18px;
+    }
+    .benefits-domestic-shipping-card h6 {
+        font-size: 15px;
+        line-height: 22px
+    }
+    .affordable-domestic-right h3 {
+        font-size: 22px;
+    }
+    .affordable-domestic-right h6 {
+        font-size: 15px;
+        line-height: 24px;
+    }
+    .affordable-domestic-right ul li {
+        font-size: 15px;
+    }
+    .domestic-shipping-sec2-txt h3 {
+        font-size: 22px;
+    }
+    .domestic-shipping-sec2-txt{
+        padding: 20px;
+    }
+    .domestic-shipping-sec2-txt1 h6 {
+        font-size: 15px;
+    }
+    .domestic-shipping-sec2-txt1:not(:last-child) {
+        margin-bottom: 15px;
+    }
+    .domestic-shipping-sec2{
+        padding-top: 35px;
+        padding-bottom: 35px;
+    }
+    .faq-section-left h3 {
+        font-size: 24px;
+    }
+    .faq-section{
+        padding-top: 25px;
+    }
+    .faq-section-left .contain{
+        margin: 0px 0 15px;
+    }
+    .wrapper .btn {
+        font-size: 26px;
+    }
+    .footer-copyright{
+        margin-top: 10px;
+    }
+    .footer-copyright p{
+        font-size: 14px;
+    }
+    .footer-section::before{
+        height: 60px;
+        width: 235px;
+        bottom: 15%;
+    }
+    .footer-section-social img {
+        width: 28px;
+    }
+    .footer-section-social{
+        padding-top: 20px;
+    }
+    .banner-section-right h3,
+    .banner-section-right h1 {
+        font-size: 26px;
+        font-weight: 600;
+        margin-bottom: 5px;
+    }
+    .banner-section-right p {
+        font-size: 16px;
+    }
+    .banner-section-right-btn .btn {
+        font-size: 14px;
+    }
+    .track-shipment {
+        padding-top: 25px;
+    }
+    .track-shipment-left h3,.track-shipment-left h1{
+        font-size: 20px;
+    }
+    .track-shipment-left {
+        padding-right: 0;
+    }
+    .track-shipment-bg {
+        padding: 30px 25px 10px;
+    }
+    .track-shipment-right {
+        width: 300px;
+        margin: 20px auto 0;
+    }
+    .building-smarter-left h3 {
+        font-size: 22px;
+    }
+    .building-smarter-left p {
+        font-size: 16px;
+    }
+    .btns{
+        font-size: 13px;
+    }
+    .building-smarter .main {
+        width: 350px;
+        height: 350px;
+    }
+    .building-smarter .ripple {
+        width: 130px;
+        height: 130px;
+    }
+    .building-smarter .icon-block{
+        width: 70px;
+        height: 70px;
+    }
+    .building-smarter .main-container{
+        min-height: 1px;
+        height: 475px;
+    }
+    .experience-sec-left h3 {
+        font-size: 22px;
+        line-height: 32px;
+    }
+    .experience-sec-left1 h4{
+        font-size: 15px;
+    }
+    .experience-sec-left p {
+        font-size: 14px;
+    }
+    .experience-sec-left1 img {
+        width: 50px;
+        height: 50px;
+        padding: 8px;
+        border-radius: 6px;
+    }
+    .our-journey .our-journey-left h3{
+        font-size: 20px;
+        margin-bottom: 5px;
+    }
+    .our-journey-left1-1 h4 {
+        font-size: 22px;
+    }
+    .our-journey-left1-1 h6{
+        font-size: 13px;
+    }
+    .why-choose-left1 h3 {
+        font-size: 20px;
+        line-height: 26px;
+        margin-bottom: 6px;
+    }
+    .why-choose-left1 p {
+        font-size: 15px;
+    }
+    .why-choose-left1-1 h6 {
+        font-size: 15px;
+    }
+    .trusted-section-left h3, .trusted-section-left h4 {
+        font-size: 22px;
+        line-height: 20px;
+    }
+    .trusted-section-left p{
+        margin-bottom: 20px;
+        margin-top: 25px;
+        font-size: 14px;
+    }
+    .trusted-section-right1 img:nth-child(1) {
+        width: 70px;
+        height: 70px;
+    }
+    .trusted-section-right1 img:nth-child(2) {
+        width: 80px;
+        height: 80px;
+    }
+    .trusted-section-right1 img:nth-child(3) {
+        width: 100px;
+        height: 100px;
+    }
+    .trusted-section-right2 img:nth-child(1) {
+        width: 80px;
+        height: 80px;
+    }
+    .trusted-section-right2 img:nth-child(2) {
+        width: 130px;
+        height: 130px;
+    }
+    .trusted-section-right2 img:nth-child(3) {
+        width: 80px;
+        height: 80px;
+    }
+    .trusted-section-right3 img:nth-child(1) {
+        width: 70px;
+        height: 70px;
+    }
+    .customer-stories .customer-stories-left h3 {
+        font-size: 24px;
+    }
+    .your-logistics-left h3 {
+        font-size: 17px;
+    }
+    .your-logistics-left h4 {
+        font-size: 20px;
+    }
+    .text2 {
+        top: 20px;
+    }
+    .your-logistics-left1{
+        padding-top: 25px;
+    }
+    .your-logistics-left1 img {
+        width: 125px;
+    }
+    .track-shipment-left .input-group .btn{
+        padding: 12px 24px;
+        font-size: 12px;
+    }
+    .track-shipment-left .input-group .form-control{
+        font-size: 15px;
+        height: 40px;
+    }
+    .our-services::before{
+        width: 400px;
+    }
+    .our-services h2 {
+        font-size: 22px;
+    }
+    .our-services h3 {
+        font-size: 18px;
+    }
+    .our-services .wrapper {
+        padding: 20px 0 0;
+    }
+    .our-services {
+        padding-top: 35px;
+        margin-top: 25px;
+    }
+    .our-services .slick-initialized .slick-slide{
+        margin:0 20px 0 0;
+    }
+    .our-growth-form-txt h3{
+        font-size: 20px;
+    }
+    .our-growth-form-txt p {
+        font-size: 15px;
+        margin-bottom: 0;
+    }
+    .our-growth-form-txt{
+        margin-bottom: 15px;
+    }
+    .our-growth-form-right .btn{
+        font-size: 13px;
+    }
+    .form-control-div .form-label{
+        font-size: 13px;
+    }
+    .form-control-div .form-control {
+        font-size: 13px;
+        height: 38px;
+    }
+    .your-logistics {
+        margin-bottom: 20px;
+        margin-top: 10px;
+        padding-top: 40px;
+        padding-bottom: 30px;
+    }
+    .footer-section {
+        padding-top: 35px;
+    }
+    .footer-section-logo img {
+        width: 185px;
+        margin-bottom: 20px;
+    }
+    .trusted-section-right1,
+    .trusted-section-right2{
+        gap: 20px;
+    }
+    .trusted-section-right3{
+        gap: 30px;
+    }
+    .common-banner-left h1,
+    .common-banner-left h3 {
+        font-size: 32px;
+        line-height: 38px;
+    }
+    .common-banner-left1 {
+        padding: 40px 0 40px 30px;
+    }
+    .who-we-are-right h3,.who-we-are-right h1 {
+        font-size: 20px;
+    }
+    .who-we-are-right p {
+        font-size: 15px;
+    }
+    .vision-mission-card1::before{
+        font-size: 124px;
+        line-height: 130px;
+    }
+    .vision-mission-card h4 {
+        font-size: 20px;
+    }
+    .vision-mission-card img {
+        width: 40px;
+    }
+    .vision-mission-card {
+        padding: 15px 0 15px 20px;
+    }
+    .vision-mission-card1-1::before{
+        font-size: 130px;
+    }
+    .vision-mission {
+        padding: 15px 0;
+    }
+    .our-story .our-story-left1 h4, .our-founder-right h4 {
+        font-size: 18px;
+    }
+    .our-story .our-story-left1 p, .our-founder-right p{
+        font-size: 14px;
+    }
+    .our-story-right {
+        padding: 20px;
+    }
+    .about-why-choose h3 {
+        font-size: 22px;
+        margin-bottom: 20px;
+    }
+    .about-why-choose-card-left p {
+        font-size: 15px;
+    }
+    .about-why-choose-card-right img {
+        width: 85px;
+        height: 85px;
+        top: 18%;
+    }
+    .our-team-right h4{
+        font-size: 20px;
+    }
+    .our-team-right p{
+        font-size: 15px;
+    }
+    .our-team {
+        padding: 15px 0;
+    }
+    .who-we-are-right1 {
+        transform: translateX(0px);
+    }
+    .who-we-are {
+        padding: 20px 0 15px;
+    }
+    .vision-mission-card1-1 {
+        margin-bottom: 0px;
+    }
+    .common-banner::before {
+        height: 50px;
+        width: 150px;
+    }
+    .common-banner::after {
+        height: 275px;
+        width: 275px;
+    }
+    .service-banner-left h3,
+    .service-banner-left h1 {
+        font-size: 24px;
+        margin-bottom: 5px;
+    }
+    .service-banner-left p {
+        font-size: 16px;
+    }
+    .services-section1-left h3 {
+        font-size: 22px;
+    }
+    .services-section1-left1 {
+        padding: 20px 0 0;
+    }
+    .services-section1-card {
+        padding: 0px 10px 0 20px;
+    }
+    .services-section1-right .wrapper {
+        padding: 20px 0 25px;
+    }
+    .services-section2-left h3 {
+        font-size: 20px;
+    }
+    .services-section2-left p{
+        font-size: 15px;
+        line-height: 24px;
+    }
+    .services-section3-right {
+        margin: 0 70px 35px;
+    }
+    .services-section3-left h3 {
+        font-size: 22px;
+    }
+    .services-section3-left ul li{
+        font-size: 15px;
+    }
+    .services-section3-left p {
+        font-size: 15px;
+        line-height: 26px;
+    }
+    .services-black-sec-bg h3{
+        font-size: 20px;
+        line-height: 28px;
+    }
+    .services-black-sec-bg {
+        padding: 20px 20px 15px 20px;
+        border-radius: 20px;
+    }
+    .services-black-sec-left h4 {
+        font-size: 17px;
+    }
+    .services-section4-right .heading h3 {
+        font-size: 22px;
+    }
+    .services-section4-right .heading{
+        border-left: 4px solid #0F5A93;
+        padding-left: 8px;
+    }
+    .services-section4-right p {
+        font-size: 15px;
+    }
+    .services-section4-right {
+        padding: 20px;
+        border-radius: 20px;
+    }
+    .services-section4-right .heading1 img {
+        width: 26px;
+        margin-right: 10px;
+    }
+    .services-section4-right .heading1 h6 {
+        font-size: 16px;
+        line-height: 22px;
+        margin-bottom: 6px;
+    }
+    .services-section4 {
+        margin-top: 10px;
+        margin-bottom: 10px;
+    }
+    .services-section2-left h3 {
+        font-size: 18px;
+        line-height: 26px;
+    }
+    .domestic-shipping-sec2-txt h3 {
+        font-size: 20px;
+    }
+    .domestic-shipping-sec2-txt p {
+        font-size: 15px;
+    }
+    .domestic-shipping-sec2-txt1 img {
+        width: 35px;
+        border-radius: 8px;
+        padding: 8px;
+        margin-right: 10px;
+    }
+    .domestic-shipping-sec2 {
+        margin-top: 10px;
+        margin-bottom: 10px;
+    }
+    .have-benefit h3 {
+        font-size: 20px;
+    }
+    .have-benefit p{
+        margin-bottom: 15px;
+        font-size: 15px;
+    }
+    .have-benefit-card h4 {
+        font-size: 16px;
+    }
+    .have-benefit-card p {
+        font-size: 16px;
+    }
+    .have-benefit-card{
+        padding: 25px 30px;
+    }
+    .have-benefit .row {
+        gap: 18px 0px;
+    }
+    .location-section .location-section {
+        padding: 25px;
+    }
+    .location-section .location-section ul li {
+        font-size: 15px;
+    }
+    .location-section .location-section ul li::before {
+        width: 18px;
+        height: 18px;
+        margin-right: 5px;
+    }
+    .contact-form-left h3,.contact-form-left h1 {
+        font-size: 20px;
+    }
+    .contact-form-card {
+        margin: 0 10px;
+    }
+    .contact-form-left p {
+        font-size: 16px;
+        margin-bottom: 0;
+    }
+    .contact-form-left .form-label{
+        font-size: 14px;
+    }
+    .contact-form-card {
+        padding: 25px 12px;
+    }
+    .contact-form-left .btn{
+        font-size: 14px;
+        padding: 6px 20px;
+    }
+    .contact-form-left .btn img{
+        width: 22px;
+    }
+    .contact-form-right1 a{
+        font-size: 15px;
+    }
+    .contact-form-right1 a img{
+        width: 30px;
+    }
+    .contact-form-right2 h5{
+        font-size: 18px;
+    }
+    .contact-form-right2 ul li img {
+        width: 30px;
+    }
+    .contact-form-right2 ul{
+        gap: 10px;
+        margin-bottom: 0;
+    }
+    .why-shipdaak-pg h3,.why-shipdaak-pg h1 {
+        font-size: 20px;
+    }
+    .why-shipdaak-pg p {
+        font-size: 14px;
+    }
+    .why-shipdaak-pg p{
+        text-align: justify;
+    }
+    .privacy-policy .privacy-policy-txt p{
+        margin-bottom: 8px;
+        font-size: 14px;
+    }
+    .privacy-policy {
+        padding: 25px 0 15px;
+    }
+    .privacy-policy .privacy-policy-txt ul li{
+        font-size: 14px;
+        line-height: 22px;
+        margin-bottom: 6px;
+    }
+    .privacy-policy .privacy-policy-txt h4{
+        font-size: 18px;
+    }
+    .privacy-policy .privacy-policy-txt ul{
+        margin-bottom: 10px;
+    }
+    .our-journey-right{
+        width: 75%;
+    }
+    .blog-sec .slick-next, .blog-sec .slick-prev{
+        display: none !important;
+    }
+    .blog-sec h3 {
+        font-size: 24px;
+        margin-bottom: 0px;
+    }
+    .blog-sec-card .blog-sec-card-txt h4 {
+        font-size: 16px;
+    }
+    .blog-sec-card .blog-sec-card-txt p {
+        font-size: 12px;
+    }
+    .blog-sec .blog-sec-card{
+        margin: 20px 12px 65px;
+    }
+    .blog-sec-card .blog-sec-card-txt{
+        padding: 15px;
+    }
+    .business-enquiry-left h4 {
+        font-size: 23px;
+        margin-bottom: 3px;
+    }
+    .business-enquiry-left p {
+        font-size: 16px;
+    }
+    .business-enquiry-left1 {
+        padding-top: 10px;
+    }
+    .business-enquiry-social h5{
+        font-size: 18px;
+    }
+    .business-enquiry-social ul{
+        padding-top: 0;
+        gap: 10px;
+    }
+    .business-enquiry-social ul li img {
+        width: 30px;
+    }
+    .business-enquiry-right h4,
+    .business-enquiry-right h1 {
+        font-size: 22px;
+    }
+    .business-enquiry-right p {
+        font-size: 14px;
+    }
+    .business-enquiry-right .btn{
+        font-size: 14px;
+        padding: 8px 20px;
+    }
+    .experience-sec{
+        margin: 0 10px;
+    }
+    .wrapper .nav-links{
+        padding-top: 65px;
+    }
+    .cta-section-card h4{
+        font-size: 16px;
+    }
+    .cta-section-card .btn {
+        margin-top: 10px;
+        font-size: 12px;
+    }
+    .cta-section-card{
+        padding: 20px;
+    }
+    .trusted-section-right .swiper-slide img {
+        width: 110px;
+    }
+    .services-black-sec{
+        margin: 0 10px;
+    }
+    .services-section4 {
+        padding-top: 25px;
+        padding-bottom: 20px;
+    }
+    .our-growth-form1{
+        border-radius: 20px;
+    }
+    .services-section2-left h5, .services-section3-left h5{
+        font-size: 16px;
+    }
+    .services-section2-left ul li{
+        font-size: 14px;
+    }
+    .services-section4-right ul{
+        margin-bottom: 10px;
+    }
+    .location-section .location-section {
+        border-radius: 20px;
+    }
+    .our-story-right {
+        margin: 0px 70px 15px;
+    }
+    .pricing-section1 h3 {
+        font-size: 20px;
+        margin-bottom: 18px;
+    }
+    .banner-section-right1 #demo {
+        height: 150px;
+    }
+    .btn-whatsapp-pulse {
+        font-size: 25px;
+        padding: 22px;
+            right: 25px;
+    }
+    #top-to-button {
+        right: 28px;
+        bottom: 85px;
+    }
+    .rate-calculator h3 {
+        font-size: 18px;
+    }
+    #calculatorModal ul.tabs li, .rate-calculator ul.tabs li{
+        font-size: 15px;
+    }
+    .rate-calculator label {
+        font-size: 14px;
+    }
+    .rate-calculator input[type="text"], .rate-calculator input[type="number"], .rate-calculator select{
+        padding: 6px 10px;
+    }
+    .rate-calculator button.primary{
+        font-size: 13px;
+    }
+    #calculatorModal table th, #calculatorModal table td {
+        font-size: 13px;
+    }
+    .modal-body-table .btn {
+        font-size: 12px;
+        margin-top: 10px;
+        padding: 6px 20px;
+    }
+    #calculatorModal .modal-body, #internationalModal .modal-body {
+        padding: 35px 5px 20px;
+    }
+    #calculatorModal .btn-close, #internationalModal .btn-close{
+        font-size: 14px;
+    }
+    .rate-calculator .invalid-feedback{
+        font-size: 13px;
+    }
+    .rate-calculator {
+        padding: 20px 0 10px;
+    }
+    #internationalModal .modal-body-table p{
+        font-size: 14px;
+    }
+    .pricing-section1-card-img {
+        width: 35px;
+        height: 35px;
+        margin-bottom: 10px;
+    }
+    .rate-calculator .grid h4 {
+        font-size: 16px;
+    }
+}
+/* end (max-width: 479px) */
+
+/* (max-width: 425px) */
+@media screen and (max-width: 425px) {
+    .wrapper .logo {
+        width: 140px;
+    }
+    .nav .wrapper {
+        padding: 0px 3px 0 10px;
+    }
+    .reliable-section-left h3 {
+        font-size: 20px;
+        margin-bottom: 5px;
+    }
+    .reliable-section-left p {
+        font-size: 14px;
+        line-height: 24px;
+    }
+    .domestic-shipping-sec-txt h3 {
+        font-size: 16px;
+        margin-bottom: 10px;
+        line-height: 22px;
+    }
+    .domestic-shipping-sec-txt ul li {
+        font-size: 14px;
+    }
+    .domestic-shipping-sec-txt ul li img {
+        width: 20px;
+        height: 20px;
+        margin-right: 2px;
+    }
+    .domestic-shipping-sec-txt ul {
+        gap: 15px 0;
+    }
+    .why-choose-domestic-right h3 {
+        font-size: 18px;
+    }
+    .why-choose-domestic-right h6 {
+        font-size: 14px;
+        line-height: 22px;
+    }
+    .why-choose-domestic-right p {
+        font-size: 14px;
+    }
+    .why-choose-domestic-right ul li {
+        font-size: 14px;
+    }
+    .benefits-domestic-shipping h3 {
+        font-size: 18px;
+        margin-bottom: 10px;
+    }
+    .benefits-domestic-shipping p{
+        font-size: 14px;
+    }
+    .benefits-domestic-shipping-card h6{
+        font-size: 14px;
+    }
+    .benefits-domestic-shipping-card {
+        padding: 20px 30px 25px;
+    }
+    .affordable-domestic-right h3 {
+        font-size: 18px;
+        margin-bottom: 8px;
+    }
+    .affordable-domestic-right h6 {
+        font-size: 14px;
+        line-height: 22px;
+    }
+    .affordable-domestic-right ul li {
+        font-size: 14px;
+    }
+    .domestic-shipping-sec2-txt h3 {
+        font-size: 18px;
+    }
+    .domestic-shipping-sec2-txt p {
+        font-size: 15px;
+    }
+    .domestic-shipping-sec2-txt1 h6 {
+        font-size: 14px;
+        line-height: 22px;
+    }
+    .domestic-shipping-sec2-txt1 img {
+        width: 35px;
+        border-radius: 6px;
+        padding: 7px;
+        margin-right: 12px;
+    }
+    .faq-section-left h3 {
+        font-size: 18px;
+    }
+    .faq-section-left p {
+        margin-bottom: 15px;
+        font-size: 14px;
+    }
+    .faq-section-left .question {
+        font-size: 13px;
+    }
+    .faq-section-left .answer {
+        padding: 0 15px 15px;
+        font-size: 13px;
+        line-height: 22px;
+    }
+    .faq-section {
+        padding-top: 20px;
+        padding-bottom: 10px;
+    }
+    .wrapper .btn {
+        font-size: 22px;
+        padding-right: 0;
+    }
+    .benefits-domestic-shipping-card {
+        margin-bottom: 0px;
+    }
+    .footer-section-address1 h6 {
+        font-size: 15px;
+    }
+    .footer-section-2 h4 {
+        font-size: 18px;
+        margin-bottom: 12px;
+    }
+    .footer-section-2 ul li a {
+        font-size: 14px;
+    }
+    .footer-section-2 ul li:not(:last-child) {
+        margin-bottom: 8px;
+    }
+    .footer-copyright p {
+        font-size: 13px;
+    }
+    .footer-section::after{
+        bottom: -175px;
+        height: 300px;
+        width: 300px;
+        left: 40%;
+    }
+    .footer-section-address1 img{
+        border-radius: 6px;
+        padding: 6px;
+        width: 30px;
+    }
+    .footer-section-logo img {
+        width: 175px;
+        margin-bottom: 20px;
+    }
+    .nav .wrapper {
+        height: 55px;
+        line-height: 55px;
+    }
+    .building-smarter .ripple {
+        width: 110px;
+        height: 110px;
+    }
+    .building-smarter .main {
+        width: 300px;
+        height: 300px;
+    }
+    .our-journey-right{
+        width: 85%;
+    }
+    .why-choose-left1 h3 {
+        font-size: 18px;
+        line-height: 24px;
+    }
+    .why-choose-left1 p {
+        font-size: 14px;
+    }
+    .why-choose-left1-1 h6 {
+        font-size: 14px;
+    }
+    .why-choose-left1-1:not(:last-child) {
+        margin-bottom: 12px;
+    }
+    .btns {
+        font-size: 12px!important;
+    }
+    .trusted-section-left h3, .trusted-section-left h4 {
+        font-size: 22px;
+        line-height: 18px;
+    }
+    .trusted-section-right1 img:nth-child(1) {
+        width: 60px;
+        height: 60px;
+    }
+    .trusted-section-right1 img:nth-child(2) {
+        width: 70px;
+        height: 70px;
+    }
+    .trusted-section-right1 img:nth-child(3) {
+        width: 90px;
+        height: 90px;
+    }
+    .trusted-section-right2 img:nth-child(1) {
+        width: 70px;
+        height: 70px;
+    }
+    .trusted-section-right2 img:nth-child(2) {
+        width: 115px;
+        height: 115px;
+    }
+    .trusted-section-right2 img:nth-child(3) {
+        width: 70px;
+        height: 70px;
+    }
+    .trusted-section-right3 img:nth-child(1) {
+        width: 60px;
+        height: 60px;
+    }
+    .trusted-section-right3 img:nth-child(2) {
+        width: 65px;
+    }
+    .customer-stories .customer-stories-left h3 {
+        font-size: 22px;
+    }
+    .customer-stories::after{
+        width: 55%;
+    }
+    .customer-stories {
+        padding: 20px 0 40px;
+    }
+    .customer-stories-right .owl-prev span, .customer-stories-right .owl-next span {
+        font-size: 25px;
+        width: 35px;
+        height: 35px;
+        line-height: 32px;
+    }
+    .your-logistics {
+        padding-top: 30px;
+        margin-bottom: 15px;
+        padding-bottom: 25px;
+    }
+    .your-logistics-left h3 {
+        font-size: 16px;
+    }
+    .your-logistics-left h4 {
+        font-size: 20px;
+    }
+    .your-logistics-left1 {
+        padding-top: 20px;
+    }
+    #top-to-button{
+        width: 35px;
+        height: 35px;
+        right: 22px;
+    }
+    #top-to-button::after{
+        font-size: 16px;
+        line-height: 35px;
+    }
+    .experience-sec-left h3 {
+        font-size: 18px;
+        line-height: 26px;
+    }
+    .experience-sec-left1 img {
+        width: 45px;
+        height: 45px;
+        padding: 7px;
+        margin-right: 12px;
+    }
+    .experience-sec-left1 h4 {
+        font-size: 14px;
+    }
+    .experience-sec-left p {
+        font-size: 12px;
+        margin-bottom: 20px;
+    }
+    .experience-sec-left1 p {
+        font-size: 13px;
+        margin-bottom: 0px;
+    }
+    .experience-sec-left1{
+        border-radius: 12px;
+    }
+    .experience-sec-left1 {
+        padding: 10px;
+    }
+    .experience-sec-bg {
+        padding: 20px;
+        border-radius: 20px;
+    }
+    .our-journey .our-journey-left h3 {
+        font-size: 18px;
+        margin-bottom: 5px;
+        line-height: 24px;
+    }
+    .our-journey .our-journey-left p {
+        font-size: 14px;
+        margin-bottom: 15px;
+    }
+    .our-journey-left1-1 h4 {
+        font-size: 20px;
+    }
+    .our-journey-left1-1 h6 {
+        font-size: 12px;
+    }
+    .our-journey-left1 {
+        gap: 15px;
+    }
+    .why-choose {
+        padding-top: 25px;
+        padding-bottom: 25px;
+        margin-top: 15px;
+    }
+    .building-smarter-left h3 {
+        font-size: 20px;
+        line-height: 28px;
+    }
+    .building-smarter-left p {
+        font-size: 15px;
+        margin-bottom: 15px;
+    }
+    .track-shipment-left h3,.track-shipment-left h1 {
+        font-size: 18px;
+        margin-bottom: 18px;
+    }
+    .track-shipment-left .input-group .btn {
+        padding: 10px 22px;
+        font-size: 11px;
+    }
+    .track-shipment-left .input-group .form-control {
+        font-size: 14px;
+        height: 36px;
+    }
+    .track-shipment-right {
+        width: 275px;
+    }
+    .banner-section-right h3,
+    .banner-section-right h1 {
+        font-size: 24px;
+        margin-bottom: 6px;
+    }
+    .banner-section-right p {
+        font-size: 16px;
+        margin-bottom: 10px;
+        line-height: 22px;
+    }
+    .banner-section-right-btn .btn {
+        font-size: 13px;
+    }
+    .trusted-section-left p {
+        font-size: 12px;
+        margin-bottom: 15px;
+        margin-top: 25px;
+    }
+    .track-shipment {
+        padding-top: 10px;
+        padding-bottom: 10px;
+    }
+    .banner-section {
+        margin-bottom: 10px;
+    }
+    .track-shipment-bg {
+        padding: 25px 20px 10px;
+    }
+    .track-shipment-bg::after{
+        height: 200px;
+        width: 200px;
+        right: -14%;
+    }
+    .building-smarter{
+        padding-top: 10px;
+    }
+    .experience-sec{
+        padding-top: 25px;
+        padding-bottom: 10px;
+    }
+    .our-journey {
+        padding: 10px 0;
+    }
+    .why-choose-left1{
+        padding: 20px;
+    }
+    .our-services::before {
+        width: 375px;
+        z-index: -1;
+        left: 4%;
+    }
+    .our-services h2 {
+        font-size: 20px;
+    }
+    .our-services h3 {
+        font-size: 16px;
+    }
+    .our-services {
+        padding-top: 20px;
+        margin-top: 15px;
+    }
+    .our-services-card h5{
+        margin: 0 10px;
+        border-radius: 6px;
+        font-size: 13px;
+        bottom: 12px;
+    }
+    .our-services .slick-initialized .slick-slide {
+        margin: 0 12px 0 0;
+    }
+    .trusted-section-left h3, .trusted-section-left h4 {
+        font-size: 18px;
+        line-height: 12px;
+    }
+    .our-growth-form-txt h3 {
+        font-size: 18px;
+        margin-bottom: 2px;
+    }
+    .our-growth-form-txt p{
+        font-size: 14px;
+    }
+    .our-growth-form-txt {
+        margin-bottom: 10px;
+    }
+    .our-growth-form {
+        padding: 8px 0;
+    }
+    .form-control-div .form-label{
+        font-size: 12px;
+    }
+    .form-control-div .form-control{
+        font-size: 13px;
+        height: 34px;
+    }
+    .our-growth-form-right .btn {
+        font-size: 12px;
+    }
+    .customer-stories-right-card .head h4 {
+        font-size: 15px;
+    }
+    .customer-stories-right-card .head h6 {
+        font-size: 14px;
+    }
+    .customer-stories-right-card p {
+        font-size: 14px;
+    }
+    .customer-stories-right-card .head img {
+        width: 50px !important;
+    }
+    .customer-stories-right-card {
+        margin: 15px 18px 10px 0;
+    }
+    .nav-links li a{
+        font-size: 15px;
+    }
+    .nav-links .mobile-item{
+        font-size: 16px;
+    }
+    .nav-links li .drop-menu li a {
+        font-size: 13px;
+        line-height: 22px;
+    }
+    .nav-login ul li .nav-login-btn{
+        font-size: 14px;
+    }
+    .wrapper .nav-links{
+        padding: 55px 10px 10px;
+    }
+    .common-banner-left h1,
+    .common-banner-left h3 {
+        font-size: 28px;
+        line-height: 34px;
+    }
+    .who-we-are-right h3,.who-we-are-right h1 {
+        font-size: 18px;
+    }
+    .who-we-are-right p {
+        font-size: 14px;
+        line-height: 22px;
+    }
+    .who-we-are-right {
+        padding: 20px;
+    }
+    .vision-mission-card1::before {
+        font-size: 100px;
+        line-height: 110px;
+        left: 0px;
+    }
+    .vision-mission-card h4 {
+        font-size: 18px;
+    }
+    .vision-mission-card p {
+        font-size: 14px;
+    }
+    .vision-mission-card1-1::before {
+        font-size: 100px;
+        line-height: 110px;
+    }
+    .vision-mission-card1 {
+        margin-bottom: 25px;
+    }
+    .our-story .our-story-left1 h4, .our-founder-right h4 {
+        font-size: 16px;
+    }
+    .about-why-choose h3 {
+        font-size: 20px;
+        margin-bottom: 20px;
+    }
+    .about-why-choose-card-left p {
+        font-size: 14px;
+    }
+    .our-team-right h4 {
+        font-size: 18px;
+    }
+    .our-team-right p {
+        font-size: 14px;
+    }
+    .our-team-right:not(:last-child) {
+        margin-bottom: 20px;
+    }
+    .common-banner::after {
+        height: 250px;
+        width: 250px;
+        top: -135px;
+    }
+    .common-banner::before {
+        height: 40px;
+        width: 130px;
+    }
+    .common-banner-left1 {
+        padding: 40px 0 40px 15px;
+    }
+    .vision-mission-card1-1 {
+        margin-bottom: 0px;
+    }
+    .service-banner-left h3,
+    .service-banner-left h1{
+        font-size: 20px;
+    }
+    .service-banner-left p {
+        font-size: 15px;
+    }
+    .services-section1-left h3 {
+        font-size: 20px;
+    }
+    .services-section1-card {
+        padding: 0px 5px 0 15px;
+    }
+    .services-section1-right .wrapper {
+        padding: 15px 0 20px;
+    }
+    .services-section2-left h3 {
+        font-size: 18px;
+        line-height: 24px;
+    }
+    .services-section2-left p {
+        font-size: 14px;
+        line-height: 22px;
+        margin-bottom: 5px;
+    }
+    .services-section3-right::after {
+        width: 245px;
+        height: 245px;
+    }
+    .services-section3-left h3 {
+        font-size: 18px;
+        line-height: 26px;
+        margin-bottom: 5px;
+    }
+    .services-section3-left ul{
+        margin-bottom:10px
+    }
+    .services-section3-left ul li {
+        font-size: 14px;
+    }
+    .services-section3-left p {
+        font-size: 14px;
+        line-height: 22px;
+        margin-bottom: 8px;
+    }
+    .services-black-sec-bg h3 {
+        font-size: 18px;
+        line-height: 26px;
+        margin-bottom: 6px;
+    }
+    .services-black-sec-bg p {
+        font-size: 14px;
+        margin-bottom: 8px;
+    }
+    .services-black-sec-left h4 {
+        font-size: 16px;
+    }
+    .services-black-sec-left ul li {
+        font-size: 14px;
+    }
+    .services-black-sec-left ul{
+        padding-left: 20px;
+        margin-bottom: 8px;
+    }
+    .services-section4-right .heading h3 {
+        font-size: 18px;
+    }
+    .services-section4-right p {
+        font-size: 14px;
+    }
+    .services-section4-right .heading1 h6{
+        font-size: 15px;
+    }
+    .services-section4-right .heading1 img{
+        width: 24px;
+    }
+    .have-benefit h3 {
+        font-size: 18px;
+    }
+    .have-benefit p{
+        font-size: 14px;
+    }
+    .have-benefit-card h4 {
+        font-size: 15px;
+    }
+    .have-benefit-card p{
+        margin-bottom: 0;
+        font-size: 15px;
+    }
+    .location-section .location-section h3 {
+        font-size: 16px;
+    }
+    .location-section .location-section p{
+        font-size: 13px;
+    }
+    .location-section .location-section ul li {
+        font-size: 14px;
+    }
+    .location-section .location-section {
+        padding: 20px;
+    }
+    .location-section .location-section ul{
+        gap: 15px 12px;
+        margin-top: 10px;
+    }
+    .location-section .location-section ul li::before {
+        width: 16px;
+        height: 16px;
+    }
+    .contact-form-left h3,.contact-form-left h1 {
+        font-size: 18px;
+    }
+    .contact-form-left .form-label {
+        font-size: 13px;
+    }
+    .contact-form-card {
+        padding: 22px 10px;
+    }
+    .contact-form-right1 a {
+        font-size: 14px;
+        margin-bottom: 15px;
+    }
+    .contact-form-right2 h5 {
+        font-size: 16px;
+        margin-bottom: 5px;
+    }
+    .contact-form-right2 ul li img {
+        width: 26px;
+    }
+    .contact-form {
+        padding: 35px 0 5px;
+    }
+    .contact-form-card {
+        margin: 0 5px;
+    }
+    .contact-form-right1{
+        padding-top: 20px;
+    }
+    .why-shipdaak-pg h3,.why-shipdaak-pg h1 {
+        font-size: 18px;
+        margin-bottom: 5px;
+    }
+    .why-shipdaak-pg p {
+        font-size: 13px;
+        margin-bottom: 15px;
+    }
+    .why-shipdaak-pg-card h5 {
+        font-size: 14px;
+        padding: 8px;
+        margin: 0 10px;
+    }
+    .why-shipdaak-pg-card {
+        margin-bottom: 20px;
+    }
+    .reliable-section {
+        padding-bottom: 10px;
+    }
+    .privacy-policy .privacy-policy-txt p{
+        font-size: 13px;
+    }
+    .privacy-policy .privacy-policy-txt h4 {
+        font-size: 16px;
+    }
+    .privacy-policy .privacy-policy-txt ul li {
+        font-size: 13px;
+        line-height: 22px;
+        margin-bottom: 5px;
+    }
+    .blog-sec h3{
+        font-size: 22px;
+    }
+    .blog-sec-card .blog-sec-card-txt p {
+        font-size: 11px;
+    }
+    .blog-sec-card .blog-sec-card-txt h4 {
+        font-size: 15px;
+    }
+    .business-enquiry-left h4{
+        font-size: 21px;
+    }
+    .business-enquiry-left p {
+        font-size: 14px;
+                line-height: 20px;
+    }
+    .business-enquiry-left {
+        padding: 30px 25px 10px;
+    }
+    .business-enquiry-left1 a {
+        font-size: 14px;
+    }
+    .business-enquiry-left1 {
+        padding-top: 5px;
+    }
+    .business-enquiry-right h4,
+    .business-enquiry-right h1 {
+        font-size: 20px;
+    }
+        .business-enquiry-right p {
+        font-size: 13px;
+    }
+    .business-enquiry-right .form-label{
+        font-size: 13px;
+    }
+    .business-enquiry-right .form-control{
+        font-size: 13px;
+    }
+    .business-enquiry-right .btn {
+        font-size: 12px;
+        padding: 7px 15px;
+    }
+    .business-enquiry-right .btn img {
+        width: 22px;
+        margin-left: 3px;
+    }
+    .business-enquiry {
+        padding-top: 25px;
+        padding-bottom: 25px;
+    }
+    .building-smarter .main-container {
+        min-height: 1px;
+        height: 440px;
+    }
+    .trusted-section-right .swiper-slide img {
+        width: 95px;
+    }
+    .trusted-section-right{
+        padding-top: 0;
+    }
+    .trusted-section-right .swiper-slide{
+        padding: 0 6px;
+    }
+    .trusted-section-right .swiper-container{
+        padding: 6px 0;
+    }
+    .trusted-section{
+        padding-top: 40px;
+        padding-bottom: 30px;
+    }
+    .benefits-domestic-shipping .row {
+        gap: 15px 0;
+    }
+    .benefits-domestic-shipping {
+        padding-bottom: 10px;
+    }
+    .cta-section{
+        padding: 15px 0 5px;
+    }
+    .services-section2-left h5, .services-section3-left h5 {
+        font-size: 15px;
+    }
+    .services-section4-right h6{
+        font-size: 15px;
+        margin-bottom: 3px;
+    }
+    .services-section4-right ul li{
+        font-size: 14px;
+    }
+    .services-section3-left h6{
+        margin-bottom: 3px;
+    }
+    .domestic-shipping-sec2-txt ul li{
+        font-size: 14px;
+    }
+    .domestic-shipping-sec2-txt ul li:not(:last-child){
+        margin-bottom: 5px;
+    }
+    .services-section2-left ul li:not(:last-child){
+        margin-bottom: 5px;
+    }
+    .moreless-button, .moreless-button1, .moreless-button2{
+        font-size: 13px;
+    }
+    .our-founder-left{
+        padding: 20px;
+    }
+    .our-story .our-story-left1 p, .our-founder-right p {
+        font-size: 13px;
+        line-height: 20px;
+    }
+    .banner-section-right1 #demo {
+        height: 185px;
+    }
+    .pricing-section {
+        padding: 25px 0;
+    }
+    .pricing-section-card-head h3 {
+        font-size: 20px;
+    }
+    .pricing-section-card-head h6 {
+        font-size: 15px;
+    }
+    .pricing-section1 h3 {
+        font-size: 18px;
+        margin-bottom: 16px;
+    }
+    .pricing-section-card-head h3{
+        font-size: 18px;
+    }
+    .pricing-section-card-head h6 {
+        font-size: 14px;
+    }
+    .pricing-section-card-head h5 {
+        font-size: 16px;
+    }
+    .pricing-section-card-txt p {
+        font-size: 14px;
+    }
+    .pricing-section-card-txt {
+        margin-bottom: 25px;
+    }
+    .pricing-section1-card{
+        margin-bottom: 22px;
+    }
+    .banner-section-right1 {
+        padding-left: 5px;
+    }
+    .banner-section{
+        padding-top: 20px;
+    }
+    .btn-whatsapp-pulse {
+        right: 20px;
+        padding: 20px;
+    }
+        #top-to-button {
+        width: 35px;
+        height: 35px;
+        right: 25px;
+        bottom: 80px;
+    }
+}
+/* end (max-width: 425px) */
+
+/* (max-width: 375px) */
+@media screen and (max-width: 375px) {
+    .banner-section {
+        padding-top: 15px;
+        padding-bottom: 20px;
+    }
+    .banner-section-right h3,
+    .banner-section-right h1 {
+        font-size: 22px;
+        margin-bottom: 6px;
+    }
+    .banner-section-right p {
+        font-size: 14px;
+        line-height: 20px;
+    }
+    .banner-section-right-btn .btn {
+        font-size: 11px;
+    }
+    .track-shipment-left h3,.track-shipment-left h1 {
+        font-size: 16px;
+        margin-bottom: 15px;
+    }
+    .track-shipment-left .input-group .btn {
+        padding: 8px 20px;
+        font-size: 10px;
+    }
+    .track-shipment-left .input-group .form-control {
+        font-size: 13px;
+        height: 32px;
+    }
+    .track-shipment-left .input-group {
+        padding: 8px;
+        border-radius: 10px;
+    }
+    .track-shipment-right {
+        width: 250px;
+    }
+    .track-shipment-bg {
+        padding: 20px 18px 10px;
+    }
+    .track-shipment {
+        padding-bottom: 20px;
+    }
+    .building-smarter-left h3 {
+        font-size: 18px;
+        line-height: 26px;
+    }
+    .building-smarter-left p {
+        font-size: 13px;
+        margin-bottom: 10px;
+    }
+    .btns {
+        font-size: 11px;
+    }
+    .building-smarter .main-container {
+        min-height: 70vh;
+        height: 375px;
+    }
+    .building-smarter .main {
+        width: 270px;
+        height: 270px;
+    }
+    .experience-sec-left h3 {
+        font-size: 18px;
+        line-height: 26px;
+        margin-bottom: 6px;
+    }
+    .experience-sec-left p{
+        margin-bottom: 15px;
+    }
+    .experience-sec-left1 h4 {
+        font-size: 13px;
+    }
+    .experience-sec-left1 p {
+        font-size: 12px;
+    }
+    .experience-sec-left1 img {
+        width: 40px;
+        height: 40px;
+        padding: 6px;
+        margin-right: 10px;
+    }
+    .experience-sec-left1:not(:last-child) {
+        margin-bottom: 15px;
+    }
+    .experience-sec {
+        padding-bottom: 10px;
+    }
+    .our-journey .our-journey-left h3 {
+        font-size: 16px;
+        margin-bottom: 3px;
+        line-height: 22px;
+    }
+    .our-journey .our-journey-left p {
+        font-size: 13px;
+        margin-bottom: 15px;
+    }
+    .our-journey-left1-1 h4 {
+        font-size: 18px;
+    }
+    .our-journey-left1-1 h6 {
+        font-size: 11px;
+    }
+    .our-journey-left1-1{
+        padding: 20px;
+        border-radius: 10px;
+    }
+    .our-journey{
+        padding-bottom: 30px;
+    }
+    .why-choose-left1 h3 {
+        font-size: 18px;
+        line-height: 24px;
+    }
+    .why-choose-left1 p {
+        font-size: 13px;
+        margin-bottom: 12px;
+    }
+    .why-choose-left1{
+        padding: 20px;
+    }
+    .why-choose-left1-1 h6 {
+        font-size: 14px;
+        line-height: 20px;
+    }
+    .why-choose-left1-1 img {
+        width: 35px;
+        padding: 6px;
+    }
+    .trusted-section-left h3, .trusted-section-left h4 {
+        font-size: 20px;
+        line-height: 14px;
+    }
+    .trusted-section-left p {
+        font-size: 12px;
+        margin-bottom: 15px;
+        margin-top: 30px;
+    }
+    .trusted-section-right {
+        padding-top: 0px;
+    }
+    .customer-stories .customer-stories-left h3 {
+        font-size: 20px;
+    }
+    .your-logistics-left h3 {
+        font-size: 15px;
+    }
+    .your-logistics-left h4 {
+        font-size: 18px;
+    }
+    .your-logistics-left1 img {
+        width: 115px;
+    }
+    .your-logistics {
+        padding-top: 30px;
+        margin-bottom: 15px;
+        padding-bottom: 20px;
+    }
+    .footer-section {
+        padding-top: 30px;
+    }
+    .footer-section-logo img{
+        width: 165px;
+    }
+    .footer-section-address1 h6 {
+        font-size: 14px;
+    }
+    .footer-section-address1 img{
+        padding: 5px;
+        width: 26px;
+    }
+    .footer-section-address1:not(:last-child) {
+        margin-bottom: 15px;
+    }
+    .footer-section-social img {
+        width: 26px;
+    }
+    .footer-section-2 h4 {
+        font-size: 16px;
+        margin-bottom: 10px;
+    }
+    .footer-section-2 ul li a {
+        font-size: 13px;
+    }
+    .footer-section-2 ul li:not(:last-child) {
+        margin-bottom: 5px;
+    }
+    .footer-copyright p {
+        font-size: 12px;
+    }
+    .footer-copyright {
+        margin-top: 5px;
+    }
+    .our-services::before {
+        width: 340px;
+        z-index: -1;
+        left: 2%;
+    }
+    .our-services h2 {
+        font-size: 18px;
+    }
+    .our-services h3 {
+        font-size: 15px;
+    }
+    .our-services .wrapper {
+        padding: 15px 0 0;
+    }
+    .our-services-card h5{
+        font-size: 12px;
+        padding: 8px;
+    }
+    .trusted-section{
+        margin-top: 8px;
+    }
+    .trusted-section-left h3, .trusted-section-left h4 {
+        font-size: 18px;
+        line-height: 10px;
+    }
+    .our-growth-form-txt h3{
+        font-size: 16px;
+    }
+    .our-growth-form-txt p {
+        font-size: 13px;
+        line-height: 20px;
+    }
+    .our-growth-form-txt {
+        margin-bottom: 5px;
+    }
+    .our-growth-form1 {
+        padding: 25px 20px 25px 20px;
+    }
+    .customer-stories-right-card .head h4 {
+        font-size: 14px;
+    }
+    .customer-stories-right-card .head h6 {
+        font-size: 13px;
+    }
+    .customer-stories-right-card p {
+        font-size: 14px;
+    }
+    .customer-stories-right-card .head img {
+        width: 45px !important;
+    }
+    .customer-stories-right-card{
+        padding: 20px 15px 15px;
+    }
+    .customer-stories-right-card {
+        margin: 15px 20px 10px 0;
+    }
+    .common-banner-left1 {
+        padding: 40px 0 40px 15px;
+    }
+    .common-banner-left h1,
+    .common-banner-left h3 {
+        font-size: 24px;
+        line-height: 30px;
+    }
+    .who-we-are-right h3,.who-we-are-right h1 {
+        font-size: 16px;
+    }
+    .who-we-are-right p {
+        font-size: 13px;
+    }
+    .who-we-are {
+        padding: 20px 0 10px;
+    }
+    .vision-mission-card1::before {
+        font-size: 90px;
+        line-height: 100px;
+        left: 5px;
+        top: 30px;
+    }
+    .vision-mission-card img {
+        width: 35px;
+    }
+    .vision-mission-card h4 {
+        font-size: 16px;
+        margin-bottom: 5px;
+    }
+    .vision-mission-card p {
+        font-size: 13px;
+    }
+    .vision-mission-card {
+        padding: 12px 0 12px 15px;
+        margin-left: 30px;
+    }
+    .vision-mission-card1-1::before{
+        top: 40px;
+        left: -2px;
+    }
+    .vision-mission-card1-1 .vision-mission-card {
+        margin-left: 30px;
+    }
+    .vision-mission-card1-1 {
+        margin-bottom: 0px;
+    }
+    .our-story-right {
+        margin: 10px 30px 0;
+    }
+    .our-founder-left {
+        margin: 0 30px 15px;
+    }
+    .our-story .our-story-left1 h4, .our-founder-right h4 {
+        font-size: 16px;
+    }
+    .our-story .our-story-left1 p, .our-founder-right p {
+        font-size: 12px;
+        line-height: 22px;
+    }
+    .our-story, .our-founder {
+        padding: 10px 0;
+    }
+    .about-why-choose h3{
+        font-size: 20px;
+    }
+    .about-why-choose-card-right .triangle {
+        width: 110px;
+        height: 130px;
+    }
+    .our-team-right h4 {
+        font-size: 16px;
+    }
+    .our-team-right p {
+        font-size: 12px;
+        line-height: 22px;
+    }
+    .service-banner-left h3,
+    .service-banner-left h1 {
+        font-size: 18px;
+    }
+    .service-banner-left p {
+        font-size: 14px;
+        margin-bottom: 10px;
+    }
+    .service-banner {
+        padding-top: 20px;
+        padding-bottom: 25px;
+    }
+    .services-section1 {
+        margin-top: 20px;
+    }
+    .services-section1-left h3 {
+        font-size: 18px;
+    }
+    .services-section1-left1 {
+        padding: 15px 0 0;
+    }
+    .services-section1-right .wrapper {
+        padding: 12px 0 15px;
+    }
+    .services-section2-left h3 {
+        font-size: 16px;
+    }
+    .services-section2-left p{
+        font-size: 13px;
+    }
+    .services-section3-right {
+        margin: 0 50px 35px;
+    }
+    .services-section3-right::after {
+        width: 240px;
+        height: 235px;
+    }
+    .services-section3-left h3 {
+        font-size: 16px;
+    }
+    .services-section3-left ul li {
+        font-size: 13px;
+    }
+    .services-section3-left p {
+        font-size: 13px;
+        line-height: 22px;
+    }
+    .services-black-sec-bg h3 {
+        font-size: 16px;
+        line-height: 24px;
+        margin-bottom: 5px;
+    }
+    .services-black-sec-bg {
+        padding: 20px 20px 5px 20px;
+    }
+    .services-black-sec-bg p {
+        font-size: 13px;
+    }
+    .services-black-sec-left h4 {
+        font-size: 14px;
+    }
+    .services-black-sec-left ul li {
+        font-size: 13px;
+    }
+    .services-black-sec-left ul {
+        gap: 8px;
+    }
+    .services-section4-right .heading h3 {
+        font-size: 16px;
+    }
+    .services-section4-right p {
+        font-size: 13px;
+    }
+    .services-section4-right .heading1 h6 {
+        font-size: 13px;
+    }
+    .services-section4 {
+        padding-top: 25px;
+        padding-bottom: 25px;
+    }
+    .domestic-shipping-sec2-txt h3 {
+        font-size: 16px;
+    }
+    .domestic-shipping-sec2-txt p {
+        font-size: 13px;
+    }
+    .domestic-shipping-sec2-txt1 h6 {
+        font-size: 13px;
+        line-height: 20px;
+    }
+    .domestic-shipping-sec2-txt1 img{
+        width: 30px;
+        padding: 6px;
+        margin-right: 10px;
+    }
+    .domestic-shipping-sec2-txt {
+        padding: 20px;
+    }
+    .domestic-shipping-sec2 {
+        padding-top: 25px;
+        padding-bottom: 25px;
+    }
+    .have-benefit h3 {
+        font-size: 16px;
+    }
+    .have-benefit p {
+        font-size: 13px;
+    }
+    .have-benefit-card h4 {
+        font-size: 14px;
+    }
+    .have-benefit .row {
+        gap: 15px 0px;
+    }
+    .have-benefit {
+        padding: 10px 0;
+    }
+    .location-section .location-section h3 {
+        font-size: 15px;
+    }
+    .location-section .location-section {
+        padding: 15px;
+    }
+    .location-section .location-section ul li {
+        font-size: 12px;
+    }
+    .location-section .location-section ul li::before {
+        width: 14px;
+        height: 14px;
+    }
+    .location-section {
+        padding: 10px 0;
+    }
+    .have-benefit {
+        padding: 10px 0;
+    }
+    .why-shipdaak-pg h3,.why-shipdaak-pg h1 {
+        font-size: 16px;
+        margin-bottom: 8px;
+    }
+    .why-shipdaak-pg p {
+        font-size: 12px;
+    }
+    .why-shipdaak-pg-card h5{
+        font-size: 12px;
+        margin: 0 6px;
+        border-radius: 6px;
+    }
+    .privacy-policy {
+        padding: 20px 0 10px;
+    }
+    .privacy-policy .privacy-policy-txt p {
+        font-size: 12px;
+        margin-bottom: 6px;
+    }
+    .privacy-policy .privacy-policy-txt h4 {
+        font-size: 15px;
+    }
+    .business-enquiry-left h4 {
+        font-size: 18px;
+    }
+    .business-enquiry-left p {
+        font-size: 12px;
+    }
+    .business-enquiry-left1 a {
+        font-size: 13px;
+        margin-bottom: 15px;
+    }
+    .business-enquiry-left {
+        padding: 25px 20px 5px;
+    }
+    .business-enquiry-left1 a img {
+        width: 16px;
+        margin-right: 10px;
+    }
+    .business-enquiry-social ul{
+        gap: 8px;
+    }
+    .business-enquiry-social ul li img {
+        width: 26px;
+    }
+    .business-enquiry-right h4,
+    .business-enquiry-right h1 {
+        font-size: 18px;
+    }
+    .business-enquiry-right {
+        padding: 5px 5px 0;
+    }
+    .trusted-section-right .swiper-slide img {
+        width: 90px;
+    }
+    .cta-section-card h4 {
+        font-size: 14px;
+    }
+    .cta-section-card .btn {
+        margin-top: 6px;
+        font-size: 11px;
+    }
+    .banner-section-right1 #demo {
+        height: 185px;
+    }
+    .pricing-section-card-head h3 {
+        font-size: 16px;
+    }
+    .pricing-section-card-head h5 {
+        font-size: 15px;
+    }
+    .pricing-section-card-txt p {
+        font-size: 13px;
+    }
+    .pricing-section-card-txt ul li {
+        font-size: 13px;
+    }
+    .pricing-section1 h3 {
+        font-size: 16px;
+        margin-bottom: 15px;
+    }
+    .pricing-section1-card h4 {
+        font-size: 14px;
+        margin-bottom: 5px;
+    }
+    .pricing-section1-card p {
+        font-size: 14px;
+        margin-bottom: 2px;
+    }
+    .pricing-section1-card a{
+        font-size: 14px;
+    }
+}
+/* end (max-width: 375px) */
+
+@media screen and (max-width: 424px) and (min-width: 376px) {
+    .services-section3-right::after {
+        width: 100%;
+        height: 95%;
+    }
+}

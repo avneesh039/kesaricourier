@@ -78,8 +78,13 @@ class DashboardController
     {
         Auth::requireLogin();
         if (!Auth::isSuperAdmin()) {
-            header('Location: /');
-            exit;
+            $tenant = TenantContext::getTenant();
+            if ($tenant !== null) {
+                $this->agencyDashboard();
+                return;
+            }
+            http_response_code(403);
+            die("<h1>403 Forbidden</h1><p>You do not have permission to access the Super Admin Control Plane.</p>");
         }
 
         $db = Database::getInstance();

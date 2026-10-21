@@ -24,6 +24,15 @@ class TenantContext {
         if ($slug) {
             $tenant = $db->fetchOne("SELECT * FROM tenants WHERE slug = ? OR agency_code = ?", [$slug, $slug]);
             if ($tenant) {
+                // If an agency user is logged in, ensure they stay within their own tenant
+                if (!empty($_SESSION['user']['tenant_id']) && ($_SESSION['user']['role'] ?? '') !== 'superadmin') {
+                    if ((int)$tenant['id'] !== (int)$_SESSION['user']['tenant_id']) {
+                        $ownTenant = $db->fetchOne("SELECT * FROM tenants WHERE id = ?", [$_SESSION['user']['tenant_id']]);
+                        if ($ownTenant) {
+                            $tenant = $ownTenant;
+                        }
+                    }
+                }
                 self::$activeTenant = $tenant;
                 self::$isSuperAdmin = false;
                 self::$resolved = true;
@@ -31,7 +40,18 @@ class TenantContext {
             }
         }
 
-        // 2. Super Admin host check
+        // 2. Authenticated user session tenant (vital for agency staff navigating without ?tenant= in URL)
+        if (!empty($_SESSION['user']['tenant_id'])) {
+            $tenant = $db->fetchOne("SELECT * FROM tenants WHERE id = ?", [$_SESSION['user']['tenant_id']]);
+            if ($tenant) {
+                self::$activeTenant = $tenant;
+                self::$isSuperAdmin = false;
+                self::$resolved = true;
+                return self::$activeTenant;
+            }
+        }
+
+        // 3. Super Admin host check
         if (defined('SUPER_ADMIN_HOST') && $cleanHost === SUPER_ADMIN_HOST) {
             self::$isSuperAdmin = true;
             self::$activeTenant = null;
@@ -39,7 +59,7 @@ class TenantContext {
             return null;
         }
 
-        // 3. Domain / Subdomain matching via tenant_domains
+        // 4. Domain / Subdomain matching via tenant_domains
         $matchedDomain = $db->fetchOne("
             SELECT t.* FROM tenants t 
             JOIN tenant_domains td ON td.tenant_id = t.id 
@@ -53,7 +73,7 @@ class TenantContext {
             return self::$activeTenant;
         }
 
-        // 4. Subdomain extraction fallback (e.g. raipur.kesari.com or raipur.localhost)
+        // 5. Subdomain extraction fallback (e.g. raipur.kesari.com or raipur.localhost)
         $parts = explode('.', $cleanHost);
         if (count($parts) >= 2) {
             $subdomain = $parts[0];
@@ -73,8 +93,12 @@ class TenantContext {
             }
         }
 
-        // Default: If no agency matched, treat as Super Admin / Global portal
-        self::$isSuperAdmin = true;
+        // Default: If no agency matched, treat as Super Admin only if superadmin or unauthenticated visitor
+        $isSuper = true;
+        if (!empty($_SESSION['user']) && ($_SESSION['user']['role'] ?? '') !== 'superadmin') {
+            $isSuper = false;
+        }
+        self::$isSuperAdmin = $isSuper;
         self::$activeTenant = null;
         self::$resolved = true;
         return null;

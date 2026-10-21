@@ -88,7 +88,9 @@ class Auth {
     public static function requireLogin(): void {
         if (!self::check()) {
             $redirect = urlencode($_SERVER['REQUEST_URI'] ?? '/');
-            header("Location: /login?redirect={$redirect}");
+            $tenant = TenantContext::getTenant();
+            $tenantParam = ($tenant && !empty($tenant['slug'])) ? '&tenant=' . urlencode($tenant['slug']) : '';
+            header("Location: /login?redirect={$redirect}{$tenantParam}");
             exit;
         }
     }

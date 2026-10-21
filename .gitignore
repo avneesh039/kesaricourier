@@ -1,6 +1,8 @@
 # Screenshots & Temporary files
 Screenshot*.png
 scratch/
+scratch_test.php
+test_cookies.txt
 .agents/
 
 # Storage & Logs

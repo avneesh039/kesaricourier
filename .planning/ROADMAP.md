@@ -121,10 +121,26 @@ Plans:
 
 ---
 
+### Phase 7: Shipdaak Pixel-to-Pixel Public Frontend Clone
+**Goal**: Implement an exact pixel-to-pixel replica of the Shipdaak.com commercial frontend (all styling, typography, sections, images, banners, and lead forms), while integrating live Kesari tracking and portal authentication.  
+**Depends on**: Phase 6  
+**Requirements**: UI-SHIPDAAK-01, TRACK-01, AUTH-HOOK-01  
+**Success Criteria**:
+  1. Complete visual parity with Shipdaak.com (sub-nav, header, banner carousel, feature cards, metrics, review slider, blogs, growth form, footer).
+  2. All original image assets and media URLs preserved and rendering correctly.
+  3. Real-time AWB tracking search bar dynamically connects to Kesari logistics backend (`/track`).
+  4. Login and signup call-to-actions route directly into the Kesari platform portals.
+**Plans**: 1 plan
+
+Plans:
+- [ ] 07-01: Pixel-to-pixel Shipdaak frontend layout, styling assets, responsive components, and backend tracking/auth wiring.
+
+---
+
 ## Progress
 
 **Execution Order:**
-Phases execute in numeric order: 1 → 2 → 3 → 4 → 5 → 6
+Phases execute in numeric order: 1 → 2 → 3 → 4 → 5 → 6 → 7
 
 | Phase | Plans Complete | Status | Completed |
 |---|---|---|---|
@@ -134,3 +150,4 @@ Phases execute in numeric order: 1 → 2 → 3 → 4 → 5 → 6
 | 4. Consignment Booking Engine & Tariff Matrix | 3/3 | Complete | 2026-10-16 |
 | 5. Thermal Label Barcode & QR Code Engine | 2/2 | Complete | 2026-10-17 |
 | 6. Invoicing, GST Billing, MIS Reporting & Dashboard Polish | 3/3 | Complete | 2026-10-17 |
+| 7. Shipdaak Pixel-to-Pixel Public Frontend Clone | 0/1 | In Progress | - |

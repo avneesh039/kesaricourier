@@ -114,11 +114,13 @@ $isExpiring = TenantContext::isExpiringSoon(30);
             </div>
 
             <div class="topbar-actions">
-                <!-- Environment / Tenant switcher helper for development -->
-                <?php if ($isSuperAdmin): ?>
-                    <a href="/?tenant=raipur" class="btn btn-outlined" style="padding:6px 14px; font-size:12px;">Switch to Raipur Agency View</a>
-                <?php else: ?>
-                    <a href="/" class="btn btn-outlined" style="padding:6px 14px; font-size:12px;">Switch to Admin View</a>
+                <!-- Environment / Tenant switcher helper for development & Super Admin -->
+                <?php if (Auth::isSuperAdmin()): ?>
+                    <?php if ($tenant): ?>
+                        <a href="/" class="btn btn-outlined" style="padding:6px 14px; font-size:12px;">Switch to Admin View</a>
+                    <?php else: ?>
+                        <a href="/?tenant=raipur" class="btn btn-outlined" style="padding:6px 14px; font-size:12px;">Switch to Raipur Agency View</a>
+                    <?php endif; ?>
                 <?php endif; ?>
 
                 <div class="user-badge">

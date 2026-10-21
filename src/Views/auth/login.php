@@ -87,7 +87,7 @@ $csrfToken = Auth::generateCsrfToken();
         </div>
     <?php endif; ?>
 
-    <form method="POST" action="/login<?= isset($_GET['tenant']) ? '?tenant=' . htmlspecialchars($_GET['tenant']) : '' ?>">
+    <form method="POST" action="/login<?= !empty($_SERVER['QUERY_STRING']) ? '?' . htmlspecialchars($_SERVER['QUERY_STRING']) : '' ?>">
         <input type="hidden" name="csrf_token" value="<?= htmlspecialchars($csrfToken) ?>">
 
         <div class="form-group">
