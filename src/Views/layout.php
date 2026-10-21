@@ -42,7 +42,13 @@ $isExpiring = TenantContext::isExpiringSoon(30);
                     <span class="nav-icon"><?= Icon::svg('dashboard') ?></span> Dashboard
                 </a>
                 <a href="/admin/agencies" class="nav-item <?= ($activeNav ?? '') === 'agencies' ? 'active' : '' ?>">
-                    <span class="nav-icon"><?= Icon::svg('agencies') ?></span> Agency Tenants
+                    <span class="nav-icon"><?= Icon::svg('agencies') ?></span> Agency Franchises
+                </a>
+                <a href="/admin/subscriptions" class="nav-item <?= ($activeNav ?? '') === 'subscriptions' ? 'active' : '' ?>">
+                    <span class="nav-icon"><?= Icon::svg('receipt-tax') ?></span> Plans & Subscriptions
+                </a>
+                <a href="/admin/courier-apis" class="nav-item <?= ($activeNav ?? '') === 'courier_apis' ? 'active' : '' ?>">
+                    <span class="nav-icon"><?= Icon::svg('truck') ?></span> Courier APIs Gateway
                 </a>
                 <a href="/admin/kyc" class="nav-item <?= ($activeNav ?? '') === 'kyc' ? 'active' : '' ?>">
                     <span class="nav-icon"><?= Icon::svg('kyc') ?></span> KYC Verification

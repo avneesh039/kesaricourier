@@ -17,7 +17,7 @@ ob_start();
         <a href="/admin/kyc" class="btn btn-outlined">
             🛡️ KYC Review Queue <?= $counts['pending_kyc'] > 0 ? "({$counts['pending_kyc']})" : '' ?>
         </a>
-        <a href="/onboard/register" target="_blank" class="btn btn-primary">+ Onboard New Agency</a>
+        <a href="/admin/agencies/new" class="btn btn-primary">+ Create Agency / Franchise</a>
     </div>
 </div>
 
@@ -117,12 +117,17 @@ ob_start();
                             <?php endif; ?>
                         </td>
                         <td>
-                            <div style="display:flex; gap:6px;">
+                            <div style="display:flex; gap:6px; flex-wrap:wrap;">
                                 <?php if ($t['status'] === 'pending_kyc'): ?>
                                     <a href="/admin/kyc/<?= $t['id'] ?>" class="btn btn-primary" style="padding:4px 8px; font-size:11px;">Review KYC</a>
                                 <?php endif; ?>
-                                <a href="/admin/agencies/<?= $t['id'] ?>/edit" class="btn btn-outlined" style="padding:4px 8px; font-size:11px;">Edit</a>
-                                <a href="/?tenant=<?= htmlspecialchars($t['slug']) ?>" class="btn btn-outlined" style="padding:4px 8px; font-size:11px;">Open Portal ↗</a>
+                                <a href="/admin/agencies/<?= $t['id'] ?>/edit" class="btn btn-outlined" style="padding:4px 8px; font-size:11px;">Edit / Plan</a>
+                                <form method="POST" action="/admin/agencies/<?= $t['id'] ?>/toggle-status" style="display:inline;">
+                                    <button type="submit" class="btn btn-outlined" style="padding:4px 8px; font-size:11px;" onclick="return confirm('Change status for <?= htmlspecialchars($t['name']) ?>?')">
+                                        <?= $t['status'] === 'active' ? '🔒 Suspend' : '✓ Activate' ?>
+                                    </button>
+                                </form>
+                                <a href="/?tenant=<?= htmlspecialchars($t['slug']) ?>" target="_blank" class="btn btn-outlined" style="padding:4px 8px; font-size:11px;">Portal ↗</a>
                             </div>
                         </td>
                     </tr>

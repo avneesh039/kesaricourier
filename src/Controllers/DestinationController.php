@@ -17,7 +17,7 @@ class DestinationController {
             FROM destinations d
             JOIN states s ON s.id = d.state_id
             JOIN operational_zones z ON z.id = s.zone_id
-            WHERE d.is_active = 1
+            WHERE 1=1
         ";
         $params = [];
 
@@ -70,12 +70,41 @@ class DestinationController {
             exit;
         }
 
+        // Check duplicate pincode to prevent routing confusion
+        if (!empty($pincode)) {
+            $pincodeExists = $db->fetchOne("
+                SELECT d.id, d.name, d.code, s.name as state_name 
+                FROM destinations d 
+                JOIN states s ON s.id = d.state_id 
+                WHERE d.pincode = ?
+            ", [$pincode]);
+            if ($pincodeExists) {
+                $_SESSION['flash_error'] = "⚠️ Pincode '{$pincode}' is already registered for {$pincodeExists['name']} (#{$pincodeExists['code']}), {$pincodeExists['state_name']}. Duplicate pincodes are not allowed in Central Destination Master.";
+                header('Location: /admin/destinations/new');
+                exit;
+            }
+        }
+
         $db->execute("
             INSERT INTO destinations (code, name, state_id, pincode, is_hub, is_active) 
             VALUES (?, ?, ?, ?, ?, 1)
         ", [$code, $name, $stateId, $pincode ?: null, $isHub]);
 
         $_SESSION['flash_success'] = "✓ Master Destination '{$name}' (#{$code}) created successfully.";
+        header('Location: /admin/destinations');
+        exit;
+    }
+
+    public function toggleActive(int $id): void {
+        Auth::requireRole('superadmin');
+        $db = Database::getInstance();
+        $dest = $db->fetchOne("SELECT id, name, is_active FROM destinations WHERE id = ?", [$id]);
+        if ($dest) {
+            $newStatus = $dest['is_active'] ? 0 : 1;
+            $db->execute("UPDATE destinations SET is_active = ? WHERE id = ?", [$newStatus, $id]);
+            $statusLabel = $newStatus ? 'Activated' : 'Deactivated / Service Suspended';
+            $_SESSION['flash_success'] = "Destination '{$dest['name']}' is now {$statusLabel}.";
+        }
         header('Location: /admin/destinations');
         exit;
     }

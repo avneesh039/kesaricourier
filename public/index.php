@@ -20,6 +20,8 @@ require_once dirname(__DIR__) . '/src/Controllers/BankController.php';
 require_once dirname(__DIR__) . '/src/Controllers/InvoiceController.php';
 require_once dirname(__DIR__) . '/src/Controllers/OperatorController.php';
 require_once dirname(__DIR__) . '/src/Controllers/PaymentController.php';
+require_once dirname(__DIR__) . '/src/Controllers/CourierApiController.php';
+require_once dirname(__DIR__) . '/src/Controllers/AdminSubscriptionController.php';
 require_once dirname(__DIR__) . '/src/Controllers/DashboardController.php';
 require_once dirname(__DIR__) . '/src/Controllers/PublicController.php';
 
@@ -240,12 +242,28 @@ $router->post('/admin/kyc/{id}/reject', function($id) {
     (new AdminAgencyController())->rejectKyc((int)$id);
 });
 
+$router->get('/admin/agencies/new', function() {
+    (new AdminAgencyController())->create();
+});
+
+$router->post('/admin/agencies/new', function() {
+    (new AdminAgencyController())->store();
+});
+
 $router->get('/admin/agencies/{id}/edit', function($id) {
     (new AdminAgencyController())->edit((int)$id);
 });
 
 $router->post('/admin/agencies/{id}/edit', function($id) {
     (new AdminAgencyController())->update((int)$id);
+});
+
+$router->post('/admin/agencies/{id}/reset-password', function($id) {
+    (new AdminAgencyController())->resetPassword((int)$id);
+});
+
+$router->post('/admin/agencies/{id}/toggle-status', function($id) {
+    (new AdminAgencyController())->toggleStatus((int)$id);
 });
 
 // -------------------------------------------------------------
@@ -262,6 +280,10 @@ $router->get('/admin/destinations/new', function() {
 
 $router->post('/admin/destinations/new', function() {
     (new DestinationController())->store();
+});
+
+$router->post('/admin/destinations/{id}/toggle', function($id) {
+    (new DestinationController())->toggleActive((int)$id);
 });
 
 // -------------------------------------------------------------
@@ -294,6 +316,54 @@ $router->post('/admin/tickets/{id}/approve-destination', function($id) {
 
 $router->post('/admin/tickets/{id}/resolve', function($id) {
     (new TicketController())->adminResolve((int)$id);
+});
+
+// -------------------------------------------------------------
+// Third-Party Courier API Integrations (Super Admin Governance)
+// -------------------------------------------------------------
+
+$router->get('/admin/courier-apis', function() {
+    (new CourierApiController())->index();
+});
+
+$router->get('/admin/courier-apis/new', function() {
+    (new CourierApiController())->create();
+});
+
+$router->post('/admin/courier-apis/new', function() {
+    (new CourierApiController())->store();
+});
+
+$router->get('/admin/courier-apis/{id}/edit', function($id) {
+    (new CourierApiController())->edit((int)$id);
+});
+
+$router->post('/admin/courier-apis/{id}/edit', function($id) {
+    (new CourierApiController())->update((int)$id);
+});
+
+$router->post('/admin/courier-apis/{id}/test', function($id) {
+    (new CourierApiController())->testConnection((int)$id);
+});
+
+$router->post('/admin/courier-apis/{id}/toggle', function($id) {
+    (new CourierApiController())->toggle((int)$id);
+});
+
+// -------------------------------------------------------------
+// Subscription Plans & Platform Fee Ledger (Super Admin Control)
+// -------------------------------------------------------------
+
+$router->get('/admin/subscriptions', function() {
+    (new AdminSubscriptionController())->index();
+});
+
+$router->post('/admin/subscriptions/payment', function() {
+    (new AdminSubscriptionController())->recordPayment();
+});
+
+$router->post('/admin/subscriptions/new-plan', function() {
+    (new AdminSubscriptionController())->createPlan();
 });
 
 // -------------------------------------------------------------

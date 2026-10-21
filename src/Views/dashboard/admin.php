@@ -21,9 +21,10 @@ ob_start();
         <button type="button" class="btn btn-outlined" onclick="toggleAdminGuidance()" id="guidanceToggleBtn" style="font-size:13px;">
             <?= Icon::svg('sparkles', '', 16) ?> <span id="guidanceBtnLabel">Hide Guidance</span>
         </button>
-        <a href="/admin/destinations" class="btn btn-outlined"><?= Icon::svg('destinations') ?> Master Destinations</a>
-        <a href="/admin/tickets" class="btn btn-outlined"><?= Icon::svg('tickets') ?> Tickets (<?= $openTickets ?? 0 ?>)</a>
-        <a href="/admin/agencies/new" class="btn btn-primary"><?= Icon::svg('plus') ?> Register Agency</a>
+        <a href="/admin/subscriptions" class="btn btn-outlined"><?= Icon::svg('receipt-tax') ?> Subscriptions</a>
+        <a href="/admin/courier-apis" class="btn btn-outlined"><?= Icon::svg('truck') ?> Courier APIs</a>
+        <a href="/admin/destinations" class="btn btn-outlined"><?= Icon::svg('destinations') ?> Destinations</a>
+        <a href="/admin/agencies/new" class="btn btn-primary"><?= Icon::svg('plus') ?> Create Agency</a>
     </div>
 </div>
 

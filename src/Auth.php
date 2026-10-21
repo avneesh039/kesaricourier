@@ -35,8 +35,22 @@ class Auth {
                 if ($tenant['status'] === 'suspended') {
                     return ['success' => false, 'error' => 'Agency portal is currently suspended. Please contact platform administration.'];
                 }
+                if ($tenant['status'] === 'rejected') {
+                    return ['success' => false, 'error' => 'Agency application was rejected. Access denied.'];
+                }
                 if ($tenant['status'] === 'pending_kyc') {
                     return ['success' => false, 'error' => 'Agency account is awaiting KYC approval.'];
+                }
+
+                // Enforce Subscription Validity & Grace Period Lock
+                if (!empty($tenant['validity_end'])) {
+                    $graceDays = (int)($tenant['grace_period_days'] ?? 7);
+                    $lockDate = date('Y-m-d', strtotime($tenant['validity_end'] . " +{$graceDays} days"));
+                    $today = date('Y-m-d');
+
+                    if ($today > $lockDate) {
+                        return ['success' => false, 'error' => "Agency license expired on {$tenant['validity_end']} (Grace period of {$graceDays} days exceeded). Login is suspended. Please contact platform administration for renewal."];
+                    }
                 }
             }
         }

@@ -76,20 +76,21 @@ ob_start();
                     <th>Zone</th>
                     <th>Default Pincode</th>
                     <th>Hub Classification</th>
-                    <th>Status</th>
+                    <th>Serviceability</th>
+                    <th>Actions</th>
                 </tr>
             </thead>
             <tbody>
                 <?php if (empty($destinations)): ?>
                     <tr>
-                        <td colspan="7" style="text-align:center; padding:32px; color:var(--text-secondary);">
+                        <td colspan="8" style="text-align:center; padding:32px; color:var(--text-secondary);">
                             No destinations found matching your criteria.
                         </td>
                     </tr>
                 <?php endif; ?>
 
                 <?php foreach ($destinations as $d): ?>
-                    <tr>
+                    <tr style="<?= empty($d['is_active']) ? 'opacity:0.6; background:#fafafa;' : '' ?>">
                         <td><strong><?= htmlspecialchars($d['code']) ?></strong></td>
                         <td style="font-weight:500; font-size:14px;">
                             <?= htmlspecialchars($d['name']) ?>
@@ -104,7 +105,20 @@ ob_start();
                                 <span class="g-chip" style="background:#f1f3f4; color:#5f6368;">Branch Delivery Node</span>
                             <?php endif; ?>
                         </td>
-                        <td><span class="g-chip chip-success">Active</span></td>
+                        <td>
+                            <?php if (!empty($d['is_active'])): ?>
+                                <span class="g-chip chip-success">Serviceable</span>
+                            <?php else: ?>
+                                <span class="g-chip chip-danger">Suspended</span>
+                            <?php endif; ?>
+                        </td>
+                        <td>
+                            <form method="POST" action="/admin/destinations/<?= $d['id'] ?>/toggle" style="display:inline;">
+                                <button type="submit" class="btn btn-outlined" style="padding:3px 8px; font-size:11px;" onclick="return confirm('Change serviceability status for <?= htmlspecialchars($d['name']) ?>?')">
+                                    <?= !empty($d['is_active']) ? 'Deactivate' : 'Activate' ?>
+                                </button>
+                            </form>
+                        </td>
                     </tr>
                 <?php endforeach; ?>
             </tbody>

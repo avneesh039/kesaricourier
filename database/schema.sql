@@ -22,6 +22,9 @@ CREATE TABLE IF NOT EXISTS tenants (
     aadhaar_doc_url VARCHAR(255),
     rejection_reason TEXT NULL,
     status VARCHAR(20) DEFAULT 'pending_otp', -- pending_otp, pending_kyc, active, suspended, expired, rejected
+    plan_type VARCHAR(30) DEFAULT 'Yearly', -- Monthly, Quarterly, Half-Yearly, Yearly, Custom
+    plan_price REAL DEFAULT 12000.0,
+    grace_period_days INTEGER DEFAULT 7,
     validity_start DATE,
     validity_end DATE,
     logo_url VARCHAR(255),
@@ -293,6 +296,45 @@ CREATE TABLE IF NOT EXISTS payments (
     created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (tenant_id) REFERENCES tenants(id),
     FOREIGN KEY (invoice_id) REFERENCES invoices(id)
+);
+
+-- Super Admin: Third-Party Courier API Integrations & Webhooks
+CREATE TABLE IF NOT EXISTS courier_integrations (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    courier_name VARCHAR(100) NOT NULL,
+    courier_code VARCHAR(50) UNIQUE NOT NULL, -- delhivery, shiprocket, bluedart, trackon, dtdc, shreemaruti
+    api_endpoint VARCHAR(255) NOT NULL,
+    tracking_url_template VARCHAR(255) NULL,
+    api_key VARCHAR(255) NULL,
+    api_secret VARCHAR(255) NULL,
+    client_id VARCHAR(100) NULL,
+    status VARCHAR(20) DEFAULT 'inactive', -- connected, failed, inactive
+    is_active INTEGER DEFAULT 1,
+    last_tested_at DATETIME NULL,
+    last_error_log TEXT NULL,
+    notes TEXT NULL,
+    created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+    updated_at DATETIME DEFAULT CURRENT_TIMESTAMP
+);
+
+-- Super Admin: Agency Franchise Subscription Plans & Platform Fee Remittance
+CREATE TABLE IF NOT EXISTS tenant_subscriptions (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    tenant_id INTEGER NOT NULL,
+    plan_name VARCHAR(50) NOT NULL,
+    billing_cycle VARCHAR(30) NOT NULL, -- monthly, quarterly, yearly, custom
+    amount REAL NOT NULL,
+    paid_amount REAL DEFAULT 0,
+    due_amount REAL DEFAULT 0,
+    payment_status VARCHAR(20) DEFAULT 'pending', -- paid, partial, pending
+    payment_mode VARCHAR(30) NULL, -- Cash, Bank Transfer, UPI, Cheque
+    reference_no VARCHAR(100) NULL,
+    start_date DATE NOT NULL,
+    end_date DATE NOT NULL,
+    grace_period_days INTEGER DEFAULT 7,
+    notes TEXT NULL,
+    created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (tenant_id) REFERENCES tenants(id) ON DELETE CASCADE
 );
 
 

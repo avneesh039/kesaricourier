@@ -37,6 +37,7 @@ ob_start();
             <div class="form-group">
                 <label class="form-label">Pincode</label>
                 <input type="text" name="pincode" class="form-control" placeholder="e.g. 482001" maxlength="6" pattern="[0-9]{6}">
+                <small style="color:var(--text-secondary); font-size:11px;">6-digit pincode. System automatically blocks duplicate entries.</small>
             </div>
 
             <div class="form-group" style="grid-column:span 2;">
