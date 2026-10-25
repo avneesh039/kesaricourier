@@ -1,0 +1,593 @@
+// backend/prisma/schema.prisma
+// Multi-Tenant Courier ERP Database Schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+// -------------------------------------------------------------
+// 1. Multi-Tenant Core: Tenants (Agencies) & Branches
+// -------------------------------------------------------------
+
+model Tenant {
+  id               Int       @id @default(autoincrement())
+  uuid             String    @unique @default(uuid()) @db.VarChar(64)
+  slug             String    @unique @db.VarChar(64)
+  agency_code      String?   @unique @db.VarChar(32) // e.g. "26"
+  name             String    @db.VarChar(150)
+  trade_name       String?   @db.VarChar(150)
+  contact_person   String    @db.VarChar(100)
+  phone            String    @db.VarChar(20)
+  email            String    @db.VarChar(120)
+  address          String?   @db.Text
+  city             String?   @db.VarChar(100)
+  state            String?   @db.VarChar(100)
+  pincode          String?   @db.VarChar(10)
+  pan_no           String?   @db.VarChar(20)
+  aadhaar_no       String?   @db.VarChar(20)
+  gstin            String?   @db.VarChar(20)
+  pan_doc_url      String?   @db.VarChar(255)
+  aadhaar_doc_url  String?   @db.VarChar(255)
+  rejection_reason String?   @db.Text
+  status           String    @default("pending_kyc") @db.VarChar(30) // pending_otp, pending_kyc, active, suspended, expired, rejected
+  plan_type        String    @default("Yearly") @db.VarChar(50)
+  plan_price       Decimal   @default(12000.00) @db.Decimal(10, 2)
+  grace_period_days Int      @default(7)
+  validity_start   DateTime? @db.Date
+  validity_end     DateTime? @db.Date
+  logo_url         String?   @db.VarChar(255)
+  brand_color      String    @default("#1a73e8") @db.VarChar(20)
+  created_at       DateTime  @default(now())
+  updated_at       DateTime  @updatedAt
+
+  branches         Branch[]
+  users            User[]
+  clients          Client[]
+  tariffs          Tariff[]
+  consignments     Consignment[]
+  manifests        Manifest[]
+  runsheets        Runsheet[]
+  invoices         Invoice[]
+  payments         Payment[]
+  bank_accounts    AgencyBankAccount[]
+  subscriptions    TenantSubscription[]
+  tickets          Ticket[]
+  audit_logs       AuditLog[]
+
+  @@map("tenants")
+}
+
+model Branch {
+  id           Int           @id @default(autoincrement())
+  tenant_id    Int
+  branch_code  String        @db.VarChar(32) // e.g. "RAI-01"
+  branch_name  String        @db.VarChar(120)
+  address      String        @db.Text
+  city         String        @db.VarChar(100)
+  state        String        @db.VarChar(100)
+  pincode      String        @db.VarChar(10)
+  phone        String        @db.VarChar(20)
+  manager_id   Int?
+  status       String        @default("active") @db.VarChar(20) // active, inactive, closed
+  created_at   DateTime      @default(now())
+  updated_at   DateTime      @updatedAt
+
+  tenant       Tenant        @relation(fields: [tenant_id], references: [id], onDelete: Cascade)
+  manager      User?         @relation("BranchManager", fields: [manager_id], references: [id], onDelete: SetNull)
+  users        User[]        @relation("AssignedBranch")
+  consignments Consignment[]
+  manifests    Manifest[]
+  runsheets    Runsheet[]
+
+  @@unique([tenant_id, branch_code])
+  @@index([tenant_id])
+  @@map("branches")
+}
+
+// -------------------------------------------------------------
+// 2. Identity & Access: Users & Refresh Tokens
+// -------------------------------------------------------------
+
+model User {
+  id              Int            @id @default(autoincrement())
+  tenant_id       Int?           // NULL for platform Super Admin
+  branch_id       Int?           // Optional scoped branch
+  name            String         @db.VarChar(100)
+  email           String         @unique @db.VarChar(120)
+  phone           String?        @db.VarChar(20)
+  password_hash   String         @db.VarChar(255)
+  role            String         @db.VarChar(30) // superadmin, agency_admin, branch_manager, operations_staff, delivery_personnel, accounts_staff, customer
+  status          String         @default("active") @db.VarChar(20) // active, inactive, locked, suspended
+  failed_logins   Int            @default(0)
+  locked_until    DateTime?
+  last_login_at   DateTime?
+  created_at      DateTime       @default(now())
+  updated_at      DateTime       @updatedAt
+
+  tenant          Tenant?        @relation(fields: [tenant_id], references: [id], onDelete: Cascade)
+  assigned_branch Branch?        @relation("AssignedBranch", fields: [branch_id], references: [id], onDelete: SetNull)
+  managed_branches Branch[]      @relation("BranchManager")
+  refresh_tokens  RefreshToken[]
+  assigned_runsheets Runsheet[]  @relation("DeliveryStaffRunsheets")
+  created_bookings   Consignment[] @relation("CreatedByOperator")
+  audit_logs      AuditLog[]
+
+  @@index([tenant_id])
+  @@index([branch_id])
+  @@map("users")
+}
+
+model RefreshToken {
+  id         Int      @id @default(autoincrement())
+  user_id    Int
+  token_hash String   @unique @db.VarChar(255)
+  expires_at DateTime
+  is_revoked Boolean  @default(false)
+  created_at DateTime @default(now())
+
+  user       User     @relation(fields: [user_id], references: [id], onDelete: Cascade)
+
+  @@index([user_id])
+  @@map("refresh_tokens")
+}
+
+// -------------------------------------------------------------
+// 3. SaaS Subscription Engine
+// -------------------------------------------------------------
+
+model SubscriptionPlan {
+  id            Int      @id @default(autoincrement())
+  name          String   @db.VarChar(50) // Starter, Professional, Enterprise
+  description   String?  @db.Text
+  price         Decimal  @db.Decimal(10, 2)
+  billing_cycle String   @db.VarChar(30) // monthly, quarterly, yearly
+  duration_days Int      @default(365)
+  max_branches  Int      @default(3)
+  max_users     Int      @default(10)
+  booking_quota Int      @default(5000)
+  features_json String?  @db.Text
+  is_active     Boolean  @default(true)
+  created_at    DateTime @default(now())
+
+  @@map("subscription_plans")
+}
+
+model TenantSubscription {
+  id               Int      @id @default(autoincrement())
+  tenant_id        Int
+  plan_name        String   @db.VarChar(50)
+  billing_cycle    String   @db.VarChar(30)
+  amount           Decimal  @db.Decimal(10, 2)
+  paid_amount      Decimal  @default(0.00) @db.Decimal(10, 2)
+  due_amount       Decimal  @default(0.00) @db.Decimal(10, 2)
+  payment_status   String   @default("pending") @db.VarChar(20) // paid, partial, pending
+  payment_mode     String?  @db.VarChar(30)
+  reference_no     String?  @db.VarChar(100)
+  start_date       DateTime @db.Date
+  end_date         DateTime @db.Date
+  grace_period_days Int     @default(7)
+  notes            String?  @db.Text
+  created_at       DateTime @default(now())
+
+  tenant           Tenant   @relation(fields: [tenant_id], references: [id], onDelete: Cascade)
+
+  @@index([tenant_id])
+  @@map("tenant_subscriptions")
+}
+
+// -------------------------------------------------------------
+// 4. Centralized Destination Master Hierarchy
+// -------------------------------------------------------------
+
+model OperationalZone {
+  id          Int      @id @default(autoincrement())
+  code        String   @unique @db.VarChar(30) // ZONE1, ZONE2, etc.
+  name        String   @db.VarChar(100)
+  description String?  @db.Text
+  created_at  DateTime @default(now())
+
+  states      State[]
+  tariffs     Tariff[]
+
+  @@map("operational_zones")
+}
+
+model State {
+  id         Int             @id @default(autoincrement())
+  code       String          @unique @db.VarChar(10) // CG, MH, DL, etc.
+  name       String          @db.VarChar(100)
+  zone_id    Int
+  gst_code   String?         @db.VarChar(10) // 22, 27, 07, etc.
+  created_at DateTime        @default(now())
+
+  zone       OperationalZone @relation(fields: [zone_id], references: [id])
+  destinations Destination[]
+
+  @@index([zone_id])
+  @@map("states")
+}
+
+model Destination {
+  id         Int           @id @default(autoincrement())
+  code       String        @unique @db.VarChar(30) // RAI, BOM, DEL, etc.
+  name       String        @db.VarChar(120)
+  state_id   Int
+  pincode    String?       @db.VarChar(10)
+  is_hub     Boolean       @default(false)
+  is_active  Boolean       @default(true)
+  created_at DateTime      @default(now())
+
+  state      State         @relation(fields: [state_id], references: [id])
+  consignments Consignment[]
+  manifests  Manifest[]
+
+  @@index([state_id])
+  @@map("destinations")
+}
+
+// -------------------------------------------------------------
+// 5. Commercial B2B Clients & Multi-Slab Tariffs
+// -------------------------------------------------------------
+
+model Client {
+  id                     Int           @id @default(autoincrement())
+  tenant_id              Int
+  client_code            String        @db.VarChar(30)
+  name                   String        @db.VarChar(150)
+  contact_person         String?       @db.VarChar(100)
+  phone                  String?       @db.VarChar(20)
+  email                  String?       @db.VarChar(120)
+  address                String?       @db.Text
+  billing_address        String?       @db.Text
+  city                   String?       @db.VarChar(100)
+  state                  String?       @db.VarChar(100)
+  pincode                String?       @db.VarChar(10)
+  gstin                  String?       @db.VarChar(20)
+  pan_no                 String?       @db.VarChar(20)
+  fuel_surcharge_percent Decimal       @default(10.00) @db.Decimal(5, 2)
+  insurance_percent      Decimal       @default(0.00) @db.Decimal(5, 2)
+  status                 String        @default("active") @db.VarChar(20)
+  created_at             DateTime      @default(now())
+
+  tenant                 Tenant        @relation(fields: [tenant_id], references: [id], onDelete: Cascade)
+  consignments           Consignment[]
+  tariffs                Tariff[]
+  invoices               Invoice[]
+
+  @@unique([tenant_id, client_code])
+  @@index([tenant_id])
+  @@map("clients")
+}
+
+model Tariff {
+  id                     Int             @id @default(autoincrement())
+  tenant_id              Int
+  client_id              Int?            // NULL = Agency General Default Tariff
+  send_by                String          @db.VarChar(20) // Air, Surface
+  mode                   String          @db.VarChar(20) // Dox, Non-Dox
+  zone_id                Int
+  additional_weight_step Decimal         @default(0.50) @db.Decimal(8, 2) // KG
+  additional_weight_rate Decimal         @default(30.00) @db.Decimal(10, 2) // INR
+  created_at             DateTime        @default(now())
+
+  tenant                 Tenant          @relation(fields: [tenant_id], references: [id], onDelete: Cascade)
+  client                 Client?         @relation(fields: [client_id], references: [id], onDelete: Cascade)
+  zone                   OperationalZone @relation(fields: [zone_id], references: [id])
+  slabs                  TariffSlab[]
+
+  @@index([tenant_id])
+  @@index([client_id])
+  @@index([zone_id])
+  @@map("tariffs")
+}
+
+model TariffSlab {
+  id          Int     @id @default(autoincrement())
+  tariff_id   Int
+  weight_from Decimal @db.Decimal(8, 2)
+  weight_to   Decimal @db.Decimal(8, 2)
+  rate        Decimal @db.Decimal(10, 2)
+
+  tariff      Tariff  @relation(fields: [tariff_id], references: [id], onDelete: Cascade)
+
+  @@index([tariff_id])
+  @@map("tariff_slabs")
+}
+
+// -------------------------------------------------------------
+// 6. Consignments & Counter Bookings
+// -------------------------------------------------------------
+
+model Consignment {
+  id                    Int             @id @default(autoincrement())
+  tenant_id             Int
+  branch_id             Int
+  booking_date          DateTime        @db.Date
+  consignment_no        String          @unique @db.VarChar(50) // 14-digit GS1 AWB
+  client_id             Int
+  sender_name           String          @db.VarChar(100)
+  sender_phone          String          @db.VarChar(20)
+  recipient_name        String          @db.VarChar(100)
+  recipient_phone       String          @db.VarChar(20)
+  recipient_address     String          @db.Text
+  destination_id        Int
+  mode                  String          @db.VarChar(20) // Dox, Non-Dox
+  send_by               String          @db.VarChar(20) // Air, Surface
+  pieces                Int             @default(1)
+  dead_weight           Decimal         @db.Decimal(8, 2)
+  length_cm             Decimal?        @db.Decimal(8, 2)
+  width_cm              Decimal?        @db.Decimal(8, 2)
+  height_cm             Decimal?        @db.Decimal(8, 2)
+  volumetric_weight     Decimal?        @db.Decimal(8, 2)
+  billable_weight       Decimal         @db.Decimal(8, 2)
+  subtotal              Decimal         @db.Decimal(10, 2)
+  discount_type         String          @default("fixed") @db.VarChar(10)
+  discount_amount       Decimal         @default(0.00) @db.Decimal(10, 2)
+  fuel_surcharge_amount Decimal         @default(0.00) @db.Decimal(10, 2)
+  docket_charge         Decimal         @default(0.00) @db.Decimal(10, 2)
+  other_charges         Decimal         @default(0.00) @db.Decimal(10, 2)
+  total_amount          Decimal         @db.Decimal(10, 2)
+  insured_value         Decimal         @default(0.00) @db.Decimal(10, 2)
+  status                String          @default("booked") @db.VarChar(30) // booked, in_manifest, in_transit, out_for_delivery, delivered, cancelled
+  is_billed             Boolean         @default(false)
+  invoice_id            Int?
+  created_by_user_id    Int?
+  operator_name         String?         @db.VarChar(100)
+  created_at            DateTime        @default(now())
+
+  tenant                Tenant          @relation(fields: [tenant_id], references: [id], onDelete: Cascade)
+  branch                Branch          @relation(fields: [branch_id], references: [id])
+  client                Client          @relation(fields: [client_id], references: [id])
+  destination           Destination     @relation(fields: [destination_id], references: [id])
+  operator              User?           @relation("CreatedByOperator", fields: [created_by_user_id], references: [id], onDelete: SetNull)
+  manifest_items        ManifestItem[]
+  runsheet_items        RunsheetItem[]
+  invoice_items         InvoiceItem[]
+
+  @@index([tenant_id])
+  @@index([branch_id])
+  @@index([client_id])
+  @@index([destination_id])
+  @@index([consignment_no])
+  @@index([status])
+  @@index([booking_date])
+  @@map("consignments")
+}
+
+// -------------------------------------------------------------
+// 7. Operations: Manifests & Delivery Runsheets
+// -------------------------------------------------------------
+
+model Manifest {
+  id                 Int            @id @default(autoincrement())
+  tenant_id          Int
+  branch_id          Int
+  manifest_no        String         @unique @db.VarChar(50)
+  destination_hub_id Int
+  driver_name        String?        @db.VarChar(100)
+  vehicle_no         String?        @db.VarChar(50)
+  total_consignments Int            @default(0)
+  total_weight       Decimal        @default(0.00) @db.Decimal(10, 2)
+  status             String         @default("dispatched") @db.VarChar(30)
+  created_at         DateTime       @default(now())
+
+  tenant             Tenant         @relation(fields: [tenant_id], references: [id], onDelete: Cascade)
+  branch             Branch         @relation(fields: [branch_id], references: [id])
+  destination_hub    Destination    @relation(fields: [destination_hub_id], references: [id])
+  items              ManifestItem[]
+
+  @@index([tenant_id])
+  @@index([branch_id])
+  @@map("manifests")
+}
+
+model ManifestItem {
+  id             Int         @id @default(autoincrement())
+  manifest_id    Int
+  consignment_id Int
+
+  manifest       Manifest    @relation(fields: [manifest_id], references: [id], onDelete: Cascade)
+  consignment    Consignment @relation(fields: [consignment_id], references: [id])
+
+  @@index([manifest_id])
+  @@index([consignment_id])
+  @@map("manifest_items")
+}
+
+model Runsheet {
+  id                 Int            @id @default(autoincrement())
+  tenant_id          Int
+  branch_id          Int
+  runsheet_no        String         @unique @db.VarChar(50)
+  delivery_person_id Int
+  delivery_date      DateTime       @db.Date
+  status             String         @default("assigned") @db.VarChar(30) // assigned, in_progress, completed
+  created_at         DateTime       @default(now())
+
+  tenant             Tenant         @relation(fields: [tenant_id], references: [id], onDelete: Cascade)
+  branch             Branch         @relation(fields: [branch_id], references: [id])
+  delivery_person    User           @relation("DeliveryStaffRunsheets", fields: [delivery_person_id], references: [id])
+  items              RunsheetItem[]
+
+  @@index([tenant_id])
+  @@index([branch_id])
+  @@index([delivery_person_id])
+  @@map("runsheets")
+}
+
+model RunsheetItem {
+  id                 Int         @id @default(autoincrement())
+  runsheet_id        Int
+  consignment_id     Int
+  status             String      @default("pending") @db.VarChar(30) // pending, delivered, attempted, returned
+  attempt_count      Int         @default(0)
+  failure_reason     String?     @db.VarChar(150)
+  recipient_name     String?     @db.VarChar(100)
+  recipient_relation String?     @db.VarChar(50)
+  signature_url      String?     @db.Text
+  photo_url          String?     @db.Text
+  delivered_at       DateTime?
+
+  runsheet           Runsheet    @relation(fields: [runsheet_id], references: [id], onDelete: Cascade)
+  consignment        Consignment @relation(fields: [consignment_id], references: [id])
+
+  @@index([runsheet_id])
+  @@index([consignment_id])
+  @@map("runsheet_items")
+}
+
+// -------------------------------------------------------------
+// 8. B2B Invoicing, GST SAC 996812 & Banking
+// -------------------------------------------------------------
+
+model AgencyBankAccount {
+  id                  Int       @id @default(autoincrement())
+  tenant_id           Int
+  bank_name           String    @db.VarChar(120)
+  account_no          String    @db.VarChar(50)
+  account_holder_name String    @db.VarChar(150)
+  ifsc_code           String    @db.VarChar(20)
+  branch_name         String    @db.VarChar(120)
+  is_primary          Boolean   @default(true)
+  created_at          DateTime  @default(now())
+
+  tenant              Tenant    @relation(fields: [tenant_id], references: [id], onDelete: Cascade)
+  invoices            Invoice[]
+
+  @@index([tenant_id])
+  @@map("agency_bank_accounts")
+}
+
+model Invoice {
+  id                    Int                @id @default(autoincrement())
+  tenant_id             Int
+  invoice_no            String             @unique @db.VarChar(50)
+  invoice_date          DateTime           @db.Date
+  due_date              DateTime           @db.Date
+  client_id             Int
+  bank_account_id       Int?
+  period_from           DateTime           @db.Date
+  period_to             DateTime           @db.Date
+  consignments_count    Int                @default(0)
+  subtotal_amount       Decimal            @db.Decimal(10, 2)
+  fuel_surcharge_percent Decimal           @default(0.00) @db.Decimal(5, 2)
+  fuel_surcharge_amount Decimal            @default(0.00) @db.Decimal(10, 2)
+  docket_charge_amount  Decimal            @default(0.00) @db.Decimal(10, 2)
+  taxable_amount        Decimal            @db.Decimal(10, 2)
+  cgst_rate             Decimal            @default(0.00) @db.Decimal(5, 2)
+  cgst_amount           Decimal            @default(0.00) @db.Decimal(10, 2)
+  sgst_rate             Decimal            @default(0.00) @db.Decimal(5, 2)
+  sgst_amount           Decimal            @default(0.00) @db.Decimal(10, 2)
+  igst_rate             Decimal            @default(0.00) @db.Decimal(5, 2)
+  igst_amount           Decimal            @default(0.00) @db.Decimal(10, 2)
+  total_gst_amount      Decimal            @default(0.00) @db.Decimal(10, 2)
+  round_off             Decimal            @default(0.00) @db.Decimal(5, 2)
+  grand_total           Decimal            @db.Decimal(10, 2)
+  payment_status        String             @default("pending") @db.VarChar(20) // pending, paid, partially_paid, cancelled
+  paid_amount           Decimal            @default(0.00) @db.Decimal(10, 2)
+  payment_mode          String?            @db.VarChar(30)
+  payment_notes         String?            @db.Text
+  created_by_user_id    Int?
+  created_at            DateTime           @default(now())
+
+  tenant                Tenant             @relation(fields: [tenant_id], references: [id], onDelete: Cascade)
+  client                Client             @relation(fields: [client_id], references: [id])
+  bank_account          AgencyBankAccount? @relation(fields: [bank_account_id], references: [id], onDelete: SetNull)
+  items                 InvoiceItem[]
+  payments              Payment[]
+
+  @@index([tenant_id])
+  @@index([client_id])
+  @@map("invoices")
+}
+
+model InvoiceItem {
+  id               Int         @id @default(autoincrement())
+  invoice_id       Int
+  consignment_id   Int
+  consignment_no   String      @db.VarChar(50)
+  booking_date     DateTime    @db.Date
+  destination_name String      @db.VarChar(120)
+  dest_code        String      @db.VarChar(20)
+  mode             String      @db.VarChar(20)
+  pieces           Int         @default(1)
+  billable_weight  Decimal     @db.Decimal(8, 2)
+  amount           Decimal     @db.Decimal(10, 2)
+
+  invoice          Invoice     @relation(fields: [invoice_id], references: [id], onDelete: Cascade)
+  consignment      Consignment @relation(fields: [consignment_id], references: [id])
+
+  @@index([invoice_id])
+  @@index([consignment_id])
+  @@map("invoice_items")
+}
+
+model Payment {
+  id                 Int      @id @default(autoincrement())
+  tenant_id          Int
+  invoice_id         Int
+  amount             Decimal  @db.Decimal(10, 2)
+  payment_date       DateTime @db.Date
+  payment_mode       String   @db.VarChar(30) // Cash, Cheque, NEFT/RTGS, UPI
+  reference_no       String?  @db.VarChar(100)
+  receipt_no         String?  @unique @db.VarChar(50)
+  notes              String?  @db.Text
+  created_by_user_id Int?
+  created_at         DateTime @default(now())
+
+  tenant             Tenant   @relation(fields: [tenant_id], references: [id], onDelete: Cascade)
+  invoice            Invoice  @relation(fields: [invoice_id], references: [id])
+
+  @@index([tenant_id])
+  @@index([invoice_id])
+  @@map("payments")
+}
+
+// -------------------------------------------------------------
+// 9. Support Desk & Audit Logs
+// -------------------------------------------------------------
+
+model Ticket {
+  id               Int       @id @default(autoincrement())
+  tenant_id        Int
+  ticket_number    String    @unique @db.VarChar(30)
+  category         String    @db.VarChar(40) // destination_request, billing, technical, general
+  subject          String    @db.VarChar(200)
+  description      String    @db.Text
+  destination_name String?   @db.VarChar(120)
+  state_id         Int?
+  pincode          String?   @db.VarChar(10)
+  zone_id          Int?
+  priority         String    @default("normal") @db.VarChar(20)
+  status           String    @default("open") @db.VarChar(20)
+  admin_notes      String?   @db.Text
+  created_at       DateTime  @default(now())
+  resolved_at      DateTime?
+
+  tenant           Tenant    @relation(fields: [tenant_id], references: [id], onDelete: Cascade)
+
+  @@index([tenant_id])
+  @@map("tickets")
+}
+
+model AuditLog {
+  id           Int      @id @default(autoincrement())
+  tenant_id    Int?
+  user_id      Int?
+  action       String   @db.VarChar(100)
+  details_json String?  @db.Text
+  ip_address   String?  @db.VarChar(45)
+  created_at   DateTime @default(now())
+
+  tenant       Tenant?  @relation(fields: [tenant_id], references: [id], onDelete: SetNull)
+  user         User?    @relation(fields: [user_id], references: [id], onDelete: SetNull)
+
+  @@index([tenant_id])
+  @@index([user_id])
+  @@map("audit_logs")
+}
