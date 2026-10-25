@@ -89,55 +89,55 @@ export const SuperAdminDashboard: React.FC = () => {
       {error && <div className="alert alert-danger py-2">{error}</div>}
 
       {/* Handwritten Image 4.46.01 PM: Super Admin Dashboard Metrics */}
-      <div className="row g-3 mb-4">
-        <div className="col-12 col-sm-6 col-xl-3">
+      <div className="row g-2 g-sm-3 mb-4">
+        <div className="col-6 col-lg-3">
           <div className="stat-card border-primary">
             <div className="stat-icon-wrapper bg-primary-subtle text-primary">
               <i className="bi bi-buildings"></i>
             </div>
             <div>
-              <div className="text-muted small fw-semibold">Total Agency By Self</div>
-              <div className="fs-3 fw-bold text-primary">{kpis.totalAgencies ? Math.max(kpis.totalAgencies, 1008) : 1008}</div>
-              <div className="small text-muted">Created by Admin / Sales</div>
+              <div className="text-muted small fw-semibold">Self Agency</div>
+              <div className="fs-4 fs-sm-3 fw-bold text-primary">{kpis.totalAgencies ? Math.max(kpis.totalAgencies, 1008) : 1008}</div>
+              <div className="small text-muted d-none d-sm-block">Admin / Sales</div>
             </div>
           </div>
         </div>
 
-        <div className="col-12 col-sm-6 col-xl-3">
+        <div className="col-6 col-lg-3">
           <div className="stat-card border-info">
             <div className="stat-icon-wrapper bg-info-subtle text-info">
               <i className="bi bi-globe"></i>
             </div>
             <div>
-              <div className="text-muted small fw-semibold">Total Agency By Online</div>
-              <div className="fs-3 fw-bold text-info">108</div>
-              <div className="small text-muted">Online Portal Registrations</div>
+              <div className="text-muted small fw-semibold">Online Agency</div>
+              <div className="fs-4 fs-sm-3 fw-bold text-info">108</div>
+              <div className="small text-muted d-none d-sm-block">Online Portals</div>
             </div>
           </div>
         </div>
 
-        <div className="col-12 col-sm-6 col-xl-3">
+        <div className="col-6 col-lg-3">
           <div className="stat-card border-warning">
             <div className="stat-icon-wrapper bg-warning-subtle text-warning">
               <i className="bi bi-pause-circle"></i>
             </div>
             <div>
-              <div className="text-muted small fw-semibold">Hold Agencies</div>
-              <div className="fs-3 fw-bold text-warning">{kpis.pendingAgencies ? Math.max(kpis.pendingAgencies, 10) : 10}</div>
-              <div className="small text-muted">Under Review / Pending Docs</div>
+              <div className="text-muted small fw-semibold">Hold Agency</div>
+              <div className="fs-4 fs-sm-3 fw-bold text-warning">{kpis.pendingAgencies ? Math.max(kpis.pendingAgencies, 10) : 10}</div>
+              <div className="small text-muted d-none d-sm-block">Pending Docs</div>
             </div>
           </div>
         </div>
 
-        <div className="col-12 col-sm-6 col-xl-3">
+        <div className="col-6 col-lg-3">
           <div className="stat-card border-danger">
             <div className="stat-icon-wrapper bg-danger-subtle text-danger">
               <i className="bi bi-x-circle"></i>
             </div>
             <div>
-              <div className="text-muted small fw-semibold">Rejected Agencies</div>
-              <div className="fs-3 fw-bold text-danger">5</div>
-              <div className="small text-muted">Non-compliant / KYC denied</div>
+              <div className="text-muted small fw-semibold">Rejected</div>
+              <div className="fs-4 fs-sm-3 fw-bold text-danger">5</div>
+              <div className="small text-muted d-none d-sm-block">KYC Denied</div>
             </div>
           </div>
         </div>
@@ -217,18 +217,19 @@ export const SuperAdminDashboard: React.FC = () => {
       </div>
 
       {/* Recent Agencies Table */}
-      <div className="app-card p-4">
-        <div className="d-flex justify-content-between align-items-center mb-3">
+      <div className="app-card p-3 p-sm-4">
+        <div className="d-flex flex-column flex-sm-row justify-content-between align-items-start align-items-sm-center gap-2 mb-3">
           <div>
             <h5 className="mb-0 fw-bold">Recent Agency Applications</h5>
             <small className="text-muted">Review franchise onboarding submissions</small>
           </div>
-          <Link to="/superadmin/agencies" className="btn btn-outline-primary btn-sm">
+          <Link to="/superadmin/agencies" className="btn btn-outline-primary btn-sm text-nowrap w-100 w-sm-auto">
             View All Network Agencies
           </Link>
         </div>
 
-        <div className="table-responsive">
+        {/* Desktop Table View */}
+        <div className="table-responsive d-none d-md-block">
           <table className="table table-hover align-middle mb-0">
             <thead className="table-light">
               <tr className="small text-muted text-uppercase">
@@ -288,6 +289,43 @@ export const SuperAdminDashboard: React.FC = () => {
               ))}
             </tbody>
           </table>
+        </div>
+
+        {/* Handheld Mobile Card View (< 768px) */}
+        <div className="d-block d-md-none">
+          {data?.recentAgencies?.map((agency: any) => (
+            <div key={agency.id} className="shipment-mobile-card">
+              <div className="d-flex justify-content-between align-items-center border-bottom pb-2 mb-2">
+                <span className="badge bg-light text-dark border font-monospace">
+                  {agency.agency_code ? `#${agency.agency_code}` : 'New Applicant'}
+                </span>
+                <span className={`badge-status ${agency.status}`}>
+                  {agency.status === 'pending_kyc' ? 'Pending Review' : agency.status}
+                </span>
+              </div>
+              <div className="fw-bold fs-6 text-dark">{agency.name}</div>
+              <div className="small text-muted mb-2">
+                <i className="bi bi-geo-alt me-1"></i> {agency.city}, {agency.state}
+              </div>
+              <div className="d-flex justify-content-between align-items-center pt-2 border-top">
+                <span className="text-muted small">
+                  {new Date(agency.created_at).toLocaleDateString()}
+                </span>
+                {agency.status === 'pending_kyc' ? (
+                  <button
+                    className="btn btn-sm btn-success py-1 px-3"
+                    onClick={() => handleApprove(agency.id)}
+                  >
+                    <i className="bi bi-check-circle me-1"></i> Approve
+                  </button>
+                ) : (
+                  <Link to="/superadmin/agencies" className="btn btn-sm btn-outline-secondary py-1 px-3">
+                    Details
+                  </Link>
+                )}
+              </div>
+            </div>
+          ))}
         </div>
       </div>
     </div>

@@ -48,21 +48,28 @@ export const Login: React.FC = () => {
   };
 
   return (
-    <div className="min-vh-100 d-flex flex-column justify-content-center bg-light py-5">
+    <div className="min-vh-100 d-flex flex-column justify-content-center bg-light py-4 py-md-5">
       <div className="container">
         <div className="row justify-content-center">
-          <div className="col-12 col-md-10 col-lg-8 col-xl-6">
-            <div className="app-card p-4 p-md-5 shadow-sm border-0">
+          <div className="col-12 col-sm-10 col-md-8 col-lg-6 col-xl-5">
+            <div className="mb-2 text-start">
+              <Link to="/" className="text-decoration-none text-muted small d-inline-flex align-items-center">
+                <i className="bi bi-arrow-left me-1"></i> Back to Homepage
+              </Link>
+            </div>
+            <div className="app-card p-3 p-sm-4 p-md-5 shadow-sm border-0">
               {/* Brand Header */}
               <div className="text-center mb-4">
-                <img
-                  src="/kesari-favicon.svg"
-                  alt="Kesari Logo"
-                  width="54"
-                  height="54"
-                  className="rounded mb-2"
-                />
-                <h2 className="brand-title text-primary mb-1">Kesari Courier ERP</h2>
+                <Link to="/" className="text-decoration-none">
+                  <img
+                    src="/kesari-favicon.svg"
+                    alt="Kesari Logo"
+                    width="54"
+                    height="54"
+                    className="rounded mb-2"
+                  />
+                  <h2 className="brand-title text-primary mb-1">Kesari Courier ERP</h2>
+                </Link>
                 <p className="text-muted small">
                   Enterprise Multi-Tenant Logistics SaaS Platform
                 </p>
@@ -203,11 +210,11 @@ export const Login: React.FC = () => {
               </div>
 
               {/* Bottom Quick Links */}
-              <div className="mt-4 pt-3 border-top d-flex justify-content-between small text-muted">
-                <Link to="/register-agency" className="text-decoration-none">
+              <div className="mt-4 pt-3 border-top d-flex flex-column flex-sm-row justify-content-between align-items-center gap-2 small text-muted text-center text-sm-start">
+                <Link to="/register-agency" className="text-decoration-none py-1">
                   <i className="bi bi-building-add me-1"></i> Register New Agency
                 </Link>
-                <Link to="/track" className="text-decoration-none">
+                <Link to="/track" className="text-decoration-none py-1">
                   <i className="bi bi-search me-1"></i> Track Consignment
                 </Link>
               </div>

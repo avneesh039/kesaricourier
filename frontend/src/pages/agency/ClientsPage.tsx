@@ -73,14 +73,14 @@ export const ClientsPage: React.FC = () => {
 
   return (
     <div>
-      <div className="d-flex justify-content-between align-items-center mb-4">
+      <div className="d-flex flex-column flex-sm-row justify-content-between align-items-start align-items-sm-center gap-2 mb-4">
         <div>
           <h2 className="brand-title mb-1">Corporate B2B Clients</h2>
           <p className="text-muted small mb-0">
             Manage commercial client accounts, contractual fuel surcharges, GSTINs, and billing terms
           </p>
         </div>
-        <button className="btn btn-primary btn-sm" onClick={() => setShowModal(true)}>
+        <button className="btn btn-primary btn-sm text-nowrap w-100 w-sm-auto" onClick={() => setShowModal(true)}>
           <i className="bi bi-person-plus me-1"></i> Add Corporate Client
         </button>
       </div>
@@ -118,68 +118,117 @@ export const ClientsPage: React.FC = () => {
             <div className="spinner-border text-primary spinner-border-sm me-2"></div>
             Loading corporate clients...
           </div>
+        ) : clients.length === 0 ? (
+          <div className="text-center py-4 text-muted">No corporate clients found.</div>
         ) : (
-          <div className="table-responsive">
-            <table className="table table-hover align-middle mb-0">
-              <thead className="table-light">
-                <tr className="small text-muted text-uppercase">
-                  <th>Code</th>
-                  <th>Company Name</th>
-                  <th>Contact Details</th>
-                  <th>Location</th>
-                  <th>GSTIN</th>
-                  <th>Fuel %</th>
-                  <th>Status</th>
-                </tr>
-              </thead>
-              <tbody>
-                {clients.map((c) => (
-                  <tr key={c.id}>
-                    <td>
-                      <span className="badge bg-light text-dark border font-monospace fs-6 px-2">
-                        #{c.client_code}
-                      </span>
-                    </td>
-                    <td>
-                      <div className="fw-semibold">{c.name}</div>
-                      {c.contact_person && (
-                        <div className="small text-muted">Attn: {c.contact_person}</div>
-                      )}
-                    </td>
-                    <td>
-                      <div className="small">
-                        <i className="bi bi-telephone me-1"></i> {c.phone || '—'}
-                      </div>
-                      <div className="small text-muted">
-                        <i className="bi bi-envelope me-1"></i> {c.email || '—'}
-                      </div>
-                    </td>
-                    <td>
-                      <div>{c.city || 'N/A'}</div>
-                      <div className="small text-muted">{c.state || ''}</div>
-                    </td>
-                    <td>
-                      {c.gstin ? (
-                        <span className="badge bg-light text-dark border font-monospace">
-                          {c.gstin}
+          <>
+            {/* Desktop Table View */}
+            <div className="table-responsive d-none d-md-block">
+              <table className="table table-hover align-middle mb-0">
+                <thead className="table-light">
+                  <tr className="small text-muted text-uppercase">
+                    <th>Code</th>
+                    <th>Company Name</th>
+                    <th>Contact Details</th>
+                    <th>Location</th>
+                    <th>GSTIN</th>
+                    <th>Fuel %</th>
+                    <th>Status</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {clients.map((c) => (
+                    <tr key={c.id}>
+                      <td>
+                        <span className="badge bg-light text-dark border font-monospace fs-6 px-2">
+                          #{c.client_code}
                         </span>
-                      ) : (
-                        <span className="text-muted small">Unregistered</span>
-                      )}
-                    </td>
-                    <td>
+                      </td>
+                      <td>
+                        <div className="fw-semibold">{c.name}</div>
+                        {c.contact_person && (
+                          <div className="small text-muted">Attn: {c.contact_person}</div>
+                        )}
+                      </td>
+                      <td>
+                        <div className="small">
+                          <i className="bi bi-telephone me-1"></i> {c.phone || '—'}
+                        </div>
+                        <div className="small text-muted">
+                          <i className="bi bi-envelope me-1"></i> {c.email || '—'}
+                        </div>
+                      </td>
+                      <td>
+                        <div>{c.city || 'N/A'}</div>
+                        <div className="small text-muted">{c.state || ''}</div>
+                      </td>
+                      <td>
+                        {c.gstin ? (
+                          <span className="badge bg-light text-dark border font-monospace">
+                            {c.gstin}
+                          </span>
+                        ) : (
+                          <span className="text-muted small">Unregistered</span>
+                        )}
+                      </td>
+                      <td>
+                        <span className="badge bg-primary-subtle text-primary">
+                          {c.fuel_surcharge_percent}%
+                        </span>
+                      </td>
+                      <td>
+                        <span className="badge bg-success-subtle text-success">Active</span>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+
+            {/* Handheld Mobile Card View (< 768px) */}
+            <div className="d-block d-md-none">
+              {clients.map((c) => (
+                <div key={c.id} className="shipment-mobile-card">
+                  <div className="d-flex justify-content-between align-items-center border-bottom pb-2 mb-2">
+                    <span className="badge bg-light text-dark border font-monospace">
+                      #{c.client_code}
+                    </span>
+                    <span className="badge bg-success-subtle text-success">Active</span>
+                  </div>
+                  <div className="fw-bold fs-6 text-dark mb-1">{c.name}</div>
+                  {c.contact_person && (
+                    <div className="small text-muted mb-2">
+                      <i className="bi bi-person me-1"></i> Attn: {c.contact_person}
+                    </div>
+                  )}
+                  <div className="row g-2 small pt-1 border-top">
+                    <div className="col-6">
+                      <span className="text-muted d-block">Phone:</span>
+                      <a href={`tel:${c.phone}`} className="text-decoration-none fw-semibold">
+                        <i className="bi bi-telephone me-1"></i> {c.phone || '—'}
+                      </a>
+                    </div>
+                    <div className="col-6">
+                      <span className="text-muted d-block">Location:</span>
+                      <span className="fw-semibold">{c.city || 'N/A'}, {c.state || ''}</span>
+                    </div>
+                    <div className="col-8">
+                      <span className="text-muted d-block">GSTIN:</span>
+                      <span className="font-monospace text-uppercase" style={{ fontSize: '0.78rem' }}>
+                        {c.gstin || 'Unregistered'}
+                      </span>
+                    </div>
+                    <div className="col-4 text-end">
+                      <span className="text-muted d-block">Fuel Surcharge:</span>
                       <span className="badge bg-primary-subtle text-primary">
                         {c.fuel_surcharge_percent}%
                       </span>
-                    </td>
-                    <td>
-                      <span className="badge bg-success-subtle text-success">Active</span>
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </>
         )}
       </div>
 

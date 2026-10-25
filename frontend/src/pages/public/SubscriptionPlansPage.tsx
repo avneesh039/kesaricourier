@@ -26,9 +26,9 @@ export const SubscriptionPlansPage: React.FC = () => {
           </p>
 
           {/* Billing Cycle Toggle */}
-          <div className="d-inline-flex align-items-center p-1 bg-white bg-opacity-10 border border-white border-opacity-20 rounded-pill">
+          <div className="d-inline-flex flex-column flex-sm-row align-items-center p-1 bg-white bg-opacity-10 border border-white border-opacity-20 rounded-4 rounded-sm-pill gap-1 gap-sm-0" style={{ maxWidth: '100%' }}>
             <button
-              className={`btn btn-sm rounded-pill px-4 fw-bold transition-all ${
+              className={`btn btn-sm rounded-pill px-3 px-sm-4 fw-bold transition-all w-100 w-sm-auto ${
                 billingCycle === 'monthly' ? 'btn-primary text-white shadow-sm' : 'text-white-50 border-0'
               }`}
               onClick={() => setBillingCycle('monthly')}
@@ -36,12 +36,12 @@ export const SubscriptionPlansPage: React.FC = () => {
               Monthly Billing
             </button>
             <button
-              className={`btn btn-sm rounded-pill px-4 fw-bold transition-all ${
+              className={`btn btn-sm rounded-pill px-3 px-sm-4 fw-bold transition-all w-100 w-sm-auto ${
                 billingCycle === 'yearly' ? 'btn-primary text-white shadow-sm' : 'text-white-50 border-0'
               }`}
               onClick={() => setBillingCycle('yearly')}
             >
-              Yearly (Save 20% + 2 Months Free)
+              Yearly (Save 20% • 2 Mo Free)
             </button>
           </div>
         </div>

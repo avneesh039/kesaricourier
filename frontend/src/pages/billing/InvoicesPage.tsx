@@ -168,36 +168,36 @@ export const InvoicesPage: React.FC = () => {
 
   return (
     <div className="animate-enter">
-      <div className="d-flex justify-content-between align-items-center mb-4 no-print">
+      <div className="d-flex flex-column flex-lg-row justify-content-between align-items-start align-items-lg-center gap-3 mb-4 no-print">
         <div>
           <h2 className="brand-title mb-1">B2B GST Invoicing & Accounting</h2>
           <p className="text-muted small mb-0">
             GST SAC Code 996812 compliant invoicing, CGST/SGST vs IGST calculation, payment reconciliation, and GSTR-1 export
           </p>
         </div>
-        <div className="d-flex gap-2">
+        <div className="d-flex flex-wrap gap-2 w-100 w-lg-auto">
           <a
             href="/api/v1/invoices/gstr1-export"
             download
-            className="btn btn-outline-success btn-sm"
+            className="btn btn-outline-success btn-sm flex-grow-1 flex-sm-grow-0"
           >
             <i className="bi bi-file-earmark-spreadsheet me-1"></i> GSTR-1 CSV
           </a>
           <button
             type="button"
-            className="btn btn-outline-secondary btn-sm"
+            className="btn btn-outline-secondary btn-sm flex-grow-1 flex-sm-grow-0"
             onClick={() => setShowColumnsModal(true)}
           >
-            <i className="bi bi-layout-three-columns me-1"></i> Customize Print Columns
+            <i className="bi bi-layout-three-columns me-1"></i> Columns
           </button>
           <button
-            className="btn btn-primary btn-sm"
+            className="btn btn-primary btn-sm flex-grow-1 flex-sm-grow-0 fw-semibold"
             onClick={() => {
               setShowGenerateModal(true);
               if (selectedClientId) fetchUnbilled(selectedClientId);
             }}
           >
-            <i className="bi bi-plus-circle me-1"></i> Generate B2B Tax Invoice
+            <i className="bi bi-plus-circle me-1"></i> Generate Invoice
           </button>
         </div>
       </div>
@@ -208,32 +208,29 @@ export const InvoicesPage: React.FC = () => {
             <div className="spinner-border text-primary spinner-border-sm me-2"></div>
             Loading billing records...
           </div>
+        ) : invoices.length === 0 ? (
+          <div className="text-center py-4 text-muted">No invoices issued yet.</div>
         ) : (
-          <div className="table-responsive">
-            <table className="table table-hover align-middle mb-0">
-              <thead className="table-light">
-                <tr className="small text-muted text-uppercase">
-                  <th>Invoice No.</th>
-                  <th>Date</th>
-                  <th>Client Name</th>
-                  <th>Consignments</th>
-                  <th>Taxable Amt</th>
-                  <th>Total GST (18%)</th>
-                  <th>Grand Total</th>
-                  <th>Paid</th>
-                  <th>Status</th>
-                  <th className="text-end">Actions</th>
-                </tr>
-              </thead>
-              <tbody>
-                {invoices.length === 0 ? (
-                  <tr>
-                    <td colSpan={10} className="text-center py-4 text-muted">
-                      No invoices issued yet.
-                    </td>
+          <>
+            {/* Desktop Table View */}
+            <div className="table-responsive d-none d-md-block">
+              <table className="table table-hover align-middle mb-0">
+                <thead className="table-light">
+                  <tr className="small text-muted text-uppercase">
+                    <th>Invoice No.</th>
+                    <th>Date</th>
+                    <th>Client Name</th>
+                    <th>Consignments</th>
+                    <th>Taxable Amt</th>
+                    <th>Total GST (18%)</th>
+                    <th>Grand Total</th>
+                    <th>Paid</th>
+                    <th>Status</th>
+                    <th className="text-end">Actions</th>
                   </tr>
-                ) : (
-                  invoices.map((inv) => (
+                </thead>
+                <tbody>
+                  {invoices.map((inv) => (
                     <tr key={inv.id}>
                       <td>
                         <span className="fw-bold font-monospace text-primary">{inv.invoice_no}</span>
@@ -284,11 +281,69 @@ export const InvoicesPage: React.FC = () => {
                         </div>
                       </td>
                     </tr>
-                  ))
-                )}
-              </tbody>
-            </table>
-          </div>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+
+            {/* Handheld Mobile Card View (< 768px) */}
+            <div className="d-block d-md-none">
+              {invoices.map((inv) => (
+                <div key={inv.id} className="shipment-mobile-card">
+                  <div className="d-flex justify-content-between align-items-center border-bottom pb-2 mb-2">
+                    <span className="fw-bold font-monospace text-primary fs-6">
+                      {inv.invoice_no}
+                    </span>
+                    <span className={`badge-status ${inv.payment_status}`}>
+                      {inv.payment_status}
+                    </span>
+                  </div>
+                  <div className="fw-bold text-dark">{inv.client?.name}</div>
+                  <div className="small text-muted font-monospace mb-2">
+                    GSTIN: {inv.client?.gstin || 'Unregistered'} • {new Date(inv.invoice_date).toLocaleDateString()}
+                  </div>
+                  <div className="row g-2 small p-2 bg-light rounded mb-2">
+                    <div className="col-6">
+                      <span className="text-muted d-block">Grand Total:</span>
+                      <strong className="fs-6 text-dark">₹{Number(inv.grand_total).toFixed(2)}</strong>
+                    </div>
+                    <div className="col-6 text-end">
+                      <span className="text-muted d-block">Paid Amount:</span>
+                      <strong className="text-success">₹{Number(inv.paid_amount).toFixed(2)}</strong>
+                    </div>
+                    <div className="col-6">
+                      <span className="text-muted">Consignments: </span>
+                      <span className="badge bg-white text-dark border">{inv.consignments_count} AWBs</span>
+                    </div>
+                    <div className="col-6 text-end">
+                      <span className="text-muted">GST 18%: </span>
+                      <span>₹{Number(inv.total_gst_amount).toFixed(2)}</span>
+                    </div>
+                  </div>
+                  <div className="d-flex gap-2 justify-content-end pt-1">
+                    <button
+                      className="btn btn-outline-secondary btn-sm flex-grow-1"
+                      onClick={() => handleViewDetail(inv.id)}
+                    >
+                      <i className="bi bi-printer me-1"></i> Print / View
+                    </button>
+                    {inv.payment_status !== 'paid' && (
+                      <button
+                        className="btn btn-success btn-sm flex-grow-1"
+                        onClick={() => {
+                          setSelectedInvoice(inv);
+                          setPaymentAmount(Number(inv.grand_total) - Number(inv.paid_amount));
+                          setShowPaymentModal(true);
+                        }}
+                      >
+                        <i className="bi bi-cash me-1"></i> Record Receipt
+                      </button>
+                    )}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </>
         )}
       </div>
 

@@ -44,22 +44,23 @@ export const Navbar: React.FC<NavbarProps> = ({ onToggleSidebar }) => {
     <nav className="navbar navbar-expand app-topbar px-3 px-lg-4 d-flex justify-content-between align-items-center">
       <div className="d-flex align-items-center gap-2 gap-md-3">
         <button
-          className="btn btn-sm btn-light border d-lg-none p-2 shadow-xs"
+          className="btn btn-sm btn-light border d-lg-none d-flex align-items-center justify-content-center shadow-xs flex-shrink-0"
+          style={{ width: '42px', height: '42px' }}
           onClick={onToggleSidebar}
-          aria-label="Toggle Sidebar"
+          aria-label="Toggle Sidebar Menu"
         >
-          <i className="bi bi-list fs-5"></i>
+          <i className="bi bi-list fs-4"></i>
         </button>
 
         {user?.tenantName && (
-          <div className="d-flex align-items-center gap-2">
+          <div className="d-flex align-items-center gap-1 gap-sm-2 min-vw-0">
             <span
-              className="badge py-2 px-3 fw-semibold text-white d-none d-sm-inline-block shadow-xs"
+              className="badge py-1 py-sm-2 px-2 px-sm-3 fw-semibold text-white d-none d-sm-inline-block shadow-xs flex-shrink-0"
               style={{ backgroundColor: user.brandColor || '#2563eb' }}
             >
               Agency #{user.agencyCode || '26'}
             </span>
-            <span className="fw-bold text-dark text-truncate" style={{ maxWidth: '240px' }}>
+            <span className="fw-bold text-dark text-truncate" style={{ maxWidth: 'clamp(110px, 32vw, 240px)' }}>
               {user.tradeName || user.tenantName}
             </span>
             {user.branchName && (

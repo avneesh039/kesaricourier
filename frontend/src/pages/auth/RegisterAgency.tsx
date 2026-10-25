@@ -2,6 +2,8 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import api from '../../services/api';
+import { PublicNavbar } from '../../components/public/PublicNavbar';
+import { PublicFooter } from '../../components/public/PublicFooter';
 
 export const RegisterAgency: React.FC = () => {
   const [formData, setFormData] = useState({
@@ -41,24 +43,26 @@ export const RegisterAgency: React.FC = () => {
   };
 
   return (
-    <div className="min-vh-100 bg-light py-5">
-      <div className="container">
-        <div className="row justify-content-center">
-          <div className="col-12 col-lg-8">
-            <div className="app-card p-4 p-md-5">
-              <div className="d-flex align-items-center justify-content-between border-bottom pb-3 mb-4">
-                <div>
-                  <h3 className="brand-title text-primary mb-1">
-                    Courier Agency Franchise Registration
-                  </h3>
-                  <p className="text-muted small mb-0">
-                    Apply for an independent multi-tenant agency portal on Kesari ERP
-                  </p>
+    <div className="min-vh-100 d-flex flex-column bg-surface animate-enter">
+      <PublicNavbar />
+      <div className="flex-grow-1 py-4 py-md-5">
+        <div className="container">
+          <div className="row justify-content-center">
+            <div className="col-12 col-lg-8">
+              <div className="app-card p-3 p-sm-4 p-md-5 shadow-sm border-0">
+                <div className="d-flex flex-column flex-sm-row align-items-start align-items-sm-center justify-content-between gap-3 border-bottom pb-3 mb-4">
+                  <div>
+                    <h3 className="brand-title text-primary mb-1 fs-4 fs-sm-3">
+                      Courier Agency Franchise Registration
+                    </h3>
+                    <p className="text-muted small mb-0">
+                      Apply for an independent multi-tenant agency portal on Kesari ERP
+                    </p>
+                  </div>
+                  <Link to="/login" className="btn btn-outline-secondary btn-sm text-nowrap align-self-start align-self-sm-auto">
+                    <i className="bi bi-box-arrow-in-right me-1"></i> Back to Sign In
+                  </Link>
                 </div>
-                <Link to="/login" className="btn btn-outline-secondary btn-sm">
-                  Back to Sign In
-                </Link>
-              </div>
 
               {error && (
                 <div className="alert alert-danger py-2 small d-flex align-items-center gap-2">
@@ -234,7 +238,7 @@ export const RegisterAgency: React.FC = () => {
                   <div className="mt-4 pt-3 border-top">
                     <button
                       type="submit"
-                      className="btn btn-primary px-4 py-2 fw-semibold"
+                      className="btn btn-primary px-4 py-2 fw-semibold w-100 w-sm-auto"
                       disabled={loading}
                     >
                       {loading ? (
@@ -256,5 +260,7 @@ export const RegisterAgency: React.FC = () => {
         </div>
       </div>
     </div>
-  );
+    <PublicFooter />
+  </div>
+);
 };

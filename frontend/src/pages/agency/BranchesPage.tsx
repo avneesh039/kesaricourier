@@ -57,14 +57,14 @@ export const BranchesPage: React.FC = () => {
 
   return (
     <div>
-      <div className="d-flex justify-content-between align-items-center mb-4">
+      <div className="d-flex flex-column flex-sm-row justify-content-between align-items-start align-items-sm-center gap-2 mb-4">
         <div>
           <h2 className="brand-title mb-1">Branch Master Directory</h2>
           <p className="text-muted small mb-0">
             Manage multi-location branch desks, booking counters, and assigned branch managers
           </p>
         </div>
-        <button className="btn btn-primary btn-sm" onClick={() => setShowModal(true)}>
+        <button className="btn btn-primary btn-sm text-nowrap w-100 w-sm-auto" onClick={() => setShowModal(true)}>
           <i className="bi bi-plus-circle me-1"></i> Add Branch
         </button>
       </div>

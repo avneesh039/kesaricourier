@@ -344,7 +344,7 @@ export const BookingCounter: React.FC = () => {
           </p>
         </div>
 
-        <div className="d-flex align-items-center gap-2">
+        <div className="d-none d-sm-flex align-items-center gap-2">
           <span className="badge bg-dark text-white px-2 py-1 font-monospace" style={{ fontSize: '0.75rem' }}>
             Enter = Next Field
           </span>
@@ -659,60 +659,94 @@ export const BookingCounter: React.FC = () => {
                   </button>
                 </div>
                 {boxes.map((box, idx) => (
-                  <div key={box.id} className="row g-1 align-items-center mb-1">
-                    <div className="col-auto">
-                      <span className="badge bg-secondary" style={{ fontSize: '0.7rem' }}>
-                        Box {idx + 1}
-                      </span>
-                    </div>
-                    <div className="col">
-                      <input
-                        type="number"
-                        placeholder="L (cm)"
-                        className="form-control form-control-sm text-center"
-                        value={box.length || ''}
-                        onChange={(e) => updateBox(box.id, 'length', Number(e.target.value))}
-                      />
-                    </div>
-                    <div className="col">
-                      <input
-                        type="number"
-                        placeholder="W (cm)"
-                        className="form-control form-control-sm text-center"
-                        value={box.width || ''}
-                        onChange={(e) => updateBox(box.id, 'width', Number(e.target.value))}
-                      />
-                    </div>
-                    <div className="col">
-                      <input
-                        type="number"
-                        placeholder="H (cm)"
-                        className="form-control form-control-sm text-center"
-                        value={box.height || ''}
-                        onChange={(e) => updateBox(box.id, 'height', Number(e.target.value))}
-                      />
-                    </div>
-                    <div className="col-2">
-                      <input
-                        type="number"
-                        min={1}
-                        placeholder="Qty"
-                        className="form-control form-control-sm text-center"
-                        value={box.count || 1}
-                        onChange={(e) => updateBox(box.id, 'count', Number(e.target.value))}
-                      />
-                    </div>
-                    {boxes.length > 1 && (
-                      <div className="col-auto">
-                        <button
-                          type="button"
-                          className="btn btn-outline-danger btn-sm p-0 px-1"
-                          onClick={() => removeBoxRow(box.id)}
-                        >
-                          <i className="bi bi-x"></i>
-                        </button>
+                  <div key={box.id} className="p-2 mb-2 border rounded bg-white">
+                    <div className="row g-2 align-items-center">
+                      <div className="col-12 col-sm-auto d-flex justify-content-between align-items-center">
+                        <span className="badge bg-secondary" style={{ fontSize: '0.75rem' }}>
+                          Box {idx + 1}
+                        </span>
+                        <div className="d-flex align-items-center gap-1 d-sm-none">
+                          <span className="small text-muted">Qty:</span>
+                          <input
+                            type="number"
+                            min={1}
+                            className="form-control form-control-sm text-center py-0"
+                            style={{ width: '60px' }}
+                            value={box.count || 1}
+                            onChange={(e) => updateBox(box.id, 'count', Number(e.target.value))}
+                          />
+                          {boxes.length > 1 && (
+                            <button
+                              type="button"
+                              className="btn btn-outline-danger btn-sm py-0 px-2 ms-1"
+                              onClick={() => removeBoxRow(box.id)}
+                            >
+                              <i className="bi bi-trash"></i>
+                            </button>
+                          )}
+                        </div>
                       </div>
-                    )}
+                      <div className="col-4 col-sm">
+                        <div className="input-group input-group-sm">
+                          <span className="input-group-text px-1 px-sm-2 text-muted">L</span>
+                          <input
+                            type="number"
+                            placeholder="cm"
+                            className="form-control form-control-sm text-center px-1"
+                            value={box.length || ''}
+                            onChange={(e) => updateBox(box.id, 'length', Number(e.target.value))}
+                          />
+                        </div>
+                      </div>
+                      <div className="col-4 col-sm">
+                        <div className="input-group input-group-sm">
+                          <span className="input-group-text px-1 px-sm-2 text-muted">W</span>
+                          <input
+                            type="number"
+                            placeholder="cm"
+                            className="form-control form-control-sm text-center px-1"
+                            value={box.width || ''}
+                            onChange={(e) => updateBox(box.id, 'width', Number(e.target.value))}
+                          />
+                        </div>
+                      </div>
+                      <div className="col-4 col-sm">
+                        <div className="input-group input-group-sm">
+                          <span className="input-group-text px-1 px-sm-2 text-muted">H</span>
+                          <input
+                            type="number"
+                            placeholder="cm"
+                            className="form-control form-control-sm text-center px-1"
+                            value={box.height || ''}
+                            onChange={(e) => updateBox(box.id, 'height', Number(e.target.value))}
+                          />
+                        </div>
+                      </div>
+                      <div className="col-sm-2 d-none d-sm-block">
+                        <div className="input-group input-group-sm">
+                          <span className="input-group-text px-1 text-muted">Qty</span>
+                          <input
+                            type="number"
+                            min={1}
+                            className="form-control form-control-sm text-center px-1"
+                            value={box.count || 1}
+                            onChange={(e) => updateBox(box.id, 'count', Number(e.target.value))}
+                          />
+                        </div>
+                      </div>
+                      {boxes.length > 1 && (
+                        <div className="col-auto d-none d-sm-block">
+                          <button
+                            type="button"
+                            className="btn btn-outline-danger btn-sm p-0 px-2"
+                            onClick={() => removeBoxRow(box.id)}
+                            title="Remove Box"
+                          >
+                            <i className="bi bi-x"></i>
+                          </button>
+                        </div>
+                      )}
+                    </div>
                   </div>
                 ))}
               </div>
@@ -841,7 +875,7 @@ export const BookingCounter: React.FC = () => {
             </div>
 
             {/* Row 6: 14. Risk Type & Save Buttons */}
-            <div className="d-flex flex-wrap justify-content-between align-items-center pt-2 border-top gap-2">
+            <div className="d-flex flex-column flex-sm-row justify-content-between align-items-stretch align-items-sm-center pt-2 border-top gap-2">
               <div className="d-flex align-items-center gap-2">
                 <label className="small fw-bold mb-0">14. Risk Policy:</label>
                 <select
@@ -866,7 +900,7 @@ export const BookingCounter: React.FC = () => {
               <div className="d-flex gap-2">
                 <button
                   type="submit"
-                  className="btn btn-primary px-4 py-2 fw-bold shadow-sm"
+                  className="btn btn-primary px-4 py-2 fw-bold shadow-sm w-100 w-sm-auto"
                   disabled={submitting}
                 >
                   {submitting ? (

@@ -78,35 +78,35 @@ export const AgencyDashboard: React.FC = () => {
         </div>
       </div>
 
-      {/* KPI Stats Grid */}
-      <div className="row g-3 mb-4">
-        <div className="col-12 col-sm-6 col-xl-3">
+      {/* KPI Stats Grid - Tight 2x2 on Mobile */}
+      <div className="row g-2 g-md-3 mb-4">
+        <div className="col-6 col-lg-3">
           <div className="stat-card">
             <div className="stat-icon-wrapper bg-primary-subtle text-primary">
               <i className="bi bi-calendar2-check"></i>
             </div>
             <div>
-              <div className="text-muted small fw-semibold">Today's Bookings</div>
+              <div className="text-muted small fw-semibold">Today</div>
               <div className="fs-3 fw-bold">{kpis.todayBookings || 0}</div>
-              <div className="small text-muted">Total: {kpis.totalBookings || 0} AWB</div>
+              <div className="small text-muted d-none d-sm-block">Total: {kpis.totalBookings || 0} AWB</div>
             </div>
           </div>
         </div>
 
-        <div className="col-12 col-sm-6 col-xl-3">
+        <div className="col-6 col-lg-3">
           <div className="stat-card">
             <div className="stat-icon-wrapper bg-warning-subtle text-warning">
               <i className="bi bi-truck"></i>
             </div>
             <div>
-              <div className="text-muted small fw-semibold">Active In Transit</div>
+              <div className="text-muted small fw-semibold">In Transit</div>
               <div className="fs-3 fw-bold">{kpis.inTransitCount || 0}</div>
-              <div className="small text-muted">Out for Delivery: {kpis.outForDeliveryCount || 0}</div>
+              <div className="small text-muted d-none d-sm-block">Out for Deliv: {kpis.outForDeliveryCount || 0}</div>
             </div>
           </div>
         </div>
 
-        <div className="col-12 col-sm-6 col-xl-3">
+        <div className="col-6 col-lg-3">
           <div className="stat-card">
             <div className="stat-icon-wrapper bg-success-subtle text-success">
               <i className="bi bi-check-circle"></i>
@@ -114,71 +114,71 @@ export const AgencyDashboard: React.FC = () => {
             <div>
               <div className="text-muted small fw-semibold">Delivered (POD)</div>
               <div className="fs-3 fw-bold">{kpis.deliveredCount || 0}</div>
-              <div className="small text-success">Completed shipments</div>
+              <div className="small text-success d-none d-sm-block">Completed shipments</div>
             </div>
           </div>
         </div>
 
-        <div className="col-12 col-sm-6 col-xl-3">
+        <div className="col-6 col-lg-3">
           <div className="stat-card">
             <div className="stat-icon-wrapper bg-info-subtle text-info">
               <i className="bi bi-cash-stack"></i>
             </div>
             <div>
-              <div className="text-muted small fw-semibold">Freight Revenue</div>
+              <div className="text-muted small fw-semibold">Revenue</div>
               <div className="fs-3 fw-bold">₹{kpis.totalFreightRevenue?.toLocaleString('en-IN') || 0}</div>
-              <div className="small text-muted">Unbilled: {kpis.unbilledCount || 0} AWBs</div>
+              <div className="small text-muted d-none d-sm-block">Unbilled: {kpis.unbilledCount || 0} AWBs</div>
             </div>
           </div>
         </div>
       </div>
 
-      {/* Operational Highlights */}
-      <div className="row g-3 mb-4">
-        <div className="col-12 col-md-6 col-lg-3">
+      {/* Operational Highlights - 2x2 on Mobile */}
+      <div className="row g-2 g-md-3 mb-4">
+        <div className="col-6 col-lg-3">
           <Link to="/branches" className="text-decoration-none">
-            <div className="app-card p-3 h-100">
-              <div className="d-flex justify-content-between align-items-center">
-                <span className="fw-semibold text-dark">Active Branches</span>
+            <div className="app-card p-2 p-sm-3 h-100">
+              <div className="d-flex justify-content-between align-items-center mb-1">
+                <span className="fw-semibold text-dark small">Branches</span>
                 <span className="badge bg-primary rounded-pill">{kpis.branchesCount || 1}</span>
               </div>
-              <small className="text-muted">Multi-location counter desks</small>
+              <small className="text-muted d-none d-sm-block">Multi-location counters</small>
             </div>
           </Link>
         </div>
 
-        <div className="col-12 col-md-6 col-lg-3">
+        <div className="col-6 col-lg-3">
           <Link to="/clients" className="text-decoration-none">
-            <div className="app-card p-3 h-100">
-              <div className="d-flex justify-content-between align-items-center">
-                <span className="fw-semibold text-dark">Corporate Clients</span>
+            <div className="app-card p-2 p-sm-3 h-100">
+              <div className="d-flex justify-content-between align-items-center mb-1">
+                <span className="fw-semibold text-dark small">B2B Clients</span>
                 <span className="badge bg-info text-dark rounded-pill">{kpis.clientsCount || 0}</span>
               </div>
-              <small className="text-muted">B2B credit accounts</small>
+              <small className="text-muted d-none d-sm-block">Corporate accounts</small>
             </div>
           </Link>
         </div>
 
-        <div className="col-12 col-md-6 col-lg-3">
+        <div className="col-6 col-lg-3">
           <Link to="/invoices" className="text-decoration-none">
-            <div className="app-card p-3 h-100">
-              <div className="d-flex justify-content-between align-items-center">
-                <span className="fw-semibold text-dark">Pending Bilty Billing</span>
+            <div className="app-card p-2 p-sm-3 h-100">
+              <div className="d-flex justify-content-between align-items-center mb-1">
+                <span className="fw-semibold text-dark small">Pending Billing</span>
                 <span className="badge bg-warning text-dark rounded-pill">{kpis.unbilledCount || 0}</span>
               </div>
-              <small className="text-muted">Awaiting monthly GST invoice</small>
+              <small className="text-muted d-none d-sm-block">Awaiting GST invoice</small>
             </div>
           </Link>
         </div>
 
-        <div className="col-12 col-md-6 col-lg-3">
+        <div className="col-6 col-lg-3">
           <Link to="/tariffs" className="text-decoration-none">
-            <div className="app-card p-3 h-100">
-              <div className="d-flex justify-content-between align-items-center">
-                <span className="fw-semibold text-dark">Tariff Matrix</span>
+            <div className="app-card p-2 p-sm-3 h-100">
+              <div className="d-flex justify-content-between align-items-center mb-1">
+                <span className="fw-semibold text-dark small">Tariff Matrix</span>
                 <i className="bi bi-arrow-right text-primary"></i>
               </div>
-              <small className="text-muted">Air & Surface weight slabs</small>
+              <small className="text-muted d-none d-sm-block">Weight slabs</small>
             </div>
           </Link>
         </div>

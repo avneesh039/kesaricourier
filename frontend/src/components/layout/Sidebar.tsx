@@ -14,14 +14,26 @@ export const Sidebar: React.FC<SidebarProps> = ({ isOpen, onClose }) => {
   const isDelivery = user?.role === 'delivery_personnel';
   const isCustomer = user?.role === 'customer';
 
+  // Lock body scroll on mobile when sidebar drawer is open
+  React.useEffect(() => {
+    if (isOpen) {
+      document.body.classList.add('no-scroll');
+    } else {
+      document.body.classList.remove('no-scroll');
+    }
+    return () => {
+      document.body.classList.remove('no-scroll');
+    };
+  }, [isOpen]);
+
   return (
     <>
-      {/* Mobile Backdrop */}
+      {/* Mobile Glass Backdrop */}
       {isOpen && (
         <div
-          className="position-fixed top-0 start-0 w-100 h-100 bg-dark opacity-50 d-lg-none"
-          style={{ zIndex: 1025 }}
+          className="sidebar-backdrop d-lg-none"
           onClick={onClose}
+          aria-hidden="true"
         />
       )}
 
