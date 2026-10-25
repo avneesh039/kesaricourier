@@ -711,3 +711,65 @@ h1, h2, h3, h4, h5, h6, .brand-title {
   background-color: #f8fafc !important;
 }
 
+/* ==============================================================
+   PUBLIC NAVBAR SINGLE-LINE GUARANTEE & SLEEK GLASS STYLING
+   ============================================================== */
+.public-navbar {
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  background-color: rgba(255, 255, 255, 0.97) !important;
+  border-bottom: 1px solid rgba(226, 232, 240, 0.85) !important;
+}
+
+.public-navbar .navbar-brand {
+  flex-shrink: 0;
+  white-space: nowrap;
+}
+
+.public-navbar .navbar-nav {
+  white-space: nowrap !important;
+  flex-wrap: nowrap !important;
+}
+
+.public-navbar .nav-item {
+  white-space: nowrap !important;
+  flex-shrink: 0;
+}
+
+.public-navbar .nav-link {
+  white-space: nowrap !important;
+  font-size: 0.885rem;
+  font-weight: 600;
+  padding: 0.45rem 0.65rem !important;
+  border-radius: 8px;
+  transition: all 0.18s cubic-bezier(0.16, 1, 0.3, 1);
+  display: inline-flex !important;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+@media (min-width: 1200px) {
+  .public-navbar .nav-link {
+    padding: 0.45rem 0.85rem !important;
+    font-size: 0.915rem;
+  }
+}
+
+.public-navbar .nav-link:hover {
+  background-color: #eff6ff;
+  color: #2563eb !important;
+  transform: translateY(-1px);
+}
+
+.public-navbar .nav-link.active {
+  color: #2563eb !important;
+  font-weight: 700 !important;
+  background-color: #f1f5f9;
+}
+
+.public-navbar .header-actions {
+  flex-shrink: 0;
+  white-space: nowrap !important;
+}
+
+
