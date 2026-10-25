@@ -1,8 +1,9 @@
 // frontend/src/services/api.ts
 import axios from 'axios';
+import { handleMockRequest } from './mockData';
 
 const api = axios.create({
-  baseURL: '/api/v1',
+  baseURL: (import.meta as any).env?.VITE_API_URL || '/api/v1',
   withCredentials: true,
   headers: {
     'Content-Type': 'application/json',
@@ -38,12 +39,28 @@ api.interceptors.request.use(
   (error) => Promise.reject(error)
 );
 
-// Response Interceptor: Handle Token Refresh on 401
+// Response Interceptor: Handle Token Refresh on 401 & Demo Fallback on 404/405/Network Error
 api.interceptors.response.use(
   (response) => response,
   async (error) => {
     const originalRequest = error.config;
 
+    // 1. Check for Vercel Static Deployments / Unreachable Backend Fallback
+    const isOfflineOrStatic = !error.response || error.response.status === 404 || error.response.status === 405 || error.code === 'ERR_NETWORK';
+    if (isOfflineOrStatic) {
+      const mockResult = handleMockRequest(originalRequest?.url, originalRequest?.method, originalRequest?.data);
+      if (mockResult) {
+        return Promise.resolve({
+          data: mockResult,
+          status: 200,
+          statusText: 'OK',
+          headers: {},
+          config: originalRequest,
+        });
+      }
+    }
+
+    // 2. Refresh Token Handling
     if (error.response?.status === 401 && !originalRequest._retry) {
       if (originalRequest.url?.includes('/auth/login') || originalRequest.url?.includes('/auth/refresh-token')) {
         return Promise.reject(error);

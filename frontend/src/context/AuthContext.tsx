@@ -24,13 +24,21 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
   const refreshMe = async () => {
     try {
       const token = localStorage.getItem('kesari_token');
+      const savedUserStr = localStorage.getItem('kesari_user');
       if (!token) {
         setIsLoading(false);
         return;
       }
       setAccessToken(token);
+
+      if (savedUserStr) {
+        try {
+          setUser(JSON.parse(savedUserStr));
+        } catch (e) {}
+      }
+
       const res = await api.get('/auth/me');
-      if (res.data?.success) {
+      if (res.data?.success && res.data.data) {
         const u = res.data.data;
         const mappedUser: User = {
           id: u.id,
@@ -39,23 +47,28 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
           phone: u.phone,
           role: u.role,
           status: u.status,
-          tenantId: u.tenant?.id,
-          branchId: u.branch?.id,
-          branchName: u.branch?.name,
-          tenantName: u.tenant?.name,
-          tradeName: u.tenant?.tradeName,
-          agencyCode: u.tenant?.agencyCode,
-          brandColor: u.tenant?.brandColor,
+          tenantId: u.tenant?.id || u.tenantId,
+          branchId: u.branch?.id || u.branchId,
+          branchName: u.branch?.name || u.branchName,
+          tenantName: u.tenant?.name || u.tenantName,
+          tradeName: u.tenant?.tradeName || u.tradeName,
+          agencyCode: u.tenant?.agencyCode || u.agencyCode,
+          brandColor: u.tenant?.brandColor || u.brandColor,
         };
         setUser(mappedUser);
         localStorage.setItem('kesari_user', JSON.stringify(mappedUser));
       }
     } catch (err) {
-      console.error('Failed to load user profile:', err);
-      setUser(null);
-      setAccessToken(null);
-      localStorage.removeItem('kesari_token');
-      localStorage.removeItem('kesari_user');
+      console.warn('Backend offline, keeping cached user session:', err);
+      const savedUserStr = localStorage.getItem('kesari_user');
+      if (savedUserStr) {
+        try {
+          setUser(JSON.parse(savedUserStr));
+        } catch (e) {
+          setUser(null);
+          setAccessToken(null);
+        }
+      }
     } finally {
       setIsLoading(false);
     }
