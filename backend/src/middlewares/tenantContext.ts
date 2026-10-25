@@ -14,6 +14,9 @@ export function enforceTenantContext(req: Request, res: Response, next: NextFunc
     const overrideTenant = req.headers['x-tenant-id'];
     if (overrideTenant && typeof overrideTenant === 'string') {
       req.tenantId = parseInt(overrideTenant, 10);
+    } else {
+      // Default to primary agency tenant so operations/booking create works seamlessly for superadmin
+      req.tenantId = 1;
     }
     return next();
   }

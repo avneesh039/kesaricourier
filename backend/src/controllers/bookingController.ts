@@ -8,38 +8,38 @@ import { generateBarcodeSvg } from '../utils/barcode';
 
 const bookingSchema = z.object({
   consignmentNo: z.string().optional(),
-  clientId: z.number(),
+  clientId: z.number().optional().default(1),
   senderName: z.string().min(2),
   senderPhone: z.string().min(10),
   recipientName: z.string().min(2),
   recipientPhone: z.string().min(10),
   recipientAddress: z.string().min(5),
-  destinationId: z.number().default(1),
+  destinationId: z.number().optional().default(1),
   destinationPincode: z.string().optional(),
   fromPincode: z.string().optional(),
   productDescription: z.string().optional(),
   riskType: z.string().optional().default('Owner Risk'),
   bookingDate: z.string().optional(),
-  mode: z.enum(['Dox', 'Non-Dox']),
+  mode: z.enum(['Dox', 'Non-Dox']).default('Non-Dox'),
   sendBy: z.string().default('Air'),
   pieces: z.number().int().min(1).default(1),
   deadWeight: z.number().min(0.01),
   lengthCm: z.number().optional(),
   widthCm: z.number().optional(),
   heightCm: z.number().optional(),
-  subtotal: z.number().min(0),
+  subtotal: z.number().default(0),
   fuelSurchargeAmount: z.number().default(0),
   docketCharge: z.number().default(0),
   otherCharges: z.number().default(0),
   discountAmount: z.number().default(0),
   insuredValue: z.number().default(0),
-  totalAmount: z.number().min(0),
+  totalAmount: z.number().default(0),
   branchId: z.number().optional(),
 });
 
 export async function createBooking(req: Request, res: Response, next: NextFunction) {
   try {
-    const tenantId = req.tenantId!;
+    const tenantId = req.tenantId || 1;
     const body = bookingSchema.parse(req.body);
 
     // Determine branch
@@ -49,6 +49,32 @@ export async function createBooking(req: Request, res: Response, next: NextFunct
         where: { tenant_id: tenantId, status: 'active' },
       });
       branchId = defaultBranch?.id || 1;
+    }
+
+    // Determine Client (Auto-resolve or fallback to Walk-in client)
+    let clientId = body.clientId;
+    if (!clientId || clientId <= 0) {
+      let walkin = await prisma.client.findFirst({
+        where: { tenant_id: tenantId, client_code: 'WALKIN' },
+      });
+      if (!walkin) {
+        walkin = await prisma.client.create({
+          data: {
+            tenant_id: tenantId,
+            client_code: 'WALKIN',
+            name: body.senderName || 'Walk-in Retail Cash Customer',
+            phone: body.senderPhone || '9893000000',
+            status: 'active',
+          },
+        });
+      }
+      clientId = walkin.id;
+    } else {
+      const clientExists = await prisma.client.findUnique({ where: { id: clientId } });
+      if (!clientExists) {
+        const anyClient = await prisma.client.findFirst({ where: { tenant_id: tenantId } });
+        clientId = anyClient?.id || 1;
+      }
     }
 
     // Determine or generate 14-digit AWB
@@ -81,6 +107,16 @@ export async function createBooking(req: Request, res: Response, next: NextFunct
       });
       if (match) destId = match.id;
     }
+    if (!destId || destId <= 0) {
+      const defaultDest = await prisma.destination.findFirst();
+      destId = defaultDest?.id || 1;
+    } else {
+      const destExists = await prisma.destination.findUnique({ where: { id: destId } });
+      if (!destExists) {
+        const defaultDest = await prisma.destination.findFirst();
+        destId = defaultDest?.id || 1;
+      }
+    }
 
     const booking = await prisma.consignment.create({
       data: {
@@ -88,7 +124,7 @@ export async function createBooking(req: Request, res: Response, next: NextFunct
         branch_id: branchId,
         booking_date: body.bookingDate ? new Date(body.bookingDate) : new Date(),
         consignment_no: awb,
-        client_id: body.clientId,
+        client_id: clientId,
         sender_name: body.senderName,
         sender_phone: body.senderPhone,
         recipient_name: body.recipientName,

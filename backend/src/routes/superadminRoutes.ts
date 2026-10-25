@@ -18,7 +18,10 @@ import { authorize } from '../middlewares/rbac';
 
 const router = Router();
 
-// Protect all Super Admin endpoints
+// GET /destinations can be accessed by any authenticated user for booking counters and tariffs
+router.get('/destinations', authenticate, getDestinations);
+
+// Protect all other Super Admin governance endpoints
 router.use(authenticate, authorize('superadmin'));
 
 router.get('/dashboard', getDashboard);
@@ -29,7 +32,6 @@ router.patch('/agencies/:id/status', updateAgencyStatus);
 router.get('/plans', getPlans);
 router.post('/plans', createPlan);
 
-router.get('/destinations', getDestinations);
 router.post('/destinations', createDestination);
 
 router.get('/tickets', getTickets);
