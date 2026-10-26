@@ -120,28 +120,57 @@ export const getDemoUser = (email: string, _password?: string, _tenantSlug?: str
 // ==========================================
 
 const INITIAL_DESTINATIONS = [
-  { id: 1, code: 'RAI', name: 'RAIPUR', pincode: '492001', is_hub: true, is_active: true, state_id: 1, state: { id: 1, code: 'CG', name: 'Chhattisgarh', zone: { id: 5, code: 'ZONE5', name: 'Central Zone' } } },
-  { id: 2, code: 'BSP', name: 'BILASPUR', pincode: '495001', is_hub: false, is_active: true, state_id: 1, state: { id: 1, code: 'CG', name: 'Chhattisgarh', zone: { id: 5, code: 'ZONE5', name: 'Central Zone' } } },
-  { id: 3, code: 'DUR', name: 'DURG', pincode: '491001', is_hub: false, is_active: true, state_id: 1, state: { id: 1, code: 'CG', name: 'Chhattisgarh', zone: { id: 5, code: 'ZONE5', name: 'Central Zone' } } },
-  { id: 4, code: 'BOM', name: 'MUMBAI', pincode: '400001', is_hub: true, is_active: true, state_id: 2, state: { id: 2, code: 'MH', name: 'Maharashtra', zone: { id: 2, code: 'ZONE2', name: 'West Zone' } } },
-  { id: 5, code: 'PNE', name: 'PUNE', pincode: '411001', is_hub: true, is_active: true, state_id: 2, state: { id: 2, code: 'MH', name: 'Maharashtra', zone: { id: 2, code: 'ZONE2', name: 'West Zone' } } },
-  { id: 6, code: 'NAG', name: 'NAGPUR', pincode: '440001', is_hub: true, is_active: true, state_id: 2, state: { id: 2, code: 'MH', name: 'Maharashtra', zone: { id: 2, code: 'ZONE2', name: 'West Zone' } } },
-  { id: 7, code: 'SUR', name: 'SURAT', pincode: '395001', is_hub: true, is_active: true, state_id: 3, state: { id: 3, code: 'GJ', name: 'Gujarat', zone: { id: 2, code: 'ZONE2', name: 'West Zone' } } },
-  { id: 8, code: 'AMD', name: 'AHMEDABAD', pincode: '380001', is_hub: true, is_active: true, state_id: 3, state: { id: 3, code: 'GJ', name: 'Gujarat', zone: { id: 2, code: 'ZONE2', name: 'West Zone' } } },
-  { id: 9, code: 'DEL', name: 'DELHI', pincode: '110001', is_hub: true, is_active: true, state_id: 4, state: { id: 4, code: 'DL', name: 'Delhi', zone: { id: 1, code: 'ZONE1', name: 'North Zone' } } },
-  { id: 10, code: 'CCU', name: 'KOLKATA', pincode: '700001', is_hub: true, is_active: true, state_id: 5, state: { id: 5, code: 'WB', name: 'West Bengal', zone: { id: 4, code: 'ZONE4', name: 'East Zone' } } },
+  { id: 1053, code: 'RAI-1053', name: 'RAIPUR (Kushalpur Apex Hub)', pincode: '492013', is_hub: true, is_active: true, state_id: 1, state: { id: 1, code: 'CG', name: 'Chhattisgarh', zone: { id: 5, code: 'ZONE5', name: 'Central Zone' } } },
+  { id: 154, code: 'BHI-154', name: 'BHILAI (Supela Hub)', pincode: '490023', is_hub: true, is_active: true, state_id: 1, state: { id: 1, code: 'CG', name: 'Chhattisgarh', zone: { id: 5, code: 'ZONE5', name: 'Central Zone' } } },
+  { id: 1391, code: 'BSP-1391', name: 'BILASPUR (Link Road Hub)', pincode: '495001', is_hub: true, is_active: true, state_id: 1, state: { id: 1, code: 'CG', name: 'Chhattisgarh', zone: { id: 5, code: 'ZONE5', name: 'Central Zone' } } },
+  { id: 714, code: 'KRB-714', name: 'KORBA (Transport Nagar)', pincode: '495677', is_hub: true, is_active: true, state_id: 1, state: { id: 1, code: 'CG', name: 'Chhattisgarh', zone: { id: 5, code: 'ZONE5', name: 'Central Zone' } } },
+  { id: 1070, code: 'RGH-1070', name: 'RAIGARH (Station Road)', pincode: '496001', is_hub: true, is_active: true, state_id: 1, state: { id: 1, code: 'CG', name: 'Chhattisgarh', zone: { id: 5, code: 'ZONE5', name: 'Central Zone' } } },
+  { id: 565, code: 'JGD-565', name: 'JAGDALPUR (Bastar Corridor)', pincode: '494001', is_hub: true, is_active: true, state_id: 1, state: { id: 1, code: 'CG', name: 'Chhattisgarh', zone: { id: 5, code: 'ZONE5', name: 'Central Zone' } } },
+  { id: 3, code: 'AMB-3', name: 'AMBIKAPUR (Surguja Hub)', pincode: '497001', is_hub: true, is_active: true, state_id: 1, state: { id: 1, code: 'CG', name: 'Chhattisgarh', zone: { id: 5, code: 'ZONE5', name: 'Central Zone' } } },
+  { id: 1077, code: 'RJN-1077', name: 'RAJNANDGAON (G.E Road)', pincode: '491441', is_hub: false, is_active: true, state_id: 1, state: { id: 1, code: 'CG', name: 'Chhattisgarh', zone: { id: 5, code: 'ZONE5', name: 'Central Zone' } } },
+  { id: 1397, code: 'BHT-1397', name: 'BHATAPARA (Mandi Hub)', pincode: '493118', is_hub: false, is_active: true, state_id: 1, state: { id: 1, code: 'CG', name: 'Chhattisgarh', zone: { id: 5, code: 'ZONE5', name: 'Central Zone' } } },
+  { id: 1390, code: 'MSM-1390', name: 'MAHASAMUND', pincode: '493445', is_hub: false, is_active: true, state_id: 1, state: { id: 1, code: 'CG', name: 'Chhattisgarh', zone: { id: 5, code: 'ZONE5', name: 'Central Zone' } } },
+  { id: 1379, code: 'SRP-1379', name: 'SARAIPALI', pincode: '493558', is_hub: false, is_active: true, state_id: 1, state: { id: 1, code: 'CG', name: 'Chhattisgarh', zone: { id: 5, code: 'ZONE5', name: 'Central Zone' } } },
+  { id: 1385, code: 'BMT-1385', name: 'BEMETARA', pincode: '491335', is_hub: false, is_active: true, state_id: 1, state: { id: 1, code: 'CG', name: 'Chhattisgarh', zone: { id: 5, code: 'ZONE5', name: 'Central Zone' } } },
+  { id: 1386, code: 'KWD-1386', name: 'KAWARDHA', pincode: '491995', is_hub: false, is_active: true, state_id: 1, state: { id: 1, code: 'CG', name: 'Chhattisgarh', zone: { id: 5, code: 'ZONE5', name: 'Central Zone' } } },
+  { id: 330, code: 'DHM-330', name: 'DHAMTARI', pincode: '493773', is_hub: false, is_active: true, state_id: 1, state: { id: 1, code: 'CG', name: 'Chhattisgarh', zone: { id: 5, code: 'ZONE5', name: 'Central Zone' } } },
+  { id: 4, code: 'BOM-4', name: 'MUMBAI (BOM Apex)', pincode: '400001', is_hub: true, is_active: true, state_id: 2, state: { id: 2, code: 'MH', name: 'Maharashtra', zone: { id: 2, code: 'ZONE2', name: 'West Zone' } } },
+  { id: 6, code: 'NAG-6', name: 'NAGPUR (Central Transit Hub)', pincode: '440001', is_hub: true, is_active: true, state_id: 2, state: { id: 2, code: 'MH', name: 'Maharashtra', zone: { id: 2, code: 'ZONE2', name: 'West Zone' } } },
+  { id: 9, code: 'DEL-9', name: 'DELHI (DEL National Hub)', pincode: '110001', is_hub: true, is_active: true, state_id: 4, state: { id: 4, code: 'DL', name: 'Delhi', zone: { id: 1, code: 'ZONE1', name: 'North Zone' } } },
+  { id: 10, code: 'CCU-10', name: 'KOLKATA (CCU Eastern Hub)', pincode: '700001', is_hub: true, is_active: true, state_id: 5, state: { id: 5, code: 'WB', name: 'West Bengal', zone: { id: 4, code: 'ZONE4', name: 'East Zone' } } },
 ];
 
 const INITIAL_CLIENTS = [
-  { id: 1, tenant_id: 1, client_code: 'WALKIN', name: 'Walk-in Cash Retail Customer', phone: '9893000000', email: 'walkin@raipur.com', city: 'Raipur', state: 'Chhattisgarh', pincode: '492001', fuel_surcharge_percent: 10, status: 'active' },
-  { id: 2, tenant_id: 1, client_code: 'TATA01', name: 'Tata Steel B2B Division', contact_person: 'Sunil Mehta', phone: '9820000000', email: 'logistics@tatasteel.com', gstin: '22AAACT1234M1Z1', city: 'Raipur', state: 'Chhattisgarh', pincode: '492001', fuel_surcharge_percent: 12, status: 'active' },
-  { id: 3, tenant_id: 1, client_code: 'KRISHNA02', name: 'Shree Krishna Traders', contact_person: 'Gopal Agarwal', phone: '9827112233', email: 'krishna.traders@gmail.com', gstin: '22AABCK9988P1Z5', city: 'Raipur', state: 'Chhattisgarh', pincode: '492001', fuel_surcharge_percent: 10, status: 'active' },
-  { id: 4, tenant_id: 1, client_code: 'APOLLO03', name: 'Apollo Medical Supplies', contact_person: 'Dr. Vivek Soni', phone: '9425233445', email: 'raipur.desk@apollomed.com', gstin: '22AAACA5566K1Z9', city: 'Bhilai', state: 'Chhattisgarh', pincode: '490001', fuel_surcharge_percent: 8, status: 'active' },
+  { id: 1, tenant_id: 1, client_code: 'WALKIN', name: 'Walk-in Cash Retail Customer', contact_person: 'Retail Cash Desk', phone: '9399676408', email: 'shreemaruti@raipur.com', city: 'Raipur', state: 'Chhattisgarh', pincode: '492001', fuel_surcharge_percent: 10, status: 'active' },
+  { id: 2, tenant_id: 1, client_code: 'CL-1-1', name: 'IDBI BANK LTD (CIVIL LINE BRANCH)', contact_person: 'Suresh Swain', phone: '0771-4222801', email: 'suresh.swain@idbi.co.in', gstin: '22AABCI8842G1ZP', address: 'Dev Tower, Nr Holy Heart School Civil Line, Raipur 492001', city: 'Raipur', state: 'Chhattisgarh', pincode: '492001', fuel_surcharge_percent: 12, status: 'active' },
+  { id: 3, tenant_id: 1, client_code: 'CL-2-2', name: 'KOTAK MAHINDRA BANK LTD', contact_person: 'Branch Operations Head', phone: '0771-400123', email: 'raipur@kotak.net', gstin: '22AAACK4409J1ZU', address: 'Ground Floor, Dhand Compound, Civil Lines, Raipur', city: 'Raipur', state: 'Chhattisgarh', pincode: '492001', fuel_surcharge_percent: 10, status: 'active' },
+  { id: 4, tenant_id: 1, client_code: 'CL-3-3', name: 'REAL ISPAT & POWER LTD (BORJHARA PLANT)', contact_person: 'Logistics Head', phone: '0771-4224111', email: 'real@realispat.com', gstin: '22AABCR9986L1ZQ', address: 'Bendri Road Borjhara, Raipur', city: 'Raipur', state: 'Chhattisgarh', pincode: '493221', fuel_surcharge_percent: 15, status: 'active' },
+  { id: 5, tenant_id: 1, client_code: 'CL-4-4', name: 'IDBI BANK LTD (MOWA BRANCH)', contact_person: 'Operations Desk', phone: '0771-6050026', email: 'raipur.mowa@idbi.co.in', gstin: '22AABCI8842G1ZP', address: 'C.G Elite, Ground Floor Opp. Mandi Gate Pandri, Mowa', city: 'Raipur', state: 'Chhattisgarh', pincode: '492001', fuel_surcharge_percent: 10, status: 'active' },
+  { id: 6, tenant_id: 1, client_code: 'CL-6-6', name: 'UNION BANK OF INDIA', contact_person: 'Logistics Officer', phone: '09425242949', email: 'raipur@unionbankofindia.bank', gstin: '22AAACU0564G1ZR', address: 'Bhatiya Complex Main Road Pandri, Raipur', city: 'Raipur', state: 'Chhattisgarh', pincode: '492001', fuel_surcharge_percent: 10, status: 'active' },
+  { id: 7, tenant_id: 1, client_code: 'CL-7-7', name: 'METHODEX SYSTEMS PVT LTD', contact_person: 'Ashok Varma', phone: '09009061119', email: 'raipur@methodexsystems.com', gstin: '22AAACM1924E1Z5', address: 'Ashoka Millenium, Ring Rd No: 1, New Rajendra Nagar, Raipur', city: 'Raipur', state: 'Chhattisgarh', pincode: '492001', fuel_surcharge_percent: 10, status: 'active' },
+  { id: 8, tenant_id: 1, client_code: 'CL-10-10', name: 'TIRUPATI CORPORATION PVT LTD', contact_person: 'Accounts Head', phone: '08818880845', email: 'accounts@tirupatisteel.com', gstin: '22AAECT0745N1ZA', address: 'Plot No 189/1 Nandanvan Road Village Atari Tatibandh, Raipur', city: 'Raipur', state: 'Chhattisgarh', pincode: '492099', fuel_surcharge_percent: 12, status: 'active' },
+  { id: 9, tenant_id: 1, client_code: 'CL-11-11', name: 'C & S ELECTRIC LTD', contact_person: 'Dispatch Desk', phone: '0771-4061404', email: 'raipur@cselectric.co.in', gstin: '09AAACC0909K1ZR', address: 'Maruti Height Mohba Bazar, Raipur', city: 'Raipur', state: 'Chhattisgarh', pincode: '492001', fuel_surcharge_percent: 10, status: 'active' },
+  { id: 10, tenant_id: 1, client_code: 'CL-13-13', name: 'REAL ISPAT & POWER LTD (URLA PLANT)', contact_person: 'Dispatch Yard', phone: '0771-3051000', email: 'steel@gktmt.com', gstin: '22AABCR9986L1ZQ', address: 'Plot No 315 & 321, Urla Industrial Area, Raipur', city: 'Raipur', state: 'Chhattisgarh', pincode: '493221', fuel_surcharge_percent: 15, status: 'active' },
+  { id: 11, tenant_id: 1, client_code: 'CL-93-130', name: 'MANAPPURAM FINANCE LIMITED', contact_person: 'Branch Coordinator', phone: '07489548691', email: '1322484@manappuram.com', gstin: '22AABCM6882E1ZL', address: 'Aswani Nagar Verma House Mahadev Ghat Road, Raipur', city: 'Raipur', state: 'Chhattisgarh', pincode: '492013', fuel_surcharge_percent: 10, status: 'active' },
+  { id: 12, tenant_id: 1, client_code: 'CL-64-500', name: 'NATCURE BIOTECH PVT LTD', contact_person: 'Logistics Head', phone: '0771-4041234', email: 'customercare@natcurebiotech.com', gstin: '22AAGCN5770R1ZV', address: 'House No. 7, Third Floor Hanuman Nagar, Raipur', city: 'Raipur', state: 'Chhattisgarh', pincode: '492001', fuel_surcharge_percent: 10, status: 'active' },
 ];
 
 const INITIAL_BRANCHES = [
-  { id: 1, tenant_id: 1, branch_code: 'RAI-01', branch_name: 'Raipur Main Counter (Pandri)', address: 'Plot 12, Pandri Commercial Complex', city: 'Raipur', state: 'Chhattisgarh', pincode: '492001', phone: '0771-4001234', status: 'active', _count: { users: 5, consignments: 148 } },
-  { id: 2, tenant_id: 1, branch_code: 'MUM-01', branch_name: 'Mumbai Central Hub', address: 'Plot 55, Andheri East Industrial Area', city: 'Mumbai', state: 'Maharashtra', pincode: '400093', phone: '0222834567', status: 'active', _count: { users: 3, consignments: 84 } },
+  { id: 1, tenant_id: 1, branch_code: 'BR-1', branch_name: 'KESHRI EXPRESS (Head Office - Kushalpur)', address: 'Thakur Building, Opp Wallfort City Gate, Ring Road No-1, Kushalpur', city: 'Raipur', state: 'Chhattisgarh', pincode: '492013', phone: '0771-4004544', status: 'active', _count: { users: 5, consignments: 1240 } },
+  { id: 2, tenant_id: 1, branch_code: 'BR-2', branch_name: 'M/S KESHRI EXPRESS (Amleshwar Durg)', address: '301, C/3, Wood I Land Amleshwar, Dist-Durg', city: 'Durg', state: 'Chhattisgarh', pincode: '491111', phone: '9303340016', status: 'active', _count: { users: 2, consignments: 340 } },
+  { id: 3, tenant_id: 1, branch_code: 'BR-3', branch_name: 'KESHRI EXPRESS (Bemetara Branch)', address: 'Main Road Bemetara Hub', city: 'Bemetara', state: 'Chhattisgarh', pincode: '491335', phone: '0771-4004544', status: 'active', _count: { users: 2, consignments: 180 } },
+  { id: 4, tenant_id: 1, branch_code: 'BR-4', branch_name: 'KESHRI EXPRESS (Supela Bhilai)', address: '268 First Floor, Dhillon Complex, Supela', city: 'Bhilai', state: 'Chhattisgarh', pincode: '490023', phone: '9303340016', status: 'active', _count: { users: 3, consignments: 490 } },
+  { id: 5, tenant_id: 1, branch_code: 'BR-5', branch_name: 'KESHRI EXPRESS (Rajim Branch)', address: 'Main Road Rajim Counter', city: 'Rajim', state: 'Chhattisgarh', pincode: '493885', phone: '9926142214', status: 'active', _count: { users: 1, consignments: 120 } },
+  { id: 6, tenant_id: 1, branch_code: 'BR-6', branch_name: 'KESHRI EXPRESS (Mahasamund)', address: 'Station Road Mahasamund Hub', city: 'Mahasamund', state: 'Chhattisgarh', pincode: '493445', phone: '7089168878', status: 'active', _count: { users: 2, consignments: 210 } },
+  { id: 7, tenant_id: 1, branch_code: 'BR-7', branch_name: 'KESHRI EXPRESS (Saraipali)', address: 'Main Market Saraipali', city: 'Saraipali', state: 'Chhattisgarh', pincode: '493558', phone: '9165581693', status: 'active', _count: { users: 1, consignments: 150 } },
+  { id: 8, tenant_id: 1, branch_code: 'BR-8', branch_name: 'KESHRI EXPRESS (Jashpur)', address: 'Jashpur Bus Stand Counter', city: 'Jashpur', state: 'Chhattisgarh', pincode: '496331', phone: '9669848914', status: 'active', _count: { users: 1, consignments: 95 } },
+  { id: 9, tenant_id: 1, branch_code: 'BR-9', branch_name: 'KESHRI EXPRESS (Bilaspur Link Road)', address: 'Link Road Bilaspur Regional Hub', city: 'Bilaspur', state: 'Chhattisgarh', pincode: '495001', phone: '9827422074', status: 'active', _count: { users: 4, consignments: 680 } },
+  { id: 10, tenant_id: 1, branch_code: 'BR-10', branch_name: 'KESHRI EXPRESS (Bhatapara)', address: 'Mandi Road Bhatapara Hub', city: 'Bhatapara', state: 'Chhattisgarh', pincode: '493118', phone: '0771-4004544', status: 'active', _count: { users: 2, consignments: 140 } },
+  { id: 11, tenant_id: 1, branch_code: 'BR-11', branch_name: 'KESHRI EXPRESS (Ambikapur)', address: 'Ring Road Ambikapur Apex Hub', city: 'Ambikapur', state: 'Chhattisgarh', pincode: '497001', phone: '0771-4004544', status: 'active', _count: { users: 3, consignments: 290 } },
+  { id: 13, tenant_id: 1, branch_code: 'BR-13', branch_name: 'KESHRI EXPRESS (Korba Transport Nagar)', address: 'K M Complex, Transport Nagar, Power House Road', city: 'Korba', state: 'Chhattisgarh', pincode: '495677', phone: '0771-4004544', status: 'active', _count: { users: 3, consignments: 410 } },
+  { id: 14, tenant_id: 1, branch_code: 'BR-14', branch_name: 'KESHRI EXPRESS (Raigarh Hub)', address: 'Station Road Raigarh', city: 'Raigarh', state: 'Chhattisgarh', pincode: '496001', phone: '0771-4004544', status: 'active', _count: { users: 2, consignments: 320 } },
+  { id: 15, tenant_id: 1, branch_code: 'BR-15', branch_name: 'KESHRI EXPRESS (Jagdalpur Bastar)', address: 'Main Road Jagdalpur', city: 'Jagdalpur', state: 'Chhattisgarh', pincode: '494001', phone: '0771-4004544', status: 'active', _count: { users: 2, consignments: 240 } },
+  { id: 26, tenant_id: 1, branch_code: 'BR-26', branch_name: 'KESHRI EXPRESS (Wallfort City Pandri Express)', address: 'Beside Corner House Restaurant, Opp Wallfort City, Ring Road No 1', city: 'Raipur', state: 'Chhattisgarh', pincode: '492013', phone: '9399676408', status: 'active', _count: { users: 6, consignments: 2150 } },
 ];
 
 const INITIAL_BOOKINGS = [
@@ -378,7 +407,12 @@ function getStored<T>(key: string, defaultVal: T): T {
       localStorage.setItem(key, JSON.stringify(defaultVal));
       return defaultVal;
     }
-    return JSON.parse(raw);
+    const parsed = JSON.parse(raw);
+    if (Array.isArray(parsed) && Array.isArray(defaultVal) && parsed.length < defaultVal.length) {
+      localStorage.setItem(key, JSON.stringify(defaultVal));
+      return defaultVal;
+    }
+    return parsed;
   } catch (e) {
     return defaultVal;
   }
