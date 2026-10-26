@@ -334,15 +334,50 @@ export const QuotationsPage: React.FC = () => {
 
       {/* Modal 1: Create New Quotation */}
       {showModal && (
-        <div className="modal show d-block" style={{ backgroundColor: 'rgba(0,0,0,0.5)' }}>
-          <div className="modal-dialog modal-lg modal-dialog-centered">
-            <div className="modal-content">
-              <div className="modal-header">
-                <h5 className="modal-title">Create B2B Courier Quotation</h5>
+        <div
+          className="modal show d-block"
+          tabIndex={-1}
+          style={{
+            backgroundColor: 'rgba(15, 23, 42, 0.65)',
+            backdropFilter: 'blur(4px)',
+            overflowY: 'auto',
+            zIndex: 1055,
+            padding: '1rem 0.5rem',
+          }}
+          onClick={(e) => {
+            if (e.target === e.currentTarget) setShowModal(false);
+          }}
+        >
+          <div
+            className="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable my-2"
+            style={{ maxWidth: '860px', width: '100%', maxHeight: 'calc(100vh - 2rem)' }}
+          >
+            <div
+              className="modal-content shadow-lg border-0"
+              style={{
+                borderRadius: '12px',
+                maxHeight: 'calc(100vh - 2rem)',
+                display: 'flex',
+                flexDirection: 'column',
+              }}
+            >
+              <div className="modal-header bg-light border-bottom px-4 py-3">
+                <div className="d-flex align-items-center gap-2">
+                  <div className="rounded bg-primary text-white p-2 d-flex align-items-center justify-content-center" style={{ width: 36, height: 36 }}>
+                    <i className="bi bi-file-earmark-plus"></i>
+                  </div>
+                  <div>
+                    <h5 className="modal-title fw-bold mb-0" style={{ fontSize: '1.05rem' }}>Create B2B Courier Quotation</h5>
+                    <small className="text-muted">Generate formal rate proposal for commercial corporate prospects</small>
+                  </div>
+                </div>
                 <button type="button" className="btn-close" onClick={() => setShowModal(false)}></button>
               </div>
-              <form onSubmit={handleCreateQuotation}>
-                <div className="modal-body">
+              <form onSubmit={handleCreateQuotation} style={{ display: 'flex', flexDirection: 'column', overflow: 'hidden' }}>
+                <div
+                  className="modal-body p-3 p-sm-4 bg-light-subtle overflow-auto"
+                  style={{ flex: '1 1 auto', maxHeight: 'calc(100vh - 175px)' }}
+                >
                   <h6 className="fw-bold text-primary mb-3">1. Prospect Client Details</h6>
                   <div className="row g-2 mb-3">
                     <div className="col-md-6">
@@ -625,94 +660,297 @@ export const QuotationsPage: React.FC = () => {
 
       {/* Modal 2: View Quotation Printable Proposal */}
       {viewQuotation && (
-        <div className="modal show d-block" style={{ backgroundColor: 'rgba(0,0,0,0.5)' }}>
-          <div className="modal-dialog modal-lg modal-dialog-centered">
-            <div className="modal-content">
-              <div className="modal-header">
-                <h5 className="modal-title font-monospace">Quotation: {viewQuotation.quotation_no}</h5>
-                <button type="button" className="btn-close" onClick={() => setViewQuotation(null)}></button>
+        <div
+          className="modal show d-block"
+          tabIndex={-1}
+          role="dialog"
+          aria-modal="true"
+          style={{
+            backgroundColor: 'rgba(15, 23, 42, 0.65)',
+            backdropFilter: 'blur(4px)',
+            overflowY: 'auto',
+            zIndex: 1055,
+            padding: '1rem 0.5rem',
+          }}
+          onClick={(e) => {
+            if (e.target === e.currentTarget) setViewQuotation(null);
+          }}
+        >
+          <div
+            className="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable my-2"
+            style={{ maxWidth: '880px', width: '100%', maxHeight: 'calc(100vh - 2rem)' }}
+          >
+            <div
+              className="modal-content shadow-lg border-0"
+              style={{
+                borderRadius: '14px',
+                maxHeight: 'calc(100vh - 2rem)',
+                display: 'flex',
+                flexDirection: 'column',
+              }}
+            >
+              <div className="modal-header bg-light border-bottom px-4 py-3">
+                <div className="d-flex align-items-center gap-2">
+                  <div className="rounded bg-primary-subtle text-primary p-2 d-flex align-items-center justify-content-center" style={{ width: 36, height: 36 }}>
+                    <i className="bi bi-file-earmark-text fs-5"></i>
+                  </div>
+                  <div>
+                    <div className="d-flex align-items-center gap-2">
+                      <h5 className="modal-title fw-bold font-monospace mb-0" style={{ fontSize: '1.05rem' }}>
+                        Quotation: {viewQuotation.quotation_no}
+                      </h5>
+                      <span
+                        className={`badge ${
+                          viewQuotation.status === 'accepted'
+                            ? 'bg-success'
+                            : 'bg-primary-subtle text-primary border'
+                        }`}
+                        style={{ fontSize: '0.68rem' }}
+                      >
+                        {viewQuotation.status ? viewQuotation.status.toUpperCase() : 'ACTIVE PROPOSAL'}
+                      </span>
+                    </div>
+                    <small className="text-muted">B2B Commercial Rate Proposal & Service Level Agreement</small>
+                  </div>
+                </div>
+                <button type="button" className="btn-close" aria-label="Close" onClick={() => setViewQuotation(null)}></button>
               </div>
-              <div className="modal-body p-4 bg-light">
-                <div className="p-4 bg-white border rounded shadow-sm">
-                  <div className="d-flex justify-content-between border-bottom pb-3 mb-3">
+
+              <div
+                className="modal-body p-3 p-sm-4 bg-light overflow-auto"
+                style={{ flex: '1 1 auto', maxHeight: 'calc(100vh - 175px)' }}
+              >
+                <div className="p-4 bg-white border rounded-3 shadow-sm quotation-paper-card">
+                  {/* Proposal Letterhead Header */}
+                  <div className="d-flex flex-column flex-sm-row justify-content-between align-items-start align-items-sm-center border-bottom pb-3 mb-4 gap-3">
                     <div>
-                      <h4 className="brand-title text-primary mb-0">KESARI COURIER SERVICES</h4>
-                      <p className="text-muted small mb-0">Specialized Domestic & Commercial Logistics</p>
+                      <div className="d-flex align-items-center gap-2">
+                        <div className="rounded bg-primary text-white p-2 d-flex align-items-center justify-content-center" style={{ width: 38, height: 38 }}>
+                          <i className="bi bi-box-seam-fill fs-5"></i>
+                        </div>
+                        <div>
+                          <h4 className="brand-title text-primary mb-0 fw-bold" style={{ letterSpacing: '0.5px' }}>
+                            KESARI COURIER SERVICES PVT. LTD.
+                          </h4>
+                          <p className="text-muted small mb-0">Specialized Domestic & Commercial Freight Logistics Network</p>
+                        </div>
+                      </div>
+                      <div className="small text-muted mt-2">
+                        <span>Regd Office: Thakur Building, Opp. Wallfort City Gate, Ring Road No-1, Kushalpur, Raipur-492013</span>
+                        <br />
+                        <span>GSTIN: <strong>22AAGCK2836D1ZY</strong> • Ph: 0771-4004544 / 9399676408 • Email: shreemaruti@raipur.com</span>
+                      </div>
                     </div>
-                    <div className="text-end">
-                      <div className="fw-bold font-monospace">{viewQuotation.quotation_no}</div>
-                      <div className="small text-muted">Date: {viewQuotation.created_at}</div>
-                      <div className="small text-muted">Valid Until: {viewQuotation.valid_until}</div>
+
+                    <div className="text-sm-end bg-light-subtle p-3 rounded border font-monospace" style={{ minWidth: '190px' }}>
+                      <div className="badge bg-primary px-2 py-1 mb-1 font-monospace" style={{ fontSize: '0.78rem' }}>
+                        {viewQuotation.quotation_no}
+                      </div>
+                      <div className="small text-muted">Issued: <strong>{viewQuotation.created_at}</strong></div>
+                      <div className="small text-muted">Valid Until: <strong className="text-danger">{viewQuotation.valid_until}</strong></div>
                     </div>
                   </div>
 
+                  {/* Proposal Prepared For */}
+                  <div className="p-3 bg-light-subtle rounded border mb-4">
+                    <h6 className="fw-bold text-uppercase small text-primary mb-2 d-flex align-items-center gap-1">
+                      <i className="bi bi-building"></i> Proposal Prepared For (Client Prospect):
+                    </h6>
+                    <div className="row g-2">
+                      <div className="col-12 col-md-6">
+                        <h5 className="fw-bold mb-1 text-dark">{viewQuotation.prospect_name}</h5>
+                        <div className="small text-muted">
+                          <strong>Attn:</strong> {viewQuotation.contact_person}
+                        </div>
+                        <div className="small text-muted">
+                          <strong>Location:</strong> {viewQuotation.city || 'Raipur'}, {viewQuotation.state || 'Chhattisgarh'}
+                        </div>
+                      </div>
+                      <div className="col-12 col-md-6 text-md-end">
+                        <div className="small text-muted">
+                          <strong>Phone:</strong> {viewQuotation.phone}
+                        </div>
+                        {viewQuotation.email && (
+                          <div className="small text-muted">
+                            <strong>Email:</strong> {viewQuotation.email}
+                          </div>
+                        )}
+                        <div className="small text-muted">
+                          <strong>Tariff Basis:</strong> Pre-Sales Commercial Contract
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Rate Card Matrix */}
                   <div className="mb-4">
-                    <h6 className="fw-bold text-uppercase small text-muted">Proposal Prepared For:</h6>
-                    <h5 className="fw-bold mb-1">{viewQuotation.prospect_name}</h5>
-                    <div>Attn: {viewQuotation.contact_person}</div>
-                    <div className="text-muted small">
-                      {viewQuotation.city}, {viewQuotation.state} • Ph: {viewQuotation.phone}
+                    <h6 className="fw-bold mb-2 text-dark d-flex align-items-center gap-1">
+                      <i className="bi bi-table text-primary"></i> 1. Commercial Freight Tariff Structure (Slab-wise Rate Matrix):
+                    </h6>
+                    <div className="table-responsive border rounded">
+                      <table className="table table-bordered table-sm text-center align-middle mb-0">
+                        <thead className="table-light small">
+                          <tr>
+                            <th className="text-start ps-3" style={{ width: '28%' }}>Delivery Corridor / Zone</th>
+                            <th>0 - 100g</th>
+                            <th>101 - 250g</th>
+                            <th>251 - 500g</th>
+                            <th>501g - 1kg</th>
+                            <th>Addl. 500g / kg</th>
+                          </tr>
+                        </thead>
+                        <tbody className="small">
+                          <tr>
+                            <td className="fw-bold text-start ps-3 bg-light-subtle">
+                              <i className="bi bi-geo-alt text-primary me-1"></i> Within City (Local)
+                            </td>
+                            <td className="fw-semibold">₹{viewQuotation.rates.within_city_100g}</td>
+                            <td className="fw-semibold">₹{viewQuotation.rates.within_city_250g}</td>
+                            <td className="fw-semibold">₹{viewQuotation.rates.within_city_500g}</td>
+                            <td className="fw-semibold">₹{viewQuotation.rates.within_city_1kg}</td>
+                            <td className="fw-semibold text-primary">₹{viewQuotation.rates.within_city_addl}</td>
+                          </tr>
+                          <tr>
+                            <td className="fw-bold text-start ps-3 bg-light-subtle">
+                              <i className="bi bi-pin-map text-success me-1"></i> Within State / Central Zone
+                            </td>
+                            <td colSpan={2} className="text-muted small">Standard Base Slab</td>
+                            <td className="fw-semibold">₹{viewQuotation.rates.within_zone_500g}</td>
+                            <td className="text-muted small">-</td>
+                            <td className="fw-semibold text-primary">₹{viewQuotation.rates.within_zone_addl}</td>
+                          </tr>
+                          <tr>
+                            <td className="fw-bold text-start ps-3 bg-light-subtle">
+                              <i className="bi bi-building text-info me-1"></i> Metro Cities (Priority Air)
+                            </td>
+                            <td colSpan={2} className="text-muted small">Standard Base Slab</td>
+                            <td className="fw-semibold">₹{viewQuotation.rates.metro_500g}</td>
+                            <td className="text-muted small">-</td>
+                            <td className="fw-semibold text-primary">₹{viewQuotation.rates.metro_addl}</td>
+                          </tr>
+                          <tr>
+                            <td className="fw-bold text-start ps-3 bg-light-subtle">
+                              <i className="bi bi-globe text-secondary me-1"></i> Rest of India (National Surface)
+                            </td>
+                            <td colSpan={2} className="text-muted small">Standard Base Slab</td>
+                            <td className="fw-semibold">₹{viewQuotation.rates.roi_500g}</td>
+                            <td className="text-muted small">-</td>
+                            <td className="fw-semibold text-primary">₹{viewQuotation.rates.roi_addl}</td>
+                          </tr>
+                        </tbody>
+                      </table>
                     </div>
                   </div>
 
-                  <h6 className="fw-bold mb-2">Commercial Freight Tariff Structure:</h6>
-                  <table className="table table-sm table-bordered text-center align-middle mb-3">
-                    <thead className="table-light small">
-                      <tr>
-                        <th>Zone</th>
-                        <th>0-100g</th>
-                        <th>101-250g</th>
-                        <th>251-500g</th>
-                        <th>501g-1kg</th>
-                        <th>Addl 500g/kg</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr>
-                        <td className="fw-bold text-start ps-2">Within City</td>
-                        <td>₹{viewQuotation.rates.within_city_100g}</td>
-                        <td>₹{viewQuotation.rates.within_city_250g}</td>
-                        <td>₹{viewQuotation.rates.within_city_500g}</td>
-                        <td>₹{viewQuotation.rates.within_city_1kg}</td>
-                        <td>₹{viewQuotation.rates.within_city_addl}</td>
-                      </tr>
-                      <tr>
-                        <td className="fw-bold text-start ps-2">Within State / Zone</td>
-                        <td colSpan={2} className="text-muted">-</td>
-                        <td>₹{viewQuotation.rates.within_zone_500g}</td>
-                        <td className="text-muted">-</td>
-                        <td>₹{viewQuotation.rates.within_zone_addl}</td>
-                      </tr>
-                      <tr>
-                        <td className="fw-bold text-start ps-2">Metro Cities</td>
-                        <td colSpan={2} className="text-muted">-</td>
-                        <td>₹{viewQuotation.rates.metro_500g}</td>
-                        <td className="text-muted">-</td>
-                        <td>₹{viewQuotation.rates.metro_addl}</td>
-                      </tr>
-                      <tr>
-                        <td className="fw-bold text-start ps-2">Rest of India</td>
-                        <td colSpan={2} className="text-muted">-</td>
-                        <td>₹{viewQuotation.rates.roi_500g}</td>
-                        <td className="text-muted">-</td>
-                        <td>₹{viewQuotation.rates.roi_addl}</td>
-                      </tr>
-                    </tbody>
-                  </table>
+                  {/* Surcharges & Commercial Terms */}
+                  <div className="mb-4">
+                    <h6 className="fw-bold mb-2 text-dark d-flex align-items-center gap-1">
+                      <i className="bi bi-info-circle text-primary"></i> 2. Commercial Surcharges & Statutory Levies:
+                    </h6>
+                    <div className="row g-2">
+                      <div className="col-6 col-md-3">
+                        <div className="p-2 border rounded text-center bg-light">
+                          <small className="text-muted d-block" style={{ fontSize: '0.72rem' }}>Fuel Surcharge</small>
+                          <strong className="text-primary">{viewQuotation.rates.fuel_surcharge_percent}%</strong>
+                          <div className="text-muted font-monospace" style={{ fontSize: '0.68rem' }}>on basic freight</div>
+                        </div>
+                      </div>
+                      <div className="col-6 col-md-3">
+                        <div className="p-2 border rounded text-center bg-light">
+                          <small className="text-muted d-block" style={{ fontSize: '0.72rem' }}>Docket Fee</small>
+                          <strong className="text-primary">₹{viewQuotation.rates.docket_charge}</strong>
+                          <div className="text-muted font-monospace" style={{ fontSize: '0.68rem' }}>per consignment</div>
+                        </div>
+                      </div>
+                      <div className="col-6 col-md-3">
+                        <div className="p-2 border rounded text-center bg-light">
+                          <small className="text-muted d-block" style={{ fontSize: '0.72rem' }}>GST Rate</small>
+                          <strong className="text-primary">18% Extra</strong>
+                          <div className="text-muted font-monospace" style={{ fontSize: '0.68rem' }}>SAC Code: 996812</div>
+                        </div>
+                      </div>
+                      <div className="col-6 col-md-3">
+                        <div className="p-2 border rounded text-center bg-light">
+                          <small className="text-muted d-block" style={{ fontSize: '0.72rem' }}>Volumetric Divisor</small>
+                          <strong className="text-primary">5,000 cc/kg</strong>
+                          <div className="text-muted font-monospace" style={{ fontSize: '0.68rem' }}>L x W x H (cm) / 5000</div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
 
-                  <div className="small text-muted">
-                    • Fuel Surcharge: {viewQuotation.rates.fuel_surcharge_percent}% on basic freight • Docket Charge: ₹
-                    {viewQuotation.rates.docket_charge} per AWB • GST: 18% SAC 996812 extra as applicable.
+                  {/* Service Level Guarantees */}
+                  <div className="p-3 bg-light-subtle rounded border mb-4">
+                    <h6 className="fw-bold small text-dark mb-2">3. Service Level Commitments (SLA):</h6>
+                    <div className="row g-2 small text-muted">
+                      <div className="col-12 col-sm-6">
+                        <div className="d-flex align-items-center gap-1 mb-1">
+                          <i className="bi bi-check-circle-fill text-success"></i>
+                          <span>Free daily scheduled doorstep pickup at client warehouse/office</span>
+                        </div>
+                        <div className="d-flex align-items-center gap-1">
+                          <i className="bi bi-check-circle-fill text-success"></i>
+                          <span>Real-time AWB milestone telemetry & SMS notifications</span>
+                        </div>
+                      </div>
+                      <div className="col-12 col-sm-6">
+                        <div className="d-flex align-items-center gap-1 mb-1">
+                          <i className="bi bi-check-circle-fill text-success"></i>
+                          <span>Digital Proof of Delivery (POD) with recipient photo/signature</span>
+                        </div>
+                        <div className="d-flex align-items-center gap-1">
+                          <i className="bi bi-check-circle-fill text-success"></i>
+                          <span>Dedicated corporate accounts manager with monthly consolidated invoicing</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Sign-off Section */}
+                  <div className="row pt-3 border-top mt-4 align-items-end">
+                    <div className="col-6">
+                      <div className="text-muted small mb-4">For <strong>Kesari Courier Services Pvt. Ltd.</strong></div>
+                      <div className="border-bottom d-inline-block" style={{ width: '160px' }}></div>
+                      <div className="small fw-semibold mt-1">Authorized Sales Executive</div>
+                    </div>
+                    <div className="col-6 text-end">
+                      <div className="text-muted small mb-4">Client Acceptance: <strong>{viewQuotation.prospect_name}</strong></div>
+                      <div className="border-bottom d-inline-block" style={{ width: '160px' }}></div>
+                      <div className="small fw-semibold mt-1">Authorized Signatory & Company Stamp</div>
+                    </div>
                   </div>
                 </div>
               </div>
-              <div className="modal-footer">
-                <button type="button" className="btn btn-secondary btn-sm" onClick={() => setViewQuotation(null)}>
-                  Close
-                </button>
-                <button type="button" className="btn btn-primary btn-sm" onClick={() => window.print()}>
-                  <i className="bi bi-printer me-1"></i> Print Proposal
-                </button>
+
+              {/* Modal Footer */}
+              <div className="modal-footer bg-white border-top px-4 py-3 d-flex justify-content-between align-items-center flex-wrap gap-2">
+                <div className="d-flex align-items-center gap-2">
+                  <span className="text-muted small">
+                    <i className="bi bi-shield-check text-success me-1"></i> Offer valid until: <strong className="text-dark">{viewQuotation.valid_until}</strong>
+                  </span>
+                </div>
+                <div className="d-flex align-items-center gap-2 flex-wrap">
+                  <button type="button" className="btn btn-outline-secondary btn-sm px-3" onClick={() => setViewQuotation(null)}>
+                    Close
+                  </button>
+                  {viewQuotation.status !== 'converted' && (
+                    <button
+                      type="button"
+                      className="btn btn-outline-success btn-sm d-flex align-items-center gap-1 px-3"
+                      onClick={() => {
+                        handleConvertToCustomer(viewQuotation);
+                        setViewQuotation(null);
+                      }}
+                    >
+                      <i className="bi bi-person-check"></i>
+                      <span>Convert to Customer</span>
+                    </button>
+                  )}
+                  <button type="button" className="btn btn-primary btn-sm d-flex align-items-center gap-1 px-3" onClick={() => window.print()}>
+                    <i className="bi bi-printer"></i>
+                    <span>Print Proposal</span>
+                  </button>
+                </div>
               </div>
             </div>
           </div>

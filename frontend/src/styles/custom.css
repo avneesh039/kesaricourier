@@ -1009,4 +1009,43 @@ body.no-scroll {
   transform: scale(0.99);
 }
 
+/* ==============================================================
+   Modal Viewport Fit & Smooth Scrolling Enhancements
+   ============================================================== */
+.modal.show.d-block {
+  overflow-y: auto !important;
+  -webkit-overflow-scrolling: touch;
+}
+
+.modal-dialog-scrollable {
+  max-height: calc(100vh - 2rem) !important;
+}
+
+.modal-dialog-scrollable .modal-content {
+  max-height: calc(100vh - 2rem) !important;
+  overflow: hidden !important;
+}
+
+.modal-dialog-scrollable .modal-body {
+  overflow-y: auto !important;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Printable proposal card styling */
+.quotation-paper-card {
+  background: #ffffff;
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+}
+
+@media print {
+  .quotation-paper-card {
+    border: none !important;
+    box-shadow: none !important;
+    padding: 0 !important;
+  }
+}
+
+
 
