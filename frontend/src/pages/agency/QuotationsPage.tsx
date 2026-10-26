@@ -36,6 +36,7 @@ export const QuotationsPage: React.FC = () => {
   const [showModal, setShowModal] = useState(false);
   const [viewQuotation, setViewQuotation] = useState<Quotation | null>(null);
   const [convertingId, setConvertingId] = useState<string | null>(null);
+  const [isFullscreen, setIsFullscreen] = useState(false);
 
   // Initial dummy or stored quotations
   useEffect(() => {
@@ -335,622 +336,669 @@ export const QuotationsPage: React.FC = () => {
       {/* Modal 1: Create New Quotation */}
       {showModal && (
         <div
-          className="modal show d-block"
-          tabIndex={-1}
-          style={{
-            backgroundColor: 'rgba(15, 23, 42, 0.65)',
-            backdropFilter: 'blur(4px)',
-            overflowY: 'auto',
-            zIndex: 1055,
-            padding: '1rem 0.5rem',
-          }}
+          className="quotation-screen-overlay"
           onClick={(e) => {
             if (e.target === e.currentTarget) setShowModal(false);
           }}
         >
           <div
-            className="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable my-2"
-            style={{ maxWidth: '860px', width: '100%', maxHeight: 'calc(100vh - 2rem)' }}
+            className="quotation-screen-container"
+            style={{ maxWidth: '860px', height: '90vh' }}
           >
-            <div
-              className="modal-content shadow-lg border-0"
-              style={{
-                borderRadius: '12px',
-                maxHeight: 'calc(100vh - 2rem)',
-                display: 'flex',
-                flexDirection: 'column',
-              }}
-            >
-              <div className="modal-header bg-light border-bottom px-4 py-3">
-                <div className="d-flex align-items-center gap-2">
-                  <div className="rounded bg-primary text-white p-2 d-flex align-items-center justify-content-center" style={{ width: 36, height: 36 }}>
-                    <i className="bi bi-file-earmark-plus"></i>
-                  </div>
-                  <div>
-                    <h5 className="modal-title fw-bold mb-0" style={{ fontSize: '1.05rem' }}>Create B2B Courier Quotation</h5>
-                    <small className="text-muted">Generate formal rate proposal for commercial corporate prospects</small>
-                  </div>
+            <div className="quotation-screen-header">
+              <div className="d-flex align-items-center gap-2">
+                <div className="rounded bg-primary text-white p-2 d-flex align-items-center justify-content-center" style={{ width: 36, height: 36 }}>
+                  <i className="bi bi-file-earmark-plus"></i>
                 </div>
-                <button type="button" className="btn-close" onClick={() => setShowModal(false)}></button>
+                <div>
+                  <h5 className="modal-title fw-bold mb-0" style={{ fontSize: '1.05rem' }}>Create B2B Courier Quotation</h5>
+                  <small className="text-muted">Generate formal rate proposal for commercial corporate prospects</small>
+                </div>
               </div>
-              <form onSubmit={handleCreateQuotation} style={{ display: 'flex', flexDirection: 'column', overflow: 'hidden' }}>
-                <div
-                  className="modal-body p-3 p-sm-4 bg-light-subtle overflow-auto"
-                  style={{ flex: '1 1 auto', maxHeight: 'calc(100vh - 175px)' }}
-                >
-                  <h6 className="fw-bold text-primary mb-3">1. Prospect Client Details</h6>
-                  <div className="row g-2 mb-3">
-                    <div className="col-md-6">
-                      <label className="form-label small fw-semibold">Company / Business Name *</label>
-                      <input
-                        type="text"
-                        className="form-control form-control-sm"
-                        required
-                        value={formData.prospect_name}
-                        onChange={(e) => setFormData({ ...formData, prospect_name: e.target.value })}
-                        placeholder="e.g. Apex Pharma Pvt Ltd"
-                      />
-                    </div>
-                    <div className="col-md-6">
-                      <label className="form-label small fw-semibold">Contact Person *</label>
-                      <input
-                        type="text"
-                        className="form-control form-control-sm"
-                        required
-                        value={formData.contact_person}
-                        onChange={(e) => setFormData({ ...formData, contact_person: e.target.value })}
-                        placeholder="e.g. Rajesh Gupta"
-                      />
-                    </div>
-                    <div className="col-md-4">
-                      <label className="form-label small fw-semibold">Mobile Phone *</label>
-                      <input
-                        type="tel"
-                        className="form-control form-control-sm"
-                        required
-                        value={formData.phone}
-                        onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                        placeholder="10-digit mobile"
-                      />
-                    </div>
-                    <div className="col-md-4">
-                      <label className="form-label small fw-semibold">Email</label>
-                      <input
-                        type="email"
-                        className="form-control form-control-sm"
-                        value={formData.email}
-                        onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                        placeholder="email@company.com"
-                      />
-                    </div>
-                    <div className="col-md-4">
-                      <label className="form-label small fw-semibold">City / Location</label>
-                      <input
-                        type="text"
-                        className="form-control form-control-sm"
-                        value={formData.city}
-                        onChange={(e) => setFormData({ ...formData, city: e.target.value })}
-                      />
-                    </div>
-                  </div>
-
-                  <h6 className="fw-bold text-primary mb-3">2. Quoted Rate Card Matrix (Rate Master Structure)</h6>
-                  <div className="table-responsive border rounded mb-3">
-                    <table className="table table-sm table-bordered text-center align-middle mb-0">
-                      <thead className="table-light small">
-                        <tr>
-                          <th>Zone / Destination</th>
-                          <th>0 - 100g</th>
-                          <th>101 - 250g</th>
-                          <th>251 - 500g</th>
-                          <th>501g - 1kg</th>
-                          <th>Addl 500g/kg</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        <tr>
-                          <td className="fw-bold text-start ps-2">Within City</td>
-                          <td>
-                            <input
-                              type="number"
-                              className="form-control form-control-sm text-center"
-                              value={formData.rates.within_city_100g}
-                              onChange={(e) =>
-                                setFormData({
-                                  ...formData,
-                                  rates: { ...formData.rates, within_city_100g: Number(e.target.value) },
-                                })
-                              }
-                            />
-                          </td>
-                          <td>
-                            <input
-                              type="number"
-                              className="form-control form-control-sm text-center"
-                              value={formData.rates.within_city_250g}
-                              onChange={(e) =>
-                                setFormData({
-                                  ...formData,
-                                  rates: { ...formData.rates, within_city_250g: Number(e.target.value) },
-                                })
-                              }
-                            />
-                          </td>
-                          <td>
-                            <input
-                              type="number"
-                              className="form-control form-control-sm text-center"
-                              value={formData.rates.within_city_500g}
-                              onChange={(e) =>
-                                setFormData({
-                                  ...formData,
-                                  rates: { ...formData.rates, within_city_500g: Number(e.target.value) },
-                                })
-                              }
-                            />
-                          </td>
-                          <td>
-                            <input
-                              type="number"
-                              className="form-control form-control-sm text-center"
-                              value={formData.rates.within_city_1kg}
-                              onChange={(e) =>
-                                setFormData({
-                                  ...formData,
-                                  rates: { ...formData.rates, within_city_1kg: Number(e.target.value) },
-                                })
-                              }
-                            />
-                          </td>
-                          <td>
-                            <input
-                              type="number"
-                              className="form-control form-control-sm text-center"
-                              value={formData.rates.within_city_addl}
-                              onChange={(e) =>
-                                setFormData({
-                                  ...formData,
-                                  rates: { ...formData.rates, within_city_addl: Number(e.target.value) },
-                                })
-                              }
-                            />
-                          </td>
-                        </tr>
-                        <tr>
-                          <td className="fw-bold text-start ps-2">Within State / Zone</td>
-                          <td colSpan={2} className="text-muted small">Standard Slab</td>
-                          <td>
-                            <input
-                              type="number"
-                              className="form-control form-control-sm text-center"
-                              value={formData.rates.within_zone_500g}
-                              onChange={(e) =>
-                                setFormData({
-                                  ...formData,
-                                  rates: { ...formData.rates, within_zone_500g: Number(e.target.value) },
-                                })
-                              }
-                            />
-                          </td>
-                          <td className="text-muted small">-</td>
-                          <td>
-                            <input
-                              type="number"
-                              className="form-control form-control-sm text-center"
-                              value={formData.rates.within_zone_addl}
-                              onChange={(e) =>
-                                setFormData({
-                                  ...formData,
-                                  rates: { ...formData.rates, within_zone_addl: Number(e.target.value) },
-                                })
-                              }
-                            />
-                          </td>
-                        </tr>
-                        <tr>
-                          <td className="fw-bold text-start ps-2">Metro Cities</td>
-                          <td colSpan={2} className="text-muted small">Standard Slab</td>
-                          <td>
-                            <input
-                              type="number"
-                              className="form-control form-control-sm text-center"
-                              value={formData.rates.metro_500g}
-                              onChange={(e) =>
-                                setFormData({
-                                  ...formData,
-                                  rates: { ...formData.rates, metro_500g: Number(e.target.value) },
-                                })
-                              }
-                            />
-                          </td>
-                          <td className="text-muted small">-</td>
-                          <td>
-                            <input
-                              type="number"
-                              className="form-control form-control-sm text-center"
-                              value={formData.rates.metro_addl}
-                              onChange={(e) =>
-                                setFormData({
-                                  ...formData,
-                                  rates: { ...formData.rates, metro_addl: Number(e.target.value) },
-                                })
-                              }
-                            />
-                          </td>
-                        </tr>
-                        <tr>
-                          <td className="fw-bold text-start ps-2">Rest of India (ROI)</td>
-                          <td colSpan={2} className="text-muted small">Standard Slab</td>
-                          <td>
-                            <input
-                              type="number"
-                              className="form-control form-control-sm text-center"
-                              value={formData.rates.roi_500g}
-                              onChange={(e) =>
-                                setFormData({
-                                  ...formData,
-                                  rates: { ...formData.rates, roi_500g: Number(e.target.value) },
-                                })
-                              }
-                            />
-                          </td>
-                          <td className="text-muted small">-</td>
-                          <td>
-                            <input
-                              type="number"
-                              className="form-control form-control-sm text-center"
-                              value={formData.rates.roi_addl}
-                              onChange={(e) =>
-                                setFormData({
-                                  ...formData,
-                                  rates: { ...formData.rates, roi_addl: Number(e.target.value) },
-                                })
-                              }
-                            />
-                          </td>
-                        </tr>
-                      </tbody>
-                    </table>
-                  </div>
-
-                  <div className="row g-2">
-                    <div className="col-md-6">
-                      <label className="form-label small fw-semibold">Fuel Surcharge (%)</label>
-                      <input
-                        type="number"
-                        className="form-control form-control-sm"
-                        value={formData.rates.fuel_surcharge_percent}
-                        onChange={(e) =>
-                          setFormData({
-                            ...formData,
-                            rates: { ...formData.rates, fuel_surcharge_percent: Number(e.target.value) },
-                          })
-                        }
-                      />
-                    </div>
-                    <div className="col-md-6">
-                      <label className="form-label small fw-semibold">Docket Charge (₹)</label>
-                      <input
-                        type="number"
-                        className="form-control form-control-sm"
-                        value={formData.rates.docket_charge}
-                        onChange={(e) =>
-                          setFormData({
-                            ...formData,
-                            rates: { ...formData.rates, docket_charge: Number(e.target.value) },
-                          })
-                        }
-                      />
-                    </div>
-                  </div>
-                </div>
-                <div className="modal-footer">
-                  <button type="button" className="btn btn-secondary btn-sm" onClick={() => setShowModal(false)}>
-                    Cancel
-                  </button>
-                  <button type="submit" className="btn btn-primary btn-sm px-4 fw-bold">
-                    Generate Quotation
-                  </button>
-                </div>
-              </form>
+              <button type="button" className="btn-close" onClick={() => setShowModal(false)}></button>
             </div>
+            <form onSubmit={handleCreateQuotation} style={{ display: 'flex', flexDirection: 'column', flex: '1 1 auto', minHeight: 0, overflow: 'hidden' }}>
+              <div className="quotation-screen-body">
+                <h6 className="fw-bold text-primary mb-3">1. Prospect Client Details</h6>
+                <div className="row g-2 mb-3">
+                  <div className="col-md-6">
+                    <label className="form-label small fw-semibold">Company / Business Name *</label>
+                    <input
+                      type="text"
+                      className="form-control form-control-sm"
+                      required
+                      value={formData.prospect_name}
+                      onChange={(e) => setFormData({ ...formData, prospect_name: e.target.value })}
+                      placeholder="e.g. Apex Pharma Pvt Ltd"
+                    />
+                  </div>
+                  <div className="col-md-6">
+                    <label className="form-label small fw-semibold">Contact Person *</label>
+                    <input
+                      type="text"
+                      className="form-control form-control-sm"
+                      required
+                      value={formData.contact_person}
+                      onChange={(e) => setFormData({ ...formData, contact_person: e.target.value })}
+                      placeholder="e.g. Rajesh Gupta"
+                    />
+                  </div>
+                  <div className="col-md-4">
+                    <label className="form-label small fw-semibold">Mobile Phone *</label>
+                    <input
+                      type="tel"
+                      className="form-control form-control-sm"
+                      required
+                      value={formData.phone}
+                      onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+                      placeholder="10-digit mobile"
+                    />
+                  </div>
+                  <div className="col-md-4">
+                    <label className="form-label small fw-semibold">Email</label>
+                    <input
+                      type="email"
+                      className="form-control form-control-sm"
+                      value={formData.email}
+                      onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                      placeholder="email@company.com"
+                    />
+                  </div>
+                  <div className="col-md-4">
+                    <label className="form-label small fw-semibold">City / Location</label>
+                    <input
+                      type="text"
+                      className="form-control form-control-sm"
+                      value={formData.city}
+                      onChange={(e) => setFormData({ ...formData, city: e.target.value })}
+                    />
+                  </div>
+                </div>
+
+                <h6 className="fw-bold text-primary mb-3">2. Quoted Rate Card Matrix (Rate Master Structure)</h6>
+                <div className="table-responsive border rounded mb-3">
+                  <table className="table table-sm table-bordered text-center align-middle mb-0">
+                    <thead className="table-light small">
+                      <tr>
+                        <th>Zone / Destination</th>
+                        <th>0 - 100g</th>
+                        <th>101 - 250g</th>
+                        <th>251 - 500g</th>
+                        <th>501g - 1kg</th>
+                        <th>Addl 500g/kg</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td className="fw-bold text-start ps-2">Within City</td>
+                        <td>
+                          <input
+                            type="number"
+                            className="form-control form-control-sm text-center"
+                            value={formData.rates.within_city_100g}
+                            onChange={(e) =>
+                              setFormData({
+                                ...formData,
+                                rates: { ...formData.rates, within_city_100g: Number(e.target.value) },
+                              })
+                            }
+                          />
+                        </td>
+                        <td>
+                          <input
+                            type="number"
+                            className="form-control form-control-sm text-center"
+                            value={formData.rates.within_city_250g}
+                            onChange={(e) =>
+                              setFormData({
+                                ...formData,
+                                rates: { ...formData.rates, within_city_250g: Number(e.target.value) },
+                              })
+                            }
+                          />
+                        </td>
+                        <td>
+                          <input
+                            type="number"
+                            className="form-control form-control-sm text-center"
+                            value={formData.rates.within_city_500g}
+                            onChange={(e) =>
+                              setFormData({
+                                ...formData,
+                                rates: { ...formData.rates, within_city_500g: Number(e.target.value) },
+                              })
+                            }
+                          />
+                        </td>
+                        <td>
+                          <input
+                            type="number"
+                            className="form-control form-control-sm text-center"
+                            value={formData.rates.within_city_1kg}
+                            onChange={(e) =>
+                              setFormData({
+                                ...formData,
+                                rates: { ...formData.rates, within_city_1kg: Number(e.target.value) },
+                              })
+                            }
+                          />
+                        </td>
+                        <td>
+                          <input
+                            type="number"
+                            className="form-control form-control-sm text-center"
+                            value={formData.rates.within_city_addl}
+                            onChange={(e) =>
+                              setFormData({
+                                ...formData,
+                                rates: { ...formData.rates, within_city_addl: Number(e.target.value) },
+                              })
+                            }
+                          />
+                        </td>
+                      </tr>
+                      <tr>
+                        <td className="fw-bold text-start ps-2">Within State / Zone</td>
+                        <td colSpan={2} className="text-muted small">Standard Slab</td>
+                        <td>
+                          <input
+                            type="number"
+                            className="form-control form-control-sm text-center"
+                            value={formData.rates.within_zone_500g}
+                            onChange={(e) =>
+                              setFormData({
+                                ...formData,
+                                rates: { ...formData.rates, within_zone_500g: Number(e.target.value) },
+                              })
+                            }
+                          />
+                        </td>
+                        <td className="text-muted small">-</td>
+                        <td>
+                          <input
+                            type="number"
+                            className="form-control form-control-sm text-center"
+                            value={formData.rates.within_zone_addl}
+                            onChange={(e) =>
+                              setFormData({
+                                ...formData,
+                                rates: { ...formData.rates, within_zone_addl: Number(e.target.value) },
+                              })
+                            }
+                          />
+                        </td>
+                      </tr>
+                      <tr>
+                        <td className="fw-bold text-start ps-2">Metro Cities</td>
+                        <td colSpan={2} className="text-muted small">Standard Slab</td>
+                        <td>
+                          <input
+                            type="number"
+                            className="form-control form-control-sm text-center"
+                            value={formData.rates.metro_500g}
+                            onChange={(e) =>
+                              setFormData({
+                                ...formData,
+                                rates: { ...formData.rates, metro_500g: Number(e.target.value) },
+                              })
+                            }
+                          />
+                        </td>
+                        <td className="text-muted small">-</td>
+                        <td>
+                          <input
+                            type="number"
+                            className="form-control form-control-sm text-center"
+                            value={formData.rates.metro_addl}
+                            onChange={(e) =>
+                              setFormData({
+                                ...formData,
+                                rates: { ...formData.rates, metro_addl: Number(e.target.value) },
+                              })
+                            }
+                          />
+                        </td>
+                      </tr>
+                      <tr>
+                        <td className="fw-bold text-start ps-2">Rest of India (ROI)</td>
+                        <td colSpan={2} className="text-muted small">Standard Slab</td>
+                        <td>
+                          <input
+                            type="number"
+                            className="form-control form-control-sm text-center"
+                            value={formData.rates.roi_500g}
+                            onChange={(e) =>
+                              setFormData({
+                                ...formData,
+                                rates: { ...formData.rates, roi_500g: Number(e.target.value) },
+                              })
+                            }
+                          />
+                        </td>
+                        <td className="text-muted small">-</td>
+                        <td>
+                          <input
+                            type="number"
+                            className="form-control form-control-sm text-center"
+                            value={formData.rates.roi_addl}
+                            onChange={(e) =>
+                              setFormData({
+                                ...formData,
+                                rates: { ...formData.rates, roi_addl: Number(e.target.value) },
+                              })
+                            }
+                          />
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+
+                <div className="row g-2">
+                  <div className="col-md-6">
+                    <label className="form-label small fw-semibold">Fuel Surcharge (%)</label>
+                    <input
+                      type="number"
+                      className="form-control form-control-sm"
+                      value={formData.rates.fuel_surcharge_percent}
+                      onChange={(e) =>
+                        setFormData({
+                          ...formData,
+                          rates: { ...formData.rates, fuel_surcharge_percent: Number(e.target.value) },
+                        })
+                      }
+                    />
+                  </div>
+                  <div className="col-md-6">
+                    <label className="form-label small fw-semibold">Docket Charge (₹)</label>
+                    <input
+                      type="number"
+                      className="form-control form-control-sm"
+                      value={formData.rates.docket_charge}
+                      onChange={(e) =>
+                        setFormData({
+                          ...formData,
+                          rates: { ...formData.rates, docket_charge: Number(e.target.value) },
+                        })
+                      }
+                    />
+                  </div>
+                </div>
+              </div>
+              <div className="quotation-screen-footer">
+                <button type="button" className="btn btn-secondary btn-sm" onClick={() => setShowModal(false)}>
+                  Cancel
+                </button>
+                <button type="submit" className="btn btn-primary btn-sm px-4 fw-bold shadow-sm">
+                  Generate Quotation
+                </button>
+              </div>
+            </form>
           </div>
         </div>
       )}
 
-      {/* Modal 2: View Quotation Printable Proposal */}
+      {/* Modal 2: View Quotation Full Proposal Screen */}
       {viewQuotation && (
         <div
-          className="modal show d-block"
-          tabIndex={-1}
-          role="dialog"
-          aria-modal="true"
-          style={{
-            backgroundColor: 'rgba(15, 23, 42, 0.65)',
-            backdropFilter: 'blur(4px)',
-            overflowY: 'auto',
-            zIndex: 1055,
-            padding: '1rem 0.5rem',
-          }}
+          className="quotation-screen-overlay"
           onClick={(e) => {
             if (e.target === e.currentTarget) setViewQuotation(null);
           }}
         >
-          <div
-            className="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable my-2"
-            style={{ maxWidth: '880px', width: '100%', maxHeight: 'calc(100vh - 2rem)' }}
-          >
-            <div
-              className="modal-content shadow-lg border-0"
-              style={{
-                borderRadius: '14px',
-                maxHeight: 'calc(100vh - 2rem)',
-                display: 'flex',
-                flexDirection: 'column',
-              }}
-            >
-              <div className="modal-header bg-light border-bottom px-4 py-3">
-                <div className="d-flex align-items-center gap-2">
-                  <div className="rounded bg-primary-subtle text-primary p-2 d-flex align-items-center justify-content-center" style={{ width: 36, height: 36 }}>
-                    <i className="bi bi-file-earmark-text fs-5"></i>
-                  </div>
-                  <div>
-                    <div className="d-flex align-items-center gap-2">
-                      <h5 className="modal-title fw-bold font-monospace mb-0" style={{ fontSize: '1.05rem' }}>
-                        Quotation: {viewQuotation.quotation_no}
-                      </h5>
-                      <span
-                        className={`badge ${
-                          viewQuotation.status === 'accepted'
-                            ? 'bg-success'
-                            : 'bg-primary-subtle text-primary border'
-                        }`}
-                        style={{ fontSize: '0.68rem' }}
-                      >
-                        {viewQuotation.status ? viewQuotation.status.toUpperCase() : 'ACTIVE PROPOSAL'}
-                      </span>
-                    </div>
-                    <small className="text-muted">B2B Commercial Rate Proposal & Service Level Agreement</small>
-                  </div>
+          <div className={`quotation-screen-container ${isFullscreen ? 'is-fullscreen' : ''}`}>
+            {/* Top Navigation & Action Toolbar (Always visible at top of viewport) */}
+            <div className="quotation-screen-header no-print">
+              <div className="d-flex align-items-center gap-2 overflow-hidden">
+                <div
+                  className="rounded bg-primary-subtle text-primary p-2 d-flex align-items-center justify-content-center flex-shrink-0"
+                  style={{ width: 38, height: 38 }}
+                >
+                  <i className="bi bi-file-earmark-text fs-5"></i>
                 </div>
-                <button type="button" className="btn-close" aria-label="Close" onClick={() => setViewQuotation(null)}></button>
+                <div className="text-truncate">
+                  <div className="d-flex align-items-center gap-2 flex-wrap">
+                    <h5 className="fw-bold font-monospace mb-0" style={{ fontSize: '1.05rem' }}>
+                      {viewQuotation.quotation_no}
+                    </h5>
+                    <span
+                      className={`badge ${
+                        viewQuotation.status === 'accepted'
+                          ? 'bg-success'
+                          : viewQuotation.status === 'converted'
+                          ? 'bg-info'
+                          : 'bg-primary'
+                      }`}
+                      style={{ fontSize: '0.68rem', letterSpacing: '0.5px' }}
+                    >
+                      {viewQuotation.status ? viewQuotation.status.toUpperCase() : 'ACTIVE PROPOSAL'}
+                    </span>
+                    <span className="badge bg-light text-dark border text-truncate d-none d-sm-inline-block" style={{ maxWidth: '220px' }}>
+                      {viewQuotation.prospect_name}
+                    </span>
+                  </div>
+                  <small className="text-muted d-none d-md-inline-block">
+                    B2B Commercial Rate Proposal & Service Level Agreement
+                  </small>
+                </div>
               </div>
 
-              <div
-                className="modal-body p-3 p-sm-4 bg-light overflow-auto"
-                style={{ flex: '1 1 auto', maxHeight: 'calc(100vh - 175px)' }}
-              >
-                <div className="p-4 bg-white border rounded-3 shadow-sm quotation-paper-card">
-                  {/* Proposal Letterhead Header */}
-                  <div className="d-flex flex-column flex-sm-row justify-content-between align-items-start align-items-sm-center border-bottom pb-3 mb-4 gap-3">
-                    <div>
-                      <div className="d-flex align-items-center gap-2">
-                        <div className="rounded bg-primary text-white p-2 d-flex align-items-center justify-content-center" style={{ width: 38, height: 38 }}>
-                          <i className="bi bi-box-seam-fill fs-5"></i>
-                        </div>
-                        <div>
-                          <h4 className="brand-title text-primary mb-0 fw-bold" style={{ letterSpacing: '0.5px' }}>
-                            KESARI COURIER SERVICES PVT. LTD.
-                          </h4>
-                          <p className="text-muted small mb-0">Specialized Domestic & Commercial Freight Logistics Network</p>
-                        </div>
-                      </div>
-                      <div className="small text-muted mt-2">
-                        <span>Regd Office: Thakur Building, Opp. Wallfort City Gate, Ring Road No-1, Kushalpur, Raipur-492013</span>
-                        <br />
-                        <span>GSTIN: <strong>22AAGCK2836D1ZY</strong> • Ph: 0771-4004544 / 9399676408 • Email: shreemaruti@raipur.com</span>
-                      </div>
-                    </div>
+              {/* Action Buttons in Header (Always directly clickable on any screen size) */}
+              <div className="d-flex align-items-center gap-1 gap-sm-2 flex-shrink-0">
+                <button
+                  type="button"
+                  className="btn btn-outline-secondary btn-sm d-flex align-items-center gap-1"
+                  onClick={() => setIsFullscreen(!isFullscreen)}
+                  title={isFullscreen ? 'Exit Fullscreen' : 'Fullscreen View'}
+                >
+                  <i className={`bi ${isFullscreen ? 'bi-fullscreen-exit' : 'bi-arrows-fullscreen'}`}></i>
+                  <span className="d-none d-md-inline">{isFullscreen ? 'Exit Fullscreen' : 'Fullscreen'}</span>
+                </button>
 
-                    <div className="text-sm-end bg-light-subtle p-3 rounded border font-monospace" style={{ minWidth: '190px' }}>
-                      <div className="badge bg-primary px-2 py-1 mb-1 font-monospace" style={{ fontSize: '0.78rem' }}>
-                        {viewQuotation.quotation_no}
+                {viewQuotation.status !== 'converted' && (
+                  <button
+                    type="button"
+                    className="btn btn-success btn-sm d-flex align-items-center gap-1 shadow-sm fw-semibold"
+                    onClick={() => {
+                      handleConvertToCustomer(viewQuotation);
+                      setViewQuotation(null);
+                    }}
+                    title="1-Click Convert to Customer & Rate Master"
+                  >
+                    <i className="bi bi-person-check"></i>
+                    <span className="d-none d-sm-inline">Convert to Customer</span>
+                  </button>
+                )}
+
+                <button
+                  type="button"
+                  className="btn btn-primary btn-sm d-flex align-items-center gap-1 shadow-sm"
+                  onClick={() => window.print()}
+                  title="Print Proposal"
+                >
+                  <i className="bi bi-printer"></i>
+                  <span className="d-none d-sm-inline">Print</span>
+                </button>
+
+                <button
+                  type="button"
+                  className="btn btn-outline-secondary btn-sm"
+                  aria-label="Close"
+                  onClick={() => setViewQuotation(null)}
+                >
+                  <i className="bi bi-x-lg"></i>
+                </button>
+              </div>
+            </div>
+
+            {/* Scrollable Viewport Body with Guaranteed Viewport Fit */}
+            <div className="quotation-screen-body">
+              <div className="quotation-paper-sheet">
+                {/* Corporate Proposal Header */}
+                <div className="d-flex flex-column flex-sm-row justify-content-between align-items-start align-items-sm-center border-bottom pb-3 mb-3 gap-2">
+                  <div className="d-flex align-items-center gap-3">
+                    <div
+                      className="rounded bg-primary text-white p-2 d-flex align-items-center justify-content-center shadow-sm"
+                      style={{ width: 44, height: 44 }}
+                    >
+                      <i className="bi bi-box-seam-fill fs-4"></i>
+                    </div>
+                    <div>
+                      <h4 className="brand-title text-primary mb-0 fw-bold" style={{ letterSpacing: '0.5px' }}>
+                        KESARI COURIER SERVICES PVT. LTD.
+                      </h4>
+                      <p className="text-muted small mb-0 fw-semibold">
+                        Specialized Domestic & Commercial Freight Logistics Network
+                      </p>
+                      <div className="small text-muted" style={{ fontSize: '0.75rem' }}>
+                        Regd Office: Thakur Building, Ring Road No-1, Kushalpur, Raipur-492013 • GSTIN: <strong>22AAGCK2836D1ZY</strong> • SAC: 996812
                       </div>
-                      <div className="small text-muted">Issued: <strong>{viewQuotation.created_at}</strong></div>
-                      <div className="small text-muted">Valid Until: <strong className="text-danger">{viewQuotation.valid_until}</strong></div>
                     </div>
                   </div>
 
-                  {/* Proposal Prepared For */}
-                  <div className="p-3 bg-light-subtle rounded border mb-4">
-                    <h6 className="fw-bold text-uppercase small text-primary mb-2 d-flex align-items-center gap-1">
-                      <i className="bi bi-building"></i> Proposal Prepared For (Client Prospect):
-                    </h6>
-                    <div className="row g-2">
-                      <div className="col-12 col-md-6">
-                        <h5 className="fw-bold mb-1 text-dark">{viewQuotation.prospect_name}</h5>
-                        <div className="small text-muted">
+                  <div className="text-sm-end bg-light-subtle p-2 px-3 rounded border font-monospace mt-2 mt-sm-0" style={{ minWidth: '180px' }}>
+                    <div className="badge bg-primary px-2 py-1 mb-1 font-monospace" style={{ fontSize: '0.78rem' }}>
+                      {viewQuotation.quotation_no}
+                    </div>
+                    <div className="small text-muted" style={{ fontSize: '0.75rem' }}>
+                      Issued: <strong>{viewQuotation.created_at}</strong>
+                    </div>
+                    <div className="small text-muted" style={{ fontSize: '0.75rem' }}>
+                      Valid Until: <strong className="text-danger">{viewQuotation.valid_until}</strong>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Section 1: Client Prospect Details & Statutory Charges (Side-by-Side 2 Cards) */}
+                <div className="row g-3 mb-3">
+                  <div className="col-12 col-md-7">
+                    <div className="p-3 bg-light-subtle rounded border h-100">
+                      <div className="d-flex align-items-center justify-content-between mb-2">
+                        <span className="fw-bold text-uppercase small text-primary d-flex align-items-center gap-1" style={{ fontSize: '0.72rem', letterSpacing: '0.5px' }}>
+                          <i className="bi bi-building"></i> Proposal Prepared For (Client Prospect)
+                        </span>
+                        <span className="badge bg-white text-secondary border font-monospace" style={{ fontSize: '0.65rem' }}>
+                          Commercial Tariff
+                        </span>
+                      </div>
+                      <h5 className="fw-bold mb-1 text-dark">{viewQuotation.prospect_name}</h5>
+                      <div className="row g-1 small text-muted" style={{ fontSize: '0.8rem' }}>
+                        <div className="col-6">
                           <strong>Attn:</strong> {viewQuotation.contact_person}
                         </div>
-                        <div className="small text-muted">
-                          <strong>Location:</strong> {viewQuotation.city || 'Raipur'}, {viewQuotation.state || 'Chhattisgarh'}
-                        </div>
-                      </div>
-                      <div className="col-12 col-md-6 text-md-end">
-                        <div className="small text-muted">
+                        <div className="col-6">
                           <strong>Phone:</strong> {viewQuotation.phone}
                         </div>
-                        {viewQuotation.email && (
-                          <div className="small text-muted">
-                            <strong>Email:</strong> {viewQuotation.email}
+                        <div className="col-6">
+                          <strong>Location:</strong> {viewQuotation.city || 'Raipur'}, {viewQuotation.state || 'Chhattisgarh'}
+                        </div>
+                        <div className="col-6">
+                          <strong>Email:</strong> {viewQuotation.email || 'N/A'}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="col-12 col-md-5">
+                    <div className="p-3 bg-light-subtle rounded border h-100">
+                      <div className="fw-bold text-uppercase small text-primary mb-2 d-flex align-items-center gap-1" style={{ fontSize: '0.72rem', letterSpacing: '0.5px' }}>
+                        <i className="bi bi-info-circle"></i> Statutory Levies & Surcharges
+                      </div>
+                      <div className="row g-2">
+                        <div className="col-6">
+                          <div className="p-2 border rounded text-center bg-white shadow-xs">
+                            <span className="text-muted d-block" style={{ fontSize: '0.68rem' }}>Fuel Surcharge</span>
+                            <strong className="text-primary">{viewQuotation.rates.fuel_surcharge_percent}%</strong>
+                            <div className="text-muted" style={{ fontSize: '0.62rem' }}>on basic freight</div>
                           </div>
-                        )}
-                        <div className="small text-muted">
-                          <strong>Tariff Basis:</strong> Pre-Sales Commercial Contract
+                        </div>
+                        <div className="col-6">
+                          <div className="p-2 border rounded text-center bg-white shadow-xs">
+                            <span className="text-muted d-block" style={{ fontSize: '0.68rem' }}>Docket Fee</span>
+                            <strong className="text-primary">₹{viewQuotation.rates.docket_charge}</strong>
+                            <div className="text-muted" style={{ fontSize: '0.62rem' }}>per shipment</div>
+                          </div>
+                        </div>
+                        <div className="col-6">
+                          <div className="p-2 border rounded text-center bg-white shadow-xs">
+                            <span className="text-muted d-block" style={{ fontSize: '0.68rem' }}>GST Extra</span>
+                            <strong className="text-primary">18% Extra</strong>
+                            <div className="text-muted" style={{ fontSize: '0.62rem' }}>SAC: 996812</div>
+                          </div>
+                        </div>
+                        <div className="col-6">
+                          <div className="p-2 border rounded text-center bg-white shadow-xs">
+                            <span className="text-muted d-block" style={{ fontSize: '0.68rem' }}>Volumetric Factor</span>
+                            <strong className="text-primary">5,000</strong>
+                            <div className="text-muted" style={{ fontSize: '0.62rem' }}>cc / kg factor</div>
+                          </div>
                         </div>
                       </div>
                     </div>
                   </div>
+                </div>
 
-                  {/* Rate Card Matrix */}
-                  <div className="mb-4">
-                    <h6 className="fw-bold mb-2 text-dark d-flex align-items-center gap-1">
-                      <i className="bi bi-table text-primary"></i> 1. Commercial Freight Tariff Structure (Slab-wise Rate Matrix):
+                {/* Section 2: Commercial Freight Tariff Structure (Slab-wise Rate Matrix) */}
+                <div className="mb-3">
+                  <div className="d-flex align-items-center justify-content-between mb-2">
+                    <h6 className="fw-bold mb-0 text-dark d-flex align-items-center gap-1">
+                      <i className="bi bi-table text-primary"></i> Commercial Freight Tariff Structure (Slab-wise Rate Matrix):
                     </h6>
-                    <div className="table-responsive border rounded">
-                      <table className="table table-bordered table-sm text-center align-middle mb-0">
-                        <thead className="table-light small">
-                          <tr>
-                            <th className="text-start ps-3" style={{ width: '28%' }}>Delivery Corridor / Zone</th>
-                            <th>0 - 100g</th>
-                            <th>101 - 250g</th>
-                            <th>251 - 500g</th>
-                            <th>501g - 1kg</th>
-                            <th>Addl. 500g / kg</th>
-                          </tr>
-                        </thead>
-                        <tbody className="small">
-                          <tr>
-                            <td className="fw-bold text-start ps-3 bg-light-subtle">
-                              <i className="bi bi-geo-alt text-primary me-1"></i> Within City (Local)
-                            </td>
-                            <td className="fw-semibold">₹{viewQuotation.rates.within_city_100g}</td>
-                            <td className="fw-semibold">₹{viewQuotation.rates.within_city_250g}</td>
-                            <td className="fw-semibold">₹{viewQuotation.rates.within_city_500g}</td>
-                            <td className="fw-semibold">₹{viewQuotation.rates.within_city_1kg}</td>
-                            <td className="fw-semibold text-primary">₹{viewQuotation.rates.within_city_addl}</td>
-                          </tr>
-                          <tr>
-                            <td className="fw-bold text-start ps-3 bg-light-subtle">
-                              <i className="bi bi-pin-map text-success me-1"></i> Within State / Central Zone
-                            </td>
-                            <td colSpan={2} className="text-muted small">Standard Base Slab</td>
-                            <td className="fw-semibold">₹{viewQuotation.rates.within_zone_500g}</td>
-                            <td className="text-muted small">-</td>
-                            <td className="fw-semibold text-primary">₹{viewQuotation.rates.within_zone_addl}</td>
-                          </tr>
-                          <tr>
-                            <td className="fw-bold text-start ps-3 bg-light-subtle">
-                              <i className="bi bi-building text-info me-1"></i> Metro Cities (Priority Air)
-                            </td>
-                            <td colSpan={2} className="text-muted small">Standard Base Slab</td>
-                            <td className="fw-semibold">₹{viewQuotation.rates.metro_500g}</td>
-                            <td className="text-muted small">-</td>
-                            <td className="fw-semibold text-primary">₹{viewQuotation.rates.metro_addl}</td>
-                          </tr>
-                          <tr>
-                            <td className="fw-bold text-start ps-3 bg-light-subtle">
-                              <i className="bi bi-globe text-secondary me-1"></i> Rest of India (National Surface)
-                            </td>
-                            <td colSpan={2} className="text-muted small">Standard Base Slab</td>
-                            <td className="fw-semibold">₹{viewQuotation.rates.roi_500g}</td>
-                            <td className="text-muted small">-</td>
-                            <td className="fw-semibold text-primary">₹{viewQuotation.rates.roi_addl}</td>
-                          </tr>
-                        </tbody>
-                      </table>
-                    </div>
+                    <span className="badge bg-primary-subtle text-primary border" style={{ fontSize: '0.7rem' }}>
+                      All tariffs in INR (₹)
+                    </span>
                   </div>
+                  <div className="table-responsive border rounded bg-white">
+                    <table className="table table-bordered table-sm text-center align-middle mb-0">
+                      <thead className="table-light small">
+                        <tr>
+                          <th className="text-start ps-3" style={{ width: '28%' }}>Delivery Corridor / Zone</th>
+                          <th>0 - 100g</th>
+                          <th>101 - 250g</th>
+                          <th>251 - 500g</th>
+                          <th>501g - 1kg</th>
+                          <th>Addl. 500g / kg</th>
+                        </tr>
+                      </thead>
+                      <tbody className="small">
+                        <tr>
+                          <td className="fw-bold text-start ps-3 bg-light-subtle">
+                            <i className="bi bi-geo-alt text-primary me-1"></i> Within City (Local Hub)
+                          </td>
+                          <td className="fw-semibold">₹{viewQuotation.rates.within_city_100g}</td>
+                          <td className="fw-semibold">₹{viewQuotation.rates.within_city_250g}</td>
+                          <td className="fw-semibold">₹{viewQuotation.rates.within_city_500g}</td>
+                          <td className="fw-semibold">₹{viewQuotation.rates.within_city_1kg}</td>
+                          <td className="fw-semibold text-primary">₹{viewQuotation.rates.within_city_addl}</td>
+                        </tr>
+                        <tr>
+                          <td className="fw-bold text-start ps-3 bg-light-subtle">
+                            <i className="bi bi-pin-map text-success me-1"></i> Within State / Central Zone
+                          </td>
+                          <td colSpan={2} className="text-muted small">Standard Base Slab</td>
+                          <td className="fw-semibold">₹{viewQuotation.rates.within_zone_500g}</td>
+                          <td className="text-muted small">-</td>
+                          <td className="fw-semibold text-primary">₹{viewQuotation.rates.within_zone_addl}</td>
+                        </tr>
+                        <tr>
+                          <td className="fw-bold text-start ps-3 bg-light-subtle">
+                            <i className="bi bi-building text-info me-1"></i> Metro Cities (Priority Air)
+                          </td>
+                          <td colSpan={2} className="text-muted small">Standard Base Slab</td>
+                          <td className="fw-semibold">₹{viewQuotation.rates.metro_500g}</td>
+                          <td className="text-muted small">-</td>
+                          <td className="fw-semibold text-primary">₹{viewQuotation.rates.metro_addl}</td>
+                        </tr>
+                        <tr>
+                          <td className="fw-bold text-start ps-3 bg-light-subtle">
+                            <i className="bi bi-globe text-secondary me-1"></i> Rest of India (National Surface)
+                          </td>
+                          <td colSpan={2} className="text-muted small">Standard Base Slab</td>
+                          <td className="fw-semibold">₹{viewQuotation.rates.roi_500g}</td>
+                          <td className="text-muted small">-</td>
+                          <td className="fw-semibold text-primary">₹{viewQuotation.rates.roi_addl}</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
 
-                  {/* Surcharges & Commercial Terms */}
-                  <div className="mb-4">
-                    <h6 className="fw-bold mb-2 text-dark d-flex align-items-center gap-1">
-                      <i className="bi bi-info-circle text-primary"></i> 2. Commercial Surcharges & Statutory Levies:
-                    </h6>
-                    <div className="row g-2">
-                      <div className="col-6 col-md-3">
-                        <div className="p-2 border rounded text-center bg-light">
-                          <small className="text-muted d-block" style={{ fontSize: '0.72rem' }}>Fuel Surcharge</small>
-                          <strong className="text-primary">{viewQuotation.rates.fuel_surcharge_percent}%</strong>
-                          <div className="text-muted font-monospace" style={{ fontSize: '0.68rem' }}>on basic freight</div>
+                {/* Section 3: SLA & Sign-Off (Side-by-Side 2 Cards) */}
+                <div className="row g-3">
+                  <div className="col-12 col-md-6">
+                    <div className="p-3 bg-light-subtle rounded border h-100">
+                      <h6 className="fw-bold small text-dark mb-2 d-flex align-items-center gap-1">
+                        <i className="bi bi-patch-check text-success"></i> Service Level Commitments (SLA):
+                      </h6>
+                      <div className="d-flex flex-column gap-1 small text-muted" style={{ fontSize: '0.78rem' }}>
+                        <div className="d-flex align-items-center gap-2">
+                          <i className="bi bi-check-circle-fill text-success flex-shrink-0"></i>
+                          <span>Free daily scheduled doorstep pickup at client office/hub</span>
                         </div>
-                      </div>
-                      <div className="col-6 col-md-3">
-                        <div className="p-2 border rounded text-center bg-light">
-                          <small className="text-muted d-block" style={{ fontSize: '0.72rem' }}>Docket Fee</small>
-                          <strong className="text-primary">₹{viewQuotation.rates.docket_charge}</strong>
-                          <div className="text-muted font-monospace" style={{ fontSize: '0.68rem' }}>per consignment</div>
+                        <div className="d-flex align-items-center gap-2">
+                          <i className="bi bi-check-circle-fill text-success flex-shrink-0"></i>
+                          <span>Real-time AWB milestone telemetry & SMS tracking notifications</span>
                         </div>
-                      </div>
-                      <div className="col-6 col-md-3">
-                        <div className="p-2 border rounded text-center bg-light">
-                          <small className="text-muted d-block" style={{ fontSize: '0.72rem' }}>GST Rate</small>
-                          <strong className="text-primary">18% Extra</strong>
-                          <div className="text-muted font-monospace" style={{ fontSize: '0.68rem' }}>SAC Code: 996812</div>
+                        <div className="d-flex align-items-center gap-2">
+                          <i className="bi bi-check-circle-fill text-success flex-shrink-0"></i>
+                          <span>Digital Proof of Delivery (POD) with signature/photo</span>
                         </div>
-                      </div>
-                      <div className="col-6 col-md-3">
-                        <div className="p-2 border rounded text-center bg-light">
-                          <small className="text-muted d-block" style={{ fontSize: '0.72rem' }}>Volumetric Divisor</small>
-                          <strong className="text-primary">5,000 cc/kg</strong>
-                          <div className="text-muted font-monospace" style={{ fontSize: '0.68rem' }}>L x W x H (cm) / 5000</div>
+                        <div className="d-flex align-items-center gap-2">
+                          <i className="bi bi-check-circle-fill text-success flex-shrink-0"></i>
+                          <span>Dedicated corporate manager & monthly consolidated GST invoicing</span>
                         </div>
                       </div>
                     </div>
                   </div>
 
-                  {/* Service Level Guarantees */}
-                  <div className="p-3 bg-light-subtle rounded border mb-4">
-                    <h6 className="fw-bold small text-dark mb-2">3. Service Level Commitments (SLA):</h6>
-                    <div className="row g-2 small text-muted">
-                      <div className="col-12 col-sm-6">
-                        <div className="d-flex align-items-center gap-1 mb-1">
-                          <i className="bi bi-check-circle-fill text-success"></i>
-                          <span>Free daily scheduled doorstep pickup at client warehouse/office</span>
+                  <div className="col-12 col-md-6">
+                    <div className="p-3 bg-light-subtle rounded border h-100 d-flex flex-column justify-content-between">
+                      <h6 className="fw-bold small text-dark mb-2 d-flex align-items-center gap-1">
+                        <i className="bi bi-pen text-primary"></i> Commercial Authorization & Sign-off:
+                      </h6>
+                      <div className="row pt-2 align-items-end g-2">
+                        <div className="col-6">
+                          <div className="text-muted small mb-3" style={{ fontSize: '0.75rem' }}>
+                            For <strong>Kesari Courier Services</strong>
+                          </div>
+                          <div className="border-bottom" style={{ width: '130px' }}></div>
+                          <div className="small fw-semibold mt-1" style={{ fontSize: '0.72rem' }}>
+                            Authorized Sales Executive
+                          </div>
                         </div>
-                        <div className="d-flex align-items-center gap-1">
-                          <i className="bi bi-check-circle-fill text-success"></i>
-                          <span>Real-time AWB milestone telemetry & SMS notifications</span>
+                        <div className="col-6 text-end">
+                          <div className="text-muted small mb-3" style={{ fontSize: '0.75rem' }}>
+                            Client: <strong>{viewQuotation.prospect_name}</strong>
+                          </div>
+                          <div className="border-bottom ms-auto" style={{ width: '130px' }}></div>
+                          <div className="small fw-semibold mt-1" style={{ fontSize: '0.72rem' }}>
+                            Authorized Signatory & Stamp
+                          </div>
                         </div>
                       </div>
-                      <div className="col-12 col-sm-6">
-                        <div className="d-flex align-items-center gap-1 mb-1">
-                          <i className="bi bi-check-circle-fill text-success"></i>
-                          <span>Digital Proof of Delivery (POD) with recipient photo/signature</span>
-                        </div>
-                        <div className="d-flex align-items-center gap-1">
-                          <i className="bi bi-check-circle-fill text-success"></i>
-                          <span>Dedicated corporate accounts manager with monthly consolidated invoicing</span>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-
-                  {/* Sign-off Section */}
-                  <div className="row pt-3 border-top mt-4 align-items-end">
-                    <div className="col-6">
-                      <div className="text-muted small mb-4">For <strong>Kesari Courier Services Pvt. Ltd.</strong></div>
-                      <div className="border-bottom d-inline-block" style={{ width: '160px' }}></div>
-                      <div className="small fw-semibold mt-1">Authorized Sales Executive</div>
-                    </div>
-                    <div className="col-6 text-end">
-                      <div className="text-muted small mb-4">Client Acceptance: <strong>{viewQuotation.prospect_name}</strong></div>
-                      <div className="border-bottom d-inline-block" style={{ width: '160px' }}></div>
-                      <div className="small fw-semibold mt-1">Authorized Signatory & Company Stamp</div>
                     </div>
                   </div>
                 </div>
               </div>
+            </div>
 
-              {/* Modal Footer */}
-              <div className="modal-footer bg-white border-top px-4 py-3 d-flex justify-content-between align-items-center flex-wrap gap-2">
-                <div className="d-flex align-items-center gap-2">
-                  <span className="text-muted small">
-                    <i className="bi bi-shield-check text-success me-1"></i> Offer valid until: <strong className="text-dark">{viewQuotation.valid_until}</strong>
-                  </span>
-                </div>
-                <div className="d-flex align-items-center gap-2 flex-wrap">
-                  <button type="button" className="btn btn-outline-secondary btn-sm px-3" onClick={() => setViewQuotation(null)}>
-                    Close
+            {/* Fixed Modal Footer (Always visible at bottom of viewport) */}
+            <div className="quotation-screen-footer no-print">
+              <div className="d-flex align-items-center gap-2">
+                <span className="text-muted small">
+                  <i className="bi bi-shield-check text-success me-1"></i> Proposal valid until:{' '}
+                  <strong className="text-danger font-monospace">{viewQuotation.valid_until}</strong>
+                </span>
+              </div>
+              <div className="d-flex align-items-center gap-2 flex-wrap">
+                <button
+                  type="button"
+                  className="btn btn-outline-secondary btn-sm px-3"
+                  onClick={() => setViewQuotation(null)}
+                >
+                  Close
+                </button>
+                {viewQuotation.status !== 'converted' && (
+                  <button
+                    type="button"
+                    className="btn btn-success btn-sm d-flex align-items-center gap-1 px-3 fw-semibold shadow-sm"
+                    onClick={() => {
+                      handleConvertToCustomer(viewQuotation);
+                      setViewQuotation(null);
+                    }}
+                  >
+                    <i className="bi bi-person-check"></i>
+                    <span>Convert to Customer</span>
                   </button>
-                  {viewQuotation.status !== 'converted' && (
-                    <button
-                      type="button"
-                      className="btn btn-outline-success btn-sm d-flex align-items-center gap-1 px-3"
-                      onClick={() => {
-                        handleConvertToCustomer(viewQuotation);
-                        setViewQuotation(null);
-                      }}
-                    >
-                      <i className="bi bi-person-check"></i>
-                      <span>Convert to Customer</span>
-                    </button>
-                  )}
-                  <button type="button" className="btn btn-primary btn-sm d-flex align-items-center gap-1 px-3" onClick={() => window.print()}>
-                    <i className="bi bi-printer"></i>
-                    <span>Print Proposal</span>
-                  </button>
-                </div>
+                )}
+                <button
+                  type="button"
+                  className="btn btn-primary btn-sm d-flex align-items-center gap-1 px-3 shadow-sm"
+                  onClick={() => window.print()}
+                >
+                  <i className="bi bi-printer"></i>
+                  <span>Print Proposal</span>
+                </button>
               </div>
             </div>
           </div>

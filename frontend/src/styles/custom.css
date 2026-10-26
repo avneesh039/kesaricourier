@@ -1031,21 +1031,154 @@ body.no-scroll {
   -webkit-overflow-scrolling: touch;
 }
 
-/* Printable proposal card styling */
-.quotation-paper-card {
-  background: #ffffff;
-  border: 1px solid var(--border-color);
-  border-radius: var(--radius-md);
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+/* ==============================================================
+   Quotation Proposal Screen & Fullscreen Modal System
+   Guaranteed Viewport Fit (100% visible, no cutoffs, smooth internal scrolling)
+   ============================================================== */
+.quotation-screen-overlay {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(15, 23, 42, 0.75);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  z-index: 1060;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  overflow: hidden;
 }
 
-@media print {
-  .quotation-paper-card {
-    border: none !important;
-    box-shadow: none !important;
-    padding: 0 !important;
+@media (max-width: 576px) {
+  .quotation-screen-overlay {
+    padding: 0.5rem;
   }
 }
+
+.quotation-screen-container {
+  width: 100%;
+  max-width: 980px;
+  max-height: calc(100vh - 2rem);
+  height: 92vh;
+  display: flex;
+  flex-direction: column;
+  background: #ffffff;
+  border-radius: var(--radius-lg, 16px);
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.35), 0 0 0 1px rgba(255, 255, 255, 0.1);
+  overflow: hidden;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  animation: modalScaleIn 0.22s ease-out;
+}
+
+@keyframes modalScaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.97) translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+.quotation-screen-container.is-fullscreen {
+  max-width: 100vw !important;
+  max-height: 100vh !important;
+  height: 100vh !important;
+  border-radius: 0 !important;
+  border: none !important;
+}
+
+.quotation-screen-header {
+  flex: 0 0 auto;
+  background: #ffffff;
+  border-bottom: 1px solid var(--border-color, #e2e8f0);
+  padding: 0.85rem 1.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  z-index: 10;
+}
+
+.quotation-screen-body {
+  flex: 1 1 auto;
+  overflow-y: auto;
+  min-height: 0;
+  -webkit-overflow-scrolling: touch;
+  background-color: #f8fafc;
+  padding: 1.25rem;
+  scrollbar-width: thin;
+  scrollbar-color: #cbd5e1 transparent;
+}
+
+.quotation-screen-body::-webkit-scrollbar {
+  width: 6px;
+}
+.quotation-screen-body::-webkit-scrollbar-track {
+  background: transparent;
+}
+.quotation-screen-body::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 4px;
+}
+.quotation-screen-body::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}
+
+.quotation-screen-footer {
+  flex: 0 0 auto;
+  background: #ffffff;
+  border-top: 1px solid var(--border-color, #e2e8f0);
+  padding: 0.75rem 1.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  z-index: 10;
+}
+
+.quotation-paper-sheet {
+  background: #ffffff;
+  border: 1px solid var(--border-color, #e2e8f0);
+  border-radius: 12px;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -2px rgba(0, 0, 0, 0.05);
+  padding: 1.5rem;
+}
+
+@media (max-width: 576px) {
+  .quotation-paper-sheet {
+    padding: 1rem;
+  }
+}
+
+/* Print styles */
+@media print {
+  body * {
+    visibility: hidden;
+  }
+  .quotation-paper-sheet,
+  .quotation-paper-sheet * {
+    visibility: visible;
+  }
+  .quotation-paper-sheet {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    margin: 0;
+    padding: 0 !important;
+    border: none !important;
+    box-shadow: none !important;
+  }
+  .no-print {
+    display: none !important;
+  }
+}
+
 
 
 
