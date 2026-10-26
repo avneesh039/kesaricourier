@@ -22,6 +22,7 @@ import { PlansManager } from './pages/superadmin/PlansManager';
 import { DestinationMaster } from './pages/superadmin/DestinationMaster';
 import { SuperAdminTickets } from './pages/superadmin/SuperAdminTickets';
 import { AuditLogsPage } from './pages/superadmin/AuditLogsPage';
+import { CourierApiSettings } from './pages/superadmin/CourierApiSettings';
 
 // Agency & Operations Pages
 import { AgencyDashboard } from './pages/agency/AgencyDashboard';
@@ -148,6 +149,22 @@ export const App: React.FC = () => {
           element={
             <ProtectedRoute allowedRoles={['superadmin']}>
               <AuditLogsPage />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="superadmin/courier-apis"
+          element={
+            <ProtectedRoute allowedRoles={['superadmin']}>
+              <CourierApiSettings />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="superadmin/api-settings"
+          element={
+            <ProtectedRoute allowedRoles={['superadmin']}>
+              <CourierApiSettings />
             </ProtectedRoute>
           }
         />

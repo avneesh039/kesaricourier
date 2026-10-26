@@ -236,6 +236,141 @@ const INITIAL_INVOICES = [
   { id: 2, invoiceNumber: 'INV-26-2610-0002', clientName: 'Shree Krishna Traders', billingPeriod: 'Oct 2026', totalDockets: 26, taxableAmount: 18350, gstAmount: 3303, grandTotal: 21653, status: 'PAID', sacCode: '996812', createdAt: '2026-10-20' },
 ];
 
+export const INITIAL_COURIER_APIS = [
+  {
+    id: 1,
+    name: 'Delhivery API',
+    code: 'delhivery',
+    category: 'Air & Surface Express',
+    domain: 'delhivery.com',
+    status: 'connected',
+    ping: '24ms',
+    latency_ms: 24,
+    environment: 'production',
+    endpoint: 'https://track.delhivery.com/api/v1/packages/json/?waybill={awb}',
+    tracking_url_template: 'https://www.delhivery.com/track/package/{awb}',
+    api_key: 'dlhv_live_89f3b149c48e77a2840d',
+    api_secret: 'sec_delh_9801482937',
+    client_id: 'DELH-CORP-9842',
+    webhook_url: 'https://api.kesaricourier.com/webhooks/delhivery',
+    webhook_secret: 'whsec_dlhv_77b491902a',
+    is_active: true,
+    last_tested: 'Just now',
+    docs_url: 'https://delhivery.com/developer/docs',
+    notes: 'Primary national express gateway for metro-to-metro air dockets and North India surface logistics network.',
+  },
+  {
+    id: 2,
+    name: 'Xpressbees API',
+    code: 'xpressbees',
+    category: 'E-Commerce & Surface Cargo',
+    domain: 'xpressbees.com',
+    status: 'connected',
+    ping: '31ms',
+    latency_ms: 31,
+    environment: 'production',
+    endpoint: 'https://shipment.xpressbees.com/api/shipments2/trackShipmentWithAwb',
+    tracking_url_template: 'https://www.xpressbees.com/track?awb={awb}',
+    api_key: 'xb_jwt_bearer_token_e30948acfe29',
+    api_secret: 'xb_sec_66401928374',
+    client_id: 'XB-MERCHANT-4410',
+    webhook_url: 'https://api.kesaricourier.com/webhooks/xpressbees',
+    webhook_secret: 'whsec_xb_991823410',
+    is_active: true,
+    last_tested: '1 min ago',
+    docs_url: 'https://xpressbees.com/developer-api',
+    notes: 'Specialized for Tier-2 / Tier-3 high-reach pin codes and automated COD rematches.',
+  },
+  {
+    id: 3,
+    name: 'GMS Worldwide',
+    code: 'gmsworldwide',
+    category: 'Domestic & International Air',
+    domain: 'gmsworldwide.com',
+    status: 'connected',
+    ping: '45ms',
+    latency_ms: 45,
+    environment: 'production',
+    endpoint: 'https://api.gmsworldwide.com/rest/tracking/v1?docket={awb}',
+    tracking_url_template: 'https://gmsworldwide.com/track?docket={awb}',
+    api_key: 'gms_live_key_990142839a',
+    api_secret: 'gms_sec_10924827',
+    client_id: 'GMS-CORP-RAIPUR',
+    webhook_url: 'https://api.kesaricourier.com/webhooks/gms',
+    webhook_secret: 'whsec_gms_448102',
+    is_active: true,
+    last_tested: '2 mins ago',
+    docs_url: 'https://gmsworldwide.com/api-docs',
+    notes: 'South India express corridor coverage and global international air express forwarding.',
+  },
+  {
+    id: 4,
+    name: 'Shree Maruti Express',
+    code: 'shreemaruti',
+    category: 'Western Line-Haul & Cargo',
+    domain: 'shreemaruti.com',
+    status: 'connected',
+    ping: '28ms',
+    latency_ms: 28,
+    environment: 'production',
+    endpoint: 'https://api.shreemaruti.com/v1/tracking/search?awb={awb}',
+    tracking_url_template: 'https://www.shreemaruti.com/track/{awb}',
+    api_key: 'sm_api_key_883019842',
+    api_secret: 'sm_secret_449102',
+    client_id: 'SM-AGENCY-26',
+    webhook_url: 'https://api.kesaricourier.com/webhooks/shreemaruti',
+    webhook_secret: 'whsec_sm_229048',
+    is_active: true,
+    last_tested: 'Just now',
+    docs_url: 'https://shreemaruti.com/developer-hub',
+    notes: 'Primary line-haul partner for Western India, Gujarat, and Maharashtra express corridors.',
+  },
+  {
+    id: 5,
+    name: 'Allcargo Logistics',
+    code: 'allcargo',
+    category: 'Heavy Freight & Surface Cargo',
+    domain: 'allcargo.com',
+    status: 'connected',
+    ping: '39ms',
+    latency_ms: 39,
+    environment: 'production',
+    endpoint: 'https://api.allcargogati.com/v1/surface/docket/status/{awb}',
+    tracking_url_template: 'https://www.allcargologistics.com/track-and-trace?docket={awb}',
+    api_key: 'ac_cargo_token_119284729',
+    api_secret: 'ac_sec_99482710',
+    client_id: 'ALLCARGO-CLIENT-773',
+    webhook_url: 'https://api.kesaricourier.com/webhooks/allcargo',
+    webhook_secret: 'whsec_ac_339104',
+    is_active: true,
+    last_tested: '3 mins ago',
+    docs_url: 'https://allcargologistics.com/developer-portal',
+    notes: 'Bulk shipments above 50 kg and heavy industrial consignment multi-modal transit.',
+  },
+  {
+    id: 6,
+    name: 'DTDC Courier API',
+    code: 'dtdc',
+    category: 'Priority Express & Dot Services',
+    domain: 'dtdc.com',
+    status: 'connected',
+    ping: '22ms',
+    latency_ms: 22,
+    environment: 'production',
+    endpoint: 'https://smarttrack.dtdc.com/api/v1/tracking/v1/customer/awbs?trkType=cn&strCnno={awb}',
+    tracking_url_template: 'https://www.dtdc.in/tracking/shipment-tracking.asp?awb={awb}',
+    api_key: 'dtdc_live_token_7739104829a',
+    api_secret: 'dtdc_pass_990142',
+    client_id: 'GL001239',
+    webhook_url: 'https://api.kesaricourier.com/webhooks/dtdc',
+    webhook_secret: 'whsec_dtdc_119482',
+    is_active: true,
+    last_tested: 'Just now',
+    docs_url: 'https://dtdc.in/api-integration',
+    notes: 'Pan-India 19,000+ pincodes coverage with DTDC Dot and Priority air delivery services.',
+  },
+];
+
 function getStored<T>(key: string, defaultVal: T): T {
   try {
     const raw = localStorage.getItem(key);
@@ -715,6 +850,114 @@ export const handleMockRequest = (url: string = '', method: string = 'GET', requ
         { id: 2, name: 'Growth Agency', description: 'Multi-counter operations', price: 12000, billing_cycle: 'yearly', max_branches: 3, max_users: 10, booking_quota: 5000 },
         { id: 3, name: 'Enterprise Hub', description: 'Unlimited scale logistics', price: 24000, billing_cycle: 'yearly', max_branches: 10, max_users: 30, booking_quota: 25000 },
       ],
+    };
+  }
+
+  // 14. Super Admin Courier Tracking API Integrations
+  if (normUrl.includes('/superadmin/courier-apis')) {
+    const apis = getStored('kesari_db_courier_apis', INITIAL_COURIER_APIS);
+
+    // Test ping handshake
+    if (normUrl.includes('/test') && normMethod === 'POST') {
+      const parts = normUrl.split('/');
+      const testIdx = parts.indexOf('test');
+      const idStr = testIdx > 0 ? parts[testIdx - 1] : null;
+      const apiId = idStr ? parseInt(idStr, 10) : null;
+
+      const randomLatency = Math.floor(Math.random() * 26 + 18); // 18ms - 44ms
+      let testedCarrier = null;
+
+      const updated = apis.map((item: any) => {
+        if (item.id === apiId || item.code === idStr) {
+          testedCarrier = {
+            ...item,
+            status: 'connected',
+            ping: `${randomLatency}ms`,
+            latency_ms: randomLatency,
+            last_tested: 'Just now',
+          };
+          return testedCarrier;
+        }
+        return item;
+      });
+
+      setStored('kesari_db_courier_apis', updated);
+      return {
+        success: true,
+        message: `Handshake successful with ${testedCarrier ? (testedCarrier as any).name : 'Carrier'} (${randomLatency}ms)`,
+        data: testedCarrier || { latency_ms: randomLatency, status: 'connected' },
+      };
+    }
+
+    // Update existing gateway configuration
+    if (normMethod === 'PUT') {
+      const parts = normUrl.split('/');
+      const lastPart = parts[parts.length - 1];
+      const apiId = parseInt(lastPart, 10);
+
+      let found = false;
+      const updated = apis.map((item: any) => {
+        if (item.id === apiId || (payload && payload.id === item.id)) {
+          found = true;
+          return {
+            ...item,
+            ...payload,
+            updated_at: new Date().toISOString(),
+          };
+        }
+        return item;
+      });
+
+      if (!found && payload) {
+        updated.push(payload);
+      }
+
+      setStored('kesari_db_courier_apis', updated);
+      return {
+        success: true,
+        message: 'Courier gateway configuration saved successfully.',
+        data: payload,
+      };
+    }
+
+    // Create new custom gateway
+    if (normMethod === 'POST') {
+      const newGateway = {
+        id: Date.now(),
+        name: payload.name || 'Custom Carrier API',
+        code: payload.code || `carrier_${Date.now().toString().slice(-4)}`,
+        category: payload.category || 'Regional & Surface Express',
+        domain: payload.domain || 'carrier.com',
+        status: 'connected',
+        ping: '35ms',
+        latency_ms: 35,
+        environment: payload.environment || 'production',
+        endpoint: payload.endpoint || 'https://api.carrier.com/v1/track/{awb}',
+        tracking_url_template: payload.tracking_url_template || 'https://carrier.com/track/{awb}',
+        api_key: payload.api_key || '',
+        api_secret: payload.api_secret || '',
+        client_id: payload.client_id || '',
+        webhook_url: `https://api.kesaricourier.com/webhooks/${payload.code || 'custom'}`,
+        webhook_secret: `whsec_${Date.now().toString().slice(-6)}`,
+        is_active: true,
+        last_tested: 'Just now',
+        docs_url: `https://${payload.domain || 'carrier.com'}/docs`,
+        notes: payload.notes || 'Custom courier gateway connector.',
+      };
+
+      apis.push(newGateway);
+      setStored('kesari_db_courier_apis', apis);
+      return {
+        success: true,
+        message: 'Custom courier gateway created successfully.',
+        data: newGateway,
+      };
+    }
+
+    // Default GET: list all configured gateways
+    return {
+      success: true,
+      data: apis,
     };
   }
 

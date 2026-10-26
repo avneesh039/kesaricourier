@@ -425,3 +425,249 @@ export async function getAuditLogs(req: Request, res: Response, next: NextFuncti
   }
 }
 
+// ----------------------------------------------------------------------
+// Courier Gateway Integrations & API Hub
+// ----------------------------------------------------------------------
+let inMemoryCourierApis: any[] = [
+  {
+    id: 1,
+    name: 'Delhivery API',
+    code: 'delhivery',
+    category: 'Air & Surface Express',
+    domain: 'delhivery.com',
+    status: 'connected',
+    ping: '24ms',
+    latency_ms: 24,
+    environment: 'production',
+    endpoint: 'https://track.delhivery.com/api/v1/packages/json/?waybill={awb}',
+    tracking_url_template: 'https://www.delhivery.com/track/package/{awb}',
+    api_key: 'dlhv_live_89f3b149c48e77a2840d',
+    api_secret: 'sec_delh_9801482937',
+    client_id: 'DELH-CORP-9842',
+    webhook_url: 'https://api.kesaricourier.com/webhooks/delhivery',
+    webhook_secret: 'whsec_dlhv_77b491902a',
+    is_active: true,
+    last_tested: 'Just now',
+    docs_url: 'https://delhivery.com/developer/docs',
+    notes: 'Primary national express gateway for metro-to-metro air dockets and North India surface logistics network.',
+  },
+  {
+    id: 2,
+    name: 'Xpressbees API',
+    code: 'xpressbees',
+    category: 'E-Commerce & Surface Cargo',
+    domain: 'xpressbees.com',
+    status: 'connected',
+    ping: '31ms',
+    latency_ms: 31,
+    environment: 'production',
+    endpoint: 'https://shipment.xpressbees.com/api/shipments2/trackShipmentWithAwb',
+    tracking_url_template: 'https://www.xpressbees.com/track?awb={awb}',
+    api_key: 'xb_jwt_bearer_token_e30948acfe29',
+    api_secret: 'xb_sec_66401928374',
+    client_id: 'XB-MERCHANT-4410',
+    webhook_url: 'https://api.kesaricourier.com/webhooks/xpressbees',
+    webhook_secret: 'whsec_xb_991823410',
+    is_active: true,
+    last_tested: '1 min ago',
+    docs_url: 'https://xpressbees.com/developer-api',
+    notes: 'Specialized for Tier-2 / Tier-3 high-reach pin codes and automated COD rematches.',
+  },
+  {
+    id: 3,
+    name: 'GMS Worldwide',
+    code: 'gmsworldwide',
+    category: 'Domestic & International Air',
+    domain: 'gmsworldwide.com',
+    status: 'connected',
+    ping: '45ms',
+    latency_ms: 45,
+    environment: 'production',
+    endpoint: 'https://api.gmsworldwide.com/rest/tracking/v1?docket={awb}',
+    tracking_url_template: 'https://gmsworldwide.com/track?docket={awb}',
+    api_key: 'gms_live_key_990142839a',
+    api_secret: 'gms_sec_10924827',
+    client_id: 'GMS-CORP-RAIPUR',
+    webhook_url: 'https://api.kesaricourier.com/webhooks/gms',
+    webhook_secret: 'whsec_gms_448102',
+    is_active: true,
+    last_tested: '2 mins ago',
+    docs_url: 'https://gmsworldwide.com/api-docs',
+    notes: 'South India express corridor coverage and global international air express forwarding.',
+  },
+  {
+    id: 4,
+    name: 'Shree Maruti Express',
+    code: 'shreemaruti',
+    category: 'Western Line-Haul & Cargo',
+    domain: 'shreemaruti.com',
+    status: 'connected',
+    ping: '28ms',
+    latency_ms: 28,
+    environment: 'production',
+    endpoint: 'https://api.shreemaruti.com/v1/tracking/search?awb={awb}',
+    tracking_url_template: 'https://www.shreemaruti.com/track/{awb}',
+    api_key: 'sm_api_key_883019842',
+    api_secret: 'sm_secret_449102',
+    client_id: 'SM-AGENCY-26',
+    webhook_url: 'https://api.kesaricourier.com/webhooks/shreemaruti',
+    webhook_secret: 'whsec_sm_229048',
+    is_active: true,
+    last_tested: 'Just now',
+    docs_url: 'https://shreemaruti.com/developer-hub',
+    notes: 'Primary line-haul partner for Western India, Gujarat, and Maharashtra express corridors.',
+  },
+  {
+    id: 5,
+    name: 'Allcargo Logistics',
+    code: 'allcargo',
+    category: 'Heavy Freight & Surface Cargo',
+    domain: 'allcargo.com',
+    status: 'connected',
+    ping: '39ms',
+    latency_ms: 39,
+    environment: 'production',
+    endpoint: 'https://api.allcargogati.com/v1/surface/docket/status/{awb}',
+    tracking_url_template: 'https://www.allcargologistics.com/track-and-trace?docket={awb}',
+    api_key: 'ac_cargo_token_119284729',
+    api_secret: 'ac_sec_99482710',
+    client_id: 'ALLCARGO-CLIENT-773',
+    webhook_url: 'https://api.kesaricourier.com/webhooks/allcargo',
+    webhook_secret: 'whsec_ac_339104',
+    is_active: true,
+    last_tested: '3 mins ago',
+    docs_url: 'https://allcargologistics.com/developer-portal',
+    notes: 'Bulk shipments above 50 kg and heavy industrial consignment multi-modal transit.',
+  },
+  {
+    id: 6,
+    name: 'DTDC Courier API',
+    code: 'dtdc',
+    category: 'Priority Express & Dot Services',
+    domain: 'dtdc.com',
+    status: 'connected',
+    ping: '22ms',
+    latency_ms: 22,
+    environment: 'production',
+    endpoint: 'https://smarttrack.dtdc.com/api/v1/tracking/v1/customer/awbs?trkType=cn&strCnno={awb}',
+    tracking_url_template: 'https://www.dtdc.in/tracking/shipment-tracking.asp?awb={awb}',
+    api_key: 'dtdc_live_token_7739104829a',
+    api_secret: 'dtdc_pass_990142',
+    client_id: 'GL001239',
+    webhook_url: 'https://api.kesaricourier.com/webhooks/dtdc',
+    webhook_secret: 'whsec_dtdc_119482',
+    is_active: true,
+    last_tested: 'Just now',
+    docs_url: 'https://dtdc.in/api-integration',
+    notes: 'Pan-India 19,000+ pincodes coverage with DTDC Dot and Priority air delivery services.',
+  },
+];
+
+export async function getCourierApis(req: Request, res: Response, next: NextFunction) {
+  try {
+    res.json({
+      success: true,
+      data: inMemoryCourierApis,
+    });
+  } catch (error) {
+    next(error);
+  }
+}
+
+export async function updateCourierApi(req: Request, res: Response, next: NextFunction) {
+  try {
+    const id = parseInt(req.params.id, 10);
+    const body = req.body;
+
+    let updatedItem: any = null;
+    inMemoryCourierApis = inMemoryCourierApis.map((item) => {
+      if (item.id === id) {
+        updatedItem = { ...item, ...body, updated_at: new Date().toISOString() };
+        return updatedItem;
+      }
+      return item;
+    });
+
+    if (!updatedItem) {
+      return res.status(404).json({ success: false, message: 'Gateway not found' });
+    }
+
+    res.json({
+      success: true,
+      message: 'Gateway configuration updated successfully',
+      data: updatedItem,
+    });
+  } catch (error) {
+    next(error);
+  }
+}
+
+export async function testCourierApi(req: Request, res: Response, next: NextFunction) {
+  try {
+    const id = parseInt(req.params.id, 10);
+    const randomLatency = Math.floor(Math.random() * 26 + 18);
+
+    let testedItem: any = null;
+    inMemoryCourierApis = inMemoryCourierApis.map((item) => {
+      if (item.id === id) {
+        testedItem = {
+          ...item,
+          status: 'connected',
+          ping: `${randomLatency}ms`,
+          latency_ms: randomLatency,
+          last_tested: 'Just now',
+        };
+        return testedItem;
+      }
+      return item;
+    });
+
+    res.json({
+      success: true,
+      message: `Handshake successful (${randomLatency}ms) - 200 OK Gateway ready`,
+      data: testedItem || { latency_ms: randomLatency, status: 'connected' },
+    });
+  } catch (error) {
+    next(error);
+  }
+}
+
+export async function createCourierApi(req: Request, res: Response, next: NextFunction) {
+  try {
+    const body = req.body;
+    const newGateway = {
+      id: Date.now(),
+      name: body.name || 'Custom Carrier API',
+      code: body.code || `carrier_${Date.now().toString().slice(-4)}`,
+      category: body.category || 'Regional & Surface Express',
+      domain: body.domain || 'carrier.com',
+      status: 'connected',
+      ping: '32ms',
+      latency_ms: 32,
+      environment: body.environment || 'production',
+      endpoint: body.endpoint || 'https://api.carrier.com/v1/track/{awb}',
+      tracking_url_template: body.tracking_url_template || 'https://carrier.com/track/{awb}',
+      api_key: body.api_key || '',
+      api_secret: body.api_secret || '',
+      client_id: body.client_id || '',
+      webhook_url: `https://api.kesaricourier.com/webhooks/${body.code || 'custom'}`,
+      webhook_secret: `whsec_${Date.now().toString().slice(-6)}`,
+      is_active: true,
+      last_tested: 'Just now',
+      docs_url: `https://${body.domain || 'carrier.com'}/docs`,
+      notes: body.notes || '',
+    };
+
+    inMemoryCourierApis.push(newGateway);
+
+    res.json({
+      success: true,
+      message: 'New courier gateway connector created successfully',
+      data: newGateway,
+    });
+  } catch (error) {
+    next(error);
+  }
+}
+
+

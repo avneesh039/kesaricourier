@@ -12,6 +12,10 @@ import {
   getTickets,
   updateTicket,
   getAuditLogs,
+  getCourierApis,
+  updateCourierApi,
+  testCourierApi,
+  createCourierApi,
 } from '../controllers/superadminController';
 import { authenticate } from '../middlewares/auth';
 import { authorize } from '../middlewares/rbac';
@@ -37,6 +41,12 @@ router.post('/destinations', createDestination);
 router.get('/tickets', getTickets);
 router.patch('/tickets/:id', updateTicket);
 router.get('/audit-logs', getAuditLogs);
+
+// Courier API Gateway Hub Endpoints
+router.get('/courier-apis', getCourierApis);
+router.post('/courier-apis', createCourierApi);
+router.put('/courier-apis/:id', updateCourierApi);
+router.post('/courier-apis/:id/test', testCourierApi);
 
 export default router;
 

@@ -83,6 +83,9 @@ export const Sidebar: React.FC<SidebarProps> = ({ isOpen, onClose }) => {
               <NavLink to="/superadmin/tickets" className={({ isActive }) => `sidebar-nav-item ${isActive ? 'active' : ''}`} onClick={onClose}>
                 <i className="bi bi-headset"></i> Support Tickets Desk
               </NavLink>
+              <NavLink to="/superadmin/courier-apis" className={({ isActive }) => `sidebar-nav-item ${isActive ? 'active' : ''}`} onClick={onClose}>
+                <i className="bi bi-cpu"></i> Courier API Gateway
+              </NavLink>
               <NavLink to="/superadmin/audit-logs" className={({ isActive }) => `sidebar-nav-item ${isActive ? 'active' : ''}`} onClick={onClose}>
                 <i className="bi bi-shield-check"></i> Audit Logs
               </NavLink>

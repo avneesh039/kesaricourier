@@ -179,30 +179,59 @@ export const SuperAdminDashboard: React.FC = () => {
         </div>
       </div>
 
-      {/* Handwritten Image 4.46.02(1) PM: Courier API Integrations */}
+      {/* Courier API Integrations Gateway */}
       <div className="app-card p-4 mb-4 border">
-        <div className="d-flex justify-content-between align-items-center mb-3">
+        <div className="d-flex flex-column flex-sm-row justify-content-between align-items-start align-items-sm-center gap-2 mb-3">
           <div>
-            <h5 className="mb-0 fw-bold">Courier Tracking API Integrations</h5>
+            <div className="d-flex align-items-center gap-2">
+              <h5 className="mb-0 fw-bold">Courier Tracking API Integrations</h5>
+              <span className="badge bg-success-subtle text-success border">6 Gateways Connected</span>
+            </div>
             <small className="text-muted">Live sync connectors with national carriers for end-to-end milestone ingestion</small>
           </div>
-          <span className="badge bg-success-subtle text-success border">6 Gateways Connected</span>
+          <Link
+            to="/superadmin/courier-apis"
+            className="btn btn-outline-primary btn-sm d-flex align-items-center gap-1 text-nowrap"
+          >
+            <i className="bi bi-sliders"></i>
+            <span>Configure APIs & Docs</span>
+          </Link>
         </div>
 
         <div className="row g-3">
           {[
-            { name: 'Delhivery API', domain: 'delhivery.com', status: 'Connected', ping: '24ms', icon: 'bi-truck' },
-            { name: 'Xpressbees API', domain: 'xpressbees.com', status: 'Connected', ping: '31ms', icon: 'bi-airplane' },
-            { name: 'GMS Worldwide', domain: 'gmsworldwide.com', status: 'Connected', ping: '45ms', icon: 'bi-globe' },
-            { name: 'Shree Maruti Express', domain: 'shreemaruti.com', status: 'Connected', ping: '28ms', icon: 'bi-box-seam' },
-            { name: 'Allcargo Logistics', domain: 'allcargo.com', status: 'Connected', ping: '39ms', icon: 'bi-train-front' },
-            { name: 'DTDC Courier API', domain: 'dtdc.com', status: 'Connected', ping: '22ms', icon: 'bi-shield-check' },
+            { id: 'delhivery', name: 'Delhivery API', domain: 'delhivery.com', status: 'Connected', ping: '24ms', icon: 'bi-truck' },
+            { id: 'xpressbees', name: 'Xpressbees API', domain: 'xpressbees.com', status: 'Connected', ping: '31ms', icon: 'bi-airplane' },
+            { id: 'gmsworldwide', name: 'GMS Worldwide', domain: 'gmsworldwide.com', status: 'Connected', ping: '45ms', icon: 'bi-globe' },
+            { id: 'shreemaruti', name: 'Shree Maruti Express', domain: 'shreemaruti.com', status: 'Connected', ping: '28ms', icon: 'bi-box-seam' },
+            { id: 'allcargo', name: 'Allcargo Logistics', domain: 'allcargo.com', status: 'Connected', ping: '39ms', icon: 'bi-train-front' },
+            { id: 'dtdc', name: 'DTDC Courier API', domain: 'dtdc.com', status: 'Connected', ping: '22ms', icon: 'bi-shield-check' },
           ].map((c) => (
             <div key={c.name} className="col-12 col-sm-6 col-md-4">
-              <div className="p-3 border rounded bg-light-subtle d-flex justify-content-between align-items-center">
+              <div className="p-3 border rounded bg-light-subtle d-flex justify-content-between align-items-center h-100 hover-card">
                 <div>
-                  <div className="fw-bold small">{c.name}</div>
+                  <div className="fw-bold small d-flex align-items-center gap-1">
+                    <i className={`bi ${c.icon} text-primary`}></i>
+                    <span>{c.name}</span>
+                  </div>
                   <div className="text-muted font-monospace" style={{ fontSize: '0.72rem' }}>{c.domain}</div>
+                  <div className="mt-2 d-flex gap-2">
+                    <Link
+                      to={`/superadmin/courier-apis?carrier=${c.id}&action=config`}
+                      className="btn btn-link btn-sm p-0 text-decoration-none small text-primary"
+                      style={{ fontSize: '0.72rem' }}
+                    >
+                      <i className="bi bi-sliders me-1"></i>Configure
+                    </Link>
+                    <span className="text-muted small">•</span>
+                    <Link
+                      to={`/superadmin/courier-apis?carrier=${c.id}&action=docs`}
+                      className="btn btn-link btn-sm p-0 text-decoration-none small text-secondary"
+                      style={{ fontSize: '0.72rem' }}
+                    >
+                      <i className="bi bi-file-code me-1"></i>Docs
+                    </Link>
+                  </div>
                 </div>
                 <div className="text-end">
                   <span className="badge bg-success" style={{ fontSize: '0.7rem' }}>
